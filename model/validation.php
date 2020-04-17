@@ -334,6 +334,83 @@ function validETSLongAnswersForm()
     return $isValid;
 }
 
+/**
+ * Checks if F2F long answers are valid
+ * @return bool whether or not the F2F long answers form is valid
+ */
+function validF2FLongAnswersForm()
+{
+    global $f3;
+    $isValid = true;
+    return $isValid;
+}
+
+/**
+ * Checks if B long answers are valid
+ * @return bool whether or not the B long answers form is valid
+ */
+function validBLongAnswersForm()
+{
+    global $f3;
+    $isValid = true;
+    return $isValid;
+}
+
+/**
+ * Checks if C long answers are valid
+ * @return bool whether or not the C long answers form is valid
+ */
+function validCLongAnswersForm()
+{
+    global $f3;
+    $isValid = true;
+    return $isValid;
+}
+
+/**
+ * Checks if H long answers are valid
+ * @return bool whether or not the H long answers form is valid
+ */
+function validHLongAnswersForm()
+{
+    global $f3;
+    $isValid = true;
+    return $isValid;
+}
+
+/**
+ * Checks if IOOV long answers are valid
+ * @return bool whether or not the IOOV long answers form is valid
+ */
+function validIOOVLongAnswersForm()
+{
+    global $f3;
+    $isValid = true;
+    return $isValid;
+}
+
+/**
+ * Checks if PE long answers are valid
+ * @return bool whether or not the PE long answers form is valid
+ */
+function validPELongAnswersForm()
+{
+    global $f3;
+    $isValid = true;
+    return $isValid;
+}
+
+/**
+ * Checks if S long answers are valid
+ * @return bool whether or not the S long answers form is valid
+ */
+function validSLongAnswersForm()
+{
+    global $f3;
+    $isValid = true;
+    return $isValid;
+}
+
 /** Checks if the not required form is valid
  * @return bool if the not required form is valid
  */
