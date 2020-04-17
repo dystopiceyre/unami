@@ -16,16 +16,28 @@
     {
       "name": "Alvin",
       "email": "anava8@mail.greenriver.edu"
+    },
+    {
+      "name": "Olivia",
+      "email": "oringhiser@mail.greenriver.edu"
+    },
+    {
+      "name": "Maureen",
+      "email": "mkariuki2@mail.greenriver.edu"
+    },
+    {
+      "name": "Imelda",
+      "email": "imedina-castaneda@mail.greenriver.edu"
     }
-
   ],
   "require": {
     "bcosca/fatfree-core": "dev-master",
     "swiftmailer/swiftmailer": "^6.0",
     "phpoffice/phpspreadsheet": "1.8.2"
   },
-
   "autoload": {
-    "classmap": ["classes/"]
+    "classmap": [
+      "classes/"
+    ]
   }
 }
