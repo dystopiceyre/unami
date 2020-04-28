@@ -12,6 +12,10 @@ error_reporting(E_ALL);
 //create an instance of the Base class
 $f3 = Base::instance();
 
+//requires database
+$user = get_current_user();
+require "/home/$user/config_UNAMI.php";
+
 //establish connection to database
 $db = new UnamiDatabase();
 
