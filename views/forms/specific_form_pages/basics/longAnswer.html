@@ -105,7 +105,7 @@
                             <label><input type="radio" name="parentMentalChild" value="no">No</label>
                             <!--TODO: make hidden-->
                             <p>What is the current age of this individual?</p>
-                            <input type="number" min="0" max="100" step="1">
+                            <input type="number" name="childAge" min="0" max="100" step="1">
                             <p>Have they been given a diagnosis?</p>
                             <label><input type="radio" name="givenDiagnosis" value="yes">Yes</label>
                             <label><input type="radio" name="givenDiagnosis" value="no">No</label>
@@ -134,20 +134,20 @@
                             <label></label><input type="radio" name="highSchoolGrad" value="no">No</label>
                             <!--TODO: make hidden-->
                             <p>If yes, date of graduation?</p>
-                            <input type="text">
+                            <input type="text" name="gradDate">
                         </div>
 
                         <!--Question 10-->
                         <div class="form-group">
                             <h5>Why would you like to become a NAMI Basics Teacher</h5>
-                            <textarea></textarea>
+                            <textarea name="whyBasicsTeacher"></textarea>
                         </div>
 
                         <!--Question 11-->
                         <div class="form-group">
                             <h5>Please share with us your experiences living with a child or adolescent with a mental
                                 illness</h5>
-                            <textarea></textarea>
+                            <textarea name="childExperiences"></textarea>
                         </div>
 
                         <!--Question 12-->
