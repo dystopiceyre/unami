@@ -120,20 +120,18 @@
                                                 <h5><i class="fas fa-map-marker mr-1 text-success"></i> Location</h5>
                                                 <div class="form-group pb-2">
                                                     <label for="location" class="sr-only">Location</label>
+                                                    <check if="{{ isset(@errors['location']) }}">
+                                                        <!--<span class="err">{{ @errors['location'] }}</span>
+                                                        selected="selected"-->
+                                                    </check>
                                                     <select id="location" name="location">
-                                                    <option value="none">--Select--</option>
+                                                    <option value="none">--Select location--</option>
 
-                                                    <repeat group="{{ @locations }}" value="{{ @location }}">
-                                                        <option value="{{ @location['location'] }}"
-                                                        <check if="{{ @location['location'] }}">
-                                                            selected="selected"
-                                                        </check>
-                                                        >
-                                                        {{ @location['location'] }}
-                                                        </option>
+                                                    <repeat group="{{ @locations }}" value="{{ @locationOption }}">
+                                                        <option> {{ @locationOption }}"</option>
                                                     </repeat>
                                                     </select>
-                                                    <span class="err">{{ @errors['location'] }}</span>
+
                                                 </div>
 
                                                 <h5><i class="far fa-calendar-times mr-1 text-success"></i>Deadline</h5>

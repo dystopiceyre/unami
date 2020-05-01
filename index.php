@@ -24,9 +24,6 @@ require_once 'model/validation.php';
 //import data
 require_once 'model/data.php';
 
-//define location array
-$f3->set('location', array('Kirkland', 'Olympia', 'Spokane', 'Yakima'));
-
 //default route
 $f3->route('GET|POST /', function($f3)
 {

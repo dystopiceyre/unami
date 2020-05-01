@@ -56,3 +56,7 @@ $f3->set('applicationStatuses',
         3 => 'Complete'
     )
 );
+
+//locations
+$f3->set('locations',
+    array('Kirkland', 'Olympia', 'Redmond','Spokane', 'Yakima', 'Online'));
