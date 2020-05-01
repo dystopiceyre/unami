@@ -112,10 +112,28 @@
                                                     <input type="text" class="form-control" name="dates2" id="dates2">
                                                 </div>
 
-                                                <h5><i class="fas fa-map-marker mr-1 text-success"></i> Location</h5>
+                                                <!--<h5><i class="fas fa-map-marker mr-1 text-success"></i> Location</h5>
                                                 <div class="form-group pb-2">
                                                     <label for="location" class="sr-only">Location</label>
                                                     <input type="text" class="form-control" name="location" id="location">
+                                                </div>-->
+                                                <h5><i class="fas fa-map-marker mr-1 text-success"></i> Location</h5>
+                                                <div class="form-group pb-2">
+                                                    <label for="location" class="sr-only">Location</label>
+                                                    <select id="location" name="location">
+                                                    <option value="none">--Select--</option>
+
+                                                    <repeat group="{{ @locations }}" value="{{ @location }}">
+                                                        <option value="{{ @location['location'] }}"
+                                                        <check if="{{ @location['location'] }}">
+                                                            selected="selected"
+                                                        </check>
+                                                        >
+                                                        {{ @location['location'] }}
+                                                        </option>
+                                                    </repeat>
+                                                    </select>
+                                                    <span class="err">{{ @errors['location'] }}</span>
                                                 </div>
 
                                                 <h5><i class="far fa-calendar-times mr-1 text-success"></i>Deadline</h5>
