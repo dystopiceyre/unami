@@ -342,6 +342,18 @@ $f3->route('GET /affiliates', function($f3)
     $f3->set('Affiliates', $db->getAffiliates());
     $f3->set('NumAffiliates', $db->countAffiliates());
 
+    //update submission
+    if(isset($_POST['updateAffiliate'])) {
+
+        $id = $_POST['id'];
+        $category = $_POST['category'];
+        $status = $_POST['status'];
+        $notes = $_POST['notes'];
+
+        //run update query
+        $db->updateApplicant($id, $category, $status, $notes);
+        $f3->reroute('/affiliates');
+    }
     $view = new Template();
     echo $view->render('views/portal/other/affiliates.html');
 });

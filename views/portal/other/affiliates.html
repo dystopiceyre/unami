@@ -12,21 +12,39 @@
             <h5 class="m-0 text-gray-800">Showing All <strong>{{ @NumAffiliates['NumAffiliates'] }}</strong> Affiliates
             </h5>
         </div>
+<!--        <div class="align-self-center mt-2">-->
+<!--            <button class="btn-group-toggle rounded-lg" type="submit">Edit</button>-->
+<!--&lt;!&ndash;            <button class="btn-group-toggle rounded-lg" type="submit">Save</button>&ndash;&gt;-->
+<!--            <button class="btn-group-toggle rounded-lg" type="submit">Delete</button>-->
+<!--        </div>-->
+
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered table-hover" id="affiliatesDataTable" width="100%" cellspacing="0">
+                    <!-- add new affiliate  -->
+                    <div class="text-center mt-2 mb-0">
+                        <button href="#" class="text-decoration-none text-primary btn-group-toggle rounded-lg" data-toggle="modal" data-target="#modal{{ @WaitlistedApplicant['ID'] }}">
+                            <i class="fas fa fa-plus fa-lg"></i> Add Affiliate
+                        </button>
+                    </div>
+
                     <thead>
                     <tr class="bg-primary text-white">
                         <th>Affiliate</th>
                         <th>Email</th>
-                        <!--<th>Edit</th>-->
+                        <th>Edit</th>
+                        <th>Delete</th>
+
                     </tr>
                     </thead>
                     <tfoot>
                     <tr class="bg-light">
                         <th>Affiliate</th>
                         <th>Email</th>
-                        <!--<th>Edit</th>-->
+                        <th>Edit</th>
+                        <th>Delete</th>
+
+
                     </tr>
                     </tfoot>
                     <tbody>
@@ -38,14 +56,32 @@
 
                             <!--<td>{{ @Affiliate['phone'] }}</td>-->
                             <!-- mailto affiliate email -->
-                            <!--<td>
-                                <a  class="text-decoration-none text-body"
-                                    href="mailto: {{ @Affiliate['email'] }}">
-                                    {{ @Affiliate['email'] }}
-                                </a>
-                            </td>-->
+<!--                           <td>-->
+<!--                                <a  class="text-decoration-none text-body"-->
+<!--                                    href="mailto: {{ @Affiliate['email'] }}">-->
+<!--                                    {{ @Affiliate['email'] }}-->
+<!--                                </a>-->
+<!--                            </td>-->
 
                             <td>{{ @Affiliate['email'] }}</td>
+                            <!--edit the email address -->
+
+
+
+                            <!-- edit -> modal -- affiliate ID here -->
+                            <td class="text-center">
+                                <a href="#" class="text-decoration-none text-primary" data-toggle="modal" data-target="#modal{{ @WaitlistedApplicant['ID'] }}">
+                                    <i class="fas fa-edit fa-lg"></i>
+                                </a>
+                            </td>
+                            <!--delete the email address -->
+                            <td class="text-center">
+<!--                              data-toggle="modal" data-target="#modal{{ @WaitlistedApplicant['ID'] }}" -->
+                                <a href="#" class="text-decoration-none text-primary" >
+                                    <i class="fas fa fa-trash fa-lg"></i>
+                                </a>
+                            </td>
+
 
                             <!-- edit -> modal -- use ID here -->
                             <!--<td class="text-center">
@@ -88,6 +124,56 @@
                             </div>
                         </div>
                     </repeat>
+                    <!-- edit modal box -->
+                    <div class="modal fade" id="modal{{ @WaitlistedApplicant['ID'] }}" tabindex="-1" role="dialog"
+                         aria-labelledby="modal{{ @WaitlistedApplicant['ID'] }}" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+
+                                <div class="modal-header bg-primary">
+                                    <h4 class="modal-title text-white" id="modalLabel">
+                                        <i class="fas fa-edit"></i> Edit
+                                        <span class="font-weight-bold">{{ @WaitlistedApplicant['Name'] }}'s</span>
+                                        Application
+                                    </h4>
+
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <!-- edit form -->
+                                <form action="waitlist" method="post">
+                                    <div class="modal-body py-4">
+
+                                        <input type="hidden" value="{{ @WaitlistedApplicant['ID'] }}" name="id">
+                                        <input type="hidden" value="{{ @WaitlistedApplicant['AppStatus'] }}" name="status">
+
+                                        <h5><i class="fas fa-pen-alt mr-1 text-primary"></i>New Affiliate</h5>
+                                        <div class="form-row mb-2">
+                                            <div class="form-group col-md-10">
+                                                <label class="sr-only" for="newAffiliate">New Affiliate</label>
+                                                <textarea class="form-control" id="newAffiliate" rows="2" name="newAffiliate">{{ @WaitlistedApplicant['Notes'] }}</textarea>
+                                            </div>
+                                        </div>
+
+                                        <h5><i class="fas fa-pen-alt mr-1 text-primary"></i>New Email</h5>
+                                        <div class="form-row mb-2">
+                                            <div class="form-group col-md-10">
+                                                <label class="sr-only" for="newEmail">New Email</label>
+                                                <textarea class="form-control" id="newEmail" rows="2" name="newEmail">{{ @WaitlistedApplicant['Notes'] }}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" name="updateAffiliate" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     </tbody>
                 </table>
             </div>
