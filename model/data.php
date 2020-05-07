@@ -58,5 +58,4 @@ $f3->set('applicationStatuses',
 );
 
 //locations
-$f3->set('locations',
-    array('Kirkland', 'Olympia', 'Redmond','Spokane', 'Yakima', 'Online'));
+$f3->set('locations', array('Kirkland', 'Olympia', 'Redmond','Spokane', 'Yakima', 'Online'));

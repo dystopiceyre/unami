@@ -26,6 +26,12 @@
                                                         <i class="fas fa-minus-circle text-danger"></i>
                                                     </a>
                                                 </div>
+                                                <div class="col-auto mr-2">
+                                                    <a href="#" class="text-decoration-none text-success"
+                                                       data-toggle="modal" data-target="#editModal{{ @info['info_id'] }}">
+                                                        <i class='far fa-edit' style='font-size:18px; color: orange'></i>
+                                                    </a>
+                                                </div>
                                                 <div class="col-10">
                                                     <span class="font-weight-bold">Day 1:</span> {{ @info['date'] }}<br>
                                                     <span class="font-weight-bold">Day 2:</span> {{ @info['date2'] }}<br>
@@ -128,7 +134,7 @@
                                                     <option value="none">--Select location--</option>
 
                                                     <repeat group="{{ @locations }}" value="{{ @locationOption }}">
-                                                        <option> {{ @locationOption }}"</option>
+                                                        <option> {{ @locationOption }}</option>
                                                     </repeat>
                                                     </select>
 
