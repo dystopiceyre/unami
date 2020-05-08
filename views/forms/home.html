@@ -148,11 +148,13 @@
                                 <form method="post">
                                     <div class="modal-content">
                                         <div class="modal-header" style="background-color: #0c499c;">
-                                            <h4 class="modal-title text-white" id="{{ @training['ref_name'] }}ModalLabel">
+                                            <h4 class="modal-title text-white"
+                                                id="{{ @training['ref_name'] }}ModalLabel">
                                                 <i class="fas fa-info-circle"></i>
                                                 {{ @training['app_type'] }}
                                             </h4>
-                                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                            <button type="button" class="close text-white" data-dismiss="modal"
+                                                    aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
@@ -160,7 +162,8 @@
                                         <div class="modal-body mx-2">
                                             <h4 class="mb-4 mt-3">Please select an available training</h4>
                                             <hr>
-                                            <repeat group="{{ @app_types_info }}" value="{{ @info }}" counter="{{ @ctr2 }}">
+                                            <repeat group="{{ @app_types_info }}" value="{{ @info }}"
+                                                    counter="{{ @ctr2 }}">
                                                 <check if="{{ @info['app_type'] == @training['app_id'] }}">
                                                     <div class="form-check mb-4 ml-2">
                                                         <input class="form-check-input mt-4" type="radio"
@@ -168,10 +171,21 @@
                                                                id="{{ @info['info_id'] }}Info"
                                                                value="{{ @info['info_id'] }}" checked>
                                                         <h6>
-                                                            <label class="form-check-label" for="{{ @info['info_id'] }}Info">
-                                                                <span class="font-weight-bold">Day 1: </span>{{ @info['date'] }}
-                                                                <br><span class="font-weight-bold">Day 2: </span>{{ @info['date2'] }}
-                                                                <br><span class="font-weight-bold">Location: </span>{{ @info['location'] }}
+                                                            <label class="form-check-label"
+                                                                   for="{{ @info['info_id'] }}Info">
+                                                                <span class="font-weight-bold">Day 1: </span>{{
+                                                                date('F j, Y', strtotime(@info['date'])) }}
+                                                                <check if="{{ @info['date2'] }}">
+                                                                    <br><span class="font-weight-bold">Day 2: </span>{{
+                                                                    date('F j, Y', strtotime(@info['date2'])) }}
+                                                                </check>
+                                                                <check if="{{ @info['date3'] }}">
+                                                                    <br><span class="font-weight-bold">Day 3: </span>{{
+                                                                    date('F j, Y', strtotime(@info['date3'])) }}
+                                                                </check>
+                                                                <br><span class="font-weight-bold">Location: </span>{{
+                                                                @info['location']
+                                                                }}
                                                             </label>
                                                         </h6>
                                                     </div>
@@ -182,8 +196,11 @@
                                         </div>
 
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary" name="{{ @training['ref_name'] }}Submit">Apply</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                            </button>
+                                            <button type="submit" class="btn btn-primary"
+                                                    name="{{ @training['ref_name'] }}Submit">Apply
+                                            </button>
                                         </div>
                                     </div>
                                 </form>
