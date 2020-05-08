@@ -383,10 +383,11 @@ $f3->route('GET|POST /trainings', function($f3)
         //insert
         $date = $_POST['dates'];
         $date2 = $_POST['dates2'];
+        $date3 = $_POST['dates3'];
         $location = $_POST['location'];
         $deadline = $_POST['deadline'];
         $id = $_POST['addId'];
-        $db->insertAppTypeInfo($id, $date, $date2, $location, $deadline);
+        $db->insertAppTypeInfo($id, $date, $date2, $date3, $location, $deadline);
         $f3->reroute('/trainings');
     }
 
