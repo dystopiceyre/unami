@@ -34,6 +34,7 @@
                     <tr class="bg-light">
                         <th>Day 1</th>
                         <th>Day 2</th>
+                        <th>Day 3</th>
                         <th>Location</th>
                         <th>Deadline</th>
                     </tr>
@@ -42,10 +43,11 @@
                     <!-- all active applicants -->
                     <repeat group="{{ @oldTrainings }}" value="{{ @oldTraining }}">
                         <tr>
-                            <td>{{ @oldTraining['date'] }}</td>
-                            <td>{{ @oldTraining['date2'] }}</td>
+                            <td>{{ date('F j, Y', strtotime(@oldTraining['date'])) }}</td>
+                            <td>{{ date('F j, Y', strtotime(@oldTraining['date2'])) }}</td>
+                            <td>{{ date('F j, Y', strtotime(@oldTraining['date3'])) }}</td>
                             <td>{{ @oldTraining['location'] }}</td>
-                            <td>{{ @oldTraining['deadline'] }}</td>
+                            <td>{{ date('F j, Y', strtotime(@oldTraining['deadline'])) }}</td>
                         </tr>
                     </repeat>
                     </tbody>
