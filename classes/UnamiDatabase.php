@@ -38,6 +38,7 @@ class UnamiDatabase
     }
 
     ////////////////////////////////////////////////////FORMS///////////////////////////////////////////////////////////
+
     /**
      * @param $personalInfo PersonalInfo
      * @param $accommodations AdditionalInfo
@@ -103,15 +104,12 @@ class UnamiDatabase
         $single_room = ($accommodations->getSingleRoom() == 'true' ? "Yes" : "No");
 
         $daysAsString = '';
-        if(is_array($accommodations->getDaysRooming()))
-        {
+        if (is_array($accommodations->getDaysRooming())) {
             foreach ($accommodations->getDaysRooming() as $day) {
-                $daysAsString.=$day;
-                $daysAsString.=' ';
+                $daysAsString .= $day;
+                $daysAsString .= ' ';
             }
-        }
-        else
-        {
+        } else {
             $daysAsString = "Not needed";
         }
 
@@ -315,6 +313,7 @@ class UnamiDatabase
     }
 
     //////////////////////////////////////////////////AFFILIATE/////////////////////////////////////////////////////////
+
     /**
      * Gets the affiliate's email
      *
@@ -402,6 +401,7 @@ class UnamiDatabase
     }
 
     ////////////////////////////////////////////////////ADMIN///////////////////////////////////////////////////////////
+
     /**
      * Inserts a new admin user
      *
@@ -411,7 +411,8 @@ class UnamiDatabase
      * @param $password
      * @return mixed
      */
-    function insertAdminUser($fname, $lname, $email, $password) {
+    function insertAdminUser($fname, $lname, $email, $password)
+    {
 
         //hash password
         $password = password_hash($password, PASSWORD_DEFAULT);
@@ -443,7 +444,8 @@ class UnamiDatabase
      * @param $email
      * @return mixed
      */
-    function getAdminPassword($email) {
+    function getAdminPassword($email)
+    {
         //define query
         $query = "SELECT password, fname, lname 
                   FROM adminUser
@@ -459,9 +461,7 @@ class UnamiDatabase
         $statement->execute();
 
         //get result
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -470,7 +470,8 @@ class UnamiDatabase
      * @param $email
      * @return mixed
      */
-    function getAdminEmail($email) {
+    function getAdminEmail($email)
+    {
         //define query
         $query = "SELECT email 
                   FROM adminUser
@@ -486,9 +487,7 @@ class UnamiDatabase
         $statement->execute();
 
         //get result
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -506,9 +505,7 @@ class UnamiDatabase
 
         $statement->execute();
 
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -526,9 +523,7 @@ class UnamiDatabase
 
         $statement->execute();
 
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -539,7 +534,7 @@ class UnamiDatabase
     function getAppTypesInfo()
     {
         //define query
-        $query = "SELECT info_id, date, location, deadline, app_type, date2 
+        $query = "SELECT info_id, date, location, deadline, app_type, date2, date3
                   FROM app_type_info
                   WHERE active = 1";
 
@@ -548,9 +543,7 @@ class UnamiDatabase
 
         $statement->execute();
 
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -561,7 +554,7 @@ class UnamiDatabase
     function getOldAppTypesInfo()
     {
         //define query
-        $query = "SELECT info_id, date, location, deadline, app_type, date2 
+        $query = "SELECT info_id, date, location, deadline, app_type, date2, date3
                   FROM app_type_info
                   WHERE active = 0";
 
@@ -570,15 +563,14 @@ class UnamiDatabase
 
         $statement->execute();
 
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    function getAppTypeInfo($infoId) {
+    function getAppTypeInfo($infoId)
+    {
 
         //define query
-        $query = "SELECT date, location, deadline, app_type, date2 
+        $query = "SELECT date, location, deadline, app_type, date2, date3
                   FROM app_type_info
                   WHERE info_id = :infoId
                   AND active = 1";
@@ -593,9 +585,7 @@ class UnamiDatabase
         $statement->execute();
 
         //get result
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -604,17 +594,19 @@ class UnamiDatabase
      * @param $id
      * @param $date
      * @param $date2
+     * @param $date3
      * @param $location
      * @param $deadline
      * @return mixed
      */
-    function insertAppTypeInfo($id, $date, $date2, $location, $deadline) {
+    function insertAppTypeInfo($id, $date, $date2, $date3, $location, $deadline)
+    {
 
         //define query
         $query = 'INSERT INTO app_type_info
-                  (date, location, deadline, app_type, date2, active)
+                  (date, location, deadline, app_type, date2, date3, active)
                   VALUES
-                  (:date, :location, :deadline, :app_type, :date2, 1)';
+                  (:date, :location, :deadline, :app_type, :date2, :date3, 1)';
 
         //prepare statement
         $statement = $this->_dbh->prepare($query);
@@ -622,6 +614,7 @@ class UnamiDatabase
         //bind parameters
         $statement->bindParam(':date', $date, PDO::PARAM_STR);
         $statement->bindParam(':date2', $date2, PDO::PARAM_STR);
+        $statement->bindParam(':date3', $date3, PDO::PARAM_STR);
         $statement->bindParam(':location', $location, PDO::PARAM_STR);
         $statement->bindParam(':deadline', $deadline, PDO::PARAM_STR);
         $statement->bindParam(':app_type', $id, PDO::PARAM_STR);
@@ -638,7 +631,8 @@ class UnamiDatabase
      * @param $id
      * @return mixed
      */
-    function deleteAppTypeInfo($id) {
+    function deleteAppTypeInfo($id)
+    {
         //define query
         $query = 'UPDATE app_type_info
                   SET active = 0
@@ -651,9 +645,7 @@ class UnamiDatabase
         $statement->bindParam(':info_id', $id, PDO::PARAM_STR);
 
         //execute statement
-        $result = $statement->execute();
-
-        return $result;
+        return $statement->execute();
     }
 
     /**
@@ -662,7 +654,8 @@ class UnamiDatabase
      * @param $id
      * @return mixed
      */
-    function countTrainingAppTypeInfo($id) {
+    function countTrainingAppTypeInfo($id)
+    {
         //define query
         $query = "SELECT COUNT(info_id) AS Trainings
                   FROM app_type_info
@@ -677,9 +670,7 @@ class UnamiDatabase
 
         $statement->execute();
 
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -687,7 +678,8 @@ class UnamiDatabase
      *
      * @return mixed
      */
-    function countTrainings() {
+    function countTrainings()
+    {
         //define query
         $query = "SELECT COUNT(info_id) AS Trainings
                   FROM app_type_info
@@ -698,9 +690,7 @@ class UnamiDatabase
 
         $statement->execute();
 
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
 //        function deleteAffiliate($affiliate_id){
@@ -753,7 +743,8 @@ class UnamiDatabase
      *
      * @return mixed
      */
-    function countAffiliates() {
+    function countAffiliates()
+    {
         //define query
         $query = "SELECT COUNT(affiliate_id) AS NumAffiliates
                   FROM affiliates";
@@ -763,18 +754,17 @@ class UnamiDatabase
 
         $statement->execute();
 
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
      * Get applicants based on category: active, waitlist, archive
      *
-     * @param $category: active = 1, waitlist = 2, archive = 0
+     * @param $category : active = 1, waitlist = 2, archive = 0
      * @return mixed
      */
-    function getApplicants($category) {
+    function getApplicants($category)
+    {
 
         //affiliate->affiliates table
         //app_type->app_type table
@@ -808,18 +798,17 @@ class UnamiDatabase
         $statement->execute();
 
         //get result
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
      * Counts number of applications
      *
-     * @param $category: active = 1, waitlist = 2, archive = 0
+     * @param $category : active = 1, waitlist = 2, archive = 0
      * @return mixed
      */
-    function countApplicants($category) {
+    function countApplicants($category)
+    {
         //define query
         $query = "SELECT COUNT(category) AS NumApplicants
                   FROM applicants
@@ -832,9 +821,7 @@ class UnamiDatabase
 
         $statement->execute();
 
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -842,7 +829,8 @@ class UnamiDatabase
      *
      * @return mixed
      */
-    function countSubmitted() {
+    function countSubmitted()
+    {
         //define query
         $query = "SELECT COUNT(app_status) AS Submitted
                   FROM applicants
@@ -854,9 +842,7 @@ class UnamiDatabase
 
         $statement->execute();
 
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -864,7 +850,8 @@ class UnamiDatabase
      *
      * @return mixed
      */
-    function countApproved() {
+    function countApproved()
+    {
         //define query
         $query = "SELECT COUNT(app_status) AS Approved
                   FROM applicants
@@ -876,9 +863,7 @@ class UnamiDatabase
 
         $statement->execute();
 
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -886,7 +871,8 @@ class UnamiDatabase
      *
      * @return mixed
      */
-    function countDenied() {
+    function countDenied()
+    {
         //define query
         $query = "SELECT COUNT(app_status) AS Denied
                   FROM applicants
@@ -898,9 +884,7 @@ class UnamiDatabase
 
         $statement->execute();
 
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -908,7 +892,8 @@ class UnamiDatabase
      *
      * @return mixed
      */
-    function countComplete() {
+    function countComplete()
+    {
         //define query
         $query = "SELECT COUNT(app_status) AS Complete
                   FROM applicants
@@ -921,9 +906,7 @@ class UnamiDatabase
         $statement->execute();
 
 
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -931,7 +914,8 @@ class UnamiDatabase
      *
      * @return mixed
      */
-    function countDate() {
+    function countDate()
+    {
         //define query
         //$query = "SELECT COUNT(date_submitted) As Submitted, EXTRACT(YEAR_MONTH FROM date_submitted) AS MonthYear FROM applicants;";
         $query = "SELECT concat(month(date_submitted),'/', year(date_submitted)) as MonthYear FROM applicants 
@@ -944,9 +928,7 @@ class UnamiDatabase
         $statement->execute();
 
 
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -954,7 +936,8 @@ class UnamiDatabase
      *
      * @return mixed
      */
-    function countApplicationByMonthYear() {
+    function countApplicationByMonthYear()
+    {
         //define query
         //$query = "SELECT COUNT(date_submitted) As Submitted, EXTRACT(YEAR_MONTH FROM date_submitted) AS MonthYear FROM applicants;";
         $query = "SELECT COUNT(applicant_id) AS AppSubmit FROM applicants 
@@ -967,9 +950,7 @@ class UnamiDatabase
         $statement->execute();
 
 
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -1003,13 +984,15 @@ class UnamiDatabase
     }
 
     //////////////////////////////////////////////////GENERAL///////////////////////////////////////////////////////////
+
     /**
      * Gets the applicant by ID
      *
      * @param $appID int
      * @return mixed the array for the applicant
      */
-    function getApplicant($appID) {
+    function getApplicant($appID)
+    {
 
         //define query
         $query = "SELECT *,
@@ -1019,6 +1002,7 @@ class UnamiDatabase
                   applicants.email AS Email,
                   app_type_info.date AS Day1,
                   app_type_info.date2 AS Day2,
+                  app_type_info.date3 AS Day3,
                   app_type_info.location AS Location
                   FROM applicants
                   INNER JOIN affiliates ON applicants.affiliate = affiliates.affiliate_id
@@ -1039,9 +1023,7 @@ class UnamiDatabase
         $statement->execute();
 
         //get result
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -1052,7 +1034,7 @@ class UnamiDatabase
     {
         //name, phone, email, special needs, and all rooming info
         //define query
-        $query="SELECT date_submitted, app_status, fname, lname, primary_phone, email, 
+        $query = "SELECT date_submitted, app_status, fname, lname, primary_phone, email, 
                 special_needs, service_animal, mobility_need, need_rooming,
                 single_room, days_rooming, gender, roommate_gender, 
                 cpap_user, roommate_cpap
@@ -1075,22 +1057,14 @@ class UnamiDatabase
         //get result
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-        for($i = 0; $i < sizeof($result); $i++)
-        {
-            if($result[$i]['app_status'] == 0)
-            {
+        for ($i = 0; $i < sizeof($result); $i++) {
+            if ($result[$i]['app_status'] == 0) {
                 $result[$i]['app_status'] = "denied";
-            }
-            else if($result[$i]['app_status'] == 1)
-            {
+            } else if ($result[$i]['app_status'] == 1) {
                 $result[$i]['app_status'] = "submitted";
-            }
-            else if($result[$i]['app_status'] == 2)
-            {
+            } else if ($result[$i]['app_status'] == 2) {
                 $result[$i]['app_status'] = "approved";
-            }
-            else if($result[$i]['app_status'] == 3)
-            {
+            } else if ($result[$i]['app_status'] == 3) {
                 $result[$i]['app_status'] = "completed";
             }
         }
@@ -1098,31 +1072,36 @@ class UnamiDatabase
         return $result;
     }
 
-    function getLongAnswer($applicant_id, $application_type) {
+    function getLongAnswer($applicant_id, $application_type)
+    {
         //tables
         define('FSG', 1);
         define('P2P', 2);
         define('ETS', 3);
+        define('B', 9);
 
         $query = '';
 
         //find the right table
-        if($application_type == FSG) {
+        if ($application_type == FSG) {
             //define query
             $query = "SELECT *
                       FROM FSG
                       WHERE applicant_id = :applicant_id";
-        }
-        else if($application_type == P2P) {
+        } else if ($application_type == P2P) {
             //define query
             $query = "SELECT *
                       FROM P2P
                       WHERE applicant_id = :applicant_id";
-        }
-        else if($application_type == ETS) {
+        } else if ($application_type == ETS) {
             //define query
             $query = "SELECT *
                       FROM ETS
+                      WHERE applicant_id = :applicant_id";
+        } else if ($application_type == B) {
+            //define query
+            $query = "SELECT *
+                      FROM B
                       WHERE applicant_id = :applicant_id";
         }
 
@@ -1136,9 +1115,7 @@ class UnamiDatabase
         $statement->execute();
 
         //get result
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -1155,9 +1132,7 @@ class UnamiDatabase
 
         $statement->execute();
 
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -1166,9 +1141,10 @@ class UnamiDatabase
     ////////////the first///////////
 
     //name//
-    function getTheFirstSlacker() {
+    function getTheFirstSlacker()
+    {
         //define query
-        $query =   "SELECT affiliates.name as affiliateName1 from applicants
+        $query = "SELECT affiliates.name as affiliateName1 from applicants
                     INNER JOIN  affiliates ON affiliates.affiliate_id = applicants.affiliate
                     WHERE app_type = 1
                     GROUP by affiliate
@@ -1180,14 +1156,13 @@ class UnamiDatabase
 
         $statement->execute();
 
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     //percentage//
-    function getTheFirstPercentage(){
-        $query =   "SELECT
+    function getTheFirstPercentage()
+    {
+        $query = "SELECT
                     ROUND((((SELECT COUNT(app_type) from applicants
                     INNER JOIN  affiliates ON affiliates.affiliate_id = applicants.affiliate
                     WHERE app_type = 1
@@ -1206,18 +1181,17 @@ class UnamiDatabase
 
         $statement->execute();
 
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
 
     ////////////the second////////////
 
     //name//
-    function getTheSecondSlacker() {
+    function getTheSecondSlacker()
+    {
         //define query
-        $query =   "SELECT affiliates.name as affiliateName2 from applicants
+        $query = "SELECT affiliates.name as affiliateName2 from applicants
                     INNER JOIN  affiliates ON affiliates.affiliate_id = applicants.affiliate
                     WHERE app_type = 1
                     GROUP by affiliate
@@ -1229,14 +1203,13 @@ class UnamiDatabase
 
         $statement->execute();
 
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     //percentage//
-    function getTheSecondPercentage(){
-        $query =   "SELECT
+    function getTheSecondPercentage()
+    {
+        $query = "SELECT
                     ROUND((((SELECT COUNT(app_type) from applicants
                     INNER JOIN  affiliates ON affiliates.affiliate_id = applicants.affiliate
                     WHERE app_type = 1
@@ -1255,18 +1228,17 @@ class UnamiDatabase
 
         $statement->execute();
 
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
 
     ////////////the third////////////
 
     //name//
-    function getTheThirdSlacker() {
+    function getTheThirdSlacker()
+    {
         //define query
-        $query =   "SELECT affiliates.name as affiliateName3 from applicants
+        $query = "SELECT affiliates.name as affiliateName3 from applicants
                     INNER JOIN  affiliates ON affiliates.affiliate_id = applicants.affiliate
                     WHERE app_type = 1
                     GROUP by affiliate
@@ -1278,14 +1250,13 @@ class UnamiDatabase
 
         $statement->execute();
 
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     //percentage//
-    function getTheThirdPercentage(){
-        $query =   "SELECT
+    function getTheThirdPercentage()
+    {
+        $query = "SELECT
                     ROUND((((SELECT COUNT(app_type) from applicants
                     INNER JOIN  affiliates ON affiliates.affiliate_id = applicants.affiliate
                     WHERE app_type = 1
@@ -1304,17 +1275,16 @@ class UnamiDatabase
 
         $statement->execute();
 
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     ////////////the fourth////////////
 
     //name//
-    function getTheFourthSlacker() {
+    function getTheFourthSlacker()
+    {
         //define query
-        $query =   "SELECT affiliates.name as affiliateName4 from applicants
+        $query = "SELECT affiliates.name as affiliateName4 from applicants
                     INNER JOIN  affiliates ON affiliates.affiliate_id = applicants.affiliate
                     WHERE app_type = 1
                     GROUP by affiliate
@@ -1326,14 +1296,13 @@ class UnamiDatabase
 
         $statement->execute();
 
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     //percentage//
-    function getTheFourthPercentage(){
-        $query =   "SELECT
+    function getTheFourthPercentage()
+    {
+        $query = "SELECT
                     ROUND((((SELECT COUNT(app_type) from applicants
                     INNER JOIN  affiliates ON affiliates.affiliate_id = applicants.affiliate
                     WHERE app_type = 1
@@ -1352,17 +1321,16 @@ class UnamiDatabase
 
         $statement->execute();
 
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     ////////////the fifth////////////
 
     //name//
-    function getTheFifthSlacker() {
+    function getTheFifthSlacker()
+    {
         //define query
-        $query =   "SELECT affiliates.name as affiliateName5 from applicants
+        $query = "SELECT affiliates.name as affiliateName5 from applicants
                     INNER JOIN  affiliates ON affiliates.affiliate_id = applicants.affiliate
                     WHERE app_type = 1
                     GROUP by affiliate
@@ -1374,14 +1342,13 @@ class UnamiDatabase
 
         $statement->execute();
 
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     //percentage//
-    function getTheFifthPercentage(){
-        $query =   "SELECT
+    function getTheFifthPercentage()
+    {
+        $query = "SELECT
                     ROUND((((SELECT COUNT(app_type) from applicants
                     INNER JOIN  affiliates ON affiliates.affiliate_id = applicants.affiliate
                     WHERE app_type = 1
@@ -1400,9 +1367,7 @@ class UnamiDatabase
 
         $statement->execute();
 
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
-
-        return $result;
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     function getAdminInfo($email)

@@ -25,6 +25,7 @@
                     <tr class="bg-primary text-white">
                         <th>Day 1</th>
                         <th>Day 2</th>
+                        <th>Day 3</th>
                         <th>Location</th>
                         <th>Deadline</th>
                     </tr>
@@ -33,6 +34,7 @@
                     <tr class="bg-light">
                         <th>Day 1</th>
                         <th>Day 2</th>
+                        <th>Day 3</th>
                         <th>Location</th>
                         <th>Deadline</th>
                     </tr>
@@ -41,10 +43,25 @@
                     <!-- all active applicants -->
                     <repeat group="{{ @oldTrainings }}" value="{{ @oldTraining }}">
                         <tr>
-                            <td>{{ @oldTraining['date'] }}</td>
-                            <td>{{ @oldTraining['date2'] }}</td>
+                            <td>{{ date('F j, Y', strtotime(@oldTraining['date'])) }}</td>
+                            <check if="{{ @oldTraining['date2']}}">
+                                <true>
+                                    <td>{{ date('F j, Y', strtotime(@oldTraining['date2'])) }}</td>
+                                </true>
+                                <false>
+                                    <td></td>
+                                </false>
+                            </check>
+                            <check if="{{ @oldTraining['date3']}}">
+                                <true>
+                                    <td>{{ date('F j, Y', strtotime(@oldTraining['date3'])) }}</td>
+                                </true>
+                                <false>
+                                    <td></td>
+                                </false>
+                            </check>
                             <td>{{ @oldTraining['location'] }}</td>
-                            <td>{{ @oldTraining['deadline'] }}</td>
+                            <td>{{ date('F j, Y', strtotime(@oldTraining['deadline'])) }}</td>
                         </tr>
                     </repeat>
                     </tbody>
