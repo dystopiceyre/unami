@@ -44,8 +44,22 @@
                     <repeat group="{{ @oldTrainings }}" value="{{ @oldTraining }}">
                         <tr>
                             <td>{{ date('F j, Y', strtotime(@oldTraining['date'])) }}</td>
-                            <td>{{ date('F j, Y', strtotime(@oldTraining['date2'])) }}</td>
-                            <td>{{ date('F j, Y', strtotime(@oldTraining['date3'])) }}</td>
+                            <check if="{{ @oldTraining['date2']}}">
+                                <true>
+                                    <td>{{ date('F j, Y', strtotime(@oldTraining['date2'])) }}</td>
+                                </true>
+                                <false>
+                                    <td></td>
+                                </false>
+                            </check>
+                            <check if="{{ @oldTraining['date3']}}">
+                                <true>
+                                    <td>{{ date('F j, Y', strtotime(@oldTraining['date3'])) }}</td>
+                                </true>
+                                <false>
+                                    <td></td>
+                                </false>
+                            </check>
                             <td>{{ @oldTraining['location'] }}</td>
                             <td>{{ date('F j, Y', strtotime(@oldTraining['deadline'])) }}</td>
                         </tr>
