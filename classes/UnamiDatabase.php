@@ -703,6 +703,21 @@ class UnamiDatabase
         return $result;
     }
 
+//        function deleteAffiliate(){
+//
+//        $query = "DELETE FROM `affiliates` WHERE `affiliate_id`=`affiliate_id`";
+//
+//            //prepare statement
+//            $statement = $this->_dbh->prepare($query);
+//
+//            $statement->execute();
+//
+//            $result = $statement->fetch(PDO::FETCH_ASSOC);
+//
+//            return $result;
+//    }
+
+
     /**
      * Counts number of affiliates
      *
