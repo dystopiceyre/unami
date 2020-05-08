@@ -703,20 +703,50 @@ class UnamiDatabase
         return $result;
     }
 
-//        function deleteAffiliate(){
-//
-//        $query = "DELETE FROM `affiliates` WHERE `affiliate_id`=`affiliate_id`";
+//        function deleteAffiliate($affiliate_id){
+
+//        $query = "DELETE FROM affiliates WHERE affiliate_id=:affiliate_id";
 //
 //            //prepare statement
 //            $statement = $this->_dbh->prepare($query);
 //
-//            $statement->execute();
+//            $statement->bindParam(':affiliate_id', $affiliate_id, PDO::PARAM_INT);
 //
+//            $statement->execute();
+
 //            $result = $statement->fetch(PDO::FETCH_ASSOC);
 //
 //            return $result;
-//    }
 
+//            $sql = "DELETE FROM affiliates  WHERE affiliate_id=?";
+//            $statement = $this->_dbh->prepare($sql);
+//            $statement->execute([$affiliate_id]);
+
+//    }
+//    function updateAffiliate(){
+//
+//    }
+//    function updateApplicant($id, $category, $status, $notes)
+//    {
+//        //define query
+//        $query = "UPDATE applicants
+//                  SET
+//                  app_status = :status,
+//                  category = :category,
+//                  notes = :notes
+//                  WHERE applicant_id = :id
+//                  LIMIT 1";
+//
+//        //prepare statement
+//        $statement = $this->_dbh->prepare($query);
+//
+//        //bind parameters
+//        $statement->bindParam(':category', $category, PDO::PARAM_INT);
+//        $statement->bindParam(':status', $status, PDO::PARAM_INT);
+//        $statement->bindParam(':notes', $notes, PDO::PARAM_INT);
+//        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+//
+//        $statement->execute();
 
     /**
      * Counts number of affiliates
