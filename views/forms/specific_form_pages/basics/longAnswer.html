@@ -48,9 +48,9 @@
                 <form method="post" action="long_answer">
                     <div class="form-row">
                         <!--Question 2-->
-                        <div class="form-group">
+                        <div class="form-group col-md-10">
                             <h5>Have you ever been convicted of a crime against another person
-                                including but not limited to:<br> assault of any kind, harassment of any kind, or
+                                including but not limited to: assault of any kind, harassment of any kind, or
                                 stalking?</h5>
                             <div class="form-check form-check-inline ml-2">
                                 <input name="convict" class="form-check-input" type="radio" id="yesConvict" value="yes"
@@ -64,8 +64,7 @@
                                 <label class="form-check-label" for="noConvict">No</label>
                             </div>
 
-                            <div class="form-row mt-3 ml-2" id="convictText" style="display: none">
-                                <!--TODO: make display none class in css file-->
+                            <div class="form-row mt-3 ml-2 none" id="convictText">
                                 <label>If yes, explain the issue and the current status in detail
                                     <textarea class="form-control" rows="4" cols="50" name="convictText">
                                     </textarea>
@@ -74,7 +73,7 @@
                         </div>
 
                         <!--Question 3-->
-                        <div class="form-group">
+                        <div class="form-group col-md-6">
                             <h5>Have you taken the NAMI Basics Course?</h5>
                             <div class="form-check form-check-inline ml-2">
                                 <label class="form-check-label"><input type="radio" name="takenBasics" value="yes"
@@ -87,10 +86,10 @@
                         </div>
 
                         <!--Question 4-->
-                        <div class="form-group">
-                            <h5>Have you completed the NAMI Family to Family Course? <br><i>(It is required that you have
-                                completed the NAMI Family-to-Family Course in order to be
-                                qualified to become a Family-to-Family teacher)</i></h5>
+                        <div class="form-group col-md-10">
+                            <h5>Have you completed the NAMI Family to Family Course? <br><i>(It is required that you
+                                have completed the NAMI Family-to-Family Course in order to be qualified to become a
+                                Family-to-Family teacher)</i></h5>
                             <div class="form-check form-check-inline ml-2">
                                 <label class="form-check-label"><input type="radio" name="takenF2F" value="yes"
                                                                        class="form-check-input">Yes</label>
@@ -103,36 +102,38 @@
                         </div>
 
                         <!--Question 7-->
-                        <div class="form-group">
+                        <div class="form-group col-md-10">
                             <h5>Are you a parent or direct caregiver of an individual who developed symptoms of mental
                                 illness before the age of 13 (child may not have received a diagnosis by that
                                 time)?</h5>
                             <div class="form-check form-check-inline ml-2">
-                                <label class="form-check-label"><input type="radio" name="parentMentalChild" value="yes"
+                                <label class="form-check-label"><input type="radio" name="parent" value="yes"
+                                                                       id="yesParent"
                                                                        class="form-check-input">Yes</label>
                             </div>
                             <div class="form-check form-check-inline ml-2">
-                                <label class="form-check-label"><input type="radio" name="parentMentalChild" value="no"
-                                                                       class="form-check-input">No</label>
+                                <label class="form-check-label"><input type="radio" name="parent" value="no"
+                                                                       id="noParent" class="form-check-input">No</label>
                             </div>
-                            <div class="none">
+                            <div class="none col-md-6" id="childInfo">
                                 <p>What is the current age of this individual?</p>
-                                <input type="number" name="childAge" min="0" max="100" step="1" class="form-control">
-                            </div>
-                            <p>Have they been given a diagnosis?</p>
-                            <div class="form-check form-check-inline ml-2">
-                                <label class="form-check-label"><input type="radio" name="givenDiagnosis" value="yes"
-                                                                       class="form-check-input">Yes</label>
-                            </div>
-                            <div class="form-check form-check-inline ml-2">
-                                <label class="form-check-label"><input type="radio" name="givenDiagnosis" value="no"
-                                                                       class="form-check-input">No</label>
-                            </div>
-                            <div class="none">
-                                <p>If yes, what is the most current diagnosis?</p>
-                                <input type="text" name="currentDiagnosis" class="form-control">
-                                <p> How long has this person show symptoms of/been living with mental illness?</p>
-                                <input type="text" name="lengthOfIllness" class="form-control">
+                                <input type="number" name="childAge" min="0" max="100" step="1">
+                                <p>Have they been given a diagnosis?</p>
+                                <div class="form-check form-check-inline ml-2">
+                                    <label class="form-check-label"><input type="radio" name="givenDiagnosis"
+                                                                           value="yes" id="yesDiagnosis"
+                                                                           class="form-check-input">Yes</label>
+                                </div>
+                                <div class="form-check form-check-inline ml-2">
+                                    <label class="form-check-label"><input type="radio" name="givenDiagnosis" value="no"
+                                                                           id="noDiagnosis" class="form-check-input">No</label>
+                                </div>
+                                <div class="none" id="diagnosisInfo">
+                                    <p>If yes, what is the most current diagnosis?</p>
+                                    <input type="text" name="currentDiagnosis" class="form-control">
+                                    <p> How long has this person show symptoms of/been living with mental illness?</p>
+                                    <input type="text" name="lengthOfIllness" class="form-control">
+                                </div>
                             </div>
                         </div>
 
@@ -143,17 +144,16 @@
                                     <h5>Does/did your child attend public school?</h5>
                                     <div class="form-check form-check-inline ml-2">
                                         <label class="form-check-label"><input type="radio" name="publicSchool"
-                                                                               value="yes"
+                                                                               id="yesPublic" value="yes"
                                                                                class="form-check-input">Yes</label>
                                     </div>
                                     <div class="form-check form-check-inline ml-2">
                                         <label class="form-check-label"><input type="radio" name="publicSchool"
-                                                                               value="no"
+                                                                               id="noPublic" value="no"
                                                                                class="form-check-input">No</label>
                                     </div>
-                                    <div class="none">
-                                        <p>What type of educational program is/was your child involved
-                                            in?</p>
+                                    <div class="none" id="edProgram">
+                                        <p>What type of educational program is/was your child involved in?</p>
                                         <input type="text" name="educationalProgram" class="form-control">
                                     </div>
                                 </div>
@@ -163,15 +163,15 @@
                                     <h5>Has your child graduated from high school?</h5>
                                     <div class="form-check form-check-inline ml-2">
                                         <label class="form-check-label"><input type="radio" name="highSchoolGrad"
-                                                                               value="yes"
+                                                                               id="yesGrad" value="yes"
                                                                                class="form-check-input">Yes</label>
                                     </div>
                                     <div class="form-check form-check-inline ml-2">
                                         <label class="form-check-label"><input type="radio" name="highSchoolGrad"
-                                                                               value="no"
+                                                                               id="noGrad" value="no"
                                                                                class="form-check-input">No</label>
                                     </div>
-                                    <div class="none">
+                                    <div class="none" id="grad">
                                         <p>If yes, date of graduation?</p>
                                         <input type="text" name="gradDate" class="form-control">
                                     </div>
@@ -186,7 +186,7 @@
                         </div>
 
                         <!--Question 11-->
-                        <div class="form-group">
+                        <div class="form-group col-md-8">
                             <h5>Please share with us your experiences living with a child or adolescent with a mental
                                 illness</h5>
                             <textarea name="childExperiences" class="form-control"></textarea>
@@ -197,13 +197,15 @@
                             <h5>Do you know with whom you want to co-teach?</h5>
                             <div class="form-check form-check-inline ml-2">
                                 <label class="form-check-label"><input type="radio" name="coteach" value="yes"
+                                                                       id="yesCoteach"
                                                                        class="form-check-input">Yes</label>
                             </div>
                             <div class="form-check form-check-inline ml-2">
                                 <label class="form-check-label"><input type="radio" name="coteach" value="no"
+                                                                       id="noCoteach"
                                                                        class="form-check-input">No</label>
                             </div>
-                            <div class="none">
+                            <div class="none form-check-inline col-md-6" id="coteach">
                                 <p>If yes, who?</p>
                                 <input type="text" name="coteachWith" class="form-control">
                             </div>
@@ -214,13 +216,14 @@
                             <h5>Do you know where you want to teach?</h5>
                             <div class="form-check form-check-inline ml-2">
                                 <label class="form-check-label"><input type="radio" name="knowWhere" value="yes"
+                                                                       id="yesWhere"
                                                                        class="form-check-input">Yes</label>
                             </div>
                             <div class="form-check form-check-inline ml-2">
                                 <label class="form-check-label"><input type="radio" name="knowWhere" value="no"
-                                                                       class="form-check-input">No</label>
+                                                                       id="noWhere" class="form-check-input">No</label>
                             </div>
-                            <div class="none">
+                            <div class="none form-check-inline col-md-6" id="where">
                                 <p>If yes, where?</p>
                                 <input type="text" name="teachWhere" class="form-control">
                             </div>
