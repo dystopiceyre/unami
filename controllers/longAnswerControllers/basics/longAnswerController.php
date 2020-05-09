@@ -1,34 +1,34 @@
 <?php
 global $f3;
 
-if (!empty($POST)) {
+if (!empty($_POST)) {
     // get data from form
-    $convict = $POST['convict'];
-    $convictText = $POST['convictText'];
-    $takenBasics = $POST['takenBasics'];
-    $takenF2F = $POST['takenF2F'];
-    $parentMentalChild = $POST['parentMentalChild'];
-    $childAge = $POST['childAge'];
-    $givenDiagnosis = $POST['givenDiagnosis'];
-    $currentDiagnosis = $POST['currentDiagnosis'];
-    $lengthOfIllness = $POST['lengthOfIllness'];
-    $publicSchool = $POST['publicSchool'];
-    $educationalProgram = $POST['educationalProgram'];
-    $highSchoolGrad = $POST['highSchoolGrad'];
-    $gradDate = $POST['gradDate'];
-    $whyBasicsTeacher = $POST['whyBasicsTeacher'];
-    $childExperiences = $POST['childExperiences'];
-    $coteach = $POST['coteach'];
-    $coteachWith = $POST['coteachWith'];
-    $knowWhere = $POST['knowWhere'];
-    $teachWhere = $POST['teachWhere'];
+    $convict = $_POST['convict'];
+    $convictText = $_POST['convictText'];
+    $takenBasics = $_POST['takenBasics'];
+    $takenF2F = $_POST['takenF2F'];
+    $parent = $_POST['parent'];
+    $childAge = $_POST['childAge'];
+    $givenDiagnosis = $_POST['givenDiagnosis'];
+    $currentDiagnosis = $_POST['currentDiagnosis'];
+    $lengthOfIllness = $_POST['lengthOfIllness'];
+    $publicSchool = $_POST['publicSchool'];
+    $educationalProgram = $_POST['educationalProgram'];
+    $highSchoolGrad = $_POST['highSchoolGrad'];
+    $gradDate = $_POST['gradDate'];
+    $whyBasicsTeacher = $_POST['whyBasicsTeacher'];
+    $childExperiences = $_POST['childExperiences'];
+    $coteach = $_POST['coteach'];
+    $coteachWith = $_POST['coteachWith'];
+    $knowWhere = $_POST['knowWhere'];
+    $teachWhere = $_POST['teachWhere'];
 
 
     if ($convict = 'no') {
         $convictText = 'N/A';
     }
 
-    if ($parentMentalChild = 'no') {
+    if ($parent = 'no') {
         $childAge = 'N/A';
         $givenDiagnosis = 'N/A';
         $currentDiagnosis = 'N/A';
@@ -56,7 +56,7 @@ if (!empty($POST)) {
     $f3->set('convictText', $convictText);
     $f3->set('takenBasics', $takenBasics);
     $f3->set('takenF2F', $takenF2F);
-    $f3->set('parentMentalChild', $parentMentalChild);
+    $f3->set('parent', $parent);
     $f3->set('childAge', $childAge);
     $f3->set('givenDiagnosis', $givenDiagnosis);
     $f3->set('currentDiagnosis', $currentDiagnosis);
@@ -71,12 +71,12 @@ if (!empty($POST)) {
     $f3->set('knowWhere', $knowWhere);
     $f3->set('teachWhere', $teachWhere);
 
-    $SESSION['LongAnswer'] = new BLongAnswers($convict, $convictText, $takenBasics, $takenF2F, $parentMentalChild, $childAge,
+    $SESSION['LongAnswer'] = new BLongAnswers($convict, $convictText, $takenBasics, $takenF2F, $parent, $childAge,
         $givenDiagnosis, $currentDiagnosis, $lengthOfIllness, $publicSchool, $educationalProgram, $highSchoolGrad,
         $gradDate, $whyBasicsTeacher, $childExperiences, $coteach, $coteachWith, $knowWhere, $teachWhere);
 
     if (validBLongAnswersForm()) {
-        if ($POST['goToReview'] == true) {
+        if ($_POST['goToReview'] == true) {
             $f3->reroute('/review');
         }
 
@@ -85,7 +85,7 @@ if (!empty($POST)) {
 }
 
 if (!isset($SESSION['LongAnswer'])) {
-    $SESSION['LongAnswer'] = new BLongAnswers($convict, $convictText, $takenBasics, $takenF2F, $parentMentalChild, $childAge,
+    $SESSION['LongAnswer'] = new BLongAnswers($convict, $convictText, $takenBasics, $takenF2F, $parent, $childAge,
         $givenDiagnosis, $currentDiagnosis, $lengthOfIllness, $publicSchool, $educationalProgram, $highSchoolGrad,
         $gradDate, $whyBasicsTeacher, $childExperiences, $coteach, $coteachWith, $knowWhere, $teachWhere);
 }

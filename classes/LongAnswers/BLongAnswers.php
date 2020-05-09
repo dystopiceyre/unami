@@ -9,7 +9,7 @@ class BLongAnswers
     private $_convictText;
     private $takenBasics;
     private $takenF2F;
-    private $parentMentalChild;
+    private $parent;
     private $childAge;
     private $givenDiagnosis;
     private $currentDiagnosis;
@@ -31,7 +31,7 @@ class BLongAnswers
      * @param $_convictText
      * @param $_takenBasics
      * @param $_takenF2F
-     * @param $_parentMentalChild
+     * @param $_parent
      * @param $_childAge
      * @param $_givenDiagnosis
      * @param $_currentDiagnosis
@@ -47,7 +47,7 @@ class BLongAnswers
      * @param $_knowWhere
      * @param $_teachWhere
      */
-    public function __construct($_convict, $_convictText, $_takenBasics, $_takenF2F, $_parentMentalChild, $_childAge, $_givenDiagnosis,
+    public function __construct($_convict, $_convictText, $_takenBasics, $_takenF2F, $_parent, $_childAge, $_givenDiagnosis,
                                 $_currentDiagnosis, $_lengthOfIllness, $_publicSchool, $_educationalProgram,
                                 $_highSchoolGrad, $_gradDate, $_whyBasicsTeacher, $_childExperiences, $_coteach,
                                 $_coteachWith, $_knowWhere, $_teachWhere)
@@ -56,7 +56,7 @@ class BLongAnswers
         $this->_convictText = $_convictText;
         $this->takenBasics = $_takenBasics;
         $this->takenF2F = $_takenF2F;
-        $this->parentMentalChild = $_parentMentalChild;
+        $this->parent = $_parent;
         $this->childAge = $_childAge;
         $this->givenDiagnosis = $_givenDiagnosis;
         $this->currentDiagnosis = $_currentDiagnosis;
@@ -92,9 +92,9 @@ class BLongAnswers
     /**
      * @return mixed
      */
-    public function getParentMentalChild()
+    public function getParent()
     {
-        return $this->parentMentalChild;
+        return $this->parent;
     }
 
     /**
