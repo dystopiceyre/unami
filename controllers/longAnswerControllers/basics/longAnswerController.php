@@ -85,5 +85,7 @@ if (!empty($POST)) {
 }
 
 if (!isset($SESSION['LongAnswer'])) {
-    $SESSION['LongAnswer'] = new BLongAnswers();
+    $SESSION['LongAnswer'] = new BLongAnswers($convict, $convictText, $takenBasics, $takenF2F, $parentMentalChild, $childAge,
+        $givenDiagnosis, $currentDiagnosis, $lengthOfIllness, $publicSchool, $educationalProgram, $highSchoolGrad,
+        $gradDate, $whyBasicsTeacher, $childExperiences, $coteach, $coteachWith, $knowWhere, $teachWhere);
 }

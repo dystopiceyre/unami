@@ -64,3 +64,7 @@ body {
 .blurb {
     font-family: 'Raleway', sans-serif;
 }
+
+.none {
+    display: none;
+}
