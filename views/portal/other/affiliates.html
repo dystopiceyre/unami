@@ -12,219 +12,209 @@
             <h5 class="m-0 text-gray-800">Showing All <strong>{{ @NumAffiliates['NumAffiliates'] }}</strong> Affiliates
             </h5>
 
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover" id="affiliatesDataTable" width="100%"
-                           cellspacing="0">
-                        <thead>
-                        <tr class="bg-primary text-white">
-                            <th>Affiliate</th>
-                            <th>Email</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover" id="affiliatesDataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr class="bg-primary text-white">
+                        <th>Affiliate</th>
+                        <th>Email</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
 
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr class="bg-light">
+                        <th>Affiliate</th>
+                        <th>Email</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+
+
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                    <!-- all active applicants -->
+                    <repeat group="{{ @Affiliates }}" value="{{ @Affiliate }}">
+                        <tr>
+                            <!-- name, phone, email -->
+                            <td>{{ @Affiliate['name'] }}</td>
+
+
+                            <td>{{ @Affiliate['email'] }}</td>
+                            <!--edit the email address -->
+
+                            <!-- edit -> modal -- affiliate ID here -->
+                            <td class="text-center">
+                                <a href="#" class="text-decoration-none text-primary" data-toggle="modal" data-target="#editModal{{ @Affiliate }}">
+                                    <i class="fas fa-edit fa-lg"></i>
+                                </a>
+                            </td>
+                            <!--delete the affiliate address -->
+                            <td class="text-center">
+                                <a href="#" class="text-decoration-none text-primary"
+                              data-toggle="modal" data-target="#deleteModal{{ @Affiliate }}">
+                                    <i class="fas fa fa-trash fa-lg"></i>
+                                </a>
+                            </td>
                         </tr>
-                        </thead>
-                        <tfoot>
-                        <tr class="bg-light">
-                            <th>Affiliate</th>
-                            <th>Email</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                    </repeat>
+                    <!-- adding modal -->
+                    <div class="modal fade" id="modal{{ @Affiliate }}" tabindex="-1" role="dialog"
+                         aria-labelledby="modal{{ @Affiliate }}" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
 
+                                <div class="modal-header">
+                                    <h4 class="modal-title text-primary" id="modalLab">
+                                        <i class="fas fa-edit"></i> Add Affiliate
+                                        <!-- <span class="font-weight-bold">{{ @Affiliate['name'] }}</span>-->
+                                    </h4>
 
-                        </tr>
-                        </tfoot>
-                        <tbody>
-                        <!-- all active applicants -->
-                        <repeat group="{{ @Affiliates }}" value="{{ @Affiliate }}">
-                            <tr>
-                                <!-- name, phone, email -->
-                                <td>{{ @Affiliate['name'] }}</td>
-
-
-                                <td>{{ @Affiliate['email'] }}</td>
-                                <!--edit the email address -->
-
-                                <!-- edit -> modal -- affiliate ID here -->
-                                <td class="text-center">
-                                    <a href="#" class="text-decoration-none text-warning" data-toggle="modal"
-                                       data-target="#editModal{{ @Affiliate }}">
-                                        <i class="fas fa-edit fa-lg"></i>
-                                    </a>
-                                </td>
-                                <!--delete the affiliate address -->
-                                <td class="text-center">
-                                    <a href="#" class="text-decoration-none text-danger"
-                                       data-toggle="modal" data-target="#deleteModal{{ @Affiliate }}">
-                                        <i class="fas fa fa-trash fa-lg"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        </repeat>
-                        <!-- adding modal -->
-                        <div class="modal fade" id="modal{{ @Affiliate }}" tabindex="-1" role="dialog"
-                             aria-labelledby="modal{{ @Affiliate }}" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-
-                                    <div class="modal-header">
-                                        <h4 class="modal-title text-primary" id="modalLab">
-                                            <i class="fas fa-edit"></i> Add Affiliate
-                                            <!-- <span class="font-weight-bold">{{ @Affiliate['name'] }}</span>-->
-                                        </h4>
-
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-
-                                    <!-- add form here -->
-                                    <div class="modal-body">
-                                        Here you'll be able to add an affiliate
-                                        <form action="affiliates" method="post">
-                                            <div class="modal-body py-4">
-
-                                                <input type="hidden" value="{{ @Affiliate }}" name="id">
-                                                <input type="hidden" value="{{ @Affiliate }}" name="status">
-
-                                                <h5><i class="fas fa-pen-alt mr-1 text-primary"></i>New Affiliate</h5>
-                                                <div class="form-row mb-2">
-                                                    <div class="form-group col-md-10">
-                                                        <label class="sr-only" for="addAffiliate">New Affiliate</label>
-                                                        <textarea class="form-control" id="addAffiliate" rows="2"
-                                                                  name="addAffiliate">{{ @Affiliate['Notes'] }}</textarea>
-                                                    </div>
-                                                </div>
-
-                                                <h5><i class="fas fa-pen-alt mr-1 text-primary"></i>New Email</h5>
-                                                <div class="form-row mb-2">
-                                                    <div class="form-group col-md-10">
-                                                        <label class="sr-only" for="addEmail">New Email</label>
-                                                        <textarea class="form-control" id="addEmail" rows="2"
-                                                                  name="addEmail">{{ @Affiliate['Notes'] }}</textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                    Close
-                                                </button>
-                                                <button type="submit" name="addAffiliate" class="btn btn-primary">Save
-                                                    changes
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
-                            </div>
-                        </div>
-                        <!-- edit modal box -->
-                        <div class="modal fade" id="editModal{{ @Affiliate }}" tabindex="-1" role="dialog"
-                             aria-labelledby="editModal{{ @Affiliate }}" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
 
-                                    <div class="modal-header bg-primary">
-                                        <h4 class="modal-title text-white" id="modalLabel">
-                                            <i class="fas fa-edit"></i> Edit
-                                            <span class="font-weight-bold">{{ @Affiliate['name'] }}'s</span>
-                                            Application
-                                        </h4>
-
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-
-                                    <!-- edit form -->
+                                <!-- add form here -->
+                                <div class="modal-body">
+                                    Here you'll be able to add an affiliate
                                     <form action="affiliates" method="post">
                                         <div class="modal-body py-4">
 
                                             <input type="hidden" value="{{ @Affiliate }}" name="id">
                                             <input type="hidden" value="{{ @Affiliate }}" name="status">
 
-                                            <h5><i class="fas fa-pen-alt mr-1 text-primary"></i>Edit Affiliate</h5>
+                                            <h5><i class="fas fa-pen-alt mr-1 text-primary"></i>New Affiliate</h5>
                                             <div class="form-row mb-2">
                                                 <div class="form-group col-md-10">
-                                                    <label class="sr-only" for="editAffiliate">Edit Affiliate</label>
-                                                    <input type="text" value="{{ @Affiliate['name'] }}"
-                                                           class="form-control" id="editAffiliate" rows="2"
-                                                           name="editAffiliate">
+                                                    <label class="sr-only" for="addAffiliate">New Affiliate</label>
+                                                    <textarea class="form-control" id="addAffiliate" rows="1" name="addAffiliate">{{ @Affiliate['Notes'] }}</textarea>
                                                 </div>
                                             </div>
 
-                                            <h5><i class="fas fa-pen-alt mr-1 text-primary"></i>Edit Email</h5>
+                                            <h5><i class="fas fa-pen-alt mr-1 text-primary"></i>New Email</h5>
                                             <div class="form-row mb-2">
                                                 <div class="form-group col-md-10">
-                                                    <label class="sr-only" for="editEmail">Edit Email</label>
-                                                    <input type="text" class="form-control" id="editEmail" rows="2"
-                                                           value="{{ @Affiliate['email'] }}" name="editEmail">
+                                                    <label class="sr-only" for="addEmail">New Email</label>
+                                                    <textarea class="form-control" id="addEmail" rows="1" name="addEmail">{{ @Affiliate['Notes'] }}</textarea>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
-                                            </button>
-                                            <button type="submit" name="updateAffiliate" class="btn btn-primary">Save
-                                                changes
-                                            </button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" name="addAffiliate" class="btn btn-primary">Save changes</button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <!-- edit modal box -->
+                    <div class="modal fade" id="editModal{{ @Affiliate }}" tabindex="-1" role="dialog"
+                         aria-labelledby="editModal{{ @Affiliate }}" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
 
-                        <!-- delete modal -->
-                        <div class="modal fade" id="deleteModal{{ @Affiliate }}" tabindex="-1" role="dialog"
-                             aria-labelledby="deleteModal{{ @Affiliate }}" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
+                                <div class="modal-header bg-primary">
+                                    <h4 class="modal-title text-white" id="modalLabel">
+                                        <i class="fas fa-edit"></i> Edit
+                                        <span class="font-weight-bold">{{ @Affiliate['name'] }}'s</span>
+                                        Application
+                                    </h4>
 
-                                    <div class="modal-header bg-danger">
-                                        <h4 class="modal-title text-white" id="modalLabel2">
-                                            <i class="fas fa-minus-circle"></i>
-                                            Delete Affiliate
-                                        </h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
 
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
+                                <!-- edit form -->
+                                <form action="affiliates" method="post">
+                                    <div class="modal-body py-4">
 
-                                    <div class="modal-body my-4">
-                                        <h4 class="text-center">Are you sure you want to delete this affiliate?</h4>
+                                        <input type="hidden" value="{{ @Affiliate }}" name="id">
+                                        <input type="hidden" value="{{ @Affiliate }}" name="status">
+
+                                        <h5><i class="fas fa-pen-alt mr-1 text-primary"></i>New Affiliate</h5>
+                                        <div class="form-row mb-2">
+                                            <div class="form-group col-md-10">
+                                                <label class="sr-only" for="editAffiliate">New Affiliate</label>
+<!--                                                <textarea class="form-control" id="newAffiliate" rows="1" name="newAffiliate">{{ @Affiliate['Notes'] }}</textarea>-->
+                                                <input type="text" value="{{ @Affiliate['name'] }}"
+                                                       class="form-control" id="editAffiliate" rows="2"
+                                                       name="editAffiliate">
+                                            </div>
+                                        </div>
+
+                                        <h5><i class="fas fa-pen-alt mr-1 text-primary"></i>New Email</h5>
+                                        <div class="form-row mb-2">
+                                            <div class="form-group col-md-10">
+                                                <label class="sr-only" for="editAffiliateEmail">New Email</label>
+<!--                                                <textarea class="form-control" id="newEmail" rows="1" name="newEmail">{{ @Affiliate['Notes'] }}</textarea>-->
+                                                <input type="text" value="{{ @Affiliate['email'] }}"
+                                                       class="form-control" id="editAffiliateEmail" rows="2"
+                                                       name="editAffiliate">
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
-                                        </button>
-                                        <form action="affiliates" method="post">
-                                            <input type="hidden" name="deleteId" value="{{ @Affiliate['name']}} ">
-                                            <button type="submit" name="delete" class="btn btn-danger">Delete</button>
-                                        </form>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" name="updateAffiliate" class="btn btn-primary">Save changes</button>
                                     </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- delete modal -->
+                    <div class="modal fade" id="deleteModal{{ @Affiliate }}" tabindex="-1" role="dialog"
+                         aria-labelledby="deleteModal{{ @Affiliate }}" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+
+                                <div class="modal-header bg-danger">
+                                    <h4 class="modal-title text-white" id="modalLabel2">
+                                        <i class="fas fa-minus-circle"></i>
+                                        Delete {{ @Affiliate['name'] }}'s
+                                    </h4>
+
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <div class="modal-body my-4">
+                                    <h4 class="text-center">Are you sure you want to delete {{ @Affiliate['name'] }}'s?</h4>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <form action="affiliates" method="post">
+                                        <input type="hidden" name="deleteId" value="{{ @Affiliate}} ">
+                                        <button type="submit" name="deleteAffiliate" class="btn btn-danger">Delete</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-
-                        </tbody>
-                    </table>
-                    <!-- add new affiliate  -->
-                    <div class="text-center mt-1 mb-0">
-                        <a href="#" class="text-decoration-none text-primary" data-toggle="modal"
-                           data-target="#modal{{ @Affiliate }}">
-                            <i class="fas fa fa-plus fa-lg"></i> Add Affiliate
-                        </a>
                     </div>
+
+                    </tbody>
+                </table>
+                <!-- add new affiliate  -->
+                <div class="text-center mt-1 mb-0">
+                    <a href="#" class="text-decoration-none text-primary" data-toggle="modal" data-target="#modal{{ @Affiliate }}">
+                        <i class="fas fa fa-plus fa-lg"></i> Add Affiliate
+                    </a>
                 </div>
             </div>
         </div>
-
     </div>
-    <!-- /.container-fluid -->
+
+</div>
+<!-- /.container-fluid -->
 
 </div>
 <!-- End of Main Content -->

@@ -337,13 +337,18 @@ $f3->route('GET|POST /affiliates', function($f3)
     $f3->set('page', 'affiliates');
     $f3->set('page_title', 'Affiliates');
 
+
     //get all affiliates
     global $db;
     $f3->set('Affiliates', $db->getAffiliates());
     $f3->set('NumAffiliates', $db->countAffiliates());
 
-//    if(isset($_POST['delete'])) {
-//        $f3->set('Affiliates', $db->deleteAffiliate());
+
+//    if(isset($_POST['deleteAffiliate'])) {
+////        echo $_POST['deleteId'];
+////        $affiliateId = $_POST['deleteId'];
+//        echo"here we are in delete";
+//        $db->deleteAffiliate(388);
 //    }
 
     //update submission
