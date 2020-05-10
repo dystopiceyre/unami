@@ -54,12 +54,12 @@
                             <!--delete the affiliate address -->
                             <td class="text-center">
                                 <a href="#" class="text-decoration-none text-primary"
-                              data-toggle="modal" data-target="#deleteModal{{ @Affiliate }}">
+                              data-toggle="modal" data-target="#deleteModal{{ @Affiliate['affiliate_id'] }}">
                                     <i class="fas fa fa-trash fa-lg"></i>
                                 </a>
                             </td>
                         </tr>
-                    </repeat>
+
                     <!-- adding modal -->
                     <div class="modal fade" id="modal{{ @Affiliate }}" tabindex="-1" role="dialog"
                          aria-labelledby="modal{{ @Affiliate }}" aria-hidden="true">
@@ -134,8 +134,8 @@
                                 <form action="affiliates" method="post">
                                     <div class="modal-body py-4">
 
-                                        <input type="hidden" value="{{ @Affiliate }}" name="id">
-                                        <input type="hidden" value="{{ @Affiliate }}" name="status">
+                                        <input type="hidden" value="{{ @Affiliate['name'] }}" name="editName">
+                                        <input type="hidden" value="{{ @Affiliate['email'] }}" name="editEmail">
 
                                         <h5><i class="fas fa-pen-alt mr-1 text-primary"></i>New Affiliate</h5>
                                         <div class="form-row mb-2">
@@ -170,8 +170,8 @@
                     </div>
 
                     <!-- delete modal -->
-                    <div class="modal fade" id="deleteModal{{ @Affiliate }}" tabindex="-1" role="dialog"
-                         aria-labelledby="deleteModal{{ @Affiliate }}" aria-hidden="true">
+                    <div class="modal fade" id="deleteModal{{ @Affiliate['affiliate_id'] }}" tabindex="-1" role="dialog"
+                         aria-labelledby="deleteModal{{ @Affiliate['affiliate_id'] }}" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
 
@@ -193,16 +193,17 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     <form action="affiliates" method="post">
-                                        <input type="hidden" name="deleteId" value="{{ @Affiliate}} ">
+                                        <input type="hidden" name="deleteId" value="{{ @Affiliate['affiliate_id']}} ">
                                         <button type="submit" name="deleteAffiliate" class="btn btn-danger">Delete</button>
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    </repeat>
                     </tbody>
                 </table>
+
                 <!-- add new affiliate  -->
                 <div class="text-center mt-1 mb-0">
                     <a href="#" class="text-decoration-none text-primary" data-toggle="modal" data-target="#modal{{ @Affiliate }}">

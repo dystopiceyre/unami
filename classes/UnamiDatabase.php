@@ -693,26 +693,18 @@ class UnamiDatabase
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
-//        function deleteAffiliate($affiliate_id){
+        function deleteAffiliate($affiliate_id){
 
-//        $query = "DELETE FROM affiliates WHERE affiliate_id=:affiliate_id";
-//
-//            //prepare statement
-//            $statement = $this->_dbh->prepare($query);
-//
-//            $statement->bindParam(':affiliate_id', $affiliate_id, PDO::PARAM_INT);
-//
-//            $statement->execute();
+        $query = "DELETE FROM affiliates WHERE affiliate_id=:affiliate_id";
 
-//            $result = $statement->fetch(PDO::FETCH_ASSOC);
-//
-//            return $result;
+            //prepare statement
+            $statement = $this->_dbh->prepare($query);
 
-//            $sql = "DELETE FROM affiliates  WHERE affiliate_id=?";
-//            $statement = $this->_dbh->prepare($sql);
-//            $statement->execute([$affiliate_id]);
+            $statement->bindParam(':affiliate_id', $affiliate_id, PDO::PARAM_INT);
 
-//    }
+            $statement->execute();
+
+    }
 //    function updateAffiliate(){
 //
 //    }

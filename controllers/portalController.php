@@ -344,12 +344,12 @@ $f3->route('GET|POST /affiliates', function($f3)
     $f3->set('NumAffiliates', $db->countAffiliates());
 
 
-//    if(isset($_POST['deleteAffiliate'])) {
-////        echo $_POST['deleteId'];
-////        $affiliateId = $_POST['deleteId'];
-//        echo"here we are in delete";
-//        $db->deleteAffiliate(388);
-//    }
+    if(isset($_POST['deleteAffiliate'])) {
+        $affiliateId = $_POST['deleteId'];
+        echo $_POST['deleteId'];
+        echo"here we are in delete";
+        $db->deleteAffiliate($affiliateId);
+    }
 
     //update submission
     if(isset($_POST['updateAffiliate'])) {
