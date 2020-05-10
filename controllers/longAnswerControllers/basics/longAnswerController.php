@@ -35,12 +35,12 @@ if (!empty($_POST)) {
         $lengthOfIllness = 'N/A';
     }
 
-    if ($publicSchool = 'no') {
-        $educationalProgram = 'N/A';
+    if ($publicSchool = 'yes') {
+        $educationalProgram = 'public school';
     }
 
     if ($highSchoolGrad = 'no') {
-        $gradDate = 'N/A';
+        $gradDate = 'not graduated yet';
     }
 
     if ($coteach = 'no') {
@@ -68,6 +68,7 @@ if (!empty($_POST)) {
     $f3->set('whyBasicsTeacher', $whyBasicsTeacher);
     $f3->set('childExperiences', $childExperiences);
     $f3->set('coteach', $coteach);
+    $f3->set('coteachWith', $coteachWith);
     $f3->set('knowWhere', $knowWhere);
     $f3->set('teachWhere', $teachWhere);
 
