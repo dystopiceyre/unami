@@ -7,23 +7,23 @@ class BLongAnswers
 {
     private $_convict;
     private $_convictText;
-    private $takenBasics;
-    private $takenF2F;
-    private $parent;
-    private $childAge;
-    private $givenDiagnosis;
-    private $currentDiagnosis;
-    private $lengthOfIllness;
-    private $publicSchool;
-    private $educationalProgram;
-    private $highSchoolGrad;
-    private $gradDate;
-    private $whyBasicsTeacher;
-    private $childExperiences;
-    private $coteach;
-    private $coteachWith;
-    private $knowWhere;
-    private $teachWhere;
+    private $_takenBasics;
+    private $_takenF2F;
+    private $_parent;
+    private $_childAge;
+    private $_givenDiagnosis;
+    private $_currentDiagnosis;
+    private $_lengthOfIllness;
+    private $_publicSchool;
+    private $_educationalProgram;
+    private $_highSchoolGrad;
+    private $_gradDate;
+    private $_whyBasicsTeacher;
+    private $_childExperiences;
+    private $_coteach;
+    private $_coteachWith;
+    private $_knowWhere;
+    private $_teachWhere;
 
     /**
      * BLongAnswers constructor.
@@ -54,23 +54,23 @@ class BLongAnswers
     {
         $this->_convict = $_convict;
         $this->_convictText = $_convictText;
-        $this->takenBasics = $_takenBasics;
-        $this->takenF2F = $_takenF2F;
-        $this->parent = $_parent;
-        $this->childAge = $_childAge;
-        $this->givenDiagnosis = $_givenDiagnosis;
-        $this->currentDiagnosis = $_currentDiagnosis;
-        $this->lengthOfIllness = $_lengthOfIllness;
-        $this->publicSchool = $_publicSchool;
-        $this->educationalProgram = $_educationalProgram;
-        $this->highSchoolGrad = $_highSchoolGrad;
-        $this->gradDate = $_gradDate;
-        $this->whyBasicsTeacher = $_whyBasicsTeacher;
-        $this->childExperiences = $_childExperiences;
-        $this->coteach = $_coteach;
-        $this->coteachWith = $_coteachWith;
-        $this->knowWhere = $_knowWhere;
-        $this->teachWhere = $_teachWhere;
+        $this->_takenBasics = $_takenBasics;
+        $this->_takenF2F = $_takenF2F;
+        $this->_parent = $_parent;
+        $this->_childAge = $_childAge;
+        $this->_givenDiagnosis = $_givenDiagnosis;
+        $this->_currentDiagnosis = $_currentDiagnosis;
+        $this->_lengthOfIllness = $_lengthOfIllness;
+        $this->_publicSchool = $_publicSchool;
+        $this->_educationalProgram = $_educationalProgram;
+        $this->_highSchoolGrad = $_highSchoolGrad;
+        $this->_gradDate = $_gradDate;
+        $this->_whyBasicsTeacher = $_whyBasicsTeacher;
+        $this->_childExperiences = $_childExperiences;
+        $this->_coteach = $_coteach;
+        $this->_coteachWith = $_coteachWith;
+        $this->_knowWhere = $_knowWhere;
+        $this->_teachWhere = $_teachWhere;
     }
 
     /**
@@ -78,7 +78,7 @@ class BLongAnswers
      */
     public function getTakenBasics()
     {
-        return $this->takenBasics;
+        return $this->_takenBasics;
     }
 
     /**
@@ -86,7 +86,7 @@ class BLongAnswers
      */
     public function getTakenF2F()
     {
-        return $this->takenF2F;
+        return $this->_takenF2F;
     }
 
     /**
@@ -94,7 +94,7 @@ class BLongAnswers
      */
     public function getParent()
     {
-        return $this->parent;
+        return $this->_parent;
     }
 
     /**
@@ -102,7 +102,7 @@ class BLongAnswers
      */
     public function getChildAge()
     {
-        return $this->childAge;
+        return $this->_childAge;
     }
 
     /**
@@ -110,7 +110,7 @@ class BLongAnswers
      */
     public function getGivenDiagnosis()
     {
-        return $this->givenDiagnosis;
+        return $this->_givenDiagnosis;
     }
 
     /**
@@ -118,7 +118,7 @@ class BLongAnswers
      */
     public function getCurrentDiagnosis()
     {
-        return $this->currentDiagnosis;
+        return $this->_currentDiagnosis;
     }
 
     /**
@@ -126,7 +126,7 @@ class BLongAnswers
      */
     public function getPublicSchool()
     {
-        return $this->publicSchool;
+        return $this->_publicSchool;
     }
 
     /**
@@ -134,7 +134,7 @@ class BLongAnswers
      */
     public function getLengthOfIllness()
     {
-        return $this->lengthOfIllness;
+        return $this->_lengthOfIllness;
     }
 
     /**
@@ -142,7 +142,7 @@ class BLongAnswers
      */
     public function getEducationalProgram()
     {
-        return $this->educationalProgram;
+        return $this->_educationalProgram;
     }
 
     /**
@@ -150,7 +150,7 @@ class BLongAnswers
      */
     public function getHighSchoolGrad()
     {
-        return $this->highSchoolGrad;
+        return $this->_highSchoolGrad;
     }
 
     /**
@@ -158,7 +158,7 @@ class BLongAnswers
      */
     public function getGradDate()
     {
-        return $this->gradDate;
+        return $this->_gradDate;
     }
 
     /**
@@ -166,7 +166,7 @@ class BLongAnswers
      */
     public function getWhyBasicsTeacher()
     {
-        return $this->whyBasicsTeacher;
+        return $this->_whyBasicsTeacher;
     }
 
     /**
@@ -174,7 +174,7 @@ class BLongAnswers
      */
     public function getChildExperiences()
     {
-        return $this->childExperiences;
+        return $this->_childExperiences;
     }
 
     /**
@@ -182,7 +182,7 @@ class BLongAnswers
      */
     public function getCoteach()
     {
-        return $this->coteach;
+        return $this->_coteach;
     }
 
     /**
@@ -190,7 +190,7 @@ class BLongAnswers
      */
     public function getCoteachWith()
     {
-        return $this->coteachWith;
+        return $this->_coteachWith;
     }
 
     /**
@@ -198,7 +198,7 @@ class BLongAnswers
      */
     public function getKnowWhere()
     {
-        return $this->knowWhere;
+        return $this->_knowWhere;
     }
 
     /**
@@ -206,7 +206,7 @@ class BLongAnswers
      */
     public function getTeachWhere()
     {
-        return $this->teachWhere;
+        return $this->_teachWhere;
     }
 
     /**

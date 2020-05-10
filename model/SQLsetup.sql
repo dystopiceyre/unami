@@ -121,10 +121,24 @@ CREATE TABLE B
     length_of_illness   VARCHAR(200),
     educational_program VARCHAR(200),
     grad_date           VARCHAR(200),
-    why_basics_teacher  MEDIUMTEXT,
+    why_want            MEDIUMTEXT,
     child_experiences   MEDIUMTEXT,
-    coteach_with        MEDIUMTEXT,
-    teach_where         MEDIUMTEXT,
+    coteach_with        VARCHAR(200),
+    teach_where         VARCHAR(200),
+    FOREIGN KEY (applicant_id) references applicants (applicant_id)
+);
+
+CREATE TABLE H
+(
+    H_id         INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    applicant_id INT                NOT NULL,
+    conviction   MEDIUMTEXT,
+    relationship VARCHAR(20),
+    diagnosis    VARCHAR(20),
+    taken_f2f    TINYINT(1),
+    why_want     MEDIUMTEXT,
+    coteach_with VARCHAR(200),
+    teach_Where  VARCHAR(200),
     FOREIGN KEY (applicant_id) references applicants (applicant_id)
 );
 

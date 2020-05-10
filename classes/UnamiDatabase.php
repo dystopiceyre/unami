@@ -1070,6 +1070,7 @@ class UnamiDatabase
         define('FSG', 1);
         define('P2P', 2);
         define('ETS', 3);
+        define('H', 8);
         define('B', 9);
 
         $query = '';
