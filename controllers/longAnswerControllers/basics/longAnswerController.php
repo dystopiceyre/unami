@@ -35,12 +35,16 @@ if (!empty($_POST)) {
         $lengthOfIllness = 'N/A';
     }
 
+    if ($givenDiagnosis = 'no') {
+        $currentDiagnosis = 'Not yet officially diagnosed';
+    }
+
     if ($publicSchool = 'yes') {
-        $educationalProgram = 'public school';
+        $educationalProgram = 'Public school';
     }
 
     if ($highSchoolGrad = 'no') {
-        $gradDate = 'not graduated yet';
+        $gradDate = 'Not graduated yet';
     }
 
     if ($coteach = 'no') {
