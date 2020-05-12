@@ -693,6 +693,10 @@ class UnamiDatabase
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * @param $affiliate_id
+     */
+
         function deleteAffiliate($affiliate_id){
 
         $query = "DELETE FROM affiliates WHERE affiliate_id=:affiliate_id";
@@ -705,30 +709,39 @@ class UnamiDatabase
             $statement->execute();
 
     }
-//    function updateAffiliate(){
-//
-//    }
-//    function updateApplicant($id, $category, $status, $notes)
-//    {
-//        //define query
-//        $query = "UPDATE applicants
-//                  SET
-//                  app_status = :status,
-//                  category = :category,
-//                  notes = :notes
-//                  WHERE applicant_id = :id
-//                  LIMIT 1";
-//
-//        //prepare statement
-//        $statement = $this->_dbh->prepare($query);
-//
-//        //bind parameters
-//        $statement->bindParam(':category', $category, PDO::PARAM_INT);
-//        $statement->bindParam(':status', $status, PDO::PARAM_INT);
-//        $statement->bindParam(':notes', $notes, PDO::PARAM_INT);
-//        $statement->bindParam(':id', $id, PDO::PARAM_INT);
-//
-//        $statement->execute();
+
+    function updateAffiliate($name, $email, $affiliate_id){
+        $query = "UPDATE affiliates 
+                  SET 
+                  name= :name, 
+                  email= :email
+                  WHERE affiliate_id = :affiliate_id
+                  LIMIT 1";
+
+        //prepare statement
+        $statement = $this->_dbh->prepare($query);
+
+        //bind parameters
+        $statement->bindParam(':name', $name, PDO::PARAM_STR);
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
+        $statement->bindParam(':affiliate_id', $affiliate_id, PDO::PARAM_INT);
+
+        $statement->execute();
+
+    }
+
+    function addAffiliate( $name, $email){
+        $query = "INSERT INTO affiliates (name, email)
+                VALUES (:name, :email)";
+        //prepare statement
+        $statement = $this->_dbh->prepare($query);
+
+        //bind parameters
+        $statement->bindParam(':name', $name, PDO::PARAM_STR);
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
+
+        $statement->execute();
+    }
 
     /**
      * Counts number of affiliates
