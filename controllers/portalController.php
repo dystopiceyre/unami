@@ -328,7 +328,7 @@ $f3->route('GET|POST /archive', function($f3)
 });
 
 //affiliates
-$f3->route('GET|POST /affiliates', function($f3)
+$f3->route('GET /affiliates', function($f3)
 {
     if($_SESSION['loggedIn'] !== 1) {
         $f3->reroute('/login');
@@ -342,14 +342,6 @@ $f3->route('GET|POST /affiliates', function($f3)
     global $db;
     $f3->set('Affiliates', $db->getAffiliates());
     $f3->set('NumAffiliates', $db->countAffiliates());
-
-
-//    if(isset($_POST['deleteAffiliate'])) {
-////        echo $_POST['deleteId'];
-////        $affiliateId = $_POST['deleteId'];
-//        echo"here we are in delete";
-//        $db->deleteAffiliate(388);
-//    }
 
     //update submission
     if(isset($_POST['updateAffiliate'])) {

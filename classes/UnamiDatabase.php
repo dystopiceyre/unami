@@ -693,50 +693,71 @@ class UnamiDatabase
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
-//        function deleteAffiliate($affiliate_id){
+    /**
+     * deletes affiliates
+     *
+     * @param $affiliate_id represents the id of the affiliate
+     */
 
-//        $query = "DELETE FROM affiliates WHERE affiliate_id=:affiliate_id";
-//
-//            //prepare statement
-//            $statement = $this->_dbh->prepare($query);
-//
-//            $statement->bindParam(':affiliate_id', $affiliate_id, PDO::PARAM_INT);
-//
-//            $statement->execute();
+        function deleteAffiliate($affiliate_id){
 
-//            $result = $statement->fetch(PDO::FETCH_ASSOC);
-//
-//            return $result;
+        $query = "DELETE FROM affiliates WHERE affiliate_id=:affiliate_id";
 
-//            $sql = "DELETE FROM affiliates  WHERE affiliate_id=?";
-//            $statement = $this->_dbh->prepare($sql);
-//            $statement->execute([$affiliate_id]);
+            //prepare statement
+            $statement = $this->_dbh->prepare($query);
 
-//    }
-//    function updateAffiliate(){
-//
-//    }
-//    function updateApplicant($id, $category, $status, $notes)
-//    {
-//        //define query
-//        $query = "UPDATE applicants
-//                  SET
-//                  app_status = :status,
-//                  category = :category,
-//                  notes = :notes
-//                  WHERE applicant_id = :id
-//                  LIMIT 1";
-//
-//        //prepare statement
-//        $statement = $this->_dbh->prepare($query);
-//
-//        //bind parameters
-//        $statement->bindParam(':category', $category, PDO::PARAM_INT);
-//        $statement->bindParam(':status', $status, PDO::PARAM_INT);
-//        $statement->bindParam(':notes', $notes, PDO::PARAM_INT);
-//        $statement->bindParam(':id', $id, PDO::PARAM_INT);
-//
-//        $statement->execute();
+            $statement->bindParam(':affiliate_id', $affiliate_id, PDO::PARAM_INT);
+
+            $statement->execute();
+
+    }
+
+    /**
+     * This function edits the affiliate name and email
+     *
+     * @param $name represents the name of the affiliate
+     * @param $email represents the affiliate's email
+     * @param $affiliate_id represents the affiliate id
+     */
+    function updateAffiliate($name, $email, $affiliate_id){
+        $query = "UPDATE affiliates 
+                  SET 
+                  name= :name, 
+                  email= :email
+                  WHERE affiliate_id = :affiliate_id
+                  LIMIT 1";
+
+        //prepare statement
+        $statement = $this->_dbh->prepare($query);
+
+        //bind parameters
+        $statement->bindParam(':name', $name, PDO::PARAM_STR);
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
+        $statement->bindParam(':affiliate_id', $affiliate_id, PDO::PARAM_INT);
+
+        $statement->execute();
+
+    }
+
+    /**
+     * adds an affiliate
+     *
+     * @param $name represents the name of the affiliate
+     * @param $email represents the email of the affiliate
+     */
+
+    function addAffiliate( $name, $email){
+        $query = "INSERT INTO affiliates (name, email)
+                VALUES (:name, :email)";
+        //prepare statement
+        $statement = $this->_dbh->prepare($query);
+
+        //bind parameters
+        $statement->bindParam(':name', $name, PDO::PARAM_STR);
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
+
+        $statement->execute();
+    }
 
     /**
      * Counts number of affiliates

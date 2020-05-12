@@ -636,3 +636,24 @@ function validAdminName($name) {
 
     return true;
 }
+
+/**
+ * Check for valid admin name
+ *
+ * @param $name
+ * @param $email
+ * @return boolean
+ */
+function validAffiliate($name, $email) {
+    global $f3;
+
+    if(!alphabetical($name)) {
+        $f3->set("affiliateErrors['name']", "Please enter a valid name");
+        return false;
+    }
+    if(empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $f3->set("affiliateErrors['email']", "Please enter a valid email");
+        return false;
+    }
+    return true;
+}
