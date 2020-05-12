@@ -177,7 +177,13 @@
                                                 <label class="sr-only" for="addAffiliate">Add Affiliate</label>
                                                 <input type="text"
                                                        class="form-control" id="addAffiliate" rows="1"
-                                                       name="addAffiliate"> {{ @Affiliate['Notes'] }}
+                                                       name="addAffiliate"  required value="{{ @affiliate['name'] }}">
+                                                <!-- name error messages -->
+                                                <div class="row justify-content-center text-danger">
+                                                    <check if="{{ isset(@affiliateErrors['name']) }}">
+                                                        <p>{{ @affiliateErrors['name'] }}</p>
+                                                    </check>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -187,7 +193,13 @@
                                                 <label class="sr-only" for="addEmail">Add Email</label>
                                                 <input type="text"
                                                        class="form-control" id="addEmail" rows="1"
-                                                       name="addEmail"> {{ @Affiliate['Notes'] }}
+                                                       name="addEmail" required value="{{ @affiliate['email'] }}">
+                                                <!-- email error messages -->
+                                                <div class="row justify-content-center text-danger">
+                                                    <check if="{{ isset(@affiliateErrors['email']) }}">
+                                                        <p>{{ @affiliateErrors['email'] }}</p>
+                                                    </check>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

@@ -95,22 +95,25 @@ $f3->route('GET|POST /affiliates', function($f3)
     }
 
     //update affiliate
-    if(isset($_POST['updateAffiliate'])){
-        $name = $_POST['editAffiliate'];
-        $email = $_POST['editAffiliateEmail'];
-        $affiliateId = $_POST['id'];
+//    if(validAffiliate($name, $email)) {
+        if (isset($_POST['updateAffiliate'])) {
+            $name = $_POST['editAffiliate'];
+            $email = $_POST['editAffiliateEmail'];
+            $affiliateId = $_POST['id'];
+            $db->updateAffiliate($name, $email, $affiliateId);
+            $f3->reroute('/affiliates');
+        }
+//    }
 
-        $db->updateAffiliate($name, $email,$affiliateId );
-        $f3->reroute('/affiliates');
-    }
-    //add affiliate
-    if(isset($_POST['addAffiliateSave'])) {
-        $name = $_POST['addAffiliate'];
-        $email = $_POST['addEmail'];
-//        $affiliateId = $_POST['affiliate_id'];
-    $db->addAffiliate($name, $email);
-    $f3->reroute('/affiliates');
-}
+        //add affiliate
+//    if(validAffiliate($name, $email)) {
+        if(isset($_POST['addAffiliateSave'])) {
+            $name = $_POST['addAffiliate'];
+            $email = $_POST['addEmail'];
+            $db->addAffiliate($name, $email);
+            $f3->reroute('/affiliates');
+        }
+//    }
     $view = new Template();
     echo $view->render('views/portal/other/affiliates.html');
 });
