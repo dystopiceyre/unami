@@ -328,7 +328,7 @@ $f3->route('GET|POST /archive', function($f3)
 });
 
 //affiliates
-$f3->route('GET|POST /affiliates', function($f3)
+$f3->route('GET /affiliates', function($f3)
 {
     if($_SESSION['loggedIn'] !== 1) {
         $f3->reroute('/login');
@@ -343,43 +343,18 @@ $f3->route('GET|POST /affiliates', function($f3)
     $f3->set('Affiliates', $db->getAffiliates());
     $f3->set('NumAffiliates', $db->countAffiliates());
 
-       //delete affiliate
-    if(isset($_POST['deleteAffiliate'])) {
-        $affiliateId = $_POST['deleteId'];
-
-        $db->deleteAffiliate($affiliateId);
-        $f3->reroute('/affiliates');
-    }
-
-     //update affiliate
-    if(isset($_POST['updateAffiliate'])){
-        $name = $_POST['editAffiliate'];
-        $email = $_POST['editAffiliateEmail'];
-        $affiliateId = $_POST['id'];
-
-        $db->updateAffiliate($name, $email,$affiliateId );
-        $f3->reroute('/affiliates');
-    }
-       //add affiliate
-    if(isset($_POST['addAffiliateSave'])) {
-        $name = $_POST['addAffiliate'];
-        $email = $_POST['addEmail'];
-//        $affiliateId = $_POST['affiliate_id'];
-        $db->addAffiliate($name, $email);
-        $f3->reroute('/affiliates');
-    }
     //update submission
-//    if(isset($_POST['updateAffiliate'])) {
-//
-//        $id = $_POST['id'];
-//        $category = $_POST['category'];
-//        $status = $_POST['status'];
-//        $notes = $_POST['notes'];
-//
-//        //run update query
-//        $db->updateApplicant($id, $category, $status, $notes);
-//        $f3->reroute('/affiliates');
-//    }
+    if(isset($_POST['updateAffiliate'])) {
+
+        $id = $_POST['id'];
+        $category = $_POST['category'];
+        $status = $_POST['status'];
+        $notes = $_POST['notes'];
+
+        //run update query
+        $db->updateApplicant($id, $category, $status, $notes);
+        $f3->reroute('/affiliates');
+    }
     $view = new Template();
     echo $view->render('views/portal/other/affiliates.html');
 });

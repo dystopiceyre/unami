@@ -694,7 +694,9 @@ class UnamiDatabase
     }
 
     /**
-     * @param $affiliate_id
+     * deletes affiliates
+     *
+     * @param $affiliate_id represents the id of the affiliate
      */
 
         function deleteAffiliate($affiliate_id){
@@ -710,6 +712,13 @@ class UnamiDatabase
 
     }
 
+    /**
+     * This function edits the affiliate name and email
+     *
+     * @param $name represents the name of the affiliate
+     * @param $email represents the affiliate's email
+     * @param $affiliate_id represents the affiliate id
+     */
     function updateAffiliate($name, $email, $affiliate_id){
         $query = "UPDATE affiliates 
                   SET 
@@ -729,6 +738,13 @@ class UnamiDatabase
         $statement->execute();
 
     }
+
+    /**
+     * adds an affiliate
+     *
+     * @param $name represents the name of the affiliate
+     * @param $email represents the email of the affiliate
+     */
 
     function addAffiliate( $name, $email){
         $query = "INSERT INTO affiliates (name, email)

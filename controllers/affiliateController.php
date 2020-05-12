@@ -78,3 +78,39 @@ $f3->route('GET /application_reviewed', function($f3)
     $view = new Template();
     echo $view->render('views/affiliate/alreadyReviewed.html');
 });
+
+//affiliates
+$f3->route('GET|POST /affiliates', function($f3)
+{
+
+    //get all affiliates
+    global $db;
+    $f3->set('Affiliates', $db->getAffiliates());
+    //delete affiliate
+    if(isset($_POST['deleteAffiliate'])) {
+        $affiliateId = $_POST['deleteId'];
+
+        $db->deleteAffiliate($affiliateId);
+        $f3->reroute('/affiliates');
+    }
+
+    //update affiliate
+    if(isset($_POST['updateAffiliate'])){
+        $name = $_POST['editAffiliate'];
+        $email = $_POST['editAffiliateEmail'];
+        $affiliateId = $_POST['id'];
+
+        $db->updateAffiliate($name, $email,$affiliateId );
+        $f3->reroute('/affiliates');
+    }
+    //add affiliate
+    if(isset($_POST['addAffiliateSave'])) {
+        $name = $_POST['addAffiliate'];
+        $email = $_POST['addEmail'];
+//        $affiliateId = $_POST['affiliate_id'];
+    $db->addAffiliate($name, $email);
+    $f3->reroute('/affiliates');
+}
+    $view = new Template();
+    echo $view->render('views/portal/other/affiliates.html');
+});
