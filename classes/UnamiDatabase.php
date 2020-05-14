@@ -534,7 +534,7 @@ class UnamiDatabase
     function getAppTypesInfo()
     {
         //define query
-        $query = "SELECT info_id, date, location, deadline, app_type, date2, date3
+        $query = "SELECT info_id, date, location, deadline, app_type, date2/*, date3*/
                   FROM app_type_info
                   WHERE active = 1";
 
@@ -604,9 +604,9 @@ class UnamiDatabase
 
         //define query
         $query = 'INSERT INTO app_type_info
-                  (date, location, deadline, app_type, date2, date3, active)
+                  (date, location, deadline, app_type, date2, /*date3,*/ active)
                   VALUES
-                  (:date, :location, :deadline, :app_type, :date2, :date3, 1)';
+                  (:date, :location, :deadline, :app_type, :date2, /*:date3,*/ 1)';
 
         //prepare statement
         $statement = $this->_dbh->prepare($query);
@@ -614,7 +614,7 @@ class UnamiDatabase
         //bind parameters
         $statement->bindParam(':date', $date, PDO::PARAM_STR);
         $statement->bindParam(':date2', $date2, PDO::PARAM_STR);
-        $statement->bindParam(':date3', $date3, PDO::PARAM_STR);
+        //$statement->bindParam(':date3', $date3, PDO::PARAM_STR);
         $statement->bindParam(':location', $location, PDO::PARAM_STR);
         $statement->bindParam(':deadline', $deadline, PDO::PARAM_STR);
         $statement->bindParam(':app_type', $id, PDO::PARAM_STR);
@@ -759,6 +759,40 @@ class UnamiDatabase
         $statement->execute();
     }
 
+    /**
+     * Edit a training date, location and deadline
+     *
+     * @param $info_id
+     * @param $date represents the first day of training date
+     * @param $date2 represents the second day of training date
+     * @param $location represents the location of the training
+     * @param $deadline represents the deadline date for the training
+     */
+    function editAppTypeInfo($info_id, $date, $date2, $location, $deadline)
+    {
+        //define query
+        $query = 'UPDATE app_type_info
+                  SET 
+                  date = :date,
+                  location = :location,
+                  deadline = :deadline,
+                  date2 = :date2
+                  WHERE info_id = :info_id';
+
+        //prepare statement
+        $statement = $this->_dbh->prepare($query);
+
+        //bind parameters
+        $statement->bindParam(':date', $date, PDO::PARAM_STR);
+        $statement->bindParam(':date2', $date2, PDO::PARAM_STR);
+        $statement->bindParam(':location', $location, PDO::PARAM_STR);
+        $statement->bindParam(':deadline', $deadline, PDO::PARAM_STR);
+        //$statement->bindParam(':app_type', $app_type, PDO::PARAM_STR);
+        $statement->bindParam(':info_id', $info_id, PDO::PARAM_STR);
+
+        //execute statement
+        $statement->execute();
+    }
     /**
      * Counts number of affiliates
      *
