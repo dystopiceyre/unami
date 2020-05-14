@@ -395,6 +395,17 @@ $f3->route('GET|POST /trainings', function($f3)
         $f3->reroute('/trainings');
     }
 
+    //edit training
+    if (isset($_POST['edit'])) {
+        $date = $_POST['editDates'];
+        $date2 = $_POST['editDates2'];
+        $location = $_POST['editLocation'];
+        $deadline = $_POST['editDeadline'];
+        $id = $_POST['editId'];
+        $db->editAppTypeInfo($id, $date, $date2, $location, $deadline);
+        $f3->reroute('/trainings');
+    }
+
     $view = new Template();
     echo $view->render('views/portal/other/trainings.html');
 });
