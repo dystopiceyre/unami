@@ -13,8 +13,88 @@
             </h5>
             <div class="card-body">
                 <div class="table-responsive">
+
                  <table class="table table-bordered table-hover" id="affiliatesDataTable" width="100%" cellspacing="0">
-                    <thead>
+                    <thead class="table-borderless">
+                    <tr>
+                        <th></th>
+                        <th>
+                            <!-- add new affiliate  -->
+                            <div class="text-lg-left">
+                                <a href="#" class="text-decoration-none text-primary" data-toggle="modal" data-target="#modal{{ @Affiliate['affiliate_id'] }}">
+                                    <i class="fas fa fa-plus fa-lg"></i> Add Affiliate
+                                </a>
+                            </div>
+
+                            <!-- adding modal -->
+                            <div class="modal fade" id="modal{{ @Affiliate['affiliate_id'] }}" tabindex="-1" role="dialog"
+                                 aria-labelledby="modal{{ @Affiliate['affiliate_id'] }}" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+
+                                        <div class="modal-header">
+                                            <h4 class="modal-title text-primary" id="modalLab">
+                                                <i class="fas fa-edit"></i> Add Affiliate
+                                                <!-- <span class="font-weight-bold">{{ @Affiliate['name'] }}</span>-->
+                                            </h4>
+
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+
+                                        <!-- add form here -->
+                                        <div class="modal-body">
+                                            Here you'll be able to add an affiliate
+                                            <form action="affiliates" method="post">
+                                                <div class="modal-body py-4">
+
+                                                    <h5><i class="fas fa-pen-alt mr-1 text-primary"></i>Add Affiliate</h5>
+                                                    <div class="form-row mb-2">
+                                                        <div class="form-group col-md-10">
+                                                            <label class="sr-only" for="addAffiliate">Add Affiliate</label>
+                                                            <input type="text"
+                                                                   class="form-control" id="addAffiliate" rows="1"
+                                                                   name="addAffiliate"  required value="{{ @affiliate['name'] }}">
+                                                            <!-- name error messages -->
+                                                            <div class="row justify-content-center text-danger">
+                                                                <check if="{{ isset(@affiliateErrors['name']) }}">
+                                                                    <p>{{ @affiliateErrors['name'] }}</p>
+                                                                </check>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <h5><i class="fas fa-pen-alt mr-1 text-primary"></i>Add Email</h5>
+                                                    <div class="form-row mb-2">
+                                                        <div class="form-group col-md-10">
+                                                            <label class="sr-only" for="addEmail">Add Email</label>
+                                                            <input type="text"
+                                                                   class="form-control" id="addEmail" rows="1"
+                                                                   name="addEmail" required value="{{ @affiliate['email'] }}">
+                                                            <!-- email error messages -->
+                                                            <div class="row justify-content-center text-danger">
+                                                                <check if="{{ isset(@affiliateErrors['email']) }}">
+                                                                    <p>{{ @affiliateErrors['email'] }}</p>
+                                                                </check>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" name="addAffiliateSave" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </th>
+                        <th></th>
+                    </tr>
+
                     <tr class="bg-primary text-white">
                         <th>Affiliate</th>
                         <th>Email</th>
@@ -50,7 +130,8 @@
                             <td class="text-center">
                                 <a href="#" class="text-decoration-none text-primary"
                               data-toggle="modal" data-target="#deleteModal{{ @Affiliate['affiliate_id'] }}">
-                                    <i class="fas fa fa-trash fa-lg"></i>
+<!--                                    <i class="fas fa fa-trash fa-lg"></i>-->
+                                    <i class="fas fa fa-minus-circle text-danger"></i>
                                 </a>
                             </td>
                         </tr>
@@ -117,7 +198,7 @@
                                 <div class="modal-header bg-danger">
                                     <h4 class="modal-title text-white" id="modalLabel2">
                                         <i class="fas fa-minus-circle"></i>
-                                        Delete {{ @Affiliate['name'] }}'s
+                                        Delete {{ @Affiliate['name'] }}
                                     </h4>
 
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -126,7 +207,7 @@
                                 </div>
 
                                 <div class="modal-body my-4">
-                                    <h4 class="text-center">Are you sure you want to delete {{ @Affiliate['name'] }}'s?</h4>
+                                    <h4 class="text-center">Are you sure you want to delete {{ @Affiliate['name'] }}?</h4>
                                 </div>
                                         <!--modal footer-->
                                     <div class="modal-footer">
@@ -142,77 +223,6 @@
                     </repeat>
                     </tbody>
                 </table>
-                <!-- add new affiliate  -->
-                <div class="text-center mt-1 mb-0">
-                    <a href="#" class="text-decoration-none text-primary" data-toggle="modal" data-target="#modal{{ @Affiliate['affiliate_id'] }}">
-                        <i class="fas fa fa-plus fa-lg"></i> Add Affiliate
-                    </a>
-                </div>
-                <!-- adding modal -->
-                <div class="modal fade" id="modal{{ @Affiliate['affiliate_id'] }}" tabindex="-1" role="dialog"
-                     aria-labelledby="modal{{ @Affiliate['affiliate_id'] }}" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-
-                            <div class="modal-header">
-                                <h4 class="modal-title text-primary" id="modalLab">
-                                    <i class="fas fa-edit"></i> Add Affiliate
-                                    <!-- <span class="font-weight-bold">{{ @Affiliate['name'] }}</span>-->
-                                </h4>
-
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-
-                            <!-- add form here -->
-                            <div class="modal-body">
-                                Here you'll be able to add an affiliate
-                                <form action="affiliates" method="post">
-                                    <div class="modal-body py-4">
-
-                                        <h5><i class="fas fa-pen-alt mr-1 text-primary"></i>Add Affiliate</h5>
-                                        <div class="form-row mb-2">
-                                            <div class="form-group col-md-10">
-                                                <label class="sr-only" for="addAffiliate">Add Affiliate</label>
-                                                <input type="text"
-                                                       class="form-control" id="addAffiliate" rows="1"
-                                                       name="addAffiliate"  required value="{{ @affiliate['name'] }}">
-                                                <!-- name error messages -->
-                                                <div class="row justify-content-center text-danger">
-                                                    <check if="{{ isset(@affiliateErrors['name']) }}">
-                                                        <p>{{ @affiliateErrors['name'] }}</p>
-                                                    </check>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <h5><i class="fas fa-pen-alt mr-1 text-primary"></i>Add Email</h5>
-                                        <div class="form-row mb-2">
-                                            <div class="form-group col-md-10">
-                                                <label class="sr-only" for="addEmail">Add Email</label>
-                                                <input type="text"
-                                                       class="form-control" id="addEmail" rows="1"
-                                                       name="addEmail" required value="{{ @affiliate['email'] }}">
-                                                <!-- email error messages -->
-                                                <div class="row justify-content-center text-danger">
-                                                    <check if="{{ isset(@affiliateErrors['email']) }}">
-                                                        <p>{{ @affiliateErrors['email'] }}</p>
-                                                    </check>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" name="addAffiliateSave" class="btn btn-primary">Save changes</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
