@@ -759,6 +759,19 @@ class UnamiDatabase
         $statement->execute();
     }
 
+    function AddANewLocation($location) {
+        //define query
+        $query = "INSERT INTO locations (location)
+                VALUES (:location)";
+
+        //prepare statement
+        $statement = $this->_dbh->prepare($query);
+
+        //bind parameters
+        $statement->bindParam(':location', $location, PDO::PARAM_STR);
+
+        $statement->execute();
+    }
     /**
      * Edit a training date, location and deadline
      *

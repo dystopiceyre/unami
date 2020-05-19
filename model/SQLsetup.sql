@@ -185,6 +185,14 @@ CREATE TABLE affiliates
     email        VARCHAR(254)       NOT NULL
 );
 
+/* locations table*/
+CREATE TABLE locations
+(
+    location_id INT AUTO_INCREMENT  NOT NULL PRIMARY KEY,
+    location    VARCHAR(200)        NOT NULL
+
+);
+
 /* admin portal user */
 CREATE TABLE adminUser
 (
@@ -228,3 +236,11 @@ VALUES ('Family Support Group', 'familySupportGroup'),
        ('Homefront', 'homefront'),
        ('Basics', 'basics'),
        ('Smarts', 'smarts');
+
+INSERT INTO locations(location)
+VALUES ('Kirkland'),
+       ('Olympia'),
+       ('Redmond'),
+       ('Spokane'),
+       ('Yakima'),
+       ('Online');
