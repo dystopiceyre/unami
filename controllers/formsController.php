@@ -9,8 +9,7 @@ global $f3;
 global $db;
 
 //must have a get variable named type to work
-$f3->route('GET /description', function($f3)
-{
+$f3->route('GET /description', function ($f3) {
     $f3->set('page_title', 'Training Description');
     $trainingRoute = $_GET['type'];
     $_SESSION['trainingRoute'] = $trainingRoute;
@@ -19,12 +18,10 @@ $f3->route('GET /description', function($f3)
     echo $view->render("views/forms/specific_form_pages/$trainingRoute/trainingDescription.html");
 });
 
-$f3->route('GET|POST /personal_information', function($f3)
-{
+$f3->route('GET|POST /personal_information', function ($f3) {
     $f3->set('page_title', 'Personal information');
 
-    if(!empty($_POST))
-    {
+    if (!empty($_POST)) {
 
         // get data from form
         $first = $_POST['first'];
@@ -39,11 +36,10 @@ $f3->route('GET|POST /personal_information', function($f3)
         $primaryPhone = $_POST['primary'];
         $primaryTime = $_POST['primary_time'];
 
-        if(!empty($_POST['alternate'])) {
+        if (!empty($_POST['alternate'])) {
             $alternatePhone = $_POST['alternate'];
             $_SESSION['alternatePhone'] = 1;
-        }
-        else {
+        } else {
             $alternatePhone = " ";
             $_SESSION['alternatePhone'] = 0;
         }
@@ -85,12 +81,10 @@ $f3->route('GET|POST /personal_information', function($f3)
         $_SESSION['affiliate'] = $_POST['affiliate'];
 
         // validate data
-        if(validPersonalInfoForm())
-        {
+        if (validPersonalInfoForm()) {
             $_SESSION['applicationStarted'] = 1;
 
-            if($_POST['goToReview'] == true)
-            {
+            if ($_POST['goToReview'] == true) {
                 $f3->reroute('/review');
             }
 
@@ -98,9 +92,8 @@ $f3->route('GET|POST /personal_information', function($f3)
         }
     }
 
-    if(!isset($_SESSION['PersonalInfo']))
-    {
-        $_SESSION['PersonalInfo'] = new PersonalInfo('','','','','','',
+    if (!isset($_SESSION['PersonalInfo'])) {
+        $_SESSION['PersonalInfo'] = new PersonalInfo('', '', '', '', '', '',
             '', '', '', '', '', '', '', '',
             '', '', '', '', '', '', '');
     }
@@ -109,16 +102,14 @@ $f3->route('GET|POST /personal_information', function($f3)
     echo $view->render('views/forms/general_form_pages/form1.html');
 });
 
-$f3->route('GET|POST /additional_information', function($f3)
-{
-    if($_SESSION['applicationStarted'] != 1) {
+$f3->route('GET|POST /additional_information', function ($f3) {
+    if ($_SESSION['applicationStarted'] != 1) {
         $f3->reroute('/');
     }
 
     $f3->set('page_title', 'Accommodations');
 
-    if(!empty($_POST))
-    {
+    if (!empty($_POST)) {
         // get data from form
         $specialNeeds = $_POST['specialNeeds'];
         $specialNeedsText = $_POST['specialNeedsText'];
@@ -136,13 +127,11 @@ $f3->route('GET|POST /additional_information', function($f3)
         $cpapRoommate = $_POST['cpapRoommate'];
         $singleRoom = $_POST['singleRoom'];
 
-        if(!isset($daysRooming))
-        {
+        if (!isset($daysRooming)) {
             $daysRooming = array('N/A');
         }
 
-        if($needAccommodations == 'false')
-        {
+        if ($needAccommodations == 'false') {
             $singleRoom = 'false';
             $roommate = 'N/A';
             $gender = 'N/A';
@@ -151,8 +140,7 @@ $f3->route('GET|POST /additional_information', function($f3)
             $cpapRoommate = 'false';
         }
 
-        if($singleRoom == 'true')
-        {
+        if ($singleRoom == 'true') {
             $roommate = 'N/A';
             $gender = 'N/A';
             $roommateGender = 'N/A';
@@ -160,18 +148,15 @@ $f3->route('GET|POST /additional_information', function($f3)
             $cpapRoommate = 'false';
         }
 
-        if($specialNeeds == 'false')
-        {
+        if ($specialNeeds == 'false') {
             $specialNeedsText = 'No special needs';
         }
 
-        if($serviceAnimal == 'false')
-        {
+        if ($serviceAnimal == 'false') {
             $serviceAnimalText = 'No service animal';
         }
 
-        if($movementDisability == 'false')
-        {
+        if ($movementDisability == 'false') {
             $movementDisabilityText = 'No movement disability';
         }
 
@@ -204,10 +189,8 @@ $f3->route('GET|POST /additional_information', function($f3)
         */
 
         // validate data
-        if(validAccommodationsForm())
-        {
-            if($_POST['goToReview'] == true)
-            {
+        if (validAccommodationsForm()) {
+            if ($_POST['goToReview'] == true) {
                 $f3->reroute('/review');
             }
 
@@ -215,11 +198,10 @@ $f3->route('GET|POST /additional_information', function($f3)
         }
     }
 
-    if(!isset($_SESSION['AdditionalInfo']))
-    {
+    if (!isset($_SESSION['AdditionalInfo'])) {
         $dummyArray = array('N/A');
         $_SESSION['AdditionalInfo'] = new AdditionalInfo('', '', '',
-            '', '', '', '','',
+            '', '', '', '', '',
             $dummyArray, '', '', '', '', '', '');
     }
 
@@ -227,13 +209,11 @@ $f3->route('GET|POST /additional_information', function($f3)
     echo $view->render('views/forms/general_form_pages/form2.html');
 });
 
-$f3->route('GET|POST /long_answer', function($f3)
-{
+$f3->route('GET|POST /long_answer', function ($f3) {
     $f3->set('page_title', 'Long Answer');
     $trainingRoute = $_SESSION['trainingRoute'];
 
-    if($_SESSION['applicationStarted'] != 1)
-    {
+    if ($_SESSION['applicationStarted'] != 1) {
         $f3->reroute('/');
     }
 
@@ -243,16 +223,14 @@ $f3->route('GET|POST /long_answer', function($f3)
     echo $view->render("views/forms/specific_form_pages/$trainingRoute/longAnswer.html");
 });
 
-$f3->route('GET|POST /not_required', function($f3)
-{
+$f3->route('GET|POST /not_required', function ($f3) {
     $f3->set('page_title', 'Additional Questions');
 
-    if($_SESSION['applicationStarted'] != 1) {
+    if ($_SESSION['applicationStarted'] != 1) {
         $f3->reroute('/');
     }
 
-    if(!empty($_POST))
-    {
+    if (!empty($_POST)) {
         // get data from form
         $heardAboutTraining = $_POST['heardAboutTraining'];
         $trained = $_POST['trained'];
@@ -260,13 +238,11 @@ $f3->route('GET|POST /not_required', function($f3)
         $certified = $_POST['certified'];
         $certifiedText = $_POST['certifiedText'];
 
-        if($trained == 'no')
-        {
+        if ($trained == 'no') {
             $trainedText = 'N/A';
         }
 
-        if($certified == 'no')
-        {
+        if ($certified == 'no') {
             $certifiedText = 'N/A';
         }
 
@@ -279,7 +255,7 @@ $f3->route('GET|POST /not_required', function($f3)
 
         // validate data
 
-        $_SESSION['NotRequired'] =  new NotRequired($heardAboutTraining, $trained, $trainedText, $certified,
+        $_SESSION['NotRequired'] = new NotRequired($heardAboutTraining, $trained, $trainedText, $certified,
             $certifiedText);
 
         /*
@@ -289,15 +265,13 @@ $f3->route('GET|POST /not_required', function($f3)
         }
         */
 
-        if(validNotRequiredForm())
-        {
+        if (validNotRequiredForm()) {
             $f3->reroute('/review');
         }
     }
 
-    if(!isset($_SESSION['NotRequired']))
-    {
-        $_SESSION['NotRequired'] = new NotRequired('','','','',
+    if (!isset($_SESSION['NotRequired'])) {
+        $_SESSION['NotRequired'] = new NotRequired('', '', '', '',
             '');
     }
 
@@ -306,12 +280,10 @@ $f3->route('GET|POST /not_required', function($f3)
 });
 
 
-$f3->route('GET|POST /review', function($f3)
-{
+$f3->route('GET|POST /review', function ($f3) {
     global $db;
 
-    if($_SESSION['applicationStarted'] != 1)
-    {
+    if ($_SESSION['applicationStarted'] != 1) {
         $f3->reroute('/');
     }
 
@@ -325,16 +297,14 @@ $f3->route('GET|POST /review', function($f3)
     echo $view->render('views/forms/general_form_pages/review.html');
 });
 
-$f3->route('GET|POST /performance_agreement', function($f3)
-{
-    if($_SESSION['applicationStarted'] != 1) {
+$f3->route('GET|POST /performance_agreement', function ($f3) {
+    if ($_SESSION['applicationStarted'] != 1) {
         $f3->reroute('/');
     }
 
     $f3->set('page_title', 'Performance Agreement');
 
-    if(!empty($_POST))
-    {
+    if (!empty($_POST)) {
         $f3->reroute('/confirmation');
     }
 
@@ -343,9 +313,8 @@ $f3->route('GET|POST /performance_agreement', function($f3)
     echo $view->render("views/forms/specific_form_pages/$trainingRoute/performanceAgreement.html");
 });
 
-$f3->route('GET|POST /confirmation', function($f3)
-{
-    if($_SESSION['applicationStarted'] != 1) {
+$f3->route('GET|POST /confirmation', function ($f3) {
+    if ($_SESSION['applicationStarted'] != 1) {
         $f3->reroute('/');
     }
 
@@ -353,8 +322,7 @@ $f3->route('GET|POST /confirmation', function($f3)
     $lastId = $db->addApplicant($_SESSION['PersonalInfo'], $_SESSION['AdditionalInfo'],
         $_SESSION['NotRequired'], $_SESSION['info_id']);
 
-    switch ($_SESSION['trainingRoute'])
-    {
+    switch ($_SESSION['trainingRoute']) {
         case 'familySupportGroup':
             $db->insertFSGAnswers($lastId, $_SESSION['LongAnswer']);
             break;
@@ -363,6 +331,12 @@ $f3->route('GET|POST /confirmation', function($f3)
             break;
         case 'endingTheSilence':
             $db->insertETSAnswers($lastId, $_SESSION['LongAnswer']);
+            break;
+        case 'homefront':
+            $db->insertHAnswers($lastId, $_SESSION['LongAnswer']);
+            break;
+        case 'basics':
+            $db->insertBAnswers($lastId, $_SESSION['LongAnswer']);
             break;
     }
 
