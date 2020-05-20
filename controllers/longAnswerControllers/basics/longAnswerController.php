@@ -24,30 +24,34 @@ if (!empty($_POST)) {
     $teachWhere = $_POST['teachWhere'];
 
 
-    if ($convict = 'no') {
+    if ($convict == 'no') {
         $convictText = 'N/A';
     }
 
-    if ($parent = 'no') {
+    if ($parent == 'no') {
         $childAge = 'N/A';
         $givenDiagnosis = 'N/A';
         $currentDiagnosis = 'N/A';
         $lengthOfIllness = 'N/A';
     }
 
-    if ($publicSchool = 'yes') {
-        $educationalProgram = 'public school';
+    if ($givenDiagnosis == 'no') {
+        $currentDiagnosis = 'Not yet officially diagnosed';
     }
 
-    if ($highSchoolGrad = 'no') {
-        $gradDate = 'not graduated yet';
+    if ($publicSchool == 'yes') {
+        $educationalProgram = 'Public school';
     }
 
-    if ($coteach = 'no') {
+    if ($highSchoolGrad == 'no') {
+        $gradDate = 'Not graduated yet';
+    }
+
+    if ($coteach == 'no') {
         $coteachWith = 'N/A';
     }
 
-    if ($knowWhere = 'no') {
+    if ($knowWhere == 'no') {
         $teachWhere = 'N/A';
     }
 
@@ -72,7 +76,7 @@ if (!empty($_POST)) {
     $f3->set('knowWhere', $knowWhere);
     $f3->set('teachWhere', $teachWhere);
 
-    $SESSION['LongAnswer'] = new BLongAnswers($convict, $convictText, $takenBasics, $takenF2F, $parent, $childAge,
+    $_SESSION['LongAnswer'] = new BLongAnswers($convict, $convictText, $takenBasics, $takenF2F, $parent, $childAge,
         $givenDiagnosis, $currentDiagnosis, $lengthOfIllness, $publicSchool, $educationalProgram, $highSchoolGrad,
         $gradDate, $whyBasicsTeacher, $childExperiences, $coteach, $coteachWith, $knowWhere, $teachWhere);
 
@@ -85,8 +89,8 @@ if (!empty($_POST)) {
     }
 }
 
-if (!isset($SESSION['LongAnswer'])) {
-    $SESSION['LongAnswer'] = new BLongAnswers($convict, $convictText, $takenBasics, $takenF2F, $parent, $childAge,
-        $givenDiagnosis, $currentDiagnosis, $lengthOfIllness, $publicSchool, $educationalProgram, $highSchoolGrad,
-        $gradDate, $whyBasicsTeacher, $childExperiences, $coteach, $coteachWith, $knowWhere, $teachWhere);
+if (!isset($_SESSION['LongAnswer'])) {
+    $_SESSION['LongAnswer'] = new BLongAnswers('', '', '', '', '', '',
+        '', '', '', '', '', '',
+        '', '', '', '', '', '', '');
 }

@@ -76,6 +76,22 @@ class BLongAnswers
     /**
      * @return mixed
      */
+    public function getConvict()
+    {
+        return $this->_convict;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getConvictText()
+    {
+        return $this->_convictText;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getTakenBasics()
     {
         return $this->_takenBasics;
@@ -207,22 +223,6 @@ class BLongAnswers
     public function getTeachWhere()
     {
         return $this->_teachWhere;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getConvict()
-    {
-        return $this->_convict;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getConvictText()
-    {
-        return $this->_convictText;
     }
 
 }
