@@ -28,7 +28,7 @@
     <div class="row m-1 mb-2">
         <div class="col-md-10 pl-0">
             <h6 class="pl-2">
-                <span class="font-weight-bold">Taken NAMI Basics Course: </span><br>
+                <span class="font-weight-bold">Taken NAMI Basics Course: </span>
                 {{ $_SESSION['LongAnswer']->getTakenBasics() }}
             </h6>
         </div>
@@ -37,7 +37,7 @@
     <div class="row m-1 mb-2">
         <div class="col-md-10 pl-0">
             <h6 class="pl-2">
-                <span class="font-weight-bold">Completed NAMI Family to Family Course: </span><br>
+                <span class="font-weight-bold">Completed NAMI Family to Family Course: </span>
                 {{ $_SESSION['LongAnswer']->getTakenF2F() }}
             </h6>
         </div>
@@ -46,7 +46,7 @@
     <div class="row m-1 mb-2">
         <div class="col-md-10 pl-0">
             <h6 class="pl-2"><span
-                    class="font-weight-bold">Parent/caregiver of a child with mental illness symptoms: </span><br>
+                    class="font-weight-bold">Parent/caregiver of a child with mental illness symptoms: </span>
                 {{ $_SESSION['LongAnswer']->getParent() }}
             </h6>
         </div>
@@ -54,7 +54,7 @@
 
     <div class="row m-1 mb-2">
         <div class="col-md-10 pl-0">
-            <h6 class="pl-2"><span class="font-weight-bold">Age of child: </span><br>
+            <h6 class="pl-2"><span class="font-weight-bold">Age of child: </span>
                 {{ $_SESSION['LongAnswer']->getChildAge() }}
             </h6>
         </div>
@@ -63,7 +63,7 @@
     <div class="row m-1 mb-2">
         <div class="col-md-10 pl-0">
             <h6 class="pl-2"><span class="font-weight-bold">Child's current diagnosis: </span><br>
-                {{ $_SESSION['LongAnswer']->getGivenDiagnosis() }}
+                {{ $_SESSION['LongAnswer']->getCurrentDiagnosis() }}
             </h6>
         </div>
     </div>
@@ -95,7 +95,7 @@
 
     <div class="row m-1 mb-2">
         <div class="col-md-10 pl-0">
-            <h6 class="pl-2"><span class="font-weight-bold">Why they want to be a Basics teacher: </span>
+            <h6 class="pl-2"><span class="font-weight-bold">Why they want to be a Basics teacher: </span><br>
                 {{ $_SESSION['LongAnswer']->getWhyBasicsTeacher() }}
             </h6>
         </div>
@@ -112,7 +112,7 @@
     <div class="row m-1 mb-2">
         <div class="col-md-10 pl-0">
             <h6 class="pl-2"><span
-                    class="font-weight-bold">Who they want to coteach with: </span><br>
+                    class="font-weight-bold">Who they want to coteach with: </span>
                 {{ $_SESSION['LongAnswer']->getCoteachWith() }}
             </h6>
         </div>
@@ -120,8 +120,8 @@
 
     <div class="row m-1 mb-2">
         <div class="col-md-10 pl-0">
-            <h6 class="pl-2"><span class="font-weight-bold">Where they want to teach at: </span><br>
-                {{ $_SESSION['LongAnswer']->getCoteachWhere() }}
+            <h6 class="pl-2"><span class="font-weight-bold">Where they want to teach at: </span>
+                {{ $_SESSION['LongAnswer']->getTeachWhere() }}
             </h6>
         </div>
     </div>

@@ -6,7 +6,7 @@ if (!empty($_POST)) {
     $convict = $_POST['convict'];
     $convictText = $_POST['convictText'];
     $familyMember = $_POST['familyMember'];
-    $relationship = $_POST['$relationship'];
+    $relationship = $_POST['relationship'];
     $diagnosis = $_POST['diagnosis'];
     $takenF2F = $_POST['takenF2F'];
     $whyHomefrontTeacher = $_POST['whyHomefrontTeacher'];
@@ -15,15 +15,15 @@ if (!empty($_POST)) {
     $knowWhere = $_POST['knowWhere'];
     $teachWhere = $_POST['teachWhere'];
 
-    if ($convict = 'no') {
+    if ($convict == 'no') {
         $convictText = 'N/A';
     }
 
-    if ($coteach = 'no') {
+    if ($coteach == 'no') {
         $coteachWith = 'N/A';
     }
 
-    if ($knowWhere = 'no') {
+    if ($knowWhere == 'no') {
         $teachWhere = 'N/A';
     }
 
@@ -40,7 +40,7 @@ if (!empty($_POST)) {
     $f3->set('knowWhere', $knowWhere);
     $f3->set('teachWhere', $teachWhere);
 
-    $SESSION['LongAnswer'] = new HLongAnswers($convict, $convictText, $familyMember, $relationship, $diagnosis, $takenF2F,
+    $_SESSION['LongAnswer'] = new HLongAnswers($convict, $convictText, $familyMember, $relationship, $diagnosis, $takenF2F,
         $whyHomefrontTeacher, $coteach, $coteachWith, $knowWhere, $teachWhere);
 
     if (validHLongAnswersForm()) {
@@ -52,7 +52,7 @@ if (!empty($_POST)) {
     }
 }
 
-if (!isset($SESSION['LongAnswer'])) {
-    $SESSION['LongAnswer'] = new HLongAnswers($convict, $convictText, $familyMember, $relationship, $diagnosis, $takenF2F,
-        $whyHomefrontTeacher, $coteach, $coteachWith, $knowWhere, $teachWhere);
+if (!isset($_SESSION['LongAnswer'])) {
+    $_SESSION['LongAnswer'] = new HLongAnswers('', '', '', '', '', '',
+        '', '', '', '', '');
 }
