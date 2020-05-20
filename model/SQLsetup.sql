@@ -138,7 +138,7 @@ CREATE TABLE H
     taken_f2f    VARCHAR(5),
     why_want     MEDIUMTEXT,
     coteach_with VARCHAR(200),
-    teach_Where  VARCHAR(200),
+    teach_where  VARCHAR(200),
     FOREIGN KEY (applicant_id) references applicants (applicant_id)
 );
 
