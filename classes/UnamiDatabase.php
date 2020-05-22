@@ -331,7 +331,7 @@ class UnamiDatabase
         $statement->bindParam(':length_of_illness', $BAnswers->getLengthOfIllness(), PDO::PARAM_STR);
         $statement->bindParam(':educational_program', $BAnswers->getEducationalProgram(), PDO::PARAM_STR);
         $statement->bindParam(':grad_date', $BAnswers->getGradDate(), PDO::PARAM_STR);
-        $statement->bindParam(':why_want', $BAnswers->getWhyWant(), PDO::PARAM_STR);
+        $statement->bindParam(':why_want', $BAnswers->getWhyBasicsTeacher(), PDO::PARAM_STR);
         $statement->bindParam(':child_experiences', $BAnswers->getChildExperiences(), PDO::PARAM_STR);
         $statement->bindParam(':coteach_with', $BAnswers->getCoteachWith(), PDO::PARAM_STR);
         $statement->bindParam(':teach_where', $BAnswers->getTeachWhere(), PDO::PARAM_STR);
@@ -350,7 +350,7 @@ class UnamiDatabase
         $statement->bindParam(':relationship', $HAnswers->getRelationship(), PDO::PARAM_STR);
         $statement->bindParam(':diagnosis', $HAnswers->getDiagnosis(), PDO::PARAM_STR);
         $statement->bindParam(':taken_f2f', $HAnswers->getTakenF2F(), PDO::PARAM_STR);
-        $statement->bindParam(':why_want', $HAnswers->getWhyWant(), PDO::PARAM_STR);
+        $statement->bindParam(':why_want', $HAnswers->getWhyHomefrontTeacher(), PDO::PARAM_STR);
         $statement->bindParam(':coteach_with', $HAnswers->getCoteachWith(), PDO::PARAM_STR);
         $statement->bindParam(':teach_where', $HAnswers->getTeachWhere(), PDO::PARAM_STR);
         $statement->execute();
