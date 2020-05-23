@@ -726,7 +726,7 @@ function validTrainingDate($date)
  * @param $date3
  * @return bool
  */
-function validTrainingDates($date, $date2, $date3 = null)
+function validTrainingDates($date, $date2 = null, $date3 = null)
 {
     global $f3;
     $expectedDay2 = date('Y-m-d', strtotime("$date +1 day"));
@@ -762,8 +762,8 @@ function validTrainingDates($date, $date2, $date3 = null)
 function validDeadline($date, $deadline)
 {
     global $f3;
-    if ($deadline > $date) {
-        $f3->set("errors['deadline]", "The deadline occurs after the training date");
+    if ($deadline >= $date) {
+        $f3->set("errors['deadline']", "The deadline occurs after the training date");
         return false;
     }
     return true;
