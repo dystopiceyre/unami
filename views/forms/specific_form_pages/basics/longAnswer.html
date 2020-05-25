@@ -85,13 +85,19 @@
                             <div class="form-check form-check-inline ml-2">
                                 <label class="form-check-label"><input type="radio" name="takenBasics" value="yes"
                                                                        class="form-check-input"
-                                    <check if="{{ $_SESSION['LongAnswer']->getTakenBasics() == 'yes' }}">>Yes
+                                    <check if="{{ $_SESSION['LongAnswer']->getTakenBasics() == 'yes' }}">
+                                        checked
+                                    </check>
+                                    >Yes
                                 </label>
                             </div>
                             <div class="form-check form-check-inline ml-2">
                                 <label class="form-check-label"><input type="radio" name="takenBasics" value="no"
                                                                        class="form-check-input"
-                                    <check if="{{ $_SESSION['LongAnswer']->getTakenBasics() == 'no' }}">>No
+                                    <check if="{{ $_SESSION['LongAnswer']->getTakenBasics() == 'no' }}">
+                                        checked
+                                    </check>
+                                    >No
                                 </label>
                             </div>
                         </div>
@@ -104,13 +110,19 @@
                             <div class="form-check form-check-inline ml-2">
                                 <label class="form-check-label"><input type="radio" name="takenF2F" value="yes"
                                                                        class="form-check-input"
-                                    <check if="{{ $_SESSION['LongAnswer']->getTakenF2F() == 'yes' }}">>Yes
+                                    <check if="{{ $_SESSION['LongAnswer']->getTakenF2F() == 'yes' }}">
+                                        checked
+                                    </check>
+                                    >Yes
                                 </label>
                             </div>
                             <div class="form-check form-check-inline ml-2">
                                 <label class="form-check-label"><input type="radio" name="takenF2F" value="no"
                                                                        class="form-check-input"
-                                    <check if="{{ $_SESSION['LongAnswer']->getTakenF2F() == 'no' }}">>No
+                                    <check if="{{ $_SESSION['LongAnswer']->getTakenF2F() == 'no' }}">
+                                        checked
+                                    </check>
+                                    >No
                                 </label>
                             </div>
                         </div>
@@ -123,13 +135,19 @@
                             <div class="form-check form-check-inline ml-2">
                                 <label class="form-check-label"><input type="radio" name="parent" value="yes"
                                                                        id="yesParent" class="form-check-input"
-                                    <check if="{{ $_SESSION['LongAnswer']->getParent() == 'yes' }}">>Yes
+                                    <check if="{{ $_SESSION['LongAnswer']->getParent() == 'yes' }}">
+                                        checked
+                                    </check>
+                                    >Yes
                                 </label>
                             </div>
                             <div class="form-check form-check-inline ml-2">
                                 <label class="form-check-label"><input type="radio" name="parent" value="no"
                                                                        id="noParent" class="form-check-input"
-                                    <check if="{{ $_SESSION['LongAnswer']->getParent() == 'no' }}">>No
+                                    <check if="{{ $_SESSION['LongAnswer']->getParent() == 'no' }}">
+                                        checked
+                                    </check>
+                                    >No
                                 </label>
                             </div>
                             <div class="none col-md-6 form-group" id="childInfo">
@@ -141,13 +159,19 @@
                                     <label class="form-check-label"><input type="radio" name="givenDiagnosis"
                                                                            value="yes" id="yesDiagnosis"
                                                                            class="form-check-input"
-                                        <check if="{{ $_SESSION['LongAnswer']->getGivenDiagnosis() == 'yes' }}">>Yes
+                                        <check if="{{ $_SESSION['LongAnswer']->getGivenDiagnosis() == 'yes' }}">
+                                            checked
+                                        </check>
+                                        >Yes
                                     </label>
                                 </div>
                                 <div class="form-check form-check-inline ml-2">
                                     <label class="form-check-label"><input type="radio" name="givenDiagnosis" value="no"
                                                                            id="noDiagnosis" class="form-check-input"
-                                        <check if="{{ $_SESSION['LongAnswer']->getGivenDiagnosis() == 'no' }}">>No
+                                        <check if="{{ $_SESSION['LongAnswer']->getGivenDiagnosis() == 'no' }}">
+                                            checked
+                                        </check>
+                                        >No
                                     </label>
                                 </div>
                                 <div class="none" id="diagnosisInfo">
@@ -172,14 +196,20 @@
                                         <label class="form-check-label"><input type="radio" name="publicSchool"
                                                                                id="yesPublic" value="yes"
                                                                                class="form-check-input"
-                                            <check if="{{ $_SESSION['LongAnswer']->getPublicSchool() == 'yes' }}">>Yes
+                                            <check if="{{ $_SESSION['LongAnswer']->getPublicSchool() == 'yes' }}">
+                                                checked
+                                            </check>
+                                            >Yes
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline ml-2">
                                         <label class="form-check-label"><input type="radio" name="publicSchool"
                                                                                id="noPublic" value="no"
                                                                                class="form-check-input"
-                                            <check if="{{ $_SESSION['LongAnswer']->getPublicSchool() == 'no' }}">>No
+                                            <check if="{{ $_SESSION['LongAnswer']->getPublicSchool() == 'no' }}">
+                                                checked
+                                            </check>
+                                            >No
                                         </label>
                                     </div>
                                     <div class="none col-md-8" id="edProgram">
@@ -197,14 +227,20 @@
                                         <label class="form-check-label"><input type="radio" name="highSchoolGrad"
                                                                                id="yesGrad" value="yes"
                                                                                class="form-check-input"
-                                            <check if="{{ $_SESSION['LongAnswer']->getHighSchoolGrad() == 'yes' }}">>Yes
+                                            <check if="{{ $_SESSION['LongAnswer']->getHighSchoolGrad() == 'yes' }}">
+                                                checked
+                                            </check>
+                                            >Yes
                                         </label>
                                     </div>
                                     <div class="form-check form-check-inline ml-2">
                                         <label class="form-check-label"><input type="radio" name="highSchoolGrad"
                                                                                id="noGrad" value="no"
                                                                                class="form-check-input"
-                                            <check if="{{ $_SESSION['LongAnswer']->getHighSchoolGrad() == 'no' }}">>No
+                                            <check if="{{ $_SESSION['LongAnswer']->getHighSchoolGrad() == 'no' }}">
+                                                checked
+                                            </check>
+                                            >No
                                         </label>
                                     </div>
                                     <div class="none col-md-6" id="grad">
@@ -235,13 +271,19 @@
                             <div class="form-check form-check-inline ml-2">
                                 <label class="form-check-label"><input type="radio" name="coteach" value="yes"
                                                                        id="yesCoteach" class="form-check-input"
-                                    <check if="{{ $_SESSION['LongAnswer']->getCoteach() == 'yes' }}">>Yes
+                                    <check if="{{ $_SESSION['LongAnswer']->getCoteach() == 'yes' }}">
+                                        checked
+                                    </check>
+                                    >Yes
                                 </label>
                             </div>
                             <div class="form-check form-check-inline ml-2">
                                 <label class="form-check-label"><input type="radio" name="coteach" value="no"
                                                                        id="noCoteach" class="form-check-input"
-                                    <check if="{{ $_SESSION['LongAnswer']->getCoteach() == 'no' }}">>No
+                                    <check if="{{ $_SESSION['LongAnswer']->getCoteach() == 'no' }}">
+                                        checked
+                                    </check>
+                                    >No
                                 </label>
                             </div>
                             <div class="none form-check-inline col-md-6" id="coteach">
@@ -258,13 +300,19 @@
                             <div class="form-check form-check-inline ml-2">
                                 <label class="form-check-label"><input type="radio" name="knowWhere" value="yes"
                                                                        id="yesWhere" class="form-check-input"
-                                    <check if="{{ $_SESSION['LongAnswer']->getKnowWhere() == 'yes' }}">>Yes
+                                    <check if="{{ $_SESSION['LongAnswer']->getKnowWhere() == 'yes' }}">
+                                        checked
+                                    </check>
+                                    >Yes
                                 </label>
                             </div>
                             <div class="form-check form-check-inline ml-2">
                                 <label class="form-check-label"><input type="radio" name="knowWhere" value="no"
                                                                        id="noWhere" class="form-check-input"
-                                    <check if="{{ $_SESSION['LongAnswer']->getKnowWhere() == 'no' }}">>No
+                                    <check if="{{ $_SESSION['LongAnswer']->getKnowWhere() == 'no' }}">
+                                        checked
+                                    </check>
+                                    >No
                                 </label>
                             </div>
                             <div class="none form-check-inline col-md-6" id="where">

@@ -49,20 +49,20 @@
                                                         </a>
                                                     </div>
                                                     <div class="col-10">
-                                                        <span class="font-weight-bold">Day 1:</span> {{ @info['date'] }}<br>
+                                                        <span class="font-weight-bold">Day 1:</span> {{ date('F j, Y',
+                                                        strtotime(@info['date'])) }}<br>
                                                         <check if="{{ @info['date2'] }}">
                                                             <span class="font-weight-bold">Day 2:</span> {{
-                                                            @info['date2'] }}<br>
+                                                            date('F j, Y', strtotime(@info['date2'])) }}<br>
                                                         </check>
                                                         <check if="{{ @info['date3'] }}">
                                                             <span class="font-weight-bold">Day 3:</span> {{
-                                                            @info['date3']
-                                                            }}<br>
+                                                            date('F j, Y', strtotime(@info['date3'])) }}<br>
                                                         </check>
                                                         <span class="font-weight-bold">Location:</span> {{
                                                         @info['location'] }}<br>
-                                                        <span class="font-weight-bold">Deadline:</span> {{
-                                                        @info['deadline'] }}<br>
+                                                        <span class="font-weight-bold">Deadline:</span> {{ date('F j,
+                                                        Y', strtotime(@info['deadline'])) }}<br>
                                                     </div>
                                                 </div>
 
@@ -100,7 +100,9 @@
                                                                             <label for="editDates" class="sr-only">Day
                                                                                 1</label>
                                                                             <input type="date" class="form-control"
-                                                                                   name="editDates" id="editDates"
+                                                                                   name="editDates"
+                                                                                   id="editDates"
+                                                                                   min="{{date('Y-m-d')}}"
                                                                                    value="{{ date('Y-m-d', strtotime(@info['date'])) }}">
                                                                         </div>
 
@@ -109,11 +111,13 @@
                                                                                 <i class="far fa-calendar-alt mr-1 text-success"></i>
                                                                                 Day 2</h5>
                                                                             <div class="form-group pb-2">
-                                                                                <label for="editDates2" class="sr-only">Day
+                                                                                <label for="editDates2"
+                                                                                       class="sr-only">Day
                                                                                     2</label>
                                                                                 <input type="date" class="form-control"
                                                                                        name="editDates2"
                                                                                        id="editDates2"
+                                                                                       min="{{date('Y-m-d')}}"
                                                                                        value="{{ date('Y-m-d', strtotime(@info['date2'])) }}">
                                                                             </div>
                                                                         </check>
@@ -123,11 +127,13 @@
                                                                                 <i class="far fa-calendar-alt mr-1 text-success"></i>
                                                                                 Day 3</h5>
                                                                             <div class="form-group pb-2">
-                                                                                <label for="editDates3" class="sr-only">Day
+                                                                                <label for="editDates3"
+                                                                                       class="sr-only">Day
                                                                                     3</label>
                                                                                 <input type="date" class="form-control"
                                                                                        name="editDates3"
                                                                                        id="editDates3"
+                                                                                       min="{{date('Y-m-d')}}"
                                                                                        value="{{ date('Y-m-d', strtotime(@info['date3'])) }}">
                                                                             </div>
                                                                         </check>
@@ -137,10 +143,11 @@
                                                                             Location
                                                                         </h5>
                                                                         <div class="form-group pb-2">
-                                                                            <label for="editLocation" class="sr-only">Location</label>
-                                                                            <check if="{{ @info['location'] }}">
+                                                                            <label for="editLocation"
+                                                                                   class="sr-only">Location</label>
+                                                                            <!--                                                                            <check if="{{ @info['location'] }}">-->
 
-                                                                            </check>
+                                                                            <!--                                                                            </check>-->
                                                                             <select id="editLocation"
                                                                                     name="editLocation">
                                                                                 <option value="none">--Select
@@ -165,9 +172,12 @@
                                                                             <i class="far fa-calendar-times mr-1 text-success"></i>Deadline
                                                                         </h5>
                                                                         <div class="form-group pb-2">
-                                                                            <label for="editDeadline" class="sr-only">Deadline</label>
+                                                                            <label for="editDeadline"
+                                                                                   class="sr-only">Deadline</label>
                                                                             <input type="date" class="form-control"
-                                                                                   name="editDeadline" id="editDeadline"
+                                                                                   name="editDeadline"
+                                                                                   id="editDeadline"
+                                                                                   min="{{date('Y-m-d')}}"
                                                                                    value="{{ date('Y-m-d', strtotime(@info['deadline'])) }}">
                                                                         </div>
 
@@ -266,24 +276,33 @@
                                         <form action="trainings" method="post">
                                             <div class="modal-body">
                                                 <div class="col-12">
+                                                    <div id="addErrs"></div>
                                                     <h5><i class="far fa-calendar-alt mr-1 text-success"></i> Day 1</h5>
                                                     <div class="form-group pb-2">
-                                                        <label for="dates" class="sr-only">Day 1</label>
-                                                        <input type="date" class="form-control" name="dates" id="dates">
+                                                        <label for="dates" class="sr-only">Day
+                                                            1</label>
+                                                        <input type="date" class="form-control" name="dates"
+                                                               id="dates" required
+                                                               min="{{date('Y-m-d')}}"
+                                                               value="{{date('Y-m-d', strtotime('+1 month'))}}">
                                                     </div>
 
-                                                    <h5><i class="far fa-calendar-alt mr-1 text-success"></i> Day 2</h5>
+                                                    <h5><i class="far fa-calendar-alt mr-1 text-success"></i> Day 2
+                                                    </h5>
                                                     <div class="form-group pb-2">
-                                                        <label for="dates2" class="sr-only">Day 2</label>
+                                                        <label for="dates2" class="sr-only">Day
+                                                            2</label>
                                                         <input type="date" class="form-control" name="dates2"
-                                                               id="dates2">
+                                                               id="dates2"
+                                                               min="{{date('Y-m-d', strtotime('1 day'))}}">
                                                     </div>
-
                                                     <h5><i class="far fa-calendar-alt mr-1 text-success"></i> Day 3</h5>
                                                     <div class="form-group pb-2">
-                                                        <label for="dates3" class="sr-only">Day 3</label>
+                                                        <label for="dates3" class="sr-only">Day
+                                                            3</label>
                                                         <input type="date" class="form-control" name="dates3"
-                                                               id="dates3">
+                                                               id="dates3"
+                                                               min="{{date('Y-m-d', strtotime('+2 days'))}}">
                                                     </div>
 
                                                     <h5><i class="fas fa-map-marker mr-1 text-success"></i> Location
@@ -307,8 +326,9 @@
                                                     </h5>
                                                     <div class="form-group pb-2">
                                                         <label for="deadline" class="sr-only">Deadline</label>
-                                                        <input type="date" class="form-control" name="deadline"
-                                                               id="deadline">
+                                                        <input type="date" class="form-control" name="deadline" required
+                                                               id="deadline" min="{{date('Y-m-d')}}"
+                                                               value="{{date('Y-m-d')}}">
                                                     </div>
 
                                                     <input type="hidden" value="{{ @training['app_id'] }}" name="addId">
@@ -340,3 +360,4 @@
 <!-- End of Main Content -->
 
 <include href="views/portal/includes/footer.html"/>
+<script src="views/portal/js/trainings.js"></script>

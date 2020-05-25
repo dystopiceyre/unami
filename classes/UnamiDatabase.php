@@ -288,7 +288,7 @@ class UnamiDatabase
         //save prepared statement
         $statement = $this->_dbh->prepare($sql);
 
-        //assign values: already in $P2PAnswers
+        //assign values: already in $ETSAnswers
         //bind params
         $statement->bindParam(':applicant_id', $applicantId, PDO::PARAM_INT);
         $statement->bindParam(':conviction', $ETSAnswers->getConvictText(), PDO::PARAM_STR);
@@ -309,6 +309,50 @@ class UnamiDatabase
         $statement->bindParam(':view_roles', $ETSAnswers->getRoles(), PDO::PARAM_STR);
 
         //execute SQL statement
+        $statement->execute();
+    }
+
+    function insertBAnswers($applicantId, $BAnswers)
+    {
+        $this->updateAppType(9, $applicantId);
+        $sql = "INSERT INTO B(applicant_id,	conviction,	taken_basics, taken_f2f, parent, child_age,
+              current_diagnosis, length_of_illness, educational_program, grad_date,	why_want,
+              child_experiences, coteach_with, teach_where) VALUES (:applicant_id,	:conviction, :taken_basics, :taken_f2f,
+              :parent, :child_age, :current_diagnosis, :length_of_illness, :educational_program, :grad_date, :why_want,
+              :child_experiences, :coteach_with, :teach_where)";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->bindParam(':applicant_id', $applicantId, PDO::PARAM_INT);
+        $statement->bindParam(':conviction', $BAnswers->getConvictText(), PDO::PARAM_STR);
+        $statement->bindParam(':taken_basics', $BAnswers->getTakenBasics(), PDO::PARAM_STR);
+        $statement->bindParam(':taken_f2f', $BAnswers->getTakenF2F(), PDO::PARAM_STR);
+        $statement->bindParam(':parent', $BAnswers->getParent(), PDO::PARAM_STR);
+        $statement->bindParam(':child_age', $BAnswers->getChildAge(), PDO::PARAM_INT);
+        $statement->bindParam(':current_diagnosis', $BAnswers->getCurrentDiagnosis(), PDO::PARAM_STR);
+        $statement->bindParam(':length_of_illness', $BAnswers->getLengthOfIllness(), PDO::PARAM_STR);
+        $statement->bindParam(':educational_program', $BAnswers->getEducationalProgram(), PDO::PARAM_STR);
+        $statement->bindParam(':grad_date', $BAnswers->getGradDate(), PDO::PARAM_STR);
+        $statement->bindParam(':why_want', $BAnswers->getWhyBasicsTeacher(), PDO::PARAM_STR);
+        $statement->bindParam(':child_experiences', $BAnswers->getChildExperiences(), PDO::PARAM_STR);
+        $statement->bindParam(':coteach_with', $BAnswers->getCoteachWith(), PDO::PARAM_STR);
+        $statement->bindParam(':teach_where', $BAnswers->getTeachWhere(), PDO::PARAM_STR);
+        $statement->execute();
+    }
+
+    function insertHAnswers($applicantId, $HAnswers)
+    {
+        $this->updateAppType(8, $applicantId);
+        $sql = "INSERT INTO H(applicant_id,	conviction,	relationship, diagnosis, taken_f2f,	why_want, coteach_with,
+              teach_where) VALUES(:applicant_id, :conviction, :relationship, :diagnosis, :taken_f2f, :why_want, 
+                                  :coteach_with, :teach_where)";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->bindParam(':applicant_id', $applicantId, PDO::PARAM_INT);
+        $statement->bindParam(':conviction', $HAnswers->getConvictText(), PDO::PARAM_STR);
+        $statement->bindParam(':relationship', $HAnswers->getRelationship(), PDO::PARAM_STR);
+        $statement->bindParam(':diagnosis', $HAnswers->getDiagnosis(), PDO::PARAM_STR);
+        $statement->bindParam(':taken_f2f', $HAnswers->getTakenF2F(), PDO::PARAM_STR);
+        $statement->bindParam(':why_want', $HAnswers->getWhyHomefrontTeacher(), PDO::PARAM_STR);
+        $statement->bindParam(':coteach_with', $HAnswers->getCoteachWith(), PDO::PARAM_STR);
+        $statement->bindParam(':teach_where', $HAnswers->getTeachWhere(), PDO::PARAM_STR);
         $statement->execute();
     }
 
@@ -534,7 +578,7 @@ class UnamiDatabase
     function getAppTypesInfo()
     {
         //define query
-        $query = "SELECT info_id, date, location, deadline, app_type, date2/*, date3*/
+        $query = "SELECT info_id, date, location, deadline, app_type, date2, date3
                   FROM app_type_info
                   WHERE active = 1";
 
@@ -699,16 +743,17 @@ class UnamiDatabase
      * @param $affiliate_id represents the id of the affiliate
      */
 
-        function deleteAffiliate($affiliate_id){
+    function deleteAffiliate($affiliate_id)
+    {
 
         $query = "DELETE FROM affiliates WHERE affiliate_id=:affiliate_id";
 
-            //prepare statement
-            $statement = $this->_dbh->prepare($query);
+        //prepare statement
+        $statement = $this->_dbh->prepare($query);
 
-            $statement->bindParam(':affiliate_id', $affiliate_id, PDO::PARAM_INT);
+        $statement->bindParam(':affiliate_id', $affiliate_id, PDO::PARAM_INT);
 
-            $statement->execute();
+        $statement->execute();
 
     }
 
@@ -719,7 +764,8 @@ class UnamiDatabase
      * @param $email represents the affiliate's email
      * @param $affiliate_id represents the affiliate id
      */
-    function updateAffiliate($name, $email, $affiliate_id){
+    function updateAffiliate($name, $email, $affiliate_id)
+    {
         $query = "UPDATE affiliates 
                   SET 
                   name= :name, 
@@ -746,7 +792,8 @@ class UnamiDatabase
      * @param $email represents the email of the affiliate
      */
 
-    function addAffiliate( $name, $email){
+    function addAffiliate($name, $email)
+    {
         $query = "INSERT INTO affiliates (name, email)
                 VALUES (:name, :email)";
         //prepare statement
@@ -764,11 +811,12 @@ class UnamiDatabase
      *
      * @param $info_id
      * @param $date represents the first day of training date
-     * @param $date2 represents the second day of training date
+     * @param $date2 represents the second day of training (optional)
+     * @param $date3 represents the third day of training (optional)
      * @param $location represents the location of the training
      * @param $deadline represents the deadline date for the training
      */
-    function editAppTypeInfo($info_id, $date, $date2, $location, $deadline)
+    function editAppTypeInfo($info_id, $date, $date2 = null, $date3 = null, $location, $deadline)
     {
         //define query
         $query = 'UPDATE app_type_info
@@ -776,7 +824,8 @@ class UnamiDatabase
                   date = :date,
                   location = :location,
                   deadline = :deadline,
-                  date2 = :date2
+                  date2 = :date2,
+                  date3 = :date3
                   WHERE info_id = :info_id';
 
         //prepare statement
@@ -785,14 +834,15 @@ class UnamiDatabase
         //bind parameters
         $statement->bindParam(':date', $date, PDO::PARAM_STR);
         $statement->bindParam(':date2', $date2, PDO::PARAM_STR);
+        $statement->bindParam(':date3', $date3, PDO::PARAM_STR);
         $statement->bindParam(':location', $location, PDO::PARAM_STR);
         $statement->bindParam(':deadline', $deadline, PDO::PARAM_STR);
-        //$statement->bindParam(':app_type', $app_type, PDO::PARAM_STR);
         $statement->bindParam(':info_id', $info_id, PDO::PARAM_STR);
 
         //execute statement
         $statement->execute();
     }
+
     /**
      * Counts number of affiliates
      *
@@ -1159,6 +1209,10 @@ class UnamiDatabase
             $query = "SELECT *
                       FROM B
                       WHERE applicant_id = :applicant_id";
+        } else if ($application_type == H) {
+            $query = "SELECT *
+             FROM H
+             WHERE applicant_id = :applicant_id";
         }
 
         //prepare statement

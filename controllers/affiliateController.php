@@ -2,17 +2,15 @@
 /**
  * Controller for affiliate routes
  *
- * @author Jason Engelbrecht & Max Lee
+ * @author Jason Engelbrecht, Max Lee, & Olivia Ringhiser
  * Date: 11/18/2019
  */
 global $f3;
 global $db;
 
-$f3->route('GET|POST /affiliate_review/@applicantId/@hashcode', function($f3, $params)
-{
+$f3->route('GET|POST /affiliate_review/@applicantId/@hashcode', function ($f3, $params) {
     $hashedId = str_replace('-', '/', $params['hashcode']);
-    if(!password_verify($params['applicantId'], $hashedId))
-    {
+    if (!password_verify($params['applicantId'], $hashedId)) {
         $f3->reroute('/home');
     }
 
@@ -20,12 +18,10 @@ $f3->route('GET|POST /affiliate_review/@applicantId/@hashcode', function($f3, $p
 
     global $db;
 
-    if(!empty($_POST))
-    {
+    if (!empty($_POST)) {
         $db->insertAffiliateNotes($params['applicantId'], $_POST['affiliateNotes'], $_POST['membershipExpiration']);
 
-        if($_POST['saveNotes'] != 'save')
-        {
+        if ($_POST['saveNotes'] != 'save') {
             $db->updateApplicantStatus($_POST['newStatus'], $params['applicantId']);
 
             //reroute to thank you message
@@ -36,8 +32,7 @@ $f3->route('GET|POST /affiliate_review/@applicantId/@hashcode', function($f3, $p
     $applicant = $db->getApplicant($params['applicantId']);
 
     //if app is already approve/deny, no need to show it
-    if($applicant['app_status'] != 1)
-    {
+    if ($applicant['app_status'] != 1) {
         $f3->reroute('/application_reviewed');
     }
 
@@ -63,16 +58,14 @@ $f3->route('GET|POST /affiliate_review/@applicantId/@hashcode', function($f3, $p
     echo $view->render('views/affiliate/affiliateReview.html');
 });
 
-$f3->route('GET|POST /affiliate_confirmation', function($f3)
-{
+$f3->route('GET|POST /affiliate_confirmation', function ($f3) {
     $f3->set('page_title', 'Thank you!');
 
     $view = new Template();
     echo $view->render('views/affiliate/thankyouConfirmation.html');
 });
 
-$f3->route('GET /application_reviewed', function($f3)
-{
+$f3->route('GET /application_reviewed', function ($f3) {
     $f3->set('page_title', 'Already reviewed');
 
     $view = new Template();
@@ -80,15 +73,14 @@ $f3->route('GET /application_reviewed', function($f3)
 });
 
 //affiliates
-$f3->route('GET|POST /affiliates', function($f3)
-{
+$f3->route('GET|POST /affiliates', function ($f3) {
 
     //get all affiliates
     global $db;
     $f3->set('Affiliates', $db->getAffiliates());
 
     //delete affiliate
-    if(isset($_POST['deleteAffiliate'])) {
+    if (isset($_POST['deleteAffiliate'])) {
         $affiliateId = $_POST['deleteId'];
 
         $db->deleteAffiliate($affiliateId);
@@ -106,9 +98,9 @@ $f3->route('GET|POST /affiliates', function($f3)
     }
 
 
-        //add affiliate
+    //add affiliate
 
-    if(isset($_POST['addAffiliateSave'])) {
+    if (isset($_POST['addAffiliateSave'])) {
         $name = $_POST['addAffiliate'];
         $email = $_POST['addEmail'];
         $db->addAffiliate($name, $email);
@@ -117,4 +109,12 @@ $f3->route('GET|POST /affiliates', function($f3)
 
     $view = new Template();
     echo $view->render('views/portal/other/affiliates.html');
+});
+
+$f3->route('GET|POST /affiliates/affiliate_to_dos', function ($f3) {
+    $f3->set('page_title', 'Affiliate To Dos');
+    //TODO: add post variables and SQL function
+
+    $view = new Template();
+    echo $view->render('views/affiliate/affiliateToDos.html');
 });

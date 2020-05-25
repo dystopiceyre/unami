@@ -9,15 +9,14 @@ global $f3;
 global $db;
 
 //login
-$f3->route('GET|POST /login', function($f3)
-{
+$f3->route('GET|POST /login', function ($f3) {
     $f3->set('page_title', 'Login');
     global $db;
 
     //for logout/just in case
     $_SESSION['loggedIn'] = 0;
 
-    if(!empty($_POST)) {
+    if (!empty($_POST)) {
 
         //get email and password
         $email = $_POST['loginEmail'];
@@ -30,7 +29,7 @@ $f3->route('GET|POST /login', function($f3)
         $_SESSION['adminEmail'] = $email;
 
         //verify correct password entered
-        if(password_verify($password, $adminUser['password'])) {
+        if (password_verify($password, $adminUser['password'])) {
 
             //set logged in to 1 - and set name
             $_SESSION['loggedIn'] = 1;
@@ -42,8 +41,7 @@ $f3->route('GET|POST /login', function($f3)
 
             //go to dashboard
             $f3->reroute('/dashboard');
-        }
-        else {
+        } else {
             $f3->set('loginError', 'Email and password do not match');
         }
     }
@@ -53,13 +51,11 @@ $f3->route('GET|POST /login', function($f3)
 });
 
 //forgot password
-$f3->route('GET|POST /forgot-password', function($f3)
-{
+$f3->route('GET|POST /forgot-password', function ($f3) {
     global $db;
     $f3->set('page_title', 'Forgot Password');
 
-    if (!empty($_POST))
-    {
+    if (!empty($_POST)) {
         Emailer::sendResetEmail($_POST['email'], $db);
     }
 
@@ -68,19 +64,16 @@ $f3->route('GET|POST /forgot-password', function($f3)
 });
 
 //reset password
-$f3->route('GET|POST /reset-password/@adminId/@hashcode', function($f3, $params)
-{
+$f3->route('GET|POST /reset-password/@adminId/@hashcode', function ($f3, $params) {
     $f3->set('page_title', 'Reset Password');
 
     global $db;
     $hashedId = str_replace('-', '/', $params['hashcode']);
-    if(!password_verify($params['adminId'], $hashedId))
-    {
+    if (!password_verify($params['adminId'], $hashedId)) {
         $f3->reroute('/login');
     }
 
-    if (!empty($_POST))
-    {
+    if (!empty($_POST)) {
         $db->changeAdminPassword($params['adminId'], $_POST['password']);
         $f3->reroute('/login');
     }
@@ -90,8 +83,7 @@ $f3->route('GET|POST /reset-password/@adminId/@hashcode', function($f3, $params)
 });
 
 //create account
-$f3->route('GET|POST /create-account', function($f3)
-{
+$f3->route('GET|POST /create-account', function ($f3) {
     $f3->set('page_title', 'Create Account');
     global $db;
 
@@ -100,7 +92,7 @@ $f3->route('GET|POST /create-account', function($f3)
     }*/
 
     //form submission
-    if(!empty($_POST)) {
+    if (!empty($_POST)) {
         //get post data
         $fname = $_POST['adminFname'];
         $lname = $_POST['adminLname'];
@@ -113,8 +105,7 @@ $f3->route('GET|POST /create-account', function($f3)
         $f3->set('adminEmail', $email);
 
         //validate
-        if(validAccount($fname, $lname, $email, $password, $passwordRepeat))
-        {
+        if (validAccount($fname, $lname, $email, $password, $passwordRepeat)) {
             //prefill email for login
             $_SESSION['adminEmail'] = $email;
 
@@ -129,9 +120,8 @@ $f3->route('GET|POST /create-account', function($f3)
 });
 
 //dashboard
-$f3->route('GET|POST /dashboard', function($f3)
-{
-    if($_SESSION['loggedIn'] !== 1) {
+$f3->route('GET|POST /dashboard', function ($f3) {
+    if ($_SESSION['loggedIn'] !== 1) {
         $f3->reroute('/login');
     }
 
@@ -168,24 +158,23 @@ $f3->route('GET|POST /dashboard', function($f3)
     $f3->set('numArchived', $numArchived);
     $f3->set('numSubmitted', $numSubmitted);
     $f3->set('numTrainings', $numTrainings);
-    $f3->set('numDate',$numDate);
-    $f3->set('numApplicationByMonthYear',$numApplicationByMonthYear);
-    $f3->set('first',$first);
-    $f3->set('second',$second);
-    $f3->set('third',$third);
-    $f3->set('fourth',$fourth);
-    $f3->set('fifth',$fifth);
-    $f3->set('firstPercentage',$firstPercentage);
-    $f3->set('secondPercentage',$secondPercentage);
-    $f3->set('thirdPercentage',$thirdPercentage);
-    $f3->set('fourthPercentage',$fourthPercentage);
-    $f3->set('fifthPercentage',$fifthPercentage);
+    $f3->set('numDate', $numDate);
+    $f3->set('numApplicationByMonthYear', $numApplicationByMonthYear);
+    $f3->set('first', $first);
+    $f3->set('second', $second);
+    $f3->set('third', $third);
+    $f3->set('fourth', $fourth);
+    $f3->set('fifth', $fifth);
+    $f3->set('firstPercentage', $firstPercentage);
+    $f3->set('secondPercentage', $secondPercentage);
+    $f3->set('thirdPercentage', $thirdPercentage);
+    $f3->set('fourthPercentage', $fourthPercentage);
+    $f3->set('fifthPercentage', $fifthPercentage);
 
     $labelDataForGraph = array();
     $barDataForGraph = array();
 
-    for($i = 0; $i < sizeof($numDate); $i++)
-    {
+    for ($i = 0; $i < sizeof($numDate); $i++) {
         array_push($labelDataForGraph, $numDate[$i]['MonthYear']);
         array_push($barDataForGraph, $numApplicationByMonthYear[$i]['AppSubmit']);
 
@@ -201,8 +190,7 @@ $f3->route('GET|POST /dashboard', function($f3)
     $app_types = $db->getAppTypes();
     $f3->set('app_types', $app_types);
 
-    if(!empty($_POST))
-    {
+    if (!empty($_POST)) {
         Exporter::exportTrainingInfo($_POST['formType'], $db);
     }
 
@@ -211,9 +199,8 @@ $f3->route('GET|POST /dashboard', function($f3)
 });
 
 //active
-$f3->route('GET|POST /active', function($f3)
-{
-    if($_SESSION['loggedIn'] !== 1) {
+$f3->route('GET|POST /active', function ($f3) {
+    if ($_SESSION['loggedIn'] !== 1) {
         $f3->reroute('/login');
     }
 
@@ -232,10 +219,10 @@ $f3->route('GET|POST /active', function($f3)
     $f3->set('denied', $db->countDenied());
     $f3->set('complete', $db->countComplete());
     $f3->set('numDate', $db->countDate());
-    $f3->set('numApp',$db->countApplicationByMonthYear());
+    $f3->set('numApp', $db->countApplicationByMonthYear());
 
     //update submission
-    if(isset($_POST['update'])) {
+    if (isset($_POST['update'])) {
 
         $id = $_POST['id'];
         $category = $_POST['category'];
@@ -247,8 +234,7 @@ $f3->route('GET|POST /active', function($f3)
         $f3->reroute('/active');
     }
 
-    if(isset($_POST['resendEmail']))
-    {
+    if (isset($_POST['resendEmail'])) {
         $id = $_POST['id'];
         $db->updateApplicantStatus(1, $id);
         $personal = $db->getInfoForEmailResend($id);
@@ -262,9 +248,8 @@ $f3->route('GET|POST /active', function($f3)
 });
 
 //waitlist
-$f3->route('GET|POST /waitlist', function($f3)
-{
-    if($_SESSION['loggedIn'] !== 1) {
+$f3->route('GET|POST /waitlist', function ($f3) {
+    if ($_SESSION['loggedIn'] !== 1) {
         $f3->reroute('/login');
     }
 
@@ -278,7 +263,7 @@ $f3->route('GET|POST /waitlist', function($f3)
     $f3->set('page_title', 'Waitlisted Applicants');
 
     //update submission
-    if(isset($_POST['updateWaitlist'])) {
+    if (isset($_POST['updateWaitlist'])) {
 
         $id = $_POST['id'];
         $category = $_POST['category'];
@@ -295,9 +280,8 @@ $f3->route('GET|POST /waitlist', function($f3)
 });
 
 //archive
-$f3->route('GET|POST /archive', function($f3)
-{
-    if($_SESSION['loggedIn'] !== 1) {
+$f3->route('GET|POST /archive', function ($f3) {
+    if ($_SESSION['loggedIn'] !== 1) {
         $f3->reroute('/login');
     }
 
@@ -311,7 +295,7 @@ $f3->route('GET|POST /archive', function($f3)
     $f3->set('page_title', 'Archived Applicants');
 
     //update submission
-    if(isset($_POST['updateArchive'])) {
+    if (isset($_POST['updateArchive'])) {
 
         $id = $_POST['id'];
         $category = $_POST['category'];
@@ -328,9 +312,8 @@ $f3->route('GET|POST /archive', function($f3)
 });
 
 //affiliates
-$f3->route('GET /affiliates', function($f3)
-{
-    if($_SESSION['loggedIn'] !== 1) {
+$f3->route('GET /affiliates', function ($f3) {
+    if ($_SESSION['loggedIn'] !== 1) {
         $f3->reroute('/login');
     }
 
@@ -344,7 +327,7 @@ $f3->route('GET /affiliates', function($f3)
     $f3->set('NumAffiliates', $db->countAffiliates());
 
     //update submission
-    if(isset($_POST['updateAffiliate'])) {
+    if (isset($_POST['updateAffiliate'])) {
 
         $id = $_POST['id'];
         $category = $_POST['category'];
@@ -360,9 +343,8 @@ $f3->route('GET /affiliates', function($f3)
 });
 
 //trainings
-$f3->route('GET|POST /trainings', function($f3)
-{
-    if($_SESSION['loggedIn'] !== 1) {
+$f3->route('GET|POST /trainings', function ($f3) {
+    if ($_SESSION['loggedIn'] !== 1) {
         $f3->reroute('/login');
     }
 
@@ -376,7 +358,7 @@ $f3->route('GET|POST /trainings', function($f3)
     $f3->set('trainings_infos', $db->getAppTypesInfo());
 
     //add training
-    if(isset($_POST['add'])) {
+    if (isset($_POST['add'])) {
         //insert
         $date = $_POST['dates'];
         $date2 = $_POST['dates2'];
@@ -384,12 +366,15 @@ $f3->route('GET|POST /trainings', function($f3)
         $location = $_POST['location'];
         $deadline = $_POST['deadline'];
         $id = $_POST['addId'];
-        $db->insertAppTypeInfo($id, $date, $date2, $date3, $location, $deadline);
-        $f3->reroute('/trainings');
+        //validate
+        if (validTrainingDate($date) && validTrainingDates($date, $date2, $date3) && validDeadline($date, $deadline)) {
+            $db->insertAppTypeInfo($id, $date, $date2, $date3, $location, $deadline);
+            $f3->reroute('/trainings');
+        }
     }
 
     //delete training
-    if(isset($_POST['delete'])) {
+    if (isset($_POST['delete'])) {
         $id = $_POST['deleteId'];
         $db->deleteAppTypeInfo($id);
         $f3->reroute('/trainings');
@@ -398,21 +383,33 @@ $f3->route('GET|POST /trainings', function($f3)
     //edit training
     if (isset($_POST['edit'])) {
         $date = $_POST['editDates'];
-        $date2 = $_POST['editDates2'];
+        if (isset($_POST['editDates2'])) {
+            $date2 = $_POST['editDates2'];
+        } else {
+            $date2 = null;
+        }
+        if (isset($_POST['editDates3'])) {
+            $date3 = $_POST['editDates3'];
+        } else {
+            $date3 = null;
+        }
         $location = $_POST['editLocation'];
         $deadline = $_POST['editDeadline'];
         $id = $_POST['editId'];
-        $db->editAppTypeInfo($id, $date, $date2, $location, $deadline);
-        $f3->reroute('/trainings');
+
+        //validate
+        if (validTrainingDate($date) && validTrainingDates($date, $date2, $date3) && validDeadline($date, $deadline)) {
+            $db->editAppTypeInfo($id, $date, $date2, $date3, $location, $deadline);
+            $f3->reroute('/trainings');
+        }
     }
 
     $view = new Template();
     echo $view->render('views/portal/other/trainings.html');
 });
 
-$f3->route('GET /oldTrainings', function($f3)
-{
-    if($_SESSION['loggedIn'] !== 1) {
+$f3->route('GET /oldTrainings', function ($f3) {
+    if ($_SESSION['loggedIn'] !== 1) {
         $f3->reroute('/login');
     }
 
@@ -429,9 +426,8 @@ $f3->route('GET /oldTrainings', function($f3)
 
 
 //full application
-$f3->route('GET /@applicant', function($f3, $params)
-{
-    if($_SESSION['loggedIn'] !== 1) {
+$f3->route('GET /@applicant', function ($f3, $params) {
+    if ($_SESSION['loggedIn'] !== 1) {
         $f3->reroute('/login');
     }
 
@@ -455,13 +451,11 @@ $f3->route('GET /@applicant', function($f3, $params)
     $f3->set('applicant', $applicant);
     $f3->set('reviewIncludes', "views/portal/applications/long_answers/$routing/long_answer.html");
 
-    if($applicant['category'] == 1) {
+    if ($applicant['category'] == 1) {
         $f3->set('page', 'active');
-    }
-    else if($applicant['category'] == 0) {
+    } else if ($applicant['category'] == 0) {
         $f3->set('page', 'archive');
-    }
-    else if($applicant['category'] == 2) {
+    } else if ($applicant['category'] == 2) {
         $f3->set('page', 'waitlist');
     }
 

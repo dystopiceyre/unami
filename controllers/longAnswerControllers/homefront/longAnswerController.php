@@ -48,7 +48,7 @@ if (!empty($_POST)) {
             $f3->reroute('/review');
         }
 
-        $f3->reroute('/notrequired');
+        $f3->reroute('/not_required');
     }
 }
 
