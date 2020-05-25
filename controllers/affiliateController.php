@@ -111,8 +111,8 @@ $f3->route('GET|POST /affiliates', function ($f3) {
     echo $view->render('views/portal/other/affiliates.html');
 });
 
-$f3->route('GET|POST /affiliate_to_dos', function ($f3) {
-
+$f3->route('GET|POST /affiliates/affiliate_to_dos', function ($f3) {
+    $f3->set('page_title', 'Affiliate To Dos');
     //TODO: add post variables and SQL function
 
     $view = new Template();
