@@ -15,19 +15,18 @@
             <div class="row mt-2">
                 <div class="col-md-6">
                     <h5 class="mb-2"><i class="fas fa-map-marker-alt mr-1 text-primary"></i><strong> Training Location:</strong>  {{ @SESSION.training_info['location'] }}</h5>
-                    <h5><i class="fas fa-reply fa-rotate-180 text-primary"></i><strong> Application Deadline:</strong>  {{ @SESSION.training_info['deadline'] }}</h5>
+                    <h5><i class="fas fa-reply fa-rotate-180 text-primary"></i><strong> Application Deadline:</strong>  {{ date('F j, Y', strtotime(@SESSION.training_info['deadline'])) }}</h5>
 
                     <hr>
 
                     <h5><i class="far fa-calendar-alt mr-2 text-primary"></i><strong>Training Schedule:</strong></h5>
-                    <h5>{{ @SESSION.training_info['date'] }}</h5>
-                    <h5>{{ @SESSION.training_info['date2'] }}</h5>
+                    <h5>{{ date('F j, Y', strtotime(@SESSION.training_info['date'])) }}</h5>
                 </div>
                 <div class="col-md-6 py-3">
-                    <h5><i class="fas fa-info-circle mr-1 text-primary"></i><strong>NAMI In Our Own Voice (FSG) are:</strong></h5>
-                    <h5>Local meetings of caregivers of
-                        individuals with a mental illness where family members can talk frankly about their challenges and
-                        help one another through their learned wisdom.
+                    <h5><i class="fas fa-info-circle mr-1 text-primary"></i><strong>NAMI In Our Own Voice is:</strong></h5>
+                    <h5>A unique public education presentation that offers insight into the hope and recovery
+                        possible for people living with mental illness. Trained individuals living with mental illness lead a brief, yet
+                        comprehensive and interactive, presentation about mental illness.
                     </h5>
                 </div>
             </div>
@@ -36,16 +35,19 @@
 
             <h4 class="text-center font-weight-bold pt-4 pb-2"><i class="fas fa-question-circle text-primary"></i> About This Training</h4>
 
-            <!-- who -->
+            <!-- what will you learn -->
             <div class="my-5">
-                <h4 class="text-center"><a class="questions" data-toggle="collapse" href="#who" role="button" aria-expanded="false" >
-                    Who can be a Support Group Facilitator? <i class="fas fa-level-down-alt ml-1"></i>
+                <h4 class="text-center"><a class="questions" data-toggle="collapse" href="#whatlearn" role="button" aria-expanded="false" >
+                    What will you learn at the In Our Own Voice (IOOV) program? <i class="fas fa-level-down-alt ml-1"></i>
                 </a></h4>
-                <div class="collapse" id="who">
+                <div class="collapse" id="whatlearn">
                     <div class="card card-body p-4">
                         <h5>
-                            Prospective facilitators must
-                            have a family member or loved one living with mental illness, and be at least 18 years of age.
+                            The IOOV online training is focused on preparing your draft presentation script, and the one-day in-person training will
+                            focus on skill development. The online portion could take 6-8 hours to complete. Each trainee will learn to do the
+                            following: prepare your story, develop your story, and practice your talk for use at In Our Own Voice presentations in
+                            your community. Two presenters speak at each engagement, at community organizations, health centers, schools,
+                            churches, etc.
                         </h5>
                     </div>
                 </div>
@@ -54,35 +56,37 @@
             <!-- what -->
             <div class="my-5">
                 <h4 class="text-center"><a class="questions" data-toggle="collapse" href="#what" role="button" aria-expanded="false">
-                    What will I learn from the training? <i class="fas fa-level-down-alt ml-1"></i>
+                    What are In Our Own Voice presentations like? <i class="fas fa-level-down-alt ml-1"></i>
                 </a></h4>
                 <div class="collapse" id="what">
                     <div class="card card-body p-4">
                         <h5>
-                            Participants learn to facilitate ongoing NAMI Family Support Groups for family
-                            members/loved ones of someone living with a mental illness.  The FSG model offers a set of key
-                            structures and group processes for facilitators to use in common support group scenarios.
-                            These structures come with clear guidelines to follow.  Used together, they encourage full group
-                            participation in support group meetings.  These structures are comfortable for both seasoned and
-                            less experienced facilitators because they help support group function well in most every situation.
+                            A 15-minute NAMI DVD is used to introduce the four sections of your speech: Introduction, What Happened, What
+                            Helps, What’s Next. This program has been a major stigma-buster, helping to educate the general public about mental
+                            illness, recovery, and NAMI’s mission of education, support, and advocacy.
+                            To make this program successful, we strongly recommend that your affiliate have an In Our Own Voice coordinator. This
+                            person will help arrange the different speaking engagements. Travel expenses for presenters are covered by the affiliate.
                         </h5>
                     </div>
                 </div>
             </div>
 
-            <!-- what required -->
+            <!-- Criteria -->
             <div class="my-5">
-                <h4 class="text-center"><a class="questions" data-toggle="collapse" href="#whatRequired" role="button" aria-expanded="false">
-                    What is required of me after I take the training? <i class="fas fa-level-down-alt ml-1"></i>
+                <h4 class="text-center"><a class="questions" data-toggle="collapse" href="#criteria" role="button" aria-expanded="false">
+                    Criteria for taking the IOOV Presenter Training <i class="fas fa-level-down-alt ml-1"></i>
                 </a></h4>
-                <div class="collapse" id="whatRequired">
+                <div class="collapse" id="criteria">
                     <div class="card card-body p-4">
-                        <h5>
-                            By taking this facilitator
-                            training you are committing to co-facilitate a support group for a minimum of two (2) years in
-                            coordination with your local NAMI affiliate.  You will be required to provide your affiliate with
-                            specific attendance data for reporting to National NAMI Education Data tracking.
-                        </h5>
+                        <h5>Presenters must be:</h5>
+                        <ul>
+                            <li> A PEER: a Person of Experience, Engaged in Recovery</li>
+                            <li> A current member of a NAMI Affiliate</li>
+                            <li> Willing to complete the online training by Sunday, February 16, 2020</li>
+                            <li>  Willing to stay for the entire 1-day intensive training</li>
+                            <li> Willing to be available for presentations for a two (2) year period following their training</li>
+                        <li> Must be at least 18 years of age</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -95,16 +99,15 @@
                 <div class="collapse" id="registration">
                     <div class="card card-body p-4">
                         <h5>
-                            NAMI Washington will pay for meals, snacks, lodging and
-                            all training materials.  Your NAMI affiliate is asked to cover your travel and other expenses that
-                            you may incur to attend this training.  Lodging is at the Comfort Inn, and is double occupancy.
-                            If you require single occupancy, arrangements will need to be made prior to attendance by the
-                            attendee and there will be additional costs which will be the responsibility of the attendee.
-                            In order to reserve a space at the training, a $50 refundable registration deposit from your
-                            affiliate is required at the time of registration.  If you need to cancel after being accepted,
-                            notify Michelle Strait at the state office 206-971-1599 or mstrait@namiwa.org no later than
-                            January 7, 2019 so we can fill your spot, or your affiliate will lose its $50 registration deposit.
-                            Cancelled spots are filled with applications from the waiting list for the class, not by sending another affiliate member.
+                            NAMI Washington will pay for meals, snacks, lodging and all training materials. Your NAMI affiliate is asked to cover your
+                            travel and other expenses that you may incur to attend this training. Lodging is at the Quality Inn Downtown 4th Avenue
+                            and is <b>double occupancy.</b> If you require single occupancy, arrangements will need to be made prior to attendance by the
+                            attendee and there will be additional costs <b>which will be the responsibility of the attendee.</b> Attending the training is by
+                            <b>pre-registration only,</b> and class size is limited. If there are more applications than spots for the class, a waiting list will be
+                            created. In order to reserve a space, a $50 refundable registration deposit <b>from your affiliate</b> is required at the time of
+                            registration. If you need to cancel after being accepted, notify Deanna Roy at the state office, 206-971-1599 or
+                            droy@namiwa.org, no later than March 16, 2020 so we can fill your spot, or your affiliate will lose its $50 registration
+                            deposit. Cancelled spots are filled with applications from the waiting list for the class, not by sending another affiliate
                         </h5>
                     </div>
                 </div>
