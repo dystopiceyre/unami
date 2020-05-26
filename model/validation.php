@@ -362,17 +362,94 @@ function validBLongAnswersForm()
     }
     return $isValid;
 }
+/**
+ * Checks if IOOV long answers are valid
+ * @return bool whether or not the IOOV long answers form is valid
+ */
+function validIOOVLongAnswersForm()
+{
+    global $f3;
+    $isValid = true;
+    if ($f3->get('convict') == 'yes') {
+        if (!validRequiredTextarea($f3->get('convictText'))) {
+            $isValid = false;
+            $f3->set("errors['convict']", "Please type something about your conviction");
+        }
+    }
+    if(!validRequiredTextarea($f3->get('degree'))) {
+        $isValid = false;
+        $f3->set("errors['degree']", "Please type your last degree");
+    }
+    if(!validRequiredTextarea($f3->get('volunteerExperience'))) {
+        $isValid = false;
+        $f3->set("errors['volunteerExperience']", "Please type your volunteer experience");
+    }
+    if(!validRequiredTextarea($f3->get('diagnose'))) {
+        $isValid = false;
+        $f3->set("errors['diagnose']", "Please type were you first diagnosed");
+    }
+    if(!validRequiredTextarea($f3->get('diagnoseTime'))) {
+        $isValid = false;
+        $f3->set("errors['diagnoseTime']", "Please type how old were you when diagnosed");
+    }
+    if(!validRequiredTextarea($f3->get('currentDiagnosis'))) {
+        $isValid = false;
+        $f3->set("errors['currentDiagnosis']", "Please type your current diagnosis");
+    }
+    if ($f3->get('hospitalized') == 'yes') {
+        if (!validRequiredTextarea($f3->get('recently'))) {
+            $isValid = false;
+            $f3->set("errors['hospitalized']", "Please type how recently");
+        }
+    }
+    if ($f3->get('speaking') == 'yes') {
+        if (!validRequiredTextarea($f3->get('experience'))) {
+            $isValid = false;
+            $f3->set("errors['speaking']", "Please enter 1 being NOT AT ALL and 10 being VERY comfortable");
+        }
+    }
+    if(!validRequiredTextarea($f3->get('notWantPresent'))) {
+        $isValid = false;
+        $f3->set("errors['notWantPresent']", "Please type which groups you do not want to present");
+    }
+    if(!validRequiredTextarea($f3->get('whyPresenter'))) {
+        $isValid = false;
+        $f3->set("errors['whyPresenter']", "Please type why do you want to be a Presenter");
+    }
+    if(!validRequiredTextarea($f3->get('stayedRecover'))) {
+        $isValid = false;
+        $f3->set("errors['stayedRecover']", "Please share a personal statement");
+    }
+    if(!validRequiredTextarea($f3->get('recovery'))) {
+        $isValid = false;
+        $f3->set("errors['recovery']", "Please share your views");
+    }
 
-///**
-// * Checks if C long answers are valid
-// * @return bool whether or not the C long answers form is valid
-// */
-//function validCLongAnswersForm()
-//{
-//    global $f3;
-//    $isValid = true;
-//    return $isValid;
-//}
+    return $isValid;
+}
+
+/**
+ * Checks if C long answers are valid
+ * @return bool whether or not the C long answers form is valid
+ */
+function validCLongAnswersForm()
+{
+    global $f3;
+    $isValid = true;
+    if(!validRequiredTextarea($f3->get('whyFacilitator'))) {
+        $isValid = false;
+        $f3->set("errors['whyFacilitator']", "Please type why do you want to be a facilitator");
+    }
+    if(!validRequiredTextarea($f3->get('experience'))) {
+        $isValid = false;
+        $f3->set("errors['experience']", "Please type your experience");
+    }
+    if(!validRequiredTextarea($f3->get('description'))) {
+        $isValid = false;
+        $f3->set("errors['description']", "Please type your definition");
+    }
+    return $isValid;
+}
 
 /**
  * Checks if H long answers are valid
@@ -418,16 +495,7 @@ function validHLongAnswersForm()
     return $isValid;
 }
 
-/**
- * Checks if IOOV long answers are valid
- * @return bool whether or not the IOOV long answers form is valid
- */
-function validIOOVLongAnswersForm()
-{
-    global $f3;
-    $isValid = true;
-    return $isValid;
-}
+
 
 /**
  * Checks if PE long answers are valid

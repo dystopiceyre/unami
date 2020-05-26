@@ -9,8 +9,70 @@
     </div>
 </div>
 
+<div class="container p-3 ">
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    <!-- Displays any errors with the input from the user -->
+    <check if="{{!empty(@errors)}}">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <repeat group=" {{ @errors }}" key="{{ @key }}" value="{{ @error}}">
+                <h4><strong>Error:</strong> {{ @error }}</h4>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </repeat>
+        </div>
+    </check>
+
+    <div class="card shadow-sm bg-white rounded">
+
+        <div class="card-header">
+            <h4 class="float-left pt-2"><i class="fas fa-question-circle text-primary mr-1"></i> In Our Own Voice Questions</h4>
+            <check if="{{ $_GET['fromReview'] == true }}">
+                <form method="get" action="review">
+                    <button type="submit" class="btn btn-primary float-right"><i class="fas fa-redo-alt"></i> Back to Review</button>
+                </form>
+            </check>
+        </div>
+
+        <div class="card-body m-3">
+            <div>
+
+                <h6 class="mb-5 text-primary font-weight-bold">
+                    <i class="fas fa-star-of-life"></i> All fields are required
+                </h6>
+
+                <form method="post" action="long_answer">
+                    <div class="form-row">
+                        <!--Question 2-->
+                        <div class="form-group col-md-10 mb2">
+                            <h5>Why do you want to be a NAMI Connection Recovery Support Group Facilitator?</h5>
+                            <textarea name="whyFacilitator" class="form-control">{{ $_SESSION['LongAnswer']->getWhyFacilitator() }}</textarea>
+                        </div>
+
+                        <!--Question 3-->
+                        <div class="form-group col-md-10 mb2">
+                            <h5>What experience do you have in participating in a support group? Have you attended a NAMI Connection
+                                Recovery Support Group? (Preference is given to individuals who attend an existing Connection group, or
+                                who show an exceptional interest in starting a new Connection group in their area.)</h5>
+                            <textarea name="experience" class="form-control">{{ $_SESSION['LongAnswer']->getExperience() }}</textarea>
+                        </div>
+
+                        <!--Question 6-->
+                        <div class="form-group col-md-10 mb-2">
+                            <h5>How do you define or describe mental health recovery?</h5>
+                            <textarea name="description" class="form-control">{{ $_SESSION['LongAnswer']->getDescription() }}</textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+                        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
 <script type="text/javascript" src="views/forms/js/long_answer_scripts/CLongAnswersScript.js"></script>
