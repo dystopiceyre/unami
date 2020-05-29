@@ -138,7 +138,60 @@ CREATE TABLE H
     taken_f2f    VARCHAR(5),
     why_want     MEDIUMTEXT,
     coteach_with VARCHAR(200),
-    teach_Where  VARCHAR(200),
+    teach_where  VARCHAR(200),
+    FOREIGN KEY (applicant_id) references applicants (applicant_id)
+);
+
+CREATE TABLE IOOV
+(
+    IOOV_id             INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    applicant_id       INT                NOT NULL,
+    conviction         MEDIUMTEXT,
+    degree             VARCHAR(200),
+    volunteer_exp      VARCHAR(200),
+    diagnose           VARCHAR(200),
+    diagnose_time      VARCHAR(200),
+    current_diagnosis  MEDIUMTEXT,
+    hospitalized       VARCHAR(200),
+    speaking_exp       VARCHAR(200),
+    transportation     CHAR(10),
+    not_present        MEDIUMTEXT,
+    why_presenter      MEDIUMTEXT,
+    time_recovered     MEDIUMTEXT,
+    recovery           MEDIUMTEXT,
+    FOREIGN KEY (applicant_id) references applicants (applicant_id)
+);
+
+CREATE TABLE PE
+(
+     PE_id                INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    applicant_id        INT                NOT NULL,
+    conviction          MEDIUMTEXT,
+    availability        MEDIUMTEXT,
+    available_time      MEDIUMTEXT,
+    degree              VARCHAR(200),
+    volunteer_exp       VARCHAR(200),
+    fluent_language     VARCHAR (200),
+    describes           MEDIUMTEXT,
+    young_adult         VARCHAR(100),
+    current_diagnosis   VARCHAR(200),
+    self_disclosure     CHAR(10),
+    positive_outlook    CHAR(10),
+    background_check    CHAR(10),
+    why_want            MEDIUMTEXT,
+    frontLine_experience   MEDIUMTEXT,
+    support_experience  MEDIUMTEXT,
+    recovery            MEDIUMTEXT,
+    FOREIGN KEY (applicant_id) references applicants (applicant_id)
+)
+
+ CREATE TABLE C
+(
+    C_id               INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    applicant_id       INT                NOT NULL,
+    why_facilitator    MEDIUMTEXT,
+    experience         MEDIUMTEXT,
+    description        MEDIUMTEXT,
     FOREIGN KEY (applicant_id) references applicants (applicant_id)
 );
 

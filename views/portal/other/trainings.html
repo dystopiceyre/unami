@@ -8,13 +8,24 @@
 
     <!--    TODO: make functional-->
     <nav class="navbar navbar-expand">
-        <select>
-            <option value="jump">Jump To...</option>
-            <repeat group="{{ @trainings }}"
-                    value="{{ @training }}">
-                <option> {{ @training['app_type'] }}</option>
-            </repeat>
-        </select>
+        <div class="col-md-3">
+            <select>
+                <option value="jump">Jump To...</option>
+                <repeat group="{{ @trainings }}"
+                        value="{{ @training }}">
+                    <option> {{ @training['app_type'] }}</option>
+                </repeat>
+            </select>
+        </div>
+
+        <!-- edit training locations -->
+        <div class="col-auto">
+            <a href="#" class="text-decoration-none text-success"
+               data-toggle="modal" data-target="#editLocationModal{{ @training['app_id'] }}">
+                <i class="fas fa-map-marker fa-2x"></i> Edit Training Locations
+            </a>
+        </div>
+
     </nav>
 
     <div class="row">
@@ -49,20 +60,20 @@
                                                         </a>
                                                     </div>
                                                     <div class="col-10">
-                                                        <span class="font-weight-bold">Day 1:</span> {{ @info['date'] }}<br>
+                                                        <span class="font-weight-bold">Day 1:</span> {{ date('F j, Y',
+                                                        strtotime(@info['date'])) }}<br>
                                                         <check if="{{ @info['date2'] }}">
                                                             <span class="font-weight-bold">Day 2:</span> {{
-                                                            @info['date2'] }}<br>
+                                                            date('F j, Y', strtotime(@info['date2'])) }}<br>
                                                         </check>
                                                         <check if="{{ @info['date3'] }}">
                                                             <span class="font-weight-bold">Day 3:</span> {{
-                                                            @info['date3']
-                                                            }}<br>
+                                                            date('F j, Y', strtotime(@info['date3'])) }}<br>
                                                         </check>
                                                         <span class="font-weight-bold">Location:</span> {{
                                                         @info['location'] }}<br>
-                                                        <span class="font-weight-bold">Deadline:</span> {{
-                                                        @info['deadline'] }}<br>
+                                                        <span class="font-weight-bold">Deadline:</span> {{ date('F j,
+                                                        Y', strtotime(@info['deadline'])) }}<br>
                                                     </div>
                                                 </div>
 
@@ -100,7 +111,9 @@
                                                                             <label for="editDates" class="sr-only">Day
                                                                                 1</label>
                                                                             <input type="date" class="form-control"
-                                                                                   name="editDates" id="editDates"
+                                                                                   name="editDates"
+                                                                                   id="editDates"
+                                                                                   min="{{date('Y-m-d')}}"
                                                                                    value="{{ date('Y-m-d', strtotime(@info['date'])) }}">
                                                                         </div>
 
@@ -109,11 +122,13 @@
                                                                                 <i class="far fa-calendar-alt mr-1 text-success"></i>
                                                                                 Day 2</h5>
                                                                             <div class="form-group pb-2">
-                                                                                <label for="editDates2" class="sr-only">Day
+                                                                                <label for="editDates2"
+                                                                                       class="sr-only">Day
                                                                                     2</label>
                                                                                 <input type="date" class="form-control"
                                                                                        name="editDates2"
                                                                                        id="editDates2"
+                                                                                       min="{{date('Y-m-d')}}"
                                                                                        value="{{ date('Y-m-d', strtotime(@info['date2'])) }}">
                                                                             </div>
                                                                         </check>
@@ -123,11 +138,13 @@
                                                                                 <i class="far fa-calendar-alt mr-1 text-success"></i>
                                                                                 Day 3</h5>
                                                                             <div class="form-group pb-2">
-                                                                                <label for="editDates3" class="sr-only">Day
+                                                                                <label for="editDates3"
+                                                                                       class="sr-only">Day
                                                                                     3</label>
                                                                                 <input type="date" class="form-control"
                                                                                        name="editDates3"
                                                                                        id="editDates3"
+                                                                                       min="{{date('Y-m-d')}}"
                                                                                        value="{{ date('Y-m-d', strtotime(@info['date3'])) }}">
                                                                             </div>
                                                                         </check>
@@ -137,10 +154,8 @@
                                                                             Location
                                                                         </h5>
                                                                         <div class="form-group pb-2">
-                                                                            <label for="editLocation" class="sr-only">Location</label>
-                                                                            <check if="{{ @info['location'] }}">
-
-                                                                            </check>
+                                                                            <label for="editLocation"
+                                                                                   class="sr-only">Location</label>
                                                                             <select id="editLocation"
                                                                                     name="editLocation">
                                                                                 <option value="none">--Select
@@ -150,124 +165,23 @@
                                                                                 <repeat group="{{ @locations }}"
                                                                                         value="{{ @locationOption }}" >
                                                                                     <option> {{ @locationOption }}
-                                                                                        <i class="fas fa-times-circle mx-1 text-danger"></i>
                                                                                     </option>
                                                                                 </repeat>
-
                                                                             </select>
-                                                                            <!--<a href="#" class="text-decoration-none text-success"
-                                                                               data-toggle="modal"
-                                                                               data-target="#editLocationModal{{ @info['info_id'] }}">
-                                                                                <i class="fas fa-plus-circle text-success"></i>
-                                                                            </a>
-                                                                            <a href="#" class="text-decoration-none text-success"
-                                                                               data-toggle="modal"
-                                                                               data-target="#deleteALocationModal{{ @info['info_id'] }}">
-                                                                                <i class="fas fa-minus-circle text-danger"></i>
-                                                                            </a>-->
-
-                                                                            <!-- add a location modal
-                                                                            <div class="modal fade" id="editLocationModal{{ @info['info_id'] }}" tabindex="-1" role="dialog"
-                                                                                 aria-labelledby="editLocationModal{{ @info['info_id'] }}" aria-hidden="true">
-                                                                                <div class="modal-dialog" role="document">
-                                                                                    <div class="modal-content">
-
-                                                                                        <div class="modal-header bg-success">
-                                                                                            <h4 class="modal-title text-white" id="modalLabel11">
-                                                                                                <i class="fas fa-map-marker"></i>
-                                                                                                Edit Training Locations
-                                                                                            </h4>
-                                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                                <span aria-hidden="true">&times;</span>
-                                                                                            </button>
-                                                                                        </div>
-
-                                                                                        <form action="trainings" method="post">
-                                                                                            <div class="modal-body">
-                                                                                                <div class="col-12">
-                                                                                                    <i class="fas fa-pen-alt text-success"></i>
-                                                                                                    Add A New Training Location
-                                                                                                    <div class="form-row mb-2">
-                                                                                                        <div class="form-group col-md-10">
-                                                                                                            <label class="sr-only" for="addTrainingLocation1">Add A New Training Location</label>
-                                                                                                            <input type="text"
-                                                                                                                   class="form-control" id="addTrainingLocation1" rows="1"
-                                                                                                                   name="addTrainingLocation1"  value="{{ @training['location'] }}">
-                                                                                                            &lt;!&ndash;&lt;!&ndash; name error messages &ndash;&gt;
-                                                                                                            <div class="row justify-content-center text-danger">
-                                                                                                                <check if="{{ @info['location'] }}">
-                                                                                                                    <p>{{ @info['location'] }}</p>
-                                                                                                                </check>
-                                                                                                            </div>&ndash;&gt;
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <input type="hidden" value="{{ @training['app_id'] }}" name="addLocationId">
-
-                                                                                            </div>
-                                                                                            <div class="modal-footer">
-                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                                                                    Close
-                                                                                                </button>
-                                                                                                <button type="submit" name="addNewlocation" class="btn btn-success">Add Location</button>
-                                                                                            </div>
-                                                                                        </form>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            &lt;!&ndash; edit location modal &ndash;&gt;
-                                                                            <div class="modal fade" id="deleteLocationModal{{ @info['info_id'] }}" tabindex="-1" role="dialog"
-                                                                                 aria-labelledby="deleteLocationModal{{ @info['info_id'] }}" aria-hidden="true">
-                                                                                <div class="modal-dialog" role="document">
-                                                                                    <div class="modal-content">
-
-                                                                                        <div class="modal-header bg-success">
-                                                                                            <h4 class="modal-title text-white" id="modalLabel12">
-                                                                                                <i class="fas fa-map-marker"></i>
-                                                                                                Edit Training Locations
-                                                                                            </h4>
-                                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                                <span aria-hidden="true">&times;</span>
-                                                                                            </button>
-                                                                                        </div>
-
-                                                                                        <form action="trainings" method="post">
-                                                                                            <div class="modal-body">
-                                                                                                <div class="col-12">
-                                                                                                    <i class="fas fa-pen-alt text-success"></i>
-                                                                                                    Delete A Training Location
-                                                                                                    <div class="form-row mb-2">
-
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <input type="hidden" value="{{ @training['app_id'] }}" name="deleteLocationId">
-
-                                                                                            </div>
-                                                                                            <div class="modal-footer">
-                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                                                                    Close
-                                                                                                </button>
-                                                                                                <button type="submit" name="deleteALocation" class="btn btn-success">Delete Location</button>
-                                                                                            </div>
-                                                                                        </form>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>-->
-
-
                                                                         </div>
 
                                                                         <h5>
                                                                             <i class="far fa-calendar-times mr-1 text-success"></i>Deadline
                                                                         </h5>
                                                                         <div class="form-group pb-2">
-                                                                            <label for="editDeadline" class="sr-only">Deadline</label>
+                                                                            <label for="editDeadline"
+                                                                                   class="sr-only">Deadline</label>
                                                                             <input type="date" class="form-control"
-                                                                                   name="editDeadline" id="editDeadline"
+                                                                                   name="editDeadline"
+                                                                                   id="editDeadline"
+                                                                                   min="{{date('Y-m-d')}}"
                                                                                    value="{{ date('Y-m-d', strtotime(@info['deadline'])) }}">
                                                                         </div>
-
                                                                     </div>
                                                                 </div>
 
@@ -363,24 +277,33 @@
                                         <form action="trainings" method="post">
                                             <div class="modal-body">
                                                 <div class="col-12">
+                                                    <div id="addErrs"></div>
                                                     <h5><i class="far fa-calendar-alt mr-1 text-success"></i> Day 1</h5>
                                                     <div class="form-group pb-2">
-                                                        <label for="dates" class="sr-only">Day 1</label>
-                                                        <input type="date" class="form-control" name="dates" id="dates">
+                                                        <label for="dates" class="sr-only">Day
+                                                            1</label>
+                                                        <input type="date" class="form-control" name="dates"
+                                                               id="dates" required
+                                                               min="{{date('Y-m-d')}}"
+                                                               value="{{date('Y-m-d', strtotime('+1 month'))}}">
                                                     </div>
 
-                                                    <h5><i class="far fa-calendar-alt mr-1 text-success"></i> Day 2</h5>
+                                                    <h5><i class="far fa-calendar-alt mr-1 text-success"></i> Day 2
+                                                    </h5>
                                                     <div class="form-group pb-2">
-                                                        <label for="dates2" class="sr-only">Day 2</label>
+                                                        <label for="dates2" class="sr-only">Day
+                                                            2</label>
                                                         <input type="date" class="form-control" name="dates2"
-                                                               id="dates2">
+                                                               id="dates2"
+                                                               min="{{date('Y-m-d', strtotime('1 day'))}}">
                                                     </div>
-
                                                     <h5><i class="far fa-calendar-alt mr-1 text-success"></i> Day 3</h5>
                                                     <div class="form-group pb-2">
-                                                        <label for="dates3" class="sr-only">Day 3</label>
+                                                        <label for="dates3" class="sr-only">Day
+                                                            3</label>
                                                         <input type="date" class="form-control" name="dates3"
-                                                               id="dates3">
+                                                               id="dates3"
+                                                               min="{{date('Y-m-d', strtotime('+2 days'))}}">
                                                     </div>
 
                                                     <h5><i class="fas fa-map-marker mr-1 text-success"></i> Location
@@ -403,8 +326,9 @@
                                                     </h5>
                                                     <div class="form-group pb-2">
                                                         <label for="deadline" class="sr-only">Deadline</label>
-                                                        <input type="date" class="form-control" name="deadline"
-                                                               id="deadline">
+                                                        <input type="date" class="form-control" name="deadline" required
+                                                               id="deadline" min="{{date('Y-m-d')}}"
+                                                               value="{{date('Y-m-d')}}">
                                                     </div>
 
                                                     <input type="hidden" value="{{ @training['app_id'] }}" name="addId">
@@ -423,14 +347,6 @@
                                 </div>
                             </div>
 
-                        </div>
-
-                        <!-- edit training location -->
-                        <div class="col-auto">
-                            <a href="#" class="text-decoration-none text-success"
-                               data-toggle="modal" data-target="#editLocationModal{{ @training['app_id'] }}">
-                                <i class="fas fa-map-marker fa-2x"></i> Edit Training Locations
-                            </a>
                         </div>
 
                         <!-- edit location modal -->
@@ -460,59 +376,43 @@
                                                         <input type="text"
                                                                class="form-control" id="addTrainingLocation" rows="1"
                                                                name="addTrainingLocation"  value="{{ @training['location'] }}">
-                                                        <!--&lt;!&ndash; name error messages &ndash;&gt;
-                                                        <div class="row justify-content-center text-danger">
-                                                            <check if="{{ @info['location'] }}">
-                                                                <p>{{ @info['location'] }}</p>
-                                                            </check>
-                                                        </div>-->
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div class="col-6">
+                                            <div class="col-12">
                                                 <i class="fas fa-times-circle text-danger"></i>
                                                 Delete A Training Location
-                                                <div class="form-row mb-2">
+                                                <div class="form-row mb-3">
                                                     <div class="form-group col-md-4">
                                                         <table class="table table-hover">
                                                             <thead>
                                                             <tr>
-
                                                                 <th>Location</th>
                                                                 <th>Remove</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr>
-                                                                    <td>
-                                                                        <repeat group="{{ @locations }}"
-                                                                                value="{{ @locationOption }}">
-                                                                        <option> {{ @locationOption }}</option>
+                                                                <repeat group="{{ @locations }}" value="{{ @locationOption }}">
+                                                                    <tr>
+                                                                        <td>{{ @locationOption }} </td>
 
-                                                                        </repeat>
-
-                                                                    </td>
-
-                                                                    <td>
-                                                                        <repeat group="{{ @locations }}" value="{{ @locationOption }}">
-                                                                            <i class="fas fa-times-circle mx-2 text-danger"></i>
-                                                                        <!--    <option>-->
-                                                                            <!--</option>-->
-                                                                        </repeat>
-                                                                    </td>
-                                                                </tr>
-
-
+                                                                        <td class="text-center">
+                                                                            <a href="#" class="text-decoration-none text-primary"
+                                                                               data-toggle="modal" data-target="#deleteModal{{ @locations['location_id'] }}">
+                                                                                <i class="fas fa-times-circle fa-lg text-danger"></i>
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
+                                                                </repeat>
                                                             </tbody>
                                                         </table>
                                                     </div>
                                                 </div>
-
                                             </div>
                                             <input type="hidden" value="{{ @training['app_id'] }}" name="addLocationId">
-
                                         </div>
+
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">
                                                 Close
@@ -536,3 +436,4 @@
 <!-- End of Main Content -->
 
 <include href="views/portal/includes/footer.html"/>
+<script src="views/portal/js/trainings.js"></script>

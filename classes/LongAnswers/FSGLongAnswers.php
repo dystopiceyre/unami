@@ -18,6 +18,7 @@ class FSGLongAnswers
     private $_coFacWhere;
     private $_coFacWhereText;
 
+
     /**
      * LongAnswers constructor.
      * @param $_relativeMentalIllness String if the applicant has a relative with a mental illness

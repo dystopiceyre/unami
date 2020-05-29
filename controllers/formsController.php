@@ -364,8 +364,8 @@ $f3->route('GET|POST /confirmation', function($f3)
         case 'endingTheSilence':
             $db->insertETSAnswers($lastId, $_SESSION['LongAnswer']);
             break;
-        case 'providerEducation2020':
-            $db->insertPESAnswers($lastId, $_SESSION['LongAnswer']);
+        case 'providerEducation':
+            $db->insertETSAnswers($lastId, $_SESSION['LongAnswer']);
             break;
     }
 

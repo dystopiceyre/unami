@@ -1,6 +1,7 @@
 <?php
 
-$user = $_SERVER['USER'];
+//$user = $_SERVER['USER'];
+$user = get_current_user();
 require "/home/$user/config_email.php";
 
 /**

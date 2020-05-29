@@ -288,7 +288,7 @@ class UnamiDatabase
         //save prepared statement
         $statement = $this->_dbh->prepare($sql);
 
-        //assign values: already in $P2PAnswers
+        //assign values: already in $ETSAnswers
         //bind params
         $statement->bindParam(':applicant_id', $applicantId, PDO::PARAM_INT);
         $statement->bindParam(':conviction', $ETSAnswers->getConvictText(), PDO::PARAM_STR);
@@ -309,6 +309,108 @@ class UnamiDatabase
         $statement->bindParam(':view_roles', $ETSAnswers->getRoles(), PDO::PARAM_STR);
 
         //execute SQL statement
+        $statement->execute();
+    }
+
+    function insertBAnswers($applicantId, $BAnswers)
+    {
+        $this->updateAppType(9, $applicantId);
+        $sql = "INSERT INTO B(applicant_id,	conviction,	taken_basics, taken_f2f, parent, child_age,
+              current_diagnosis, length_of_illness, educational_program, grad_date,	why_want,
+              child_experiences, coteach_with, teach_where) VALUES (:applicant_id,	:conviction, :taken_basics, :taken_f2f,
+              :parent, :child_age, :current_diagnosis, :length_of_illness, :educational_program, :grad_date, :why_want,
+              :child_experiences, :coteach_with, :teach_where)";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->bindParam(':applicant_id', $applicantId, PDO::PARAM_INT);
+        $statement->bindParam(':conviction', $BAnswers->getConvictText(), PDO::PARAM_STR);
+        $statement->bindParam(':taken_basics', $BAnswers->getTakenBasics(), PDO::PARAM_STR);
+        $statement->bindParam(':taken_f2f', $BAnswers->getTakenF2F(), PDO::PARAM_STR);
+        $statement->bindParam(':parent', $BAnswers->getParent(), PDO::PARAM_STR);
+        $statement->bindParam(':child_age', $BAnswers->getChildAge(), PDO::PARAM_INT);
+        $statement->bindParam(':current_diagnosis', $BAnswers->getCurrentDiagnosis(), PDO::PARAM_STR);
+        $statement->bindParam(':length_of_illness', $BAnswers->getLengthOfIllness(), PDO::PARAM_STR);
+        $statement->bindParam(':educational_program', $BAnswers->getEducationalProgram(), PDO::PARAM_STR);
+        $statement->bindParam(':grad_date', $BAnswers->getGradDate(), PDO::PARAM_STR);
+        $statement->bindParam(':why_want', $BAnswers->getWhyBasicsTeacher(), PDO::PARAM_STR);
+        $statement->bindParam(':child_experiences', $BAnswers->getChildExperiences(), PDO::PARAM_STR);
+        $statement->bindParam(':coteach_with', $BAnswers->getCoteachWith(), PDO::PARAM_STR);
+        $statement->bindParam(':teach_where', $BAnswers->getTeachWhere(), PDO::PARAM_STR);
+        $statement->execute();
+    }
+
+    function insertHAnswers($applicantId, $HAnswers)
+    {
+        $this->updateAppType(8, $applicantId);
+        $sql = "INSERT INTO H(applicant_id,	conviction,	relationship, diagnosis, taken_f2f,	why_want, coteach_with,
+              teach_where) VALUES(:applicant_id, :conviction, :relationship, :diagnosis, :taken_f2f, :why_want, 
+                                  :coteach_with, :teach_where)";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->bindParam(':applicant_id', $applicantId, PDO::PARAM_INT);
+        $statement->bindParam(':conviction', $HAnswers->getConvictText(), PDO::PARAM_STR);
+        $statement->bindParam(':relationship', $HAnswers->getRelationship(), PDO::PARAM_STR);
+        $statement->bindParam(':diagnosis', $HAnswers->getDiagnosis(), PDO::PARAM_STR);
+        $statement->bindParam(':taken_f2f', $HAnswers->getTakenF2F(), PDO::PARAM_STR);
+        $statement->bindParam(':why_want', $HAnswers->getWhyHomefrontTeacher(), PDO::PARAM_STR);
+        $statement->bindParam(':coteach_with', $HAnswers->getCoteachWith(), PDO::PARAM_STR);
+        $statement->bindParam(':teach_where', $HAnswers->getTeachWhere(), PDO::PARAM_STR);
+        $statement->execute();
+    }
+
+    /**
+     * Inserts the IOOV long answer's into the DB
+     * @param $applicantId int last applicant inserted
+     * @param $IOOVAnswers IOOVLongAnswers holds all answers
+     */
+    function insertIOOVAnswers($applicantId, $IOOVAnswers)
+    {
+        $this->updateAppType(4, $applicantId);
+        $sql = "INSERT INTO IOOV(applicant_id, conviction, degree, volunteer_exp, diagnose, diagnose_time, current_diagnosis,
+            hospitalized, speaking_exp, transportation, not_present, why_presenter, time_recovered, recovery)
+            VALUES(:applicant_id, :conviction, :degree, :volunteer_exp, :diagnose, :diagnose_time, :current_diagnosis,
+            :hospitalized, :speaking_exp, :transportation, :not_present, :why_presenter, :time_recovered, :recovery)";
+        //save prepared statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //assign values: already in $IIOVAnswers
+        //bind params
+        $statement->bindParam(':applicant_id', $applicantId, PDO::PARAM_INT);
+        $statement->bindParam(':conviction',  $IOOVAnswers->getConvictText(), PDO::PARAM_STR);
+        $statement->bindParam(':degree', $IOOVAnswers->getDegree(), PDO::PARAM_STR);
+        $statement->bindParam(':volunteer_exp', $IOOVAnswers->getVolunteerExperience(), PDO::PARAM_STR);
+        $statement->bindParam(':diagnose', $IOOVAnswers->getDiagnose(), PDO::PARAM_STR);
+        $statement->bindParam(':diagnose_time', $IOOVAnswers->getDiagnoseTime(), PDO::PARAM_STR);
+        $statement->bindParam(':current_diagnosis',$IOOVAnswers->getCurrentDiagnosis(), PDO::PARAM_STR);
+        $statement->bindParam(':hospitalized', $IOOVAnswers->getRecently(), PDO::PARAM_STR);
+        $statement->bindParam(':speaking_exp', $IOOVAnswers->getExperienceText(), PDO::PARAM_STR);
+        $statement->bindParam(':transportation', $IOOVAnswers->getTransportation(), PDO::PARAM_STR);
+        $statement->bindParam(':not_present', $IOOVAnswers->getNotWantPresent(), PDO::PARAM_STR);
+        $statement->bindParam(':why_presenter',$IOOVAnswers->getWhyPresenter(), PDO::PARAM_STR);
+        $statement->bindParam(':time_recovered', $IOOVAnswers->getStayedRecover(), PDO::PARAM_STR);
+        $statement->bindParam(':recovery',$IOOVAnswers->getRecovery(), PDO::PARAM_STR);
+        $statement->execute();
+    }
+
+    /**
+     * Inserts the C long answer's into the DB
+     * @param $applicantId int last applicant inserted
+     * @param $CAnswers CLongAnswers holds all answers
+     */
+    function insertCAnswers($applicantId, $CAnswers)
+    {
+        $this->updateAppType(5, $applicantId);
+        $sql ="INSERT INTO C(applicant_id, why_facilitator, experience, description)
+            VALUES (:applicant_id, :why_facilitator, :experience, :description)";
+
+        //save prepared statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //assign values: already in $CAnswers
+        //bind params
+        $statement->bindParam(':applicant_id', $applicantId, PDO::PARAM_INT);
+        $statement->bindParam(':why_facilitator',  $CAnswers->getConvictText(), PDO::PARAM_STR);
+        $statement->bindParam(':experience', $CAnswers->getDegree(), PDO::PARAM_STR);
+        $statement->bindParam(':description', $CAnswers->getVolunteerExperience(), PDO::PARAM_STR);
+
         $statement->execute();
     }
 
@@ -534,7 +636,7 @@ class UnamiDatabase
     function getAppTypesInfo()
     {
         //define query
-        $query = "SELECT info_id, date, location, deadline, app_type, date2/*, date3*/
+        $query = "SELECT info_id, date, location, deadline, app_type, date2, date3
                   FROM app_type_info
                   WHERE active = 1";
 
@@ -604,9 +706,9 @@ class UnamiDatabase
 
         //define query
         $query = 'INSERT INTO app_type_info
-                  (date, location, deadline, app_type, date2, /*date3,*/ active)
+                  (date, location, deadline, app_type, date2, date3, active)
                   VALUES
-                  (:date, :location, :deadline, :app_type, :date2, /*:date3,*/ 1)';
+                  (:date, :location, :deadline, :app_type, :date2, :date3, 1)';
 
         //prepare statement
         $statement = $this->_dbh->prepare($query);
@@ -614,7 +716,7 @@ class UnamiDatabase
         //bind parameters
         $statement->bindParam(':date', $date, PDO::PARAM_STR);
         $statement->bindParam(':date2', $date2, PDO::PARAM_STR);
-        //$statement->bindParam(':date3', $date3, PDO::PARAM_STR);
+        $statement->bindParam(':date3', $date3, PDO::PARAM_STR);
         $statement->bindParam(':location', $location, PDO::PARAM_STR);
         $statement->bindParam(':deadline', $deadline, PDO::PARAM_STR);
         $statement->bindParam(':app_type', $id, PDO::PARAM_STR);
@@ -699,16 +801,17 @@ class UnamiDatabase
      * @param $affiliate_id represents the id of the affiliate
      */
 
-        function deleteAffiliate($affiliate_id){
+    function deleteAffiliate($affiliate_id)
+    {
 
         $query = "DELETE FROM affiliates WHERE affiliate_id=:affiliate_id";
 
-            //prepare statement
-            $statement = $this->_dbh->prepare($query);
+        //prepare statement
+        $statement = $this->_dbh->prepare($query);
 
-            $statement->bindParam(':affiliate_id', $affiliate_id, PDO::PARAM_INT);
+        $statement->bindParam(':affiliate_id', $affiliate_id, PDO::PARAM_INT);
 
-            $statement->execute();
+        $statement->execute();
 
     }
 
@@ -719,7 +822,8 @@ class UnamiDatabase
      * @param $email represents the affiliate's email
      * @param $affiliate_id represents the affiliate id
      */
-    function updateAffiliate($name, $email, $affiliate_id){
+    function updateAffiliate($name, $email, $affiliate_id)
+    {
         $query = "UPDATE affiliates 
                   SET 
                   name= :name, 
@@ -746,7 +850,8 @@ class UnamiDatabase
      * @param $email represents the email of the affiliate
      */
 
-    function addAffiliate( $name, $email){
+    function addAffiliate($name, $email)
+    {
         $query = "INSERT INTO affiliates (name, email)
                 VALUES (:name, :email)";
         //prepare statement
@@ -777,11 +882,12 @@ class UnamiDatabase
      *
      * @param $info_id
      * @param $date represents the first day of training date
-     * @param $date2 represents the second day of training date
+     * @param $date2 represents the second day of training (optional)
+     * @param $date3 represents the third day of training (optional)
      * @param $location represents the location of the training
      * @param $deadline represents the deadline date for the training
      */
-    function editAppTypeInfo($info_id, $date, $date2, $location, $deadline)
+    function editAppTypeInfo($info_id, $date, $date2 = null, $date3 = null, $location, $deadline)
     {
         //define query
         $query = 'UPDATE app_type_info
@@ -789,7 +895,8 @@ class UnamiDatabase
                   date = :date,
                   location = :location,
                   deadline = :deadline,
-                  date2 = :date2
+                  date2 = :date2,
+                  date3 = :date3
                   WHERE info_id = :info_id';
 
         //prepare statement
@@ -798,14 +905,15 @@ class UnamiDatabase
         //bind parameters
         $statement->bindParam(':date', $date, PDO::PARAM_STR);
         $statement->bindParam(':date2', $date2, PDO::PARAM_STR);
+        $statement->bindParam(':date3', $date3, PDO::PARAM_STR);
         $statement->bindParam(':location', $location, PDO::PARAM_STR);
         $statement->bindParam(':deadline', $deadline, PDO::PARAM_STR);
-        //$statement->bindParam(':app_type', $app_type, PDO::PARAM_STR);
         $statement->bindParam(':info_id', $info_id, PDO::PARAM_STR);
 
         //execute statement
         $statement->execute();
     }
+
     /**
      * Counts number of affiliates
      *
@@ -1146,6 +1254,7 @@ class UnamiDatabase
         define('FSG', 1);
         define('P2P', 2);
         define('ETS', 3);
+        define('PE', 6);
         define('H', 8);
         define('B', 9);
 
@@ -1172,6 +1281,14 @@ class UnamiDatabase
             $query = "SELECT *
                       FROM B
                       WHERE applicant_id = :applicant_id";
+        } else if ($application_type == H) {
+            $query = "SELECT *
+             FROM H
+             WHERE applicant_id = :applicant_id";
+        } else if ($application_type == PE) {
+            $query = "SELECT *
+             FROM PE
+             WHERE applicant_id = :applicant_id";
         }
 
         //prepare statement
