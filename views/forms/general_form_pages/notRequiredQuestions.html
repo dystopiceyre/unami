@@ -63,13 +63,13 @@
                         <div class="my-5">
                             <h5 class="mb-3">Have you taken other NAMI classes or trainings? </h5>
                             <div class="form-check form-check-inline ml-2">
-                                <input name="trained" class="form-check-input" type="radio" id="show1" value="yes" required
+                                <input name="trained" class="form-check-input" type="radio" id="show1" value="yes"
                                 <check if="{{ $_SESSION['NotRequired']->getTrained() === 'yes' }}">
                                     checked</check>>
                                 <label class="form-check-label" for="show1">Yes</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input name="trained" class="form-check-input" type="radio" id="hide1" value="no" required
+                                <input name="trained" class="form-check-input" type="radio" id="hide1" value="no"
                                 <check if="{{ $_SESSION['NotRequired']->getTrained() === 'no' }}">
                                     checked</check>>
                                 <label class="form-check-label" for="hide1">No</label>
@@ -88,14 +88,14 @@
                         <div class="my-5">
                             <h5 class="lead mb-3">Are you currently certified to teach/lead any other NAMI signature programs? </h5>
                             <div class="form-check form-check-inline ml-2">
-                                <input name="certified" class="form-check-input" type="radio" id="show2" value="yes" required
+                                <input name="certified" class="form-check-input" type="radio" id="show2" value="yes"
                                 <check if="{{ $_SESSION['NotRequired']->getCertified() === 'yes' }}">
                                     checked</check>>
                                 <label class="form-check-label" for="show2">Yes</label>
                             </div>
 
                             <div class="form-check form-check-inline">
-                                <input name="certified" class="form-check-input" type="radio" id="hide2" value="no" required
+                                <input name="certified" class="form-check-input" type="radio" id="hide2" value="no"
                                 <check if="{{ $_SESSION['NotRequired']->getCertified() === 'no' }}">
                                     checked</check>>
                                 <label class="form-check-label" for="hide2">No</label>
