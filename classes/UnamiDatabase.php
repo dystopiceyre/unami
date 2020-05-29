@@ -356,6 +356,64 @@ class UnamiDatabase
         $statement->execute();
     }
 
+    /**
+     * Inserts the IOOV long answer's into the DB
+     * @param $applicantId int last applicant inserted
+     * @param $IOOVAnswers IOOVLongAnswers holds all answers
+     */
+    function insertIOOVAnswers($applicantId, $IOOVAnswers)
+    {
+        $this->updateAppType(4, $applicantId);
+        $sql = "INSERT INTO IOOV(applicant_id, conviction, degree, volunteer_exp, diagnose, diagnose_time, current_diagnosis,
+            hospitalized, speaking_exp, transportation, not_present, why_presenter, time_recovered, recovery)
+            VALUES(:applicant_id, :conviction, :degree, :volunteer_exp, :diagnose, :diagnose_time, :current_diagnosis,
+            :hospitalized, :speaking_exp, :transportation, :not_present, :why_presenter, :time_recovered, :recovery)";
+        //save prepared statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //assign values: already in $IIOVAnswers
+        //bind params
+        $statement->bindParam(':applicant_id', $applicantId, PDO::PARAM_INT);
+        $statement->bindParam(':conviction',  $IOOVAnswers->getConvictText(), PDO::PARAM_STR);
+        $statement->bindParam(':degree', $IOOVAnswers->getDegree(), PDO::PARAM_STR);
+        $statement->bindParam(':volunteer_exp', $IOOVAnswers->getVolunteerExperience(), PDO::PARAM_STR);
+        $statement->bindParam(':diagnose', $IOOVAnswers->getDiagnose(), PDO::PARAM_STR);
+        $statement->bindParam(':diagnose_time', $IOOVAnswers->getDiagnoseTime(), PDO::PARAM_STR);
+        $statement->bindParam(':current_diagnosis',$IOOVAnswers->getCurrentDiagnosis(), PDO::PARAM_STR);
+        $statement->bindParam(':hospitalized', $IOOVAnswers->getRecently(), PDO::PARAM_STR);
+        $statement->bindParam(':speaking_exp', $IOOVAnswers->getExperienceText(), PDO::PARAM_STR);
+        $statement->bindParam(':transportation', $IOOVAnswers->getTransportation(), PDO::PARAM_STR);
+        $statement->bindParam(':not_present', $IOOVAnswers->getNotWantPresent(), PDO::PARAM_STR);
+        $statement->bindParam(':why_presenter',$IOOVAnswers->getWhyPresenter(), PDO::PARAM_STR);
+        $statement->bindParam(':time_recovered', $IOOVAnswers->getStayedRecover(), PDO::PARAM_STR);
+        $statement->bindParam(':recovery',$IOOVAnswers->getRecovery(), PDO::PARAM_STR);
+        $statement->execute();
+    }
+
+    /**
+     * Inserts the C long answer's into the DB
+     * @param $applicantId int last applicant inserted
+     * @param $CAnswers CLongAnswers holds all answers
+     */
+    function insertCAnswers($applicantId, $CAnswers)
+    {
+        $this->updateAppType(5, $applicantId);
+        $sql ="INSERT INTO C(applicant_id, why_facilitator, experience, description)
+            VALUES (:applicant_id, :why_facilitator, :experience, :description)";
+
+        //save prepared statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //assign values: already in $CAnswers
+        //bind params
+        $statement->bindParam(':applicant_id', $applicantId, PDO::PARAM_INT);
+        $statement->bindParam(':why_facilitator',  $CAnswers->getConvictText(), PDO::PARAM_STR);
+        $statement->bindParam(':experience', $CAnswers->getDegree(), PDO::PARAM_STR);
+        $statement->bindParam(':description', $CAnswers->getVolunteerExperience(), PDO::PARAM_STR);
+
+        $statement->execute();
+    }
+
     //////////////////////////////////////////////////AFFILIATE/////////////////////////////////////////////////////////
 
     /**

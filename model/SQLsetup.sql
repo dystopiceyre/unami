@@ -142,6 +142,36 @@ CREATE TABLE H
     FOREIGN KEY (applicant_id) references applicants (applicant_id)
 );
 
+CREATE TABLE IOOV
+(
+    IOOV_id             INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    applicant_id       INT                NOT NULL,
+    conviction         MEDIUMTEXT,
+    degree             VARCHAR(200),
+    volunteer_exp      VARCHAR(200),
+    diagnose           VARCHAR(200),
+    diagnose_time      VARCHAR(200),
+    current_diagnosis  MEDIUMTEXT,
+    hospitalized       VARCHAR(200),
+    speaking_exp       VARCHAR(200),
+    transportation     CHAR(10),
+    not_present        MEDIUMTEXT,
+    why_presenter      MEDIUMTEXT,
+    time_recovered     MEDIUMTEXT,
+    recovery           MEDIUMTEXT,
+    FOREIGN KEY (applicant_id) references applicants (applicant_id)
+);
+
+ CREATE TABLE C
+(
+    C_id               INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    applicant_id       INT                NOT NULL,
+    why_facilitator    MEDIUMTEXT,
+    experience         MEDIUMTEXT,
+    description        MEDIUMTEXT,
+    FOREIGN KEY (applicant_id) references applicants (applicant_id)
+);
+
 /* application/training type tables */
 CREATE TABLE app_type
 (

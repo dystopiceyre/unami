@@ -333,11 +333,18 @@ $f3->route('GET|POST /confirmation', function ($f3) {
             $db->insertETSAnswers($lastId, $_SESSION['LongAnswer']);
             break;
         case 'homefront':
-            $db->insertHAnswers($lastId, $_SESSION['LongAnswer']);
-            break;
+        $db->insertHAnswers($lastId, $_SESSION['LongAnswer']);
+        break;
         case 'basics':
             $db->insertBAnswers($lastId, $_SESSION['LongAnswer']);
             break;
+        case 'inOurOwnVoice':
+            $db->insertIOOVAnswers($lastId, $_SESSION['LongAnswer']);
+            break;
+        case 'connection':
+            $db->insertCAnswers($lastId, $_SESSION['LongAnswer']);
+            break;
+
     }
 
     Emailer::sendAffiliateEmail($lastId, $_SESSION['PersonalInfo']->getFname(), $_SESSION['PersonalInfo']->getLname(),
