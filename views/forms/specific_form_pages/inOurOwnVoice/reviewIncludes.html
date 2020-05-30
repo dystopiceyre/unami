@@ -12,17 +12,17 @@
         </div>
     </div>
 
-    <div class="row m-1 mb-2">
-        <div class="col-md-10 pl-0">
-            <h6 class="pl-2">
-                <span class="font-weight-bold">Relative with Mental Illness:</span>
-                {{ $_SESSION['LongAnswer']->getRelativeMentalIllness() }}
-                <check if="{{ $_SESSION['LongAnswer']->getRelativeMentalIllnessText() != 'N/A' }}">
-                    <br>{{ $_SESSION['LongAnswer']->getRelativeMentalIllnessText() }}
-                </check>
-            </h6>
-        </div>
-    </div>
+<!--    <div class="row m-1 mb-2">-->
+<!--        <div class="col-md-10 pl-0">-->
+<!--            <h6 class="pl-2">-->
+<!--                <span class="font-weight-bold">Relative with Mental Illness:</span>-->
+<!--                {{ $_SESSION['LongAnswer']->getRelativeMentalIllness() }}-->
+<!--                <check if="{{ $_SESSION['LongAnswer']->getRelativeMentalIllnessText() != 'N/A' }}">-->
+<!--                    <br>{{ $_SESSION['LongAnswer']->getRelativeMentalIllnessText() }}-->
+<!--                </check>-->
+<!--            </h6>-->
+<!--        </div>-->
+<!--    </div>-->
 
     <div class="row m-1 mb-2">
         <div class="col-md-10 pl-0">
@@ -53,19 +53,4 @@
         </div>
     </div>
 
-    <div class="row m-1 mb-2">
-        <div class="col-md-10 pl-0">
-            <h6 class="pl-2"><span class="font-weight-bold">Who you want to Co-facilitate with: </span>
-                {{ $_SESSION['LongAnswer']->getCoFacWhomText() }}
-            </h6>
-        </div>
-    </div>
-
-    <div class="row m-1 mb-2">
-        <div class="col-md-10 pl-0">
-            <h6 class="pl-2"><span class="font-weight-bold">Where you want to Co-facilitate: </span>
-                {{ $_SESSION['LongAnswer']->getCoFacWhereText() }}
-            </h6>
-        </div>
-    </div>
 </div>
