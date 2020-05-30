@@ -365,9 +365,9 @@ class UnamiDatabase
     {
         $this->updateAppType(4, $applicantId);
         $sql = "INSERT INTO IOOV(applicant_id, conviction, degree, volunteer_exp, diagnose, diagnose_time, current_diagnosis,
-            hospitalized, speaking_exp, transportation, not_present, why_presenter, time_recovered, recovery)
+            hospitalized, speaking_exp, comfortable, transportation, not_present, why_presenter, time_recovered, recovery)
             VALUES(:applicant_id, :conviction, :degree, :volunteer_exp, :diagnose, :diagnose_time, :current_diagnosis,
-            :hospitalized, :speaking_exp, :transportation, :not_present, :why_presenter, :time_recovered, :recovery)";
+            :hospitalized, :speaking_exp, :comfortable :transportation, :not_present, :why_presenter, :time_recovered, :recovery)";
         //save prepared statement
         $statement = $this->_dbh->prepare($sql);
 
@@ -381,7 +381,8 @@ class UnamiDatabase
         $statement->bindParam(':diagnose_time', $IOOVAnswers->getDiagnoseTime(), PDO::PARAM_STR);
         $statement->bindParam(':current_diagnosis',$IOOVAnswers->getCurrentDiagnosis(), PDO::PARAM_STR);
         $statement->bindParam(':hospitalized', $IOOVAnswers->getRecently(), PDO::PARAM_STR);
-        $statement->bindParam(':speaking_exp', $IOOVAnswers->getExperienceText(), PDO::PARAM_STR);
+        $statement->bindParam(':speaking_exp', $IOOVAnswers->getSpeakingExperience(), PDO::PARAM_STR);
+        $statement->bindParam(':comfortable', $IOOVAnswers->getComfortable(), PDO::PARAM_INT);
         $statement->bindParam(':transportation', $IOOVAnswers->getTransportation(), PDO::PARAM_STR);
         $statement->bindParam(':not_present', $IOOVAnswers->getNotWantPresent(), PDO::PARAM_STR);
         $statement->bindParam(':why_presenter',$IOOVAnswers->getWhyPresenter(), PDO::PARAM_STR);
