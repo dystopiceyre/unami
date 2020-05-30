@@ -9,6 +9,384 @@
     </div>
 </div>
 
+<div class="container p-3 ">
+
+    <!-- Displays any errors with the input from the user -->
+    <check if="{{!empty(@errors)}}">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <repeat group=" {{ @errors }}" key="{{ @key }}" value="{{ @error}}">
+                <h4><strong>Error:</strong> {{ @error }}</h4>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </repeat>
+        </div>
+    </check>
+
+    <div class="card shadow-sm bg-white rounded">
+
+        <div class="card-header">
+            <h4 class="float-left pt-2"><i class="fas fa-question-circle text-primary mr-1"></i> Provider Education Questions</h4>
+            <check if="{{ $_GET['fromReview'] == true }}">
+                <form method="get" action="review">
+                    <button type="submit" class="btn btn-primary float-right"><i class="fas fa-redo-alt"></i> Back to Review</button>
+                </form>
+            </check>
+        </div>
+
+        <div class="card-body m-3">
+            <div>
+
+                <h6 class="mb-5 text-primary font-weight-bold">
+                    <i class="fas fa-star-of-life"></i> All fields are required
+                </h6>
+
+                <form method="post" action="long_answer">
+                    <div class="form-row">
+
+                        <!--Question 2-->
+                        <div class="form-group col-md-10">
+                            <h5>Have you ever been convicted of a crime against another person
+                                including but not limited to: assault of any kind, harassment of any kind, or
+                                stalking?</h5>
+                            <div class="form-check form-check-inline ml-2">
+                                <input name="convict" class="form-check-input" type="radio" id="yesConvict" value="yes"
+                                       required
+                                <check if="{{ $_SESSION['LongAnswer']->getConvict() == 'yes' }}">
+                                    checked
+                                </check>
+                                >
+                                <label class="form-check-label" for="yesConvict">Yes</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input name="convict" class="form-check-input" type="radio" id="noConvict" value="no"
+                                       required
+                                <check if="{{ $_SESSION['LongAnswer']->getConvict() == 'no' }}">
+                                    checked
+                                </check>
+                                >
+                                <label class="form-check-label" for="noConvict">No</label>
+                            </div><br>
+
+                            <div class="form-row mt-3 ml-2" id="convictText" style="display: none">
+                                <label>If yes, please explain why
+                                    <br><textarea class="form-control" rows="4" cols="50" name="convictText"
+                                    >{{ $_SESSION['LongAnswer']->getConvictText() }}</textarea>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 4-->
+                        <div class="form-group col-md-10">
+                            <h5>Availability to Present (please check all that apply): </h5>
+                            <div class="form-check">
+                                <input name="availability" class="form-check-input" required type="checkbox" value=""
+                                       id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">Monday</label>
+                                <ul>
+                                    <div class="form-check">
+                                        <input name="availableTime" class="form-check-input" required type="checkbox" value=""
+                                               id="defaultCheck11">
+                                        <label class="form-check-label" for="defaultCheck11">Morning</label>
+                                    </div>
+                                </ul>
+                                <ul>
+                                    <div class="form-check">
+                                        <input name="availableTime" class="form-check-input" required type="checkbox" value=""
+                                               id="defaultCheck12">
+                                        <label class="form-check-label" for="defaultCheck12">Afternoon</label>
+                                    </div>
+                                </ul>
+                            </div>
+                            <div class="form-check">
+                                <input name="availability" class="form-check-input" required type="checkbox" value=""
+                                       id="defaultCheck2">
+                                <label class="form-check-label" for="defaultCheck2">Tuesday</label>
+                            </div>
+                            <ul>
+                                <div class="form-check">
+                                    <input name="availableTime" class="form-check-input" required type="checkbox" value=""
+                                           id="defaultCheck13">
+                                    <label class="form-check-label" for="defaultCheck13">Morning</label>
+                                </div>
+                            </ul>
+                            <ul>
+                                <div class="form-check">
+                                    <input name="availableTime" class="form-check-input" required type="checkbox" value=""
+                                           id="defaultCheck14">
+                                    <label class="form-check-label" for="defaultCheck14">Afternoon</label>
+                                </div>
+                            </ul>
+                            <div class="form-check">
+                                <input name="availability" class="form-check-input" required type="checkbox" value=""
+                                       id="defaultCheck3">
+                                <label class="form-check-label" for="defaultCheck3">Wednesday</label>
+                            </div>
+                            <ul>
+                                <div class="form-check">
+                                    <input name="availableTime" class="form-check-input" required type="checkbox" value=""
+                                           id="defaultCheck15">
+                                    <label class="form-check-label" for="defaultCheck15">Morning</label>
+                                </div>
+                            </ul>
+                            <ul>
+                                <div class="form-check">
+                                    <input name="availableTime" class="form-check-input" required type="checkbox" value=""
+                                           id="defaultCheck16">
+                                    <label class="form-check-label" for="defaultCheck16">Afternoon</label>
+                                </div>
+                            </ul>
+                            <div class="form-check">
+                                <input name="availability" class="form-check-input" required type="checkbox" value=""
+                                       id="defaultCheck4">
+                                <label class="form-check-label" for="defaultCheck4">Thurday</label>
+                            </div>
+                            <ul>
+                                <div class="form-check">
+                                    <input name="availableTime" class="form-check-input" required type="checkbox" value=""
+                                           id="defaultCheck17">
+                                    <label class="form-check-label" for="defaultCheck17">Morning</label>
+                                </div>
+                            </ul>
+                            <ul>
+                                <div class="form-check">
+                                    <input name="availableTime" class="form-check-input" required type="checkbox" value=""
+                                           id="defaultCheck18">
+                                    <label class="form-check-label" for="defaultCheck18">Afternoon</label>
+                                </div>
+                            </ul>
+                            <div class="form-check">
+                                <input name="availability" class="form-check-input" required type="checkbox" value=""
+                                       id="defaultCheck5">
+                                <label class="form-check-label" for="defaultCheck5">Friday</label>
+                            </div>
+                            <ul>
+                                <div class="form-check">
+                                    <input name="availableTime" class="form-check-input" required type="checkbox" value=""
+                                           id="defaultCheck19">
+                                    <label class="form-check-label" for="defaultCheck19">Morning</label>
+                                </div>
+                            </ul>
+                            <ul>
+                                <div class="form-check">
+                                    <input name="availableTime" class="form-check-input" required type="checkbox" value=""
+                                           id="defaultCheck20">
+                                    <label class="form-check-label" for="defaultCheck20">Afternoon</label>
+                                </div>
+                            </ul>
+                        </div>
+
+                        <!--Question 5-->
+                        <div class="form-group col-md-10">
+                            <h5>Because different audiences require different presenters, we ask that you complete the following: </h5>
+                            <div class="form-group col-md-6 pt-3">
+                                <h5 class="mb-0"><label for="degreeCompleted">Education - last degree completed: </label></h5>
+                                <input name="degreeCompleted" type="text" class="form-control" id="degreeCompleted"
+                                       required value="{{ $_SESSION['LongAnswer']->getDegreeCompleted() }}"
+                                       placeholder="Last degree completed">
+                            </div>
+
+                            <!--Question 5b-->
+                            <div class="form-group col-md-10">
+                                <h5 class="mb-0"><label for="volunteerExperience">Work/Volunteer Experience</label></h5>
+                                <input name="volunteerExperience" type="text" class="form-control" id="volunteerExperience"
+                                       required value="{{ $_SESSION['LongAnswer']->getVolunteerExperience() }}"
+                                       placeholder="Work/Volunteer Experience">
+                            </div>
+
+                            <!--Question 5c-->
+                            <div class="form-group col-md-10">
+                                <h5 class="mb-0"><label for="fluentLanguage">What language(s) do you speak fluently?</label></h5>
+                                <input name="fluentLanguage" type="text" class="form-control" id="fluentLanguage"
+                                       required value="{{ $_SESSION['LongAnswer']->getFluentLanguage() }}"
+                                       placeholder="English, Spanish, etc...">
+                            </div>
+
+                            <!--Question 5d-->
+                            <div class="form-group col-md-10">
+                                <p class="lead mb-2">Are you a young adult?</p>
+                                <label>
+                                    <input class="mt-1 ml-1" type="radio" name="youngAdult" value="Age 18-30"
+                                           required
+                                    <check if="{{ $_SESSION['LongAnswer']->getYoungAdult() == 'Age 18-30'}}">
+                                    checked</check>> Age 18-30
+                                </label>
+                                <label>
+                                    <input class="ml-3" type="radio" name="youngAdult" value="Age 31-35"
+                                           required
+                                    <check if="{{ $_SESSION['LongAnswer']->getYoungAdult() == 'Age 31-35'}}">
+                                    checked</check>> Age 31-35
+                                </label>
+                                <label>
+                                    <input class="ml-3" type="radio" name="youngAdult" value="No"
+                                           required
+                                    <check if="{{ $_SESSION['LongAnswer']->getYoungAdult() == 'No'}}">
+                                    checked</check>> No
+                                </label>
+                            </div>
+
+                            <!--Question 5e-->
+                            <div class="form-group col-md-10">
+                                <p class="lead mb-2">Which describes you (select all that apply)? </p>
+                                <div class="form-check">
+                                    <input name="describes" class="form-check-input" required type="checkbox" value=""
+                                           id="defaultCheck21">
+                                    <label class="form-check-label" for="defaultCheck21">Individual Living with Mental Illness </label>
+                                </div>
+                                <div class="form-check">
+                                    <input name="describes" class="form-check-input" required type="checkbox" value=""
+                                           id="defaultCheck22">
+                                    <label class="form-check-label" for="defaultCheck22">Family Member </label>
+                                </div>
+                                <div class="form-check">
+                                    <input name="describes" class="form-check-input" required type="checkbox" value=""
+                                           id="defaultCheck23">
+                                    <label class="form-check-label" for="defaultCheck23">Mental Health Professional  </label>
+                                </div>
+                                <div class="form-check">
+                                    <input name="describes" class="form-check-input" required type="checkbox" value=""
+                                           id="defaultCheck24">
+                                    <label class="form-check-label" for="defaultCheck24">Family to Family Teacher </label>
+                                </div>
+                                <div class="form-check">
+                                    <input name="describes" class="form-check-input" required type="checkbox" value=""
+                                           id="defaultCheck25">
+                                    <label class="form-check-label" for="defaultCheck25">Basics Teacher </label>
+                                </div>
+                                <div class="form-check">
+                                    <input name="describes" class="form-check-input" required type="checkbox" value=""
+                                           id="defaultCheck26">
+                                    <label class="form-check-label" for="defaultCheck26">Homefront Teacher  </label>
+                                </div>
+                                <div class="form-check">
+                                    <input name="describes" class="form-check-input" required type="checkbox" value=""
+                                           id="defaultCheck27">
+                                    <label class="form-check-label" for="defaultCheck27">Peer-to-Peer Mentor  </label>
+                                </div>
+                            </div>
+
+                            <!--Question 5f-->
+                            <div class="form-group col-md-10">
+                                <h5 class="mb-0"><label for="currentDiagnosis">What is your, or your family member’s, current diagnosis?</label></h5>
+                                <textarea name="currentDiagnosis" class="form-control" id="currentDiagnosis"
+                                          rows="4" cols="50">{{ $_SESSION['LongAnswer']->getCurrentDiagnosis() }}</textarea>
+                            </div>
+
+                            <!--Question 5g-->
+                            <div class="form-group col-md-10">
+                                <p class="lead mb-2">Are you comfortable with self-disclosure?  </p>
+                                <div class="form-check form-check-inline ml-2">
+                                    <input name="disclosure" class="form-check-input" type="radio" id="yesDisclosure" value="yes"
+                                           required
+                                    <check if="{{ $_SESSION['LongAnswer']->getDisclosure() == 'yes' }}">
+                                        checked
+                                    </check>
+                                    >
+                                    <label class="form-check-label" for="yesDisclosure">Yes</label>
+                                </div>
+
+                                <div class="form-check form-check-inline">
+                                    <input name="disclosure" class="form-check-input" type="radio" id="noDisclosure" value="no"
+                                           required
+                                    <check if="{{ $_SESSION['LongAnswer']->getDisclosure() == 'no' }}">
+                                        checked
+                                    </check>
+                                    >
+                                    <label class="form-check-label" for="noDisclosure">No</label>
+                                </div>
+                            </div>
+
+                            <!--Question 5h-->
+                            <div class="form-group col-md-10">
+                                <p class="lead mb-2">Are you able to maintain a positive outlook and talk about your experience without "going negative"?  </p>
+                                <div class="form-check form-check-inline ml-2">
+                                    <input name="outlook" class="form-check-input" type="radio" id="yesOutlook" value="yes"
+                                           required
+                                    <check if="{{ $_SESSION['LongAnswer']->getOutlook() == 'yes' }}">
+                                        checked
+                                    </check>
+                                    >
+                                    <label class="form-check-label" for="yesOutlook">Yes</label>
+                                </div>
+
+                                <div class="form-check form-check-inline">
+                                    <input name="outlook" class="form-check-input" type="radio" id="noOutlook" value="no"
+                                           required
+                                    <check if="{{ $_SESSION['LongAnswer']->getOutlook() == 'no' }}">
+                                        checked
+                                    </check>
+                                    >
+                                    <label class="form-check-label" for="noOutlook">No</label>
+                                </div>
+                            </div>
+
+                            <!--Question 5i-->
+                            <div class="form-group col-md-10">
+                                <p class="lead mb-2">Are you willing to undergo a background check if required by your NAMI Affiliate?  </p>
+                                <div class="form-check form-check-inline ml-2">
+                                    <input name="background" class="form-check-input" type="radio" id="yesBackground" value="yes"
+                                           required
+                                    <check if="{{ $_SESSION['LongAnswer']->getBackground() == 'yes' }}">
+                                        checked
+                                    </check>
+                                    >
+                                    <label class="form-check-label" for="yesBackground">Yes</label>
+                                </div>
+
+                                <div class="form-check form-check-inline">
+                                    <input name="background" class="form-check-input" type="radio" id="noBackground" value="no"
+                                           required
+                                    <check if="{{ $_SESSION['LongAnswer']->getBackground() == 'no' }}">
+                                        checked
+                                    </check>
+                                    >
+                                    <label class="form-check-label" for="noBackground">No</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Question 6a-->
+                        <div class="form-group col-md-10">
+                            <h5><label for="presenter"> Why do you want to be a NAMI Provider Education Presenter?</label> </h5>
+                                <textarea name="presenterText" class="form-control" id="presenter" rows="4" cols="50" >
+                                    {{ $_SESSION['LongAnswer']->getPresenterText() }}
+                                </textarea>
+
+                            <h5><label for="frontLineExperience"> What has been your experience working with frontLine behavioral healthcare staff,
+                                and how do you feel Provider Education can benefit them?</label></h5>
+                                <textarea name="frontLineExperienceText" class="form-control" id="frontLineExperience" rows="4" cols="50">
+                                    {{ $_SESSION['LongAnswer']->getFrontLineExperienceText() }}
+                                </textarea>
+
+                            <h5><label for="supportiveExperience"> What can you share about your experience that can help frontLine staff who come in
+                                contact with people with behavioral health conditions create a more supportive environment? </label></h5>
+                                <textarea name="supportiveExperienceText" class="form-control" id="supportiveExperience" rows="4" cols="50">
+                                    {{ $_SESSION['LongAnswer']->getSupportiveExperienceText() }}
+                                </textarea>
+
+                            <h5><label for="recovery"> What does recovery in relation to mental illness mean to you? </label></h5>
+                                <textarea name="recoveryText" class="form-control" rows="4" cols="50" id="recovery">
+                                    {{ $_SESSION['LongAnswer']->getRecoveryText() }}
+                                </textarea>
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="btn btn-primary float-right">Next <i class="fas fa-arrow-right"></i></button>
+
+                </form>
+
+                <form action="additional_information" method="get">
+                    <button type="submit" name="goBack" value="goBack" class="btn btn-primary float-left">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

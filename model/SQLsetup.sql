@@ -162,6 +162,29 @@ CREATE TABLE IOOV
     FOREIGN KEY (applicant_id) references applicants (applicant_id)
 );
 
+CREATE TABLE PE
+(
+    PE_id              INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    applicant_id        INT                NOT NULL,
+    conviction          MEDIUMTEXT,
+    availability        MEDIUMTEXT,
+    available_time      MEDIUMTEXT,
+    degree              VARCHAR(200),
+    volunteer_exp       VARCHAR(200),
+    fluent_language     VARCHAR (200),
+    describes           MEDIUMTEXT,
+    young_adult         VARCHAR(100),
+    current_diagnosis   VARCHAR(200),
+    self_disclosure     CHAR(10),
+    positive_outlook    CHAR(10),
+    background_check    CHAR(10),
+    why_want            MEDIUMTEXT,
+    frontLine_experience   MEDIUMTEXT,
+    support_experience  MEDIUMTEXT,
+    recovery            MEDIUMTEXT,
+    FOREIGN KEY (applicant_id) references applicants (applicant_id)
+)
+
  CREATE TABLE C
 (
     C_id               INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
@@ -215,6 +238,14 @@ CREATE TABLE affiliates
     email        VARCHAR(254)       NOT NULL
 );
 
+/* locations table*/
+CREATE TABLE locations
+(
+    location_id INT AUTO_INCREMENT  NOT NULL PRIMARY KEY,
+    location    VARCHAR(200)        NOT NULL
+
+);
+
 /* admin portal user */
 CREATE TABLE adminUser
 (
@@ -258,3 +289,11 @@ VALUES ('Family Support Group', 'familySupportGroup'),
        ('Homefront', 'homefront'),
        ('Basics', 'basics'),
        ('Smarts', 'smarts');
+
+INSERT INTO locations(location)
+VALUES ('Kirkland'),
+       ('Olympia'),
+       ('Redmond'),
+       ('Spokane'),
+       ('Yakima'),
+       ('Online');

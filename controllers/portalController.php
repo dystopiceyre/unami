@@ -380,6 +380,13 @@ $f3->route('GET|POST /trainings', function ($f3) {
         $f3->reroute('/trainings');
     }
 
+    //edit location
+    if (isset($_POST['addNewLocation'])) {
+        $location = $_POST['addTrainingLocation'];
+        $db->AddANewLocation($location);
+        $f3->reroute('/trainings');
+    }
+
     //edit training
     if (isset($_POST['edit'])) {
         $date = $_POST['editDates'];
