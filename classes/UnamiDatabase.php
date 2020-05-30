@@ -637,7 +637,7 @@ class UnamiDatabase
     function getAppTypesInfo()
     {
         //define query
-        $query = "SELECT info_id, date, location, deadline, app_type, date2, date3
+        $query = "SELECT info_id, date, location, deadline, app_type, date2/*, date3*/
                   FROM app_type_info
                   WHERE active = 1";
 
@@ -673,7 +673,7 @@ class UnamiDatabase
     {
 
         //define query
-        $query = "SELECT date, location, deadline, app_type, date2, date3
+        $query = "SELECT date, location, deadline, app_type, date2/*, date3*/
                   FROM app_type_info
                   WHERE info_id = :infoId
                   AND active = 1";
@@ -707,9 +707,9 @@ class UnamiDatabase
 
         //define query
         $query = 'INSERT INTO app_type_info
-                  (date, location, deadline, app_type, date2, /*date3,*/ active)
+                  (date, location, deadline, app_type, date2, date3, active)
                   VALUES
-                  (:date, :location, :deadline, :app_type, :date2, /*:date3,*/ 1)';
+                  (:date, :location, :deadline, :app_type, :date2, :date3, 1)';
 
         //prepare statement
         $statement = $this->_dbh->prepare($query);
@@ -717,7 +717,7 @@ class UnamiDatabase
         //bind parameters
         $statement->bindParam(':date', $date, PDO::PARAM_STR);
         $statement->bindParam(':date2', $date2, PDO::PARAM_STR);
-        //$statement->bindParam(':date3', $date3, PDO::PARAM_STR);
+        $statement->bindParam(':date3', $date3, PDO::PARAM_STR);
         $statement->bindParam(':location', $location, PDO::PARAM_STR);
         $statement->bindParam(':deadline', $deadline, PDO::PARAM_STR);
         $statement->bindParam(':app_type', $id, PDO::PARAM_STR);
@@ -865,6 +865,19 @@ class UnamiDatabase
         $statement->execute();
     }
 
+    function AddANewLocation($location) {
+        //define query
+        $query = "INSERT INTO locations (location)
+                VALUES (:location)";
+
+        //prepare statement
+        $statement = $this->_dbh->prepare($query);
+
+        //bind parameters
+        $statement->bindParam(':location', $location, PDO::PARAM_STR);
+
+        $statement->execute();
+    }
     /**
      * Edit a training date, location and deadline
      *
@@ -1242,6 +1255,7 @@ class UnamiDatabase
         define('FSG', 1);
         define('P2P', 2);
         define('ETS', 3);
+        define('PE', 6);
         define('H', 8);
         define('B', 9);
 
@@ -1271,6 +1285,10 @@ class UnamiDatabase
         } else if ($application_type == H) {
             $query = "SELECT *
              FROM H
+             WHERE applicant_id = :applicant_id";
+        } else if ($application_type == PE) {
+            $query = "SELECT *
+             FROM PE
              WHERE applicant_id = :applicant_id";
         }
 
