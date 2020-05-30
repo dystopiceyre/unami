@@ -9,7 +9,7 @@ class PELongAnswers
     private $_convictText;
     private $_availability;
     private $_availableTime;
-    private $_degreeCompleted;
+    private $_degree;
     private $_volunteerExperience;
     private $_fluentLanguage;
     private $_youngAdult;
@@ -29,7 +29,7 @@ class PELongAnswers
      * @param $_convictText
      * @param $_availability
      * @param $_availableTime
-     * @param $_degreeCompleted
+     * @param $_degree
      * @param $_volunteerExperience
      * @param $_fluentLanguage
      * @param $_youngAdult
@@ -43,7 +43,7 @@ class PELongAnswers
      * @param $_supportiveExperienceText
      * @param $_recoveryText
      */
-    public function __construct($_convict, $_convictText, $_availability, $_availableTime, $_degreeCompleted,
+    public function __construct($_convict, $_convictText, $_availability, $_availableTime, $_degree,
                                 $_volunteerExperience, $_fluentLanguage, $_youngAdult, $_describes, $_currentDiagnosis, $_disclosure,
                                 $_outlook, $_background, $_presenterText, $_frontLineExperienceText, $_supportiveExperienceText, $_recoveryText)
     {
@@ -51,7 +51,7 @@ class PELongAnswers
         $this->_convictText = $_convictText;
         $this->_availability = $_availability;
         $this->_availableTime = $_availableTime;
-        $this->_degreeCompleted = $_degreeCompleted;
+        $this->_degree = $_degree;
         $this->_volunteerExperience = $_volunteerExperience;
         $this->_fluentLanguage = $_fluentLanguage;
         $this->_youngAdult = $_youngAdult;
@@ -133,17 +133,17 @@ class PELongAnswers
     /**
      * @return mixed
      */
-    public function getDegreeCompleted()
+    public function getDegree()
     {
-        return $this->_degreeCompleted;
+        return $this->_degree;
     }
 
     /**
-     * @param mixed $degreeCompleted
+     * @param mixed $degree
      */
-    public function setDegreeCompleted($degreeCompleted)
+    public function setDegree($degree)
     {
-        $this->_degreeCompleted = $degreeCompleted;
+        $this->_degree = $degree;
     }
 
     /**

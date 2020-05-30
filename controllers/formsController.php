@@ -365,7 +365,7 @@ $f3->route('GET|POST /confirmation', function($f3)
             $db->insertETSAnswers($lastId, $_SESSION['LongAnswer']);
             break;
         case 'providerEducation':
-            $db->insertETSAnswers($lastId, $_SESSION['LongAnswer']);
+            $db->insertPEAnswers($lastId, $_SESSION['LongAnswer']);
             break;
     }
 

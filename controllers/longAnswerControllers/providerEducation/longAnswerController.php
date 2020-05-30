@@ -9,7 +9,7 @@ if(!empty($_POST))
     $trainedText = $_POST['trainedText'];
     $availability = $_POST['availability'];
     $availableTime = $_POST['availableTime'];
-    $degreeCompleted = $_POST['degreeCompleted'];
+    $degree = $_POST['degree'];
     $volunteerExperience = $_POST['volunteerExperience'];
     $fluentLanguage = $_POST['fluentLanguage'];
     $youngAdult = $_POST['youngAdult'];
@@ -45,7 +45,7 @@ if(!empty($_POST))
     $f3->set('trainedText', $trainedText);
     $f3->set('availability', $availability);
     $f3->set('availableTime', $availableTime);
-    $f3->set('degreeCompleted', $degreeCompleted);
+    $f3->set('degree', $degree);
     $f3->set('volunteerExperience', $volunteerExperience);
     $f3->set('fluentLanguage', $fluentLanguage);
     $f3->set('youngAdult', $youngAdult);
@@ -59,7 +59,7 @@ if(!empty($_POST))
     $f3->set('supportiveExperienceText', $supportiveExperienceText);
     $f3->set('recoveryText', $recoveryText);
 
-    $_SESSION['LongAnswer'] =  new PELongAnswers($convict, $convictText, $trainedText, $availability, $availableTime, $degreeCompleted,
+    $_SESSION['LongAnswer'] =  new PELongAnswers($convict, $convictText, $trainedText, $availability, $availableTime, $degree,
         $volunteerExperience, $fluentLanguage, $youngAdult, $describes, $currentDiagnosis, $disclosure, $outlook, $background,
         $presenterText, $frontLineExperienceText, $supportiveExperienceText, $recoveryText);
 
