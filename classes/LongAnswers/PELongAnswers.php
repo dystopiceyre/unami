@@ -20,7 +20,7 @@ class PELongAnswers
     private $_background;
     private $_presenterText;
     private $_frontLineExperienceText;
-    private $_supportiveEnvironmentText;
+    private $_supportiveExperienceText;
     private $_recoveryText;
 
     /**
@@ -40,12 +40,12 @@ class PELongAnswers
      * @param $_background
      * @param $_presenterText
      * @param $_frontLineExperienceText
-     * @param $_supportiveEnvironmentText
+     * @param $_supportiveExperienceText
      * @param $_recoveryText
      */
     public function __construct($_convict, $_convictText, $_availability, $_availableTime, $_degreeCompleted,
                                 $_volunteerExperience, $_fluentLanguage, $_youngAdult, $_describes, $_currentDiagnosis, $_disclosure,
-                                $_outlook, $_background, $_presenterText, $_frontLineExperienceText, $_supportiveEnvironmentText, $_recoveryText)
+                                $_outlook, $_background, $_presenterText, $_frontLineExperienceText, $_supportiveExperienceText, $_recoveryText)
     {
         $this->_convict = $_convict;
         $this->_convictText = $_convictText;
@@ -62,7 +62,7 @@ class PELongAnswers
         $this->_background = $_background;
         $this->_presenterText = $_presenterText;
         $this->_frontLineExperienceText = $_frontLineExperienceText;
-        $this->_supportiveEnvironmentText = $_supportiveEnvironmentText;
+        $this->_supportiveExperienceText = $_supportiveExperienceText;
         $this->_recoveryText = $_recoveryText;
     }
 
@@ -309,17 +309,17 @@ class PELongAnswers
     /**
      * @return mixed
      */
-    public function getSupportiveEnvironmentText()
+    public function getSupportiveExperienceText()
     {
-        return $this->_supportiveEnvironmentText;
+        return $this->_supportiveExperienceText;
     }
 
     /**
-     * @param mixed $supportiveEnvironmentText
+     * @param mixed $supportiveExperienceText
      */
-    public function setSupportiveEnvironmentText($supportiveEnvironmentText)
+    public function setSupportiveExperienceText($supportiveExperienceText)
     {
-        $this->_supportiveEnvironmentText = $supportiveEnvironmentText;
+        $this->_supportiveExperienceText = $supportiveExperienceText;
     }
 
     /**

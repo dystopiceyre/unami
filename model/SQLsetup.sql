@@ -164,7 +164,7 @@ CREATE TABLE IOOV
 
 CREATE TABLE PE
 (
-     PE_id                INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    PE_id              INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     applicant_id        INT                NOT NULL,
     conviction          MEDIUMTEXT,
     availability        MEDIUMTEXT,

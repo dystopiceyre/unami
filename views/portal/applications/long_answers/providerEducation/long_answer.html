@@ -19,8 +19,17 @@
 
     <div class="row m-1 mb-2">
         <div class="col-md-10 pl-0">
+            <h6 class="pl-2">
+                <span class="font-weight-bold">: </span><br>
+                {{ @longAnswers['available_time'] }}
+            </h6>
+        </div>
+    </div>
+
+    <div class="row m-1 mb-2">
+        <div class="col-md-10 pl-0">
             <h6 class="pl-2"><span class="font-weight-bold">Education:</span><br>
-                {{ @longAnswers['education'] }}
+                {{ @longAnswers['degree'] }}
             </h6>
         </div>
     </div>
@@ -28,7 +37,7 @@
     <div class="row m-1 mb-2">
         <div class="col-md-10 pl-0">
             <h6 class="pl-2"><span class="font-weight-bold">Work/Volunteer experience: </span><br>
-                {{ @longAnswers['experience'] }}
+                {{ @longAnswers['volunteer_experience'] }}
             </h6>
         </div>
     </div>
@@ -36,7 +45,7 @@
     <div class="row m-1 mb-2">
         <div class="col-md-10 pl-0">
             <h6 class="pl-2"><span class="font-weight-bold">Languages they speak fluently: </span><br>
-                {{ @longAnswers['languages'] }}
+                {{ @longAnswers['fluent_language'] }}
             </h6>
         </div>
     </div>
@@ -44,7 +53,15 @@
     <div class="row m-1 mb-2">
         <div class="col-md-10 pl-0">
             <h6 class="pl-2"><span class="font-weight-bold">Age range of applicant: </span><br>
-                {{ @longAnswers['age'] }}
+                {{ @longAnswers['young_adult'] }}
+            </h6>
+        </div>
+    </div>
+
+    <div class="row m-1 mb-2">
+        <div class="col-md-10 pl-0">
+            <h6 class="pl-2"><span class="font-weight-bold">Describes you: </span><br>
+                {{ @longAnswers['describes'] }}
             </h6>
         </div>
     </div>
@@ -52,7 +69,7 @@
     <div class="row m-1 mb-2">
         <div class="col-md-10 pl-0">
             <h6 class="pl-2"><span class="font-weight-bold">Their, or their family member’s, current diagnosis: </span><br>
-                {{ @longAnswers['diagnosis'] }}
+                {{ @longAnswers['current_diagnosis'] }}
             </h6>
         </div>
     </div>
@@ -84,7 +101,7 @@
 
     <div class="row m-1 mb-2">
         <div class="col-md-10 pl-0">
-            <h6 class="pl-2"><span class="font-weight-bold">Why they want to be an Ending the Silence Presenter: </span><br>
+            <h6 class="pl-2"><span class="font-weight-bold">Why you want to be a NAMI Provider Education Presenter: </span><br>
                 {{ @longAnswers['why_want'] }}
             </h6>
         </div>
@@ -92,8 +109,8 @@
 
     <div class="row m-1 mb-2">
         <div class="col-md-10 pl-0">
-            <h6 class="pl-2"><span class="font-weight-bold">Experience as young person with a mental illness: </span><br>
-                {{ @longAnswers['mental_experience'] }}
+            <h6 class="pl-2"><span class="font-weight-bold">FrontLine experience: </span><br>
+                {{ @longAnswers['frontLine_experience'] }}
             </h6>
         </div>
     </div>
@@ -116,12 +133,12 @@
         </div>
     </div>
 
-    <div class="row m-1 mb-2">
+    <!--<div class="row m-1 mb-2">
         <div class="col-md-10 pl-0">
             <h6 class="pl-2"><span class="font-weight-bold">Views on the roles of teachers and parents in the school
                 setting: </span><br>
                 {{ @longAnswers['view_roles'] }}
             </h6>
         </div>
-    </div>
+    </div>-->
 </div>

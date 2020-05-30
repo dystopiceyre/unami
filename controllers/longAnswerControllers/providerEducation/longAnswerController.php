@@ -20,14 +20,15 @@ if(!empty($_POST))
     $background = $_POST['background'];
     $presenterText = $_POST['presenterText'];
     $frontLineExperienceText = $_POST['frontLineExperienceText'];
-    $supportiveEnvironmentText = $_POST['supportiveEnvironmentText'];
+    $supportiveExperienceText = $_POST['supportiveExperienceText'];
     $recoveryText = $_POST['recoveryText'];
 
-    if ($convict == 'no') {
+    if ($convict == 'no')
+    {
         $convictText = 'N/A';
     }
 
-    if(!empty($_POST['availability'])) {
+    /*if(!empty($_POST['availability'])) {
         foreach ($_POST['availability'] as $available) {
             echo $available;
         }
@@ -36,7 +37,7 @@ if(!empty($_POST))
                 echo $time;
             }
         }
-    }
+    }*/
 
     //add data to hive
     $f3->set('convict', $convict);
@@ -55,12 +56,12 @@ if(!empty($_POST))
     $f3->set('background', $background);
     $f3->set('presenterText', $presenterText);
     $f3->set('frontLineExperienceText', $frontLineExperienceText);
-    $f3->set('supportiveEnvironmentText', $supportiveEnvironmentText);
+    $f3->set('supportiveExperienceText', $supportiveExperienceText);
     $f3->set('recoveryText', $recoveryText);
 
     $_SESSION['LongAnswer'] =  new PELongAnswers($convict, $convictText, $trainedText, $availability, $availableTime, $degreeCompleted,
         $volunteerExperience, $fluentLanguage, $youngAdult, $describes, $currentDiagnosis, $disclosure, $outlook, $background,
-        $presenterText, $frontLineExperienceText, $supportiveEnvironmentText, $recoveryText);
+        $presenterText, $frontLineExperienceText, $supportiveExperienceText, $recoveryText);
 
     if(validPELongAnswersForm())
     {

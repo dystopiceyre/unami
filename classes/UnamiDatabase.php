@@ -636,7 +636,7 @@ class UnamiDatabase
     function getAppTypesInfo()
     {
         //define query
-        $query = "SELECT info_id, date, location, deadline, app_type, date2, date3
+        $query = "SELECT info_id, date, location, deadline, app_type, date2/*, date3*/
                   FROM app_type_info
                   WHERE active = 1";
 
@@ -672,7 +672,7 @@ class UnamiDatabase
     {
 
         //define query
-        $query = "SELECT date, location, deadline, app_type, date2, date3
+        $query = "SELECT date, location, deadline, app_type, date2/*, date3*/
                   FROM app_type_info
                   WHERE info_id = :infoId
                   AND active = 1";
