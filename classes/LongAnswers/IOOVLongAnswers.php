@@ -17,7 +17,7 @@ class IOOVLongAnswers
     private $_hospitalized ;
     private $_recently;
     private $_speakingExperience ;
-    private $_experienceText ;
+    private $_comfortable ;
     private $_transportation ;
     private $_notWantPresent ;
     private $_whyPresenter ;
@@ -37,14 +37,14 @@ class IOOVLongAnswers
      * @param $_hospitalized
      * @param $_recently
      * @param $_speakingExperience
-     * @param $_experienceText
+     * @param $_comfortable
      * @param $_transportation
      * @param $_notWantPresent
      * @param $_whyPresenter
      * @param $_stayedRecover
      * @param $_recovery
      */
-    public function __construct($_convict, $_convictText, $_degree, $_volunteerExperience, $_diagnose, $_diagnoseTime, $_currentDiagnosis, $_hospitalized, $_recently, $_speakingExperience, $_experienceText, $_transportation, $_notWantPresent, $_whyPresenter, $_stayedRecover, $_recovery )
+    public function __construct($_convict, $_convictText, $_degree, $_volunteerExperience, $_diagnose, $_diagnoseTime, $_currentDiagnosis, $_hospitalized, $_recently, $_speakingExperience, $_comfortable, $_transportation, $_notWantPresent, $_whyPresenter, $_stayedRecover, $_recovery )
     {
         $this->_convict = $_convict;
         $this->_convictText = $_convictText;
@@ -56,7 +56,7 @@ class IOOVLongAnswers
         $this->_hospitalized = $_hospitalized;
         $this->_recently = $_recently;
         $this->_speakingExperience = $_speakingExperience;
-        $this->_experienceText = $_experienceText;
+        $this->_comfortable = $_comfortable;
         $this->_transportation = $_transportation;
         $this->_notWantPresent = $_notWantPresent;
         $this->_whyPresenter = $_whyPresenter;
@@ -160,12 +160,12 @@ class IOOVLongAnswers
 
     /**
      * Getter to get the text of
-     * speaking experience
+     * speaking experience level
      * @return mixed
      */
-    public function getExperienceText()
+    public function getComfortable()
     {
-        return $this->_experienceText;
+        return $this->_comfortable;
     }
 
     /**
