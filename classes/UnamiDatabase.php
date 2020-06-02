@@ -312,47 +312,27 @@ class UnamiDatabase
         $statement->execute();
     }
 
-    function insertBAnswers($applicantId, $BAnswers)
+    /**
+     * Inserts the C long answer's into the DB
+     * @param $applicantId int last applicant inserted
+     * @param $CAnswers CLongAnswers holds all answers
+     */
+    function insertCAnswers($applicantId, $CAnswers)
     {
-        $this->updateAppType(9, $applicantId);
-        $sql = "INSERT INTO B(applicant_id,	conviction,	taken_basics, taken_f2f, parent, child_age,
-              current_diagnosis, length_of_illness, educational_program, grad_date,	why_want,
-              child_experiences, coteach_with, teach_where) VALUES (:applicant_id,	:conviction, :taken_basics, :taken_f2f,
-              :parent, :child_age, :current_diagnosis, :length_of_illness, :educational_program, :grad_date, :why_want,
-              :child_experiences, :coteach_with, :teach_where)";
-        $statement = $this->_dbh->prepare($sql);
-        $statement->bindParam(':applicant_id', $applicantId, PDO::PARAM_INT);
-        $statement->bindParam(':conviction', $BAnswers->getConvictText(), PDO::PARAM_STR);
-        $statement->bindParam(':taken_basics', $BAnswers->getTakenBasics(), PDO::PARAM_STR);
-        $statement->bindParam(':taken_f2f', $BAnswers->getTakenF2F(), PDO::PARAM_STR);
-        $statement->bindParam(':parent', $BAnswers->getParent(), PDO::PARAM_STR);
-        $statement->bindParam(':child_age', $BAnswers->getChildAge(), PDO::PARAM_INT);
-        $statement->bindParam(':current_diagnosis', $BAnswers->getCurrentDiagnosis(), PDO::PARAM_STR);
-        $statement->bindParam(':length_of_illness', $BAnswers->getLengthOfIllness(), PDO::PARAM_STR);
-        $statement->bindParam(':educational_program', $BAnswers->getEducationalProgram(), PDO::PARAM_STR);
-        $statement->bindParam(':grad_date', $BAnswers->getGradDate(), PDO::PARAM_STR);
-        $statement->bindParam(':why_want', $BAnswers->getWhyBasicsTeacher(), PDO::PARAM_STR);
-        $statement->bindParam(':child_experiences', $BAnswers->getChildExperiences(), PDO::PARAM_STR);
-        $statement->bindParam(':coteach_with', $BAnswers->getCoteachWith(), PDO::PARAM_STR);
-        $statement->bindParam(':teach_where', $BAnswers->getTeachWhere(), PDO::PARAM_STR);
-        $statement->execute();
-    }
+        $this->updateAppType(4, $applicantId);
+        $sql ="INSERT INTO C(applicant_id, why_facilitator, experience, description)
+            VALUES (:applicant_id, :why_facilitator, :experience, :description)";
 
-    function insertHAnswers($applicantId, $HAnswers)
-    {
-        $this->updateAppType(8, $applicantId);
-        $sql = "INSERT INTO H(applicant_id,	conviction,	relationship, diagnosis, taken_f2f,	why_want, coteach_with,
-              teach_where) VALUES(:applicant_id, :conviction, :relationship, :diagnosis, :taken_f2f, :why_want, 
-                                  :coteach_with, :teach_where)";
+        //save prepared statement
         $statement = $this->_dbh->prepare($sql);
+
+        //assign values: already in $CAnswers
+        //bind params
         $statement->bindParam(':applicant_id', $applicantId, PDO::PARAM_INT);
-        $statement->bindParam(':conviction', $HAnswers->getConvictText(), PDO::PARAM_STR);
-        $statement->bindParam(':relationship', $HAnswers->getRelationship(), PDO::PARAM_STR);
-        $statement->bindParam(':diagnosis', $HAnswers->getDiagnosis(), PDO::PARAM_STR);
-        $statement->bindParam(':taken_f2f', $HAnswers->getTakenF2F(), PDO::PARAM_STR);
-        $statement->bindParam(':why_want', $HAnswers->getWhyHomefrontTeacher(), PDO::PARAM_STR);
-        $statement->bindParam(':coteach_with', $HAnswers->getCoteachWith(), PDO::PARAM_STR);
-        $statement->bindParam(':teach_where', $HAnswers->getTeachWhere(), PDO::PARAM_STR);
+        $statement->bindParam(':why_facilitator', $CAnswers->getWhyFacilitator(), PDO::PARAM_STR);
+        $statement->bindParam(':experience', $CAnswers->getExperience(), PDO::PARAM_STR);
+        $statement->bindParam(':description', $CAnswers->getDescription(), PDO::PARAM_STR);
+
         $statement->execute();
     }
 
@@ -363,7 +343,7 @@ class UnamiDatabase
      */
     function insertIOOVAnswers($applicantId, $IOOVAnswers)
     {
-        $this->updateAppType(4, $applicantId);
+        $this->updateAppType(5, $applicantId);
         $sql = "INSERT INTO IOOV(applicant_id, conviction, degree, volunteer_exp, diagnose, diagnose_time, current_diagnosis,
             hospitalized, speaking_exp, comfortable, transportation, not_present, why_presenter, time_recovered, recovery)
             VALUES(:applicant_id, :conviction, :degree, :volunteer_exp, :diagnose, :diagnose_time, :current_diagnosis,
@@ -391,29 +371,54 @@ class UnamiDatabase
         $statement->execute();
     }
 
-    /**
-     * Inserts the C long answer's into the DB
-     * @param $applicantId int last applicant inserted
-     * @param $CAnswers CLongAnswers holds all answers
-     */
-    function insertCAnswers($applicantId, $CAnswers)
+    function insertHAnswers($applicantId, $HAnswers)
     {
-        $this->updateAppType(5, $applicantId);
-        $sql ="INSERT INTO C(applicant_id, why_facilitator, experience, description)
-            VALUES (:applicant_id, :why_facilitator, :experience, :description)";
-
-        //save prepared statement
+        $this->updateAppType(8, $applicantId);
+        $sql = "INSERT INTO H(applicant_id,	conviction,	relationship, diagnosis, taken_f2f,	why_want, coteach_with,
+              teach_where) VALUES(:applicant_id, :conviction, :relationship, :diagnosis, :taken_f2f, :why_want, 
+                                  :coteach_with, :teach_where)";
         $statement = $this->_dbh->prepare($sql);
-
-        //assign values: already in $CAnswers
-        //bind params
         $statement->bindParam(':applicant_id', $applicantId, PDO::PARAM_INT);
-        $statement->bindParam(':why_facilitator',  $CAnswers->getConvictText(), PDO::PARAM_STR);
-        $statement->bindParam(':experience', $CAnswers->getDegree(), PDO::PARAM_STR);
-        $statement->bindParam(':description', $CAnswers->getVolunteerExperience(), PDO::PARAM_STR);
-
+        $statement->bindParam(':conviction', $HAnswers->getConvictText(), PDO::PARAM_STR);
+        $statement->bindParam(':relationship', $HAnswers->getRelationship(), PDO::PARAM_STR);
+        $statement->bindParam(':diagnosis', $HAnswers->getDiagnosis(), PDO::PARAM_STR);
+        $statement->bindParam(':taken_f2f', $HAnswers->getTakenF2F(), PDO::PARAM_STR);
+        $statement->bindParam(':why_want', $HAnswers->getWhyHomefrontTeacher(), PDO::PARAM_STR);
+        $statement->bindParam(':coteach_with', $HAnswers->getCoteachWith(), PDO::PARAM_STR);
+        $statement->bindParam(':teach_where', $HAnswers->getTeachWhere(), PDO::PARAM_STR);
         $statement->execute();
     }
+
+    function insertBAnswers($applicantId, $BAnswers)
+    {
+        $this->updateAppType(9, $applicantId);
+        $sql = "INSERT INTO B(applicant_id,	conviction,	taken_basics, taken_f2f, parent, child_age,
+              current_diagnosis, length_of_illness, educational_program, grad_date,	why_want,
+              child_experiences, coteach_with, teach_where) VALUES (:applicant_id,	:conviction, :taken_basics, :taken_f2f,
+              :parent, :child_age, :current_diagnosis, :length_of_illness, :educational_program, :grad_date, :why_want,
+              :child_experiences, :coteach_with, :teach_where)";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->bindParam(':applicant_id', $applicantId, PDO::PARAM_INT);
+        $statement->bindParam(':conviction', $BAnswers->getConvictText(), PDO::PARAM_STR);
+        $statement->bindParam(':taken_basics', $BAnswers->getTakenBasics(), PDO::PARAM_STR);
+        $statement->bindParam(':taken_f2f', $BAnswers->getTakenF2F(), PDO::PARAM_STR);
+        $statement->bindParam(':parent', $BAnswers->getParent(), PDO::PARAM_STR);
+        $statement->bindParam(':child_age', $BAnswers->getChildAge(), PDO::PARAM_INT);
+        $statement->bindParam(':current_diagnosis', $BAnswers->getCurrentDiagnosis(), PDO::PARAM_STR);
+        $statement->bindParam(':length_of_illness', $BAnswers->getLengthOfIllness(), PDO::PARAM_STR);
+        $statement->bindParam(':educational_program', $BAnswers->getEducationalProgram(), PDO::PARAM_STR);
+        $statement->bindParam(':grad_date', $BAnswers->getGradDate(), PDO::PARAM_STR);
+        $statement->bindParam(':why_want', $BAnswers->getWhyBasicsTeacher(), PDO::PARAM_STR);
+        $statement->bindParam(':child_experiences', $BAnswers->getChildExperiences(), PDO::PARAM_STR);
+        $statement->bindParam(':coteach_with', $BAnswers->getCoteachWith(), PDO::PARAM_STR);
+        $statement->bindParam(':teach_where', $BAnswers->getTeachWhere(), PDO::PARAM_STR);
+        $statement->execute();
+    }
+
+
+
+
+
 
     //////////////////////////////////////////////////AFFILIATE/////////////////////////////////////////////////////////
 

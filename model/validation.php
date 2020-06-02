@@ -402,12 +402,14 @@ function validIOOVLongAnswersForm()
             $f3->set("errors['hospitalized']", "Please type how recently");
         }
     }
-    if ($f3->get('speaking') == 'yes') {
-        if (!validRequiredTextarea($f3->get('experience'))) {
-            $isValid = false;
-            $f3->set("errors['speaking']", "Please enter 1 being NOT AT ALL and 10 being VERY comfortable");
-        }
-    }
+//    if ($f3->get('speaking') == 'yes') {
+//
+//    }
+//    if (!($f3->get('comfortable'))) {
+//        $isValid = false;
+//        $f3->set("errors['comfortable']", "Please enter 1 being NOT AT ALL and 10 being VERY comfortable");
+//    }
+
     if(!validRequiredTextarea($f3->get('notWantPresent'))) {
         $isValid = false;
         $f3->set("errors['notWantPresent']", "Please type which groups you do not want to present");
@@ -422,7 +424,7 @@ function validIOOVLongAnswersForm()
     }
     if(!validRequiredTextarea($f3->get('recovery'))) {
         $isValid = false;
-        $f3->set("errors['recovery']", "Please share your views");
+        $f3->set("errors['recovery']", "Please share your views about medicine");
     }
 
     return $isValid;
