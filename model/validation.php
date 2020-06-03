@@ -507,6 +507,70 @@ function validPELongAnswersForm()
 {
     global $f3;
     $isValid = true;
+
+    if ($f3->get('convict') == 'yes') {
+        if (!validRequiredTextarea($f3->get('convictText'))) {
+            $isValid = false;
+            $f3->set("errors['convict']", "Please type something about your conviction");
+        }
+    }
+
+
+    if (empty($f3->get('availability'))) {
+        $isValid = false;
+        $f3->set("errors['availability']", "Please select your availability");
+    }
+
+    if (empty($f3->get('availableTime'))) {
+        $isValid = false;
+        $f3->set("errors['availableTime']", "Please select your available time");
+    }
+
+    if (!validRequiredTextarea($f3->get('degree'))) {
+        $isValid = false;
+        $f3->set("errors['degree']", "Please type something about your education");
+    }
+
+    if (!validRequiredTextarea($f3->get('volunteerExperience'))) {
+        $isValid = false;
+        $f3->set("errors['volunteerExperience']", "Please type something about your work/volunteer experience");
+    }
+
+    if (!validRequiredTextarea($f3->get('fluentLanguage'))) {
+        $isValid = false;
+        $f3->set("errors['fluentLanguage']", "Please type something about the languages you know");
+    }
+
+    if (empty($f3->get('describes'))) {
+        $isValid = false;
+        $f3->set("errors['describes']", "Please select all that describes you");
+    }
+
+    if (!validRequiredTextarea($f3->get('currentDiagnosis'))) {
+        $isValid = false;
+        $f3->set("errors['currentDiagnosis']", "Please type something ");
+    }
+
+    if (!validRequiredTextarea($f3->get('presenterText'))) {
+        $isValid = false;
+        $f3->set("errors['presenterText']", "Please type something about why you want to become a presenter");
+    }
+
+    if (!validRequiredTextarea($f3->get('frontLineExperienceText'))) {
+        $isValid = false;
+        $f3->set("errors['frontLineExperienceText']", "Please type something about your personal experience");
+    }
+
+    if (!validRequiredTextarea($f3->get('supportiveExperienceText'))) {
+        $isValid = false;
+        $f3->set("errors['supportiveExperienceText']", "Please type something about a supportive experience");
+    }
+
+    if (!validRequiredTextarea($f3->get('recoveryText'))) {
+        $isValid = false;
+        $f3->set("errors['recoveryText']", "Please type something about what mental recovery means to you");
+    }
+
     return $isValid;
 }
 
