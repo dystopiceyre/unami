@@ -57,5 +57,15 @@ $f3->set('applicationStatuses',
     )
 );
 
-//locations
+//define array for locations
 $f3->set('locations', array('Kirkland', 'Olympia', 'Redmond','Spokane', 'Yakima', 'Online'));
+
+//define array for availability
+$f3->set('availability', array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'));
+
+//define array for available time
+$f3->set('availableTime', array('Morning', 'Afternoon'));
+
+//define array for describing
+$f3->set('describes', array('Individual Living with Mental Illness', 'Family Member', 'Mental Health Professional',
+    'Family to Family Teacher', 'Basics Teacher', 'HomeFront Teacher', 'Peer-to-Peer Mentor'));

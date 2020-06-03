@@ -6,7 +6,6 @@ if(!empty($_POST))
     // get data from form
     $convict = $_POST['convict'];
     $convictText = $_POST['convictText'];
-    $trainedText = $_POST['trainedText'];
     $availability = $_POST['availability'];
     $availableTime = $_POST['availableTime'];
     $degree = $_POST['degree'];
@@ -28,21 +27,19 @@ if(!empty($_POST))
         $convictText = 'N/A';
     }
 
-    /*if(!empty($_POST['availability'])) {
-        foreach ($_POST['availability'] as $available) {
-            echo $available;
-        }
-        if (!empty($_POST['availableTime'])) {
-            foreach ($_POST['availableTime'] as $time) {
-                echo $time;
-            }
-        }
-    }*/
+    if (isset($_POST['availability']) && isset($_POST['availableTime']) ) {
+        $availability = implode(", ", $_POST['availability']);
+        $availableTime = implode( ", ", $_POST['availableTime']);
+
+    }
+
+    if (isset($_POST['describes'])) {
+        $describes = implode(", ", $_POST['describes']);
+    }
 
     //add data to hive
     $f3->set('convict', $convict);
     $f3->set('convictText', $convictText);
-    $f3->set('trainedText', $trainedText);
     $f3->set('availability', $availability);
     $f3->set('availableTime', $availableTime);
     $f3->set('degree', $degree);
@@ -59,9 +56,9 @@ if(!empty($_POST))
     $f3->set('supportiveExperienceText', $supportiveExperienceText);
     $f3->set('recoveryText', $recoveryText);
 
-    $_SESSION['LongAnswer'] =  new PELongAnswers($convict, $convictText, $trainedText, $availability, $availableTime, $degree,
-        $volunteerExperience, $fluentLanguage, $youngAdult, $describes, $currentDiagnosis, $disclosure, $outlook, $background,
-        $presenterText, $frontLineExperienceText, $supportiveExperienceText, $recoveryText);
+    $_SESSION['LongAnswer'] =  new PELongAnswers($convict, $convictText, $availability, $availableTime, $degree, $volunteerExperience,
+         $fluentLanguage, $youngAdult, $describes, $currentDiagnosis, $disclosure, $outlook, $background, $presenterText,
+        $frontLineExperienceText, $supportiveExperienceText, $recoveryText);
 
     if(validPELongAnswersForm())
     {
@@ -78,5 +75,5 @@ if(!isset($_SESSION['LongAnswer']))
 {
     $_SESSION['LongAnswer'] = new PELongAnswers( '', '', '', '', '', '',
     '', '', '', '', '', '', '', '',
-    '', '', '', '');
+    '', '', '');
 }

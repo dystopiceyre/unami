@@ -513,15 +513,16 @@ function validPELongAnswersForm()
         }
     }
 
-    /*if (empty($f3->get('availability'))) {
+
+    if (empty($f3->get('availability'))) {
         $isValid = false;
         $f3->set("errors['availability']", "Please select your availability");
     }
 
     if (empty($f3->get('availableTime'))) {
         $isValid = false;
-        $f3->set("errors['availableTime']", "Please select your availability");
-    }*/
+        $f3->set("errors['availableTime']", "Please select your available time");
+    }
 
     if (!validRequiredTextarea($f3->get('degree'))) {
         $isValid = false;
@@ -538,10 +539,10 @@ function validPELongAnswersForm()
         $f3->set("errors['fluentLanguage']", "Please type something about the languages you know");
     }
 
-    /*if (empty($f3->get('describes'))) {
+    if (empty($f3->get('describes'))) {
         $isValid = false;
         $f3->set("errors['describes']", "Please select all that describes you");
-    }*/
+    }
 
     if (!validRequiredTextarea($f3->get('currentDiagnosis'))) {
         $isValid = false;

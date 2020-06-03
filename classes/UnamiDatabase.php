@@ -316,10 +316,10 @@ class UnamiDatabase
     {
         $this->updateAppType(6, $applicantId);
         $sql = "INSERT INTO PE(applicant_id, conviction, availability, available_time, degree, volunteer_exp, 
-                fluent_languages, young_adult, describes, current_diagnosis, self_disclosure, positive_outlook, 
+                fluent_language, young_adult, describes, current_diagnosis, self_disclosure, positive_outlook, 
                 background_check, why_want, frontLine_experience, support_experience, recovery)
                 VALUES(:applicant_id, :conviction, :availability, :available_time, :degree, :volunteer_exp, 
-                :fluent_languages, :young_adult, :describes, :current_diagnosis, :self_disclosure, :positive_outlook, 
+                :fluent_language, :young_adult, :describes, :current_diagnosis, :self_disclosure, :positive_outlook, 
                 :background_check, :why_want, :frontLine_experience, :support_experience, :recovery)";
         $statement = $this->_dbh->prepare($sql);
 
@@ -330,7 +330,7 @@ class UnamiDatabase
         $statement->bindParam(':available_time', $PEAnswers->getAvailableTime(), PDO::PARAM_STR);
         $statement->bindParam(':degree', $PEAnswers->getDegree(), PDO::PARAM_STR);
         $statement->bindParam(':volunteer_exp', $PEAnswers->getVolunteerExperience(), PDO::PARAM_STR);
-        $statement->bindParam(':fluent_languages', $PEAnswers->getFluentLanguage(), PDO::PARAM_STR);
+        $statement->bindParam(':fluent_language', $PEAnswers->getFluentLanguage(), PDO::PARAM_STR);
         $statement->bindParam(':young_adult', $PEAnswers->getYoungAdult(), PDO::PARAM_STR);
         $statement->bindParam(':describes', $PEAnswers->getDescribes(), PDO::PARAM_STR);
         $statement->bindParam(':current_diagnosis', $PEAnswers->getCurrentDiagnosis(), PDO::PARAM_STR);
