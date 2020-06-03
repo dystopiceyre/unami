@@ -14,7 +14,7 @@ if(!empty($_POST))
     $hospitalized = $_POST['hospitalized'];
     $recently = $_POST['recently'];
     $speakingExperience = $_POST['speaking'];
-    $experienceText = $_POST['experience'];
+    $comfortable = $_POST['comfortable'];
     $transportation = $_POST['transportation'];
     $notWantPresent = $_POST['notWantPresent'];
     $whyPresenter = $_POST['whyPresenter'];
@@ -29,10 +29,7 @@ if(!empty($_POST))
     {
         $recently = 'N/A';
     }
-    if($speakingExperience == 'no')
-    {
-        $experienceText = 'N/A';
-    }
+
 
     //add data to hive
     $f3->set('convict',$convict);
@@ -45,7 +42,7 @@ if(!empty($_POST))
     $f3->set('hospitalized',$hospitalized);
     $f3->set('recently', $recently);
     $f3->set('speaking', $speakingExperience);
-    $f3->set('experience',$experienceText);
+    $f3->set('comfortable',$comfortable);
     $f3->set('transportation', $transportation);
     $f3->set('notWantPresent', $notWantPresent);
     $f3->set('whyPresenter',$whyPresenter);
@@ -53,7 +50,7 @@ if(!empty($_POST))
     $f3->set('recovery',$recovery);
 
     $_SESSION['LongAnswer'] =  new IOOVLongAnswers($convict, $convictText, $degree, $volunteerExperience, $diagnose, $diagnoseTime,
-        $currentDiagnosis, $hospitalized, $recently, $speakingExperience, $experienceText, $transportation,
+        $currentDiagnosis, $hospitalized, $recently, $speakingExperience, $comfortable, $transportation,
         $notWantPresent, $whyPresenter, $stayedRecover, $recovery);
 
 

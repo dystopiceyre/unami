@@ -120,29 +120,28 @@
                             <div class="form-group col-md-10 mb-3">
                                 <h5>Have you been hospitalized?</h5>
                                 <div class="form-check form-check-inline ml-2">
-                                    <input name="hospitalized" class="form-check-input" type="radio" id="yeshospitalized" value="yes"
+                                    <input name="hospitalized" class="form-check-input" type="radio" id="yesHospitalized" value="yes"
                                            required
                                     <check if="{{ $_SESSION['LongAnswer']->getHospitalized() == 'yes' }}">
                                         checked
                                     </check>
                                     >
-                                    <label class="form-check-label" for="yeshospitalized">Yes</label>
+                                    <label class="form-check-label" for="yesHospitalized">Yes</label>
                                 </div>
 
                                 <div class="form-check form-check-inline">
-                                    <input name="hospitalized" class="form-check-input" type="radio" id="nohospitalized" value="no"
+                                    <input name="hospitalized" class="form-check-input" type="radio" id="noHospitalized" value="no"
                                            required
                                     <check if="{{ $_SESSION['LongAnswer']->getHospitalized() == 'no' }}">
                                         checked
                                     </check>
                                     >
-                                    <label class="form-check-label" for="nohospitalized">No</label>
+                                    <label class="form-check-label" for="noHospitalized">No</label>
                                 </div>
 
                                 <div class="form-row mt-3 ml-2 none" id="recentlyText">
-                                    <label>If so, how recently?
-                                        <input class="form-control"  name="recently"> {{ $_SESSION['LongAnswer']->getRecently() }}
-                                    </label>
+                                    <label for="recently">If so, how recently?</label>
+                                        <input class="form-control"  name="recently" id="recently">{{ $_SESSION['LongAnswer']->getRecently() }}
                                 </div>
                             </div>
 
@@ -167,14 +166,16 @@
                                         >No
                                     </label>
                                 </div>
-
-                                <div class="form-row mt-3 ml-2 none" id="speakingExperience">
-                                    <label>On a scale of 1-10, with 1 being NOT AT ALL and 10 being VERY: How comfortable are you speaking in front of groups?
-                                        <input class="form-control"  name="experience"> {{ $_SESSION['LongAnswer']->getExperienceText() }}
-                                    </input>
-                                    </label>
-                                </div>
                             </div>
+                            <!--slide container-->
+                        <div class="slidecontainer">
+                            <h5><label>On a scale of 1-10, with 1 being NOT AT ALL and 10 being VERY: How comfortable are you speaking in front of groups</label></h5>
+                            <label for="comfortable" class="pull-left">1</label>
+                            <label for="comfortable" class="fa-pull-right">10</label>
+                            <input type="range" min="1" max="10" value="1" class="slider" id="comfortable" name="comfortable">
+                            {{ $_SESSION['LongAnswer']->getComfortable() }}
+                            <br><p>Comfortable: <span id="demo"></span></p>
+                        </div>
 
                             <!--Question 7-->
                             <div class="col-md-10 mb-3">
@@ -203,7 +204,7 @@
                             <!--Question 8-->
                             <div class="form-group col-md-10 mb2">
                                 <h5>We present to audiences of consumers, employee in-service trainings, family members, professionals, students, police,
-                                    church groups, business groups, etc. Are there any groups to which you <b>do not want</b> to present?</h5>
+                                    church groups, business groups, etc.<br> Are there any groups to which you <b>do not want</b> to present?</h5>
                                 <textarea name="notWantPresent" class="form-control">{{ $_SESSION['LongAnswer']->getNotWantPresent() }}</textarea>
                             </div>
 
@@ -222,7 +223,7 @@
                             <!--Question 11-->
                             <div class="form-group col-md-10 mb-2">
                                 <h5>Please share your views about medicine and recovery.</h5>
-                                <textarea name="recovery" class="form-control">{{ $_SESSION['LongAnswer']->getRecovery() }}</textarea>
+                                <textarea name="recovery" class="form-control" id="recovery" >{{ $_SESSION['LongAnswer']->getRecovery() }}</textarea>
                             </div>
 
                         </div>
