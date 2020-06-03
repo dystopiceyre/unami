@@ -364,11 +364,11 @@ $f3->route('GET|POST /confirmation', function($f3)
         case 'endingTheSilence':
             $db->insertETSAnswers($lastId, $_SESSION['LongAnswer']);
             break;
-<<<<<<< HEAD
+
         case 'providerEducation':
             $db->insertPEAnswers($lastId, $_SESSION['LongAnswer']);
             break;
-=======
+
 //        case 'inOurOwnVoice':
 //            $db->insertIOOVAnswers($lastId, $_SESSION['longAnswer']);
 //            break;
@@ -378,7 +378,7 @@ $f3->route('GET|POST /confirmation', function($f3)
 //        case 'providerEducation':
 //            $db->insertETSAnswers($lastId, $_SESSION['LongAnswer']);
 //            break;
->>>>>>> f05be1d2688abb7feb613c7a86a26dfadb1dea1f
+
     }
 
     Emailer::sendAffiliateEmail($lastId, $_SESSION['PersonalInfo']->getFname(), $_SESSION['PersonalInfo']->getLname(),
