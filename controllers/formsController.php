@@ -369,12 +369,12 @@ $f3->route('GET|POST /confirmation', function($f3)
             $db->insertPEAnswers($lastId, $_SESSION['LongAnswer']);
             break;
 
-//        case 'inOurOwnVoice':
-//            $db->insertIOOVAnswers($lastId, $_SESSION['longAnswer']);
-//            break;
-//        case 'connection':
-//            $db->insertCAnswers($lastId, $_SESSION['longAnswer']);
-//            break;
+        case 'inOurOwnVoice':
+            $db->insertIOOVAnswers($lastId, $_SESSION['longAnswer']);
+            break;
+        case 'connection':
+            $db->insertCAnswers($lastId, $_SESSION['longAnswer']);
+            break;
 //        case 'providerEducation':
 //            $db->insertETSAnswers($lastId, $_SESSION['LongAnswer']);
 //            break;

@@ -311,41 +311,6 @@ class UnamiDatabase
         //execute SQL statement
         $statement->execute();
     }
-
-    function insertPEAnswers($applicantId, $PEAnswers)
-    {
-        $this->updateAppType(6, $applicantId);
-        $sql = "INSERT INTO PE(applicant_id, conviction, availability, available_time, degree, volunteer_exp, 
-                fluent_language, young_adult, describes, current_diagnosis, self_disclosure, positive_outlook, 
-                background_check, why_want, frontLine_experience, support_experience, recovery)
-                VALUES(:applicant_id, :conviction, :availability, :available_time, :degree, :volunteer_exp, 
-                :fluent_language, :young_adult, :describes, :current_diagnosis, :self_disclosure, :positive_outlook, 
-                :background_check, :why_want, :frontLine_experience, :support_experience, :recovery)";
-        $statement = $this->_dbh->prepare($sql);
-
-        //bind params
-        $statement->bindParam(':applicant_id', $applicantId, PDO::PARAM_INT);
-        $statement->bindParam(':conviction', $PEAnswers->getConvictText(), PDO::PARAM_STR);
-        $statement->bindParam(':availability', $PEAnswers->getAvailability(), PDO::PARAM_STR);
-        $statement->bindParam(':available_time', $PEAnswers->getAvailableTime(), PDO::PARAM_STR);
-        $statement->bindParam(':degree', $PEAnswers->getDegree(), PDO::PARAM_STR);
-        $statement->bindParam(':volunteer_exp', $PEAnswers->getVolunteerExperience(), PDO::PARAM_STR);
-        $statement->bindParam(':fluent_language', $PEAnswers->getFluentLanguage(), PDO::PARAM_STR);
-        $statement->bindParam(':young_adult', $PEAnswers->getYoungAdult(), PDO::PARAM_STR);
-        $statement->bindParam(':describes', $PEAnswers->getDescribes(), PDO::PARAM_STR);
-        $statement->bindParam(':current_diagnosis', $PEAnswers->getCurrentDiagnosis(), PDO::PARAM_STR);
-        $statement->bindParam(':self_disclosure', $PEAnswers->getDisclosure(), PDO::PARAM_STR);
-        $statement->bindParam(':positive_outlook', $PEAnswers->getOutlook(), PDO::PARAM_STR);
-        $statement->bindParam(':background_check', $PEAnswers->getBackground(), PDO::PARAM_STR);
-        $statement->bindParam(':why_want', $PEAnswers->getPresenterText(), PDO::PARAM_STR);
-        $statement->bindParam(':frontLine_experience', $PEAnswers->getFrontLineExperienceText(), PDO::PARAM_STR);
-        $statement->bindParam(':support_experience', $PEAnswers->getSupportiveExperienceText(), PDO::PARAM_STR);
-        $statement->bindParam(':recovery', $PEAnswers->getRecoveryText(), PDO::PARAM_STR);
-
-        //execute SQL statement
-        $statement->execute();
-    }
-
     /**
      * Inserts the C long answer's into the DB
      * @param $applicantId int last applicant inserted
@@ -404,6 +369,44 @@ class UnamiDatabase
         $statement->bindParam(':recovery',$IOOVAnswers->getRecovery(), PDO::PARAM_STR);
         $statement->execute();
     }
+
+
+
+    function insertPEAnswers($applicantId, $PEAnswers)
+    {
+        $this->updateAppType(6, $applicantId);
+        $sql = "INSERT INTO PE(applicant_id, conviction, availability, available_time, degree, volunteer_exp, 
+                fluent_language, young_adult, describes, current_diagnosis, self_disclosure, positive_outlook, 
+                background_check, why_want, frontLine_experience, support_experience, recovery)
+                VALUES(:applicant_id, :conviction, :availability, :available_time, :degree, :volunteer_exp, 
+                :fluent_language, :young_adult, :describes, :current_diagnosis, :self_disclosure, :positive_outlook, 
+                :background_check, :why_want, :frontLine_experience, :support_experience, :recovery)";
+        $statement = $this->_dbh->prepare($sql);
+
+        //bind params
+        $statement->bindParam(':applicant_id', $applicantId, PDO::PARAM_INT);
+        $statement->bindParam(':conviction', $PEAnswers->getConvictText(), PDO::PARAM_STR);
+        $statement->bindParam(':availability', $PEAnswers->getAvailability(), PDO::PARAM_STR);
+        $statement->bindParam(':available_time', $PEAnswers->getAvailableTime(), PDO::PARAM_STR);
+        $statement->bindParam(':degree', $PEAnswers->getDegree(), PDO::PARAM_STR);
+        $statement->bindParam(':volunteer_exp', $PEAnswers->getVolunteerExperience(), PDO::PARAM_STR);
+        $statement->bindParam(':fluent_language', $PEAnswers->getFluentLanguage(), PDO::PARAM_STR);
+        $statement->bindParam(':young_adult', $PEAnswers->getYoungAdult(), PDO::PARAM_STR);
+        $statement->bindParam(':describes', $PEAnswers->getDescribes(), PDO::PARAM_STR);
+        $statement->bindParam(':current_diagnosis', $PEAnswers->getCurrentDiagnosis(), PDO::PARAM_STR);
+        $statement->bindParam(':self_disclosure', $PEAnswers->getDisclosure(), PDO::PARAM_STR);
+        $statement->bindParam(':positive_outlook', $PEAnswers->getOutlook(), PDO::PARAM_STR);
+        $statement->bindParam(':background_check', $PEAnswers->getBackground(), PDO::PARAM_STR);
+        $statement->bindParam(':why_want', $PEAnswers->getPresenterText(), PDO::PARAM_STR);
+        $statement->bindParam(':frontLine_experience', $PEAnswers->getFrontLineExperienceText(), PDO::PARAM_STR);
+        $statement->bindParam(':support_experience', $PEAnswers->getSupportiveExperienceText(), PDO::PARAM_STR);
+        $statement->bindParam(':recovery', $PEAnswers->getRecoveryText(), PDO::PARAM_STR);
+
+        //execute SQL statement
+        $statement->execute();
+    }
+
+
 
     function insertHAnswers($applicantId, $HAnswers)
     {
