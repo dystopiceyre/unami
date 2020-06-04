@@ -31,7 +31,11 @@
     </a>
 </nav>
 <div class="container p-3">
-    <!--TODO: download as PDF-->
+    <div class="text-right">
+        <a href="affiliateToDos.pdf" target="_blank" download><button id="download" class="btn btn-primary">Download as PDF</button></a>
+        <br>
+    </div>
+    <h1 class="text-center">Affiliate To Do List</h1>
     <h2>This final section must be completed by affiliate leadership (i.e.: Program Director, Executive Director,
         President or Vice President).</h2>
     <!--TODO: figure out where to route to upon submission-->
@@ -46,10 +50,10 @@
         <div class="form-check">
             <input class="form-check-input" required type="checkbox" value="" id="check2">
             <label class="form-check-label" for="check2">
-                This person is a current member of our affiliate.<br>
+                This person is a current member of our affiliate.
                 <b>Membership Expiration Date :</b>
                 <input type="date" id="membershipExpiration" name="membershipExpiration" min="{{date('Y-m-d')}}"
-                       value="{{date('Y-m-d')}}" required>
+                       required>
             </label>
         </div>
         <div class="form-check">
@@ -71,7 +75,6 @@
                 I have arranged transportation to the training for this applicant.
             </label>
         </div>
-        <!--TODO: regex for check # input pattern-->
         <div class="form-check">
             <input class="form-check-input" required type="checkbox" value="" id="check6">
             <label class="form-check-label" for="check6">
@@ -112,42 +115,62 @@
             </label>
         </div>
         <div class="form-group">
-            <div class="form-row">
-                <label for="leaderName">Name of NAMI Affiliate Leader: <input type="text" id="leaderName"
-                                                                              name="leaderName"
-                                                                              class="form-control"
+            <div class="row">
+                <div class="col">
+                    <label for="leaderName">Name of NAMI Affiliate Leader: <input type="text" id="leaderName"
+                                                                                  name="leaderName"
+                                                                                  class="form-control form-control-lg"
+                                                                                  required></label>
+                </div>
+                <div class="col">
+                    <label for="leaderTitle">Title of NAMI Affiliate Leader: <input type="text" id="leaderTitle"
+                                                                                    name="leaderTitle"
+                                                                                    class="form-control form-control-lg"
+                                                                                    required></label>
+                </div>
+                <div class="col">
+                    <label for="affiliateName">Name of NAMI Affiliate: <input type="text" id="affiliateName"
+                                                                              name="affiliateName"
+                                                                              class="form-control form-control-lg"
                                                                               required></label>
-                <label for="leaderTitle">Title of NAMI Affiliate Leader: <input type="text" id="leaderTitle"
-                                                                                name="leaderTitle"
-                                                                                class="form-control"
-                                                                                required></label>
-                <label for="affiliateName">Name of NAMI Affiliate: <input type="text" id="affiliateName"
-                                                                          name="affiliateName" class="form-control"
-                                                                          required></label>
+                </div>
             </div>
-            <div class="form-row">
-                <label for="signature">Signature: <input type="text" id="signature" name="signature"
-                                                         class="form-control" placeholder="Type your full name here"
-                                                         required></label>
-                <label for="date">Date: <input type="text" class="form-control" id="date" disabled></label>
+            <div class="row">
+                <div class="col">
+                    <label for="signature">Signature: <input type="text" id="signature" name="signature"
+                                                             class="form-control form-control-lg"
+                                                             required></label>
+                </div>
+                <div class="col">
+                    <label for="date">Date: <input type="text" class="form-control form-control-lg" id="date"></label>
+                </div>
             </div>
-            <div class="form-row">
-                <label for="leaderEmail">Email of Affiliate Leader: <input type="text" id="leaderEmail"
-                                                                           name="leaderEmail" class="form-control"
-                                                                           required></label>
-                <label for="phoneNumber">Phone Number: <input type="text" id="phoneNumber" name="phoneNumber"
-                                                              class="form-control"
-                                                              required></label>
+            <div class="row">
+                <div class="col">
+                    <label for="leaderEmail">Email of Affiliate Leader: <input type="text" id="leaderEmail"
+                                                                               name="leaderEmail"
+                                                                               class="form-control form-control-lg"
+                                                                               required></label>
+                </div>
+                <div class="col">
+                    <label for="phoneNumber">Phone Number: <input type="text" id="phoneNumber" name="phoneNumber"
+                                                                  class="form-control form-control-lg"
+                                                                  required></label>
+                </div>
             </div>
         </div>
-        <button id="submit">Submit</button>
+        <div class="text-center">
+            <button id="submit" class="btn btn-success">Submit</button>
+        </div>
     </form>
     <div>
+        <br>
         <p>Please save a copy of this application for your records. Remember to send a $50 deposit for each applicant to
             the NAMI Washington office (1107 NE 45th St, Suite 340, Seattle, WA 98109). These checks will be returned
             within three (3) weeks of completion of the training, unless the applicant fails to attend the training
             without prior notice (at least a week before), or if they do not graduate from the training.</p>
     </div>
+
 </div>
 </body>
 <footer style="background-color: #0c499c" class="mt-5">
