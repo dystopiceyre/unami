@@ -402,13 +402,6 @@ function validIOOVLongAnswersForm()
             $f3->set("errors['hospitalized']", "Please type how recently");
         }
     }
-//    if ($f3->get('speaking') == 'yes') {
-//
-//    }
-//    if (!($f3->get('comfortable'))) {
-//        $isValid = false;
-//        $f3->set("errors['comfortable']", "Please enter 1 being NOT AT ALL and 10 being VERY comfortable");
-//    }
 
     if(!validRequiredTextarea($f3->get('notWantPresent'))) {
         $isValid = false;

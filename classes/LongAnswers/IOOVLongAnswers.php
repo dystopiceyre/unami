@@ -61,7 +61,7 @@ class IOOVLongAnswers
         $this->_notWantPresent = $_notWantPresent;
         $this->_whyPresenter = $_whyPresenter;
         $this->_stayedRecover = $_stayedRecover;
-        $this->_recently = $_recently;
+        $this->_recovery = $_recovery;
     }
 
     /**
