@@ -679,7 +679,7 @@ class UnamiDatabase
     function getAppTypesInfo()
     {
         //define query
-        $query = "SELECT info_id, date, location, deadline, app_type, date2/*, date3*/
+        $query = "SELECT info_id, date, location, deadline, app_type, date2, date3
                   FROM app_type_info
                   WHERE active = 1";
 
@@ -715,7 +715,7 @@ class UnamiDatabase
     {
 
         //define query
-        $query = "SELECT date, location, deadline, app_type, date2/*, date3*/
+        $query = "SELECT date, location, deadline, app_type, date2, date3
                   FROM app_type_info
                   WHERE info_id = :infoId
                   AND active = 1";
@@ -907,7 +907,72 @@ class UnamiDatabase
         $statement->execute();
     }
 
-    function AddANewLocation($location) {
+    /**
+     * Get all application types
+     *
+     * @return mixed
+     */
+    function getLocations()
+    {
+        //define query
+        $query = "SELECT location, location_id FROM locations";
+
+        //prepare statement
+        $statement = $this->_dbh->prepare($query);
+
+        $statement->execute();
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * @param $location_id
+     * @return mixed
+     */
+    function deleteLocation($location_id)
+    {
+        //define query
+        $query = "DELETE FROM locations 
+                    WHERE location_id = :location_id";
+
+        //prepare statement
+        $statement = $this->_dbh->prepare($query);
+
+        //bind parameters
+        $statement->bindParam(':location_id', $location_id, PDO::PARAM_INT);
+
+        return $statement->execute();
+    }
+
+    /**
+     * Updates the locations
+     * @param $location_id
+     */
+    /*function updateLocation($location, $location_id)
+    {
+        $query = "UPDATE locations 
+                  SET 
+                  location= :location
+                  WHERE location_id = :location_id
+                  LIMIT 1";
+
+        //prepare statement
+        $statement = $this->_dbh->prepare($query);
+
+        //bind parameters
+        $statement->bindParam(':location', $location, PDO::PARAM_STR);
+        $statement->bindParam(':location_id', $location_id, PDO::PARAM_INT);
+
+        $statement->execute();
+
+    }*/
+
+    /**
+     * Adds a new location
+     * @param $location
+     */
+    function addANewLocation($location)
+    {
         //define query
         $query = "INSERT INTO locations (location)
                 VALUES (:location)";
@@ -920,6 +985,8 @@ class UnamiDatabase
 
         $statement->execute();
     }
+
+
     /**
      * Edit a training date, location and deadline
      *

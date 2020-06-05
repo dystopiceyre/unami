@@ -8,7 +8,7 @@
 
     <!--    TODO: make functional-->
     <nav class="navbar navbar-expand">
-        <div class="col-md-3">
+        <div class="col-md-6">
             <select>
                 <option value="jump">Jump To...</option>
                 <repeat group="{{ @trainings }}"
@@ -163,8 +163,8 @@
                                                                                 </option>
 
                                                                                 <repeat group="{{ @locations }}"
-                                                                                        value="{{ @locationOption }}" >
-                                                                                    <option> {{ @locationOption }}
+                                                                                        value="{{ @location }}" >
+                                                                                    <option> {{ @location['location'] }}
                                                                                     </option>
                                                                                 </repeat>
                                                                             </select>
@@ -310,14 +310,13 @@
                                                     </h5>
                                                     <div class="form-group pb-2">
                                                         <label for="location" class="sr-only">Location</label>
-                                                        <check if="{{ @info['location'] }}">
+                                                        <check if="{{ @location['location'] }}">
                                                         </check>
                                                         <select id="location" name="location">
                                                             <option value="none">--Select location--</option>
 
-                                                            <repeat group="{{ @locations }}"
-                                                                    value="{{ @locationOption }}">
-                                                                <option> {{ @locationOption }}</option>
+                                                            <repeat group="{{ @locations }}" value="{{ @location }}">
+                                                                <option> {{ @location['location'] }}</option>
                                                             </repeat>
                                                         </select>
                                                     </div>
@@ -364,9 +363,8 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-
-                                    <form action="trainings" method="post">
-                                        <div class="modal-body">
+                                    <div class="modal-body">
+                                        <form action="trainings" method="post">
                                             <div class="col-12">
                                                 <i class="fas fa-pen-alt text-success"></i>
                                                 Add A New Training Location
@@ -375,7 +373,7 @@
                                                         <label class="sr-only" for="addTrainingLocation">Add A New Training Location</label>
                                                         <input type="text"
                                                                class="form-control" id="addTrainingLocation" rows="1"
-                                                               name="addTrainingLocation"  value="{{ @training['location'] }}">
+                                                               name="addTrainingLocation" >
                                                     </div>
                                                 </div>
                                             </div>
@@ -383,9 +381,10 @@
                                             <div class="col-12">
                                                 <i class="fas fa-times-circle text-danger"></i>
                                                 Delete A Training Location
-                                                <div class="form-row mb-3">
-                                                    <div class="form-group col-md-4">
-                                                        <table class="table table-hover">
+                                                <div class="form-row mb-2">
+                                                    <div class="form-group col-md-6">
+                                                        <label class="sr-only" for="deleteLocation1">Delete A Training Location</label>
+                                                        <table class="table table-hover" id="deleteLocation1">
                                                             <thead>
                                                             <tr>
                                                                 <th>Location</th>
@@ -393,37 +392,75 @@
                                                             </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <repeat group="{{ @locations }}" value="{{ @locationOption }}">
+                                                                <repeat group="{{ @locations }}" value="{{ @location }}">
                                                                     <tr>
-                                                                        <td>{{ @locationOption }} </td>
+                                                                        <td>{{ @location['location'] }} </td>
 
                                                                         <td class="text-center">
                                                                             <a href="#" class="text-decoration-none text-primary"
-                                                                               data-toggle="modal" data-target="#deleteModal{{ @locations['location_id'] }}">
+                                                                               data-toggle="modal" data-target="#deleteLocationModal{{ @training['app_id'] }}">
                                                                                 <i class="fas fa-times-circle fa-lg text-danger"></i>
                                                                             </a>
-                                                                        </td>
+                                                                      </td>
                                                                     </tr>
+                                                                    <!-- delete modal -->
+                                                                    <div class="modal fade" id="deleteLocationModal{{ @training['app_id'] }}"
+                                                                         tabindex="-1" role="dialog"
+                                                                         aria-labelledby="deleteLocationModal{{ @training['app_id'] }}" aria-hidden="true">
+                                                                        <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+
+                                                                                <div class="modal-header bg-danger">
+                                                                                    <h4 class="modal-title text-white"
+                                                                                        id="modalLabel3">
+                                                                                        <i class="fas fa-times-circle"></i>
+                                                                                        Delete {{ @location['location'] }}
+                                                                                    </h4>
+
+                                                                                    <button type="button" class="close"
+                                                                                            data-dismiss="modal"
+                                                                                            aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div class="modal-body my-4">
+                                                                                    <h4 class="text-center">Are you sure you
+                                                                                        want to delete {{ @location['location'] }} location?</h4>
+                                                                                </div>
+
+                                                                                <!--modal footer-->
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn btn-secondary"
+                                                                                            data-dismiss="modal">Close
+                                                                                    </button>
+                                                                                    <form action="trainings" method="post">
+                                                                                        <input type="hidden" value="{{ @training['app_id']  }}" name="deleteLocationId">
+                                                                                        <button type="submit" name="deleteLocation" class="btn btn-danger">Delete
+                                                                                        </button>
+                                                                                    </form>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </repeat>
                                                             </tbody>
                                                         </table>
                                                     </div>
+                                                    <input type="hidden" value="{{ @training['app_id'] }}" name="addLocationId">
                                                 </div>
                                             </div>
-                                            <input type="hidden" value="{{ @training['app_id'] }}" name="addLocationId">
-                                        </div>
 
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                Close
-                                            </button>
-                                            <button type="submit" name="addNewlocation" class="btn btn-success">Save Changes</button>
-                                        </div>
-                                    </form>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    Close
+                                                </button>
+                                                <button type="submit" name="addNewLocation" class="btn btn-success">Save Changes</button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
