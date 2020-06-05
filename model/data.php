@@ -58,7 +58,7 @@ $f3->set('applicationStatuses',
 );
 
 //define array for locations
-$f3->set('locations', array('Kirkland', 'Olympia', 'Redmond','Spokane', 'Yakima', 'Online'));
+$f3->set('locations', $db->getLocations());
 
 //define array for availability
 $f3->set('availability', array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'));
