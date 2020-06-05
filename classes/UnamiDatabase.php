@@ -346,7 +346,7 @@ class UnamiDatabase
         $sql = "INSERT INTO IOOV(applicant_id, conviction, degree, volunteer_exp, diagnose, diagnose_time, current_diagnosis,
             hospitalized, speaking_exp, comfortable, transportation, not_present, why_presenter, time_recovered, recovery)
             VALUES(:applicant_id, :conviction, :degree, :volunteer_exp, :diagnose, :diagnose_time, :current_diagnosis,
-            :hospitalized, :speaking_exp, :comfortable :transportation, :not_present, :why_presenter, :time_recovered, :recovery)";
+            :hospitalized, :speaking_exp, :comfortable, :transportation, :not_present, :why_presenter, :time_recovered, :recovery)";
         //save prepared statement
         $statement = $this->_dbh->prepare($sql);
 

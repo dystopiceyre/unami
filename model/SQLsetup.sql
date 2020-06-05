@@ -154,7 +154,7 @@ CREATE TABLE IOOV
     current_diagnosis  MEDIUMTEXT,
     hospitalized       VARCHAR(200),
     speaking_exp       VARCHAR(200),
-    comfortable        INT(2),
+    comfortable        INT,
     transportation     CHAR(10),
     not_present        MEDIUMTEXT,
     why_presenter      MEDIUMTEXT,
