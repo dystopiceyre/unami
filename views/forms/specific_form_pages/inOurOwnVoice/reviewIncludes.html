@@ -18,7 +18,7 @@
                 <span class="font-weight-bold">Convicted of a Crime: </span>
                 {{ $_SESSION['LongAnswer']->getConvict() }}
                 <check if="{{ $_SESSION['LongAnswer']->getConvictText() != 'N/A' }}">
-                    <br>{{ $_SESSION['LongAnswer']->getConvictText() }}
+                <br>{{ $_SESSION['LongAnswer']->getConvictText() }}
                 </check>
             </h6>
         </div>
