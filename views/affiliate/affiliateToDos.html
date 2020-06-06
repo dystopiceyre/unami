@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
     <!-- custom styles -->
-    <link rel="stylesheet" href="../views/forms/css/generalFormStyles.css">
+    <link rel="stylesheet" href="../../views/forms/css/generalFormStyles.css">
 
     <title>{{ @page_title }}</title>
 </head>
@@ -27,19 +27,21 @@
 
 <nav class="navbar navbar-dark mb-4">
     <a class="navbar-brand py-3 pl-2" href="/unami">
-        <img id="namiLogo" src="../images/namiLogo.png" alt="The logo for NAMI Washington">
+        <img id="namiLogo" src="../../images/namiLogo.png" alt="The logo for NAMI Washington">
     </a>
 </nav>
 <div class="container p-3">
     <div class="text-right">
-        <a href="affiliateToDos.pdf" target="_blank" download><button id="download" class="btn btn-primary">Download as PDF</button></a>
+        <a href="affiliateToDos.pdf" target="_blank" download>
+            <button id="download" class="btn btn-primary">Download as PDF</button>
+        </a>
         <br>
     </div>
     <h1 class="text-center">Affiliate To Do List</h1>
     <h2>This final section must be completed by affiliate leadership (i.e.: Program Director, Executive Director,
         President or Vice President).</h2>
     <!--TODO: figure out where to route to upon submission-->
-    <form action="affiliate_review" method="post">
+    <form action="affiliate_review" id="toDos" method="post">
         <div class="form-check">
             <input class="form-check-input" required type="checkbox" value="" id="check1">
             <label class="form-check-label" for="check1">
@@ -119,42 +121,43 @@
                 <div class="col">
                     <label for="leaderName">Name of NAMI Affiliate Leader: <input type="text" id="leaderName"
                                                                                   name="leaderName"
-                                                                                  class="form-control form-control-lg"
+                                                                                  class="form-control"
                                                                                   required></label>
                 </div>
                 <div class="col">
                     <label for="leaderTitle">Title of NAMI Affiliate Leader: <input type="text" id="leaderTitle"
                                                                                     name="leaderTitle"
-                                                                                    class="form-control form-control-lg"
+                                                                                    class="form-control"
                                                                                     required></label>
                 </div>
                 <div class="col">
                     <label for="affiliateName">Name of NAMI Affiliate: <input type="text" id="affiliateName"
                                                                               name="affiliateName"
-                                                                              class="form-control form-control-lg"
+                                                                              class="form-control"
                                                                               required></label>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <label for="signature">Signature: <input type="text" id="signature" name="signature"
-                                                             class="form-control form-control-lg"
+                                                             class="form-control"
                                                              required></label>
                 </div>
                 <div class="col">
-                    <label for="date">Date: <input type="text" class="form-control form-control-lg" id="date"></label>
+                    <label for="date">Date: <input type="date" value="{{ date('Y-m-d')}}"
+                                                   class="form-control" id="date" disabled></label>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <label for="leaderEmail">Email of Affiliate Leader: <input type="text" id="leaderEmail"
                                                                                name="leaderEmail"
-                                                                               class="form-control form-control-lg"
+                                                                               class="form-control"
                                                                                required></label>
                 </div>
                 <div class="col">
                     <label for="phoneNumber">Phone Number: <input type="text" id="phoneNumber" name="phoneNumber"
-                                                                  class="form-control form-control-lg"
+                                                                  class="form-control"
                                                                   required></label>
                 </div>
             </div>
@@ -166,7 +169,7 @@
     <div>
         <br>
         <p>Please save a copy of this application for your records. Remember to send a $50 deposit for each applicant to
-            the NAMI Washington office (1107 NE 45th St, Suite 340, Seattle, WA 98109). These checks will be returned
+            the NAMI Washington office (1107 NE 45th St, Suite 330, Seattle, WA 98109). These checks will be returned
             within three (3) weeks of completion of the training, unless the applicant fails to attend the training
             without prior notice (at least a week before), or if they do not graduate from the training.</p>
     </div>
@@ -176,7 +179,7 @@
 <footer style="background-color: #0c499c" class="mt-5">
     <div class="container-fluid text-center p-3 pt-5">
         <div class="text-white">
-            <p>1107 NE 45th Street, Suite 340 | Seattle, WA 98105</p>
+            <p>1107 NE 45th Street, Suite 330 | Seattle, WA 98105</p>
             <p>(206) 783-4288 | office@namiwa.org</p>
             <p class="mt-2">© 2019 NAMI Washington</p>
         </div>

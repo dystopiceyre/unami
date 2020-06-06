@@ -950,8 +950,8 @@ class UnamiDatabase
      */
     /*function updateLocation($location, $location_id)
     {
-        $query = "UPDATE locations 
-                  SET 
+        $query = "UPDATE locations
+                  SET
                   location= :location
                   WHERE location_id = :location_id
                   LIMIT 1";
@@ -985,8 +985,6 @@ class UnamiDatabase
 
         $statement->execute();
     }
-
-
     /**
      * Edit a training date, location and deadline
      *
@@ -1310,6 +1308,24 @@ class UnamiDatabase
 
         //get result
         return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    function updateApprovalInfo($applicationId, $expiration, $leaderName, $leaderTitle, $type, $date, $check)
+    {
+        $sql = "UPDATE applicants SET member_expiration = :member_expiration, approver_name = :approver_name,
+                      approver_title = :approver_title, affiliate_type = :type, approval_date = :approval_date 
+                    WHERE applicant_id = :applicant_id";
+        $statement = $this->_dbh->prepare($sql);
+
+        $statement->bindParam(':member_expiration', $expiration, PDO::PARAM_STR);
+        $statement->bindParam(':approver_name', $leaderName, PDO::PARAM_STR);
+        $statement->bindParam(':approver_title', $leaderTitle, PDO::PARAM_STR);
+        $statement->bindParam(':type', $type, PDO::PARAM_STR);
+        $statement->bindParam(':approval_date', $date, PDO::PARAM_STR);
+        $statement->bindParam(':applicant_id', $applicationId, PDO::PARAM_INT);
+        $statement->bindParam(':check_number', $check, PDO::PARAM_INT);
+
+        $statement->execute();
     }
 
     /**

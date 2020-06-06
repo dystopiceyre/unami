@@ -54,7 +54,12 @@ CREATE TABLE applicants
     other_classes        MEDIUMTEXT,
     certified            MEDIUMTEXT,
     notes                MEDIUMTEXT,
+    affiliate_type       VARCHAR(50),
     member_expiration    VARCHAR(50),
+    approver_name        VARCHAR(50),
+    approver_title       VARCHAR(50),
+    approval_date        VARCHAR(50),
+    check_number         VARCHAR(50),
     info_id              INT                NOT NULL,
     FOREIGN KEY (app_type) references app_type (app_id),
     FOREIGN KEY (affiliate) references affiliates (affiliate_id),
@@ -186,14 +191,140 @@ CREATE TABLE PE
     FOREIGN KEY (applicant_id) references applicants (applicant_id)
 )
 
- CREATE TABLE C
+CREATE TABLE C
 (
-    C_id               INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    applicant_id       INT                NOT NULL,
-    why_facilitator    MEDIUMTEXT,
-    experience         MEDIUMTEXT,
-    description        MEDIUMTEXT,
+    C_id            INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    applicant_id    INT                NOT NULL,
+    why_facilitator MEDIUMTEXT,
+    experience      MEDIUMTEXT,
+    description     MEDIUMTEXT,
     FOREIGN KEY (applicant_id) references applicants (applicant_id)
+);
+
+
+/*training questions tables*/
+
+CREATE TABLE B_Qs
+(
+    q2  MEDIUMTEXT,
+    q3  MEDIUMTEXT,
+    q4  MEDIUMTEXT,
+    q7  MEDIUMTEXT,
+    q8  MEDIUMTEXT,
+    q9  MEDIUMTEXT,
+    q10 MEDIUMTEXT,
+    q11 MEDIUMTEXT,
+    q12 MEDIUMTEXT,
+    q13 MEDIUMTEXT
+);
+
+CREATE TABLE C_Qs
+(
+    q1  MEDIUMTEXT,
+    q2  MEDIUMTEXT,
+    q3  MEDIUMTEXT,
+    q4  MEDIUMTEXT,
+    q5  MEDIUMTEXT,
+    q6  MEDIUMTEXT,
+    q7  MEDIUMTEXT,
+    q8  MEDIUMTEXT,
+    q9  MEDIUMTEXT,
+    q10 MEDIUMTEXT
+);
+
+CREATE TABLE ETS_Qs
+(
+    q3 MEDIUMTEXT,
+    q4 MEDIUMTEXT,
+    q5 MEDIUMTEXT,
+    q6 MEDIUMTEXT,
+    q7 MEDIUMTEXT,
+    q8 MEDIUMTEXT,
+    q9 MEDIUMTEXT
+);
+
+CREATE TABLE F2F_Qs
+(
+    q1 MEDIUMTEXT,
+    q2 MEDIUMTEXT,
+    q3 MEDIUMTEXT,
+    q4 MEDIUMTEXT,
+    q5 MEDIUMTEXT,
+    q6 MEDIUMTEXT,
+    q7 MEDIUMTEXT,
+    q8 MEDIUMTEXT,
+    q9 MEDIUMTEXT,
+    q10 MEDIUMTEXT
+);
+
+CREATE TABLE FSG_Qs
+(
+    q1 MEDIUMTEXT,
+    q2 MEDIUMTEXT,
+    q3 MEDIUMTEXT,
+    q4 MEDIUMTEXT,
+    q5 MEDIUMTEXT,
+    q8 MEDIUMTEXT,
+    q9 MEDIUMTEXT
+);
+
+CREATE TABLE H_Qs
+(
+    q2 MEDIUMTEXT,
+    q3 MEDIUMTEXT,
+    q6 MEDIUMTEXT,
+    q7 MEDIUMTEXT,
+    q8 MEDIUMTEXT
+);
+
+CREATE TABLE IOOV_Qs
+(
+    q1 MEDIUMTEXT,
+    q2 MEDIUMTEXT,
+    q3 MEDIUMTEXT,
+    q4 MEDIUMTEXT,
+    q5 MEDIUMTEXT,
+    q6 MEDIUMTEXT,
+    q7 MEDIUMTEXT,
+    q8 MEDIUMTEXT,
+    q9 MEDIUMTEXT,
+    q10 MEDIUMTEXT
+);
+
+CREATE TABLE P2P_Qs
+(
+    q1 MEDIUMTEXT,
+    q4 MEDIUMTEXT,
+    q5 MEDIUMTEXT,
+    q6 MEDIUMTEXT
+);
+
+CREATE TABLE PE_Qs
+(
+    q1 MEDIUMTEXT,
+    q2 MEDIUMTEXT,
+    q3 MEDIUMTEXT,
+    q4 MEDIUMTEXT,
+    q5 MEDIUMTEXT,
+    q6 MEDIUMTEXT,
+    q7 MEDIUMTEXT,
+    q8 MEDIUMTEXT,
+    q9 MEDIUMTEXT,
+    q10 MEDIUMTEXT
+);
+
+CREATE TABLE S_Qs
+(
+    q1 MEDIUMTEXT,
+    q2 MEDIUMTEXT,
+    q3 MEDIUMTEXT,
+    q4 MEDIUMTEXT,
+    q5 MEDIUMTEXT,
+    q6 MEDIUMTEXT,
+    q7 MEDIUMTEXT,
+    q8 MEDIUMTEXT,
+    q9 MEDIUMTEXT,
+    q10 MEDIUMTEXT
 );
 
 /* application/training type tables */

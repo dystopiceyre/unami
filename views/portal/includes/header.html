@@ -158,6 +158,21 @@
             <span>Trainings</span></a>
         </li>
 
+        <!-- application questions -->
+        <li <check if="{{ @page == 'app_questions' }}">
+        <true>
+            class="nav-item sidebar-buttons active"
+        </true>
+        <false>
+            class="nav-item sidebar-buttons"
+        </false>
+    </check>>
+
+        <a class="nav-link" href="app_questions">
+            <i class="fas fa-edit"></i>
+            <span>Questions</span></a>
+        </li>
+
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 
