@@ -362,16 +362,17 @@ $f3->route('GET|POST /trainings', function ($f3) {
     $f3->set('locations', $db->getLocations());
 
     //delete a location
-    if (isset($_POST['deleteLocation1'])) {
+    if (isset($_POST['deleteLocation'])) {
         $location_id = $_POST['deleteLocationId'];
         $db->deleteLocation($location_id);
+        $db->updateLocation($location_id);
         $f3->reroute('/trainings');
     }
 
-    //update locations
-    /*if (isset($_POST['addNewLocation'])) {
+    /*//update locations
+    if (isset($_POST['addNewLocation']) && isset($_POST['deleteLocation'])) {
         $location = $_POST['addTrainingLocation'];
-        $location_id = $_POST['location_id'];
+        $location_id = $_POST['deleteLocationId'];
         $db->updateLocation($location, $location_id);
         $f3->reroute('/trainings');
     }*/

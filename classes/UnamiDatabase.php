@@ -944,28 +944,6 @@ class UnamiDatabase
         return $statement->execute();
     }
 
-    /**
-     * Updates the locations
-     * @param $location_id
-     */
-    /*function updateLocation($location, $location_id)
-    {
-        $query = "UPDATE locations 
-                  SET 
-                  location= :location
-                  WHERE location_id = :location_id
-                  LIMIT 1";
-
-        //prepare statement
-        $statement = $this->_dbh->prepare($query);
-
-        //bind parameters
-        $statement->bindParam(':location', $location, PDO::PARAM_STR);
-        $statement->bindParam(':location_id', $location_id, PDO::PARAM_INT);
-
-        $statement->execute();
-
-    }*/
 
     /**
      * Adds a new location
@@ -986,6 +964,35 @@ class UnamiDatabase
         $statement->execute();
     }
 
+    /**
+     * Updates the locations
+     * @param $location_id
+     */
+    function updateLocation($location_id)
+    {
+
+        $queryNum = "SET 
+                    @num := 0";
+        $query = "UPDATE locations 
+                  SET                   
+                  location_id = @num := (@num + 1)";
+        $query1 = "ALTER TABLE locations AUTO_INCREMENT = 1";
+
+        //prepare statement
+        $statementNum = $this->_dbh->prepare($queryNum);
+        $statement = $this->_dbh->prepare($query);
+        $statement1 = $this->_dbh->prepare($query1);
+
+        //bind parameters
+        $statement->bindParam(':location_id', $location_id, PDO::PARAM_INT);
+        $statement1->bindParam(':location_id', $location_id, PDO::PARAM_INT);
+
+
+        $statementNum->execute();
+        $statement->execute();
+        $statement1->execute();
+
+    }
 
     /**
      * Edit a training date, location and deadline
