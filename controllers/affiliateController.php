@@ -32,7 +32,7 @@ $f3->route('GET|POST /affiliate_review/@applicantId/@hashcode', function ($f3, $
     $applicant = $db->getApplicant($params['applicantId']);
 
     //if app is already approve/deny, no need to show it
-    if ($applicant['app_status'] != 1) {
+    if ($applicant['app_status'] == 0 || $applicant['app_status'] == 2) {
         $f3->reroute('/application_reviewed');
     }
 
@@ -72,6 +72,36 @@ $f3->route('GET /application_reviewed', function ($f3) {
     echo $view->render('views/affiliate/alreadyReviewed.html');
 });
 
+$f3->route('GET /affiliates/affiliate_to_dos/@applicantId', function ($f3) {
+    //TODO: figure out where is coming from so know how to get applicant id
+    //TODO: see if need to store info that is currently unused
+    global $db;
+    $f3->set('page_title', 'Affiliate To Dos');
+    if (isset($_POST['toDos'])) {
+        $expiration = $_POST['membershipExpiration'];
+        $check = $_POST['checkNumber'];
+        $leaderName = $_POST['leaderName'];
+        $leaderTitle = $_POST['leaderTitle'];
+        $type = $_POST['affiliateType'];
+//        $affiliateName = $_POST['affiliateName'];
+        $date = $_POST['date'];
+//        $email = $_POST['leaderEmail'];
+//        $phone = $_POST['phoneNumber'];
+
+        $db->updateApprovalInfo($applicantId, $expiration, $leaderName, $leaderTitle, $type, $date, $check);
+        $f3->reroute('/affiliates');
+    }
+
+    $view = new Template();
+    echo $view->render('views/affiliate/affiliateToDos.html');
+});
+
+$f3->route('GET /affiliates/affiliateToDos.pdf', function ($f3) {
+    $f3->set('page_title', 'Affiliate To Dos');
+    $view = new Template();
+    echo $view->render('views/affiliate/affiliateToDos.pdf');
+});
+
 //affiliates
 $f3->route('GET|POST /affiliates', function ($f3) {
 
@@ -109,12 +139,4 @@ $f3->route('GET|POST /affiliates', function ($f3) {
 
     $view = new Template();
     echo $view->render('views/portal/other/affiliates.html');
-});
-
-$f3->route('GET|POST /affiliates/affiliate_to_dos', function ($f3) {
-    $f3->set('page_title', 'Affiliate To Dos');
-    //TODO: add post variables and SQL function
-
-    $view = new Template();
-    echo $view->render('views/affiliate/affiliateToDos.html');
 });
