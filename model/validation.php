@@ -287,16 +287,51 @@ function validETSLongAnswersForm()
     return $isValid;
 }
 
-///**
-// * Checks if F2F long answers are valid
-// * @return bool whether or not the F2F long answers form is valid
-// */
-//function validF2FLongAnswersForm()
-//{
-//    global $f3;
-//    $isValid = true;
-//    return $isValid;
-//}
+/**
+* Checks if F2F long answers are valid
+* @return bool whether or not the F2F long answers form is valid
+*/
+function validF2FLongAnswersForm()
+{
+    global $f3;
+    $isValid = true;
+
+    if ($f3->get('convict') == 'yes') {
+        if (!validRequiredTextarea($f3->get('convictText'))) {
+            $isValid = false;
+            $f3->set("errors['convict']", "Please type something about your conviction");
+        }
+    }
+
+    if (!validRequiredTextarea($f3->get('relative'))) {
+        $isValid = false;
+        $f3->set("errors['relative']", "Please type which family member ");
+    }
+
+    if (!validRequiredTextarea($f3->get('diagnosis'))) {
+        $isValid = false;
+        $f3->set("errors['diagnosis']", "Please type something ");
+    }
+
+    if (!validRequiredTextarea('whyF2FTeacher')) {
+        $isValid = false;
+        $f3->set("errors['whyF2FTeacher']", "Please tell us why you would like to be a Family-To-Family teacher");
+    }
+
+    if ($f3->get('coTeach') == 'yes') {
+        if (!validRequiredTextarea($f3->get('coTeachWith'))) {
+            $isValid = false;
+            $f3->set("errors['coTeachWith']", "Please tell us who you would like to coteach with");
+        }
+    }
+    if ($f3->get('knowWhere') == 'yes') {
+        if (!validRequiredTextarea($f3->get('teachWhere'))) {
+            $isValid = false;
+            $f3->set("errors['teachWhere']", "Please tell us where you would like to teach");
+        }
+    }
+    return $isValid;
+}
 
 /**
  * Checks if B long answers are valid
@@ -512,11 +547,6 @@ function validPELongAnswersForm()
     if (empty($f3->get('availability'))) {
         $isValid = false;
         $f3->set("errors['availability']", "Please select your availability");
-    }
-
-    if (empty($f3->get('availableTime'))) {
-        $isValid = false;
-        $f3->set("errors['availableTime']", "Please select your available time");
     }
 
     if (!validRequiredTextarea($f3->get('degree'))) {
@@ -891,6 +921,20 @@ function validDeadline($date, $deadline)
     global $f3;
     if ($deadline >= $date) {
         $f3->set("errors['deadline']", "The deadline occurs after the training date");
+        return false;
+    }
+    return true;
+}
+
+/**
+ * @param $location
+ * @return bool
+ */
+function validLocation($location)
+{
+    global $f3;
+    if (!alphabetical($location) && empty(trim($location))) {
+        $f3->set("locationErrors['location']", "Please enter a valid location");
         return false;
     }
     return true;

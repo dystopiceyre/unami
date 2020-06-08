@@ -20,6 +20,10 @@ body {
     padding: 10px 20px;
 }
 
+.ml-lg-2 li {
+    list-style-type: circle;
+}
+
 #namiLogo {
     width: 75%;
     height: 75%;

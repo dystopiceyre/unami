@@ -174,7 +174,6 @@ CREATE TABLE PE
     applicant_id        INT                NOT NULL,
     conviction          MEDIUMTEXT,
     availability        VARCHAR(200),
-    available_time      VARCHAR(200),
     degree              VARCHAR(200),
     volunteer_exp       VARCHAR(200),
     fluent_language     VARCHAR (200),
@@ -190,6 +189,22 @@ CREATE TABLE PE
     recovery            MEDIUMTEXT,
     FOREIGN KEY (applicant_id) references applicants (applicant_id)
 )
+
+CREATE TABLE F2F
+(
+    F2F_id              INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    applicant_id        INT                NOT NULL,
+    conviction          MEDIUMTEXT,
+    first_degree_family CHAR(10),
+    relative            VARCHAR (200),
+    diagnosis           VARCHAR (200),
+    taken_f2f           VARCHAR(20),
+    why_want            MEDIUMTEXT,
+    coteach_with        VARCHAR(200),
+    teach_where         VARCHAR(200),
+    FOREIGN KEY (applicant_id) references applicants (applicant_id)
+
+);
 
 CREATE TABLE C
 (

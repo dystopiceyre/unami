@@ -8,7 +8,6 @@ class PELongAnswers
     private $_convict;
     private $_convictText;
     private $_availability;
-    private $_availableTime;
     private $_degree;
     private $_volunteerExperience;
     private $_fluentLanguage;
@@ -28,7 +27,6 @@ class PELongAnswers
      * @param $_convict
      * @param $_convictText
      * @param $_availability
-     * @param $_availableTime
      * @param $_degree
      * @param $_volunteerExperience
      * @param $_fluentLanguage
@@ -43,14 +41,15 @@ class PELongAnswers
      * @param $_supportiveExperienceText
      * @param $_recoveryText
      */
-    public function __construct($_convict, $_convictText, $_availability, $_availableTime, $_degree,
-                                $_volunteerExperience, $_fluentLanguage, $_youngAdult, $_describes, $_currentDiagnosis, $_disclosure,
-                                $_outlook, $_background, $_presenterText, $_frontLineExperienceText, $_supportiveExperienceText, $_recoveryText)
+    public function __construct($_convict, $_convictText, $_availability, $_degree, $_volunteerExperience,
+                                $_fluentLanguage, $_youngAdult, $_describes, $_currentDiagnosis, $_disclosure,
+                                $_outlook, $_background, $_presenterText, $_frontLineExperienceText,
+                                $_supportiveExperienceText, $_recoveryText)
     {
         $this->_convict = $_convict;
         $this->_convictText = $_convictText;
         $this->_availability = $_availability;
-        $this->_availableTime = $_availableTime;
+        //$this->_availableTime = $_availableTime;
         $this->_degree = $_degree;
         $this->_volunteerExperience = $_volunteerExperience;
         $this->_fluentLanguage = $_fluentLanguage;
@@ -117,18 +116,18 @@ class PELongAnswers
     /**
      * @return mixed
      */
-    public function getAvailableTime()
+    /*public function getAvailableTime()
     {
         return $this->_availableTime;
-    }
+    }*/
 
     /**
      * @param mixed $availableTime
      */
-    public function setAvailableTime($availableTime)
+    /*public function setAvailableTime($availableTime)
     {
         $this->_availableTime = $availableTime;
-    }
+    }*/
 
     /**
      * @return mixed
