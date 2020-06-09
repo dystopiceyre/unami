@@ -1422,6 +1422,8 @@ class UnamiDatabase
         define('FSG', 1);
         define('P2P', 2);
         define('ETS', 3);
+        define('C',4);
+        define('IOOV',5);
         define('PE', 6);
         define('F2F', 7);
         define('H', 8);
@@ -1445,7 +1447,18 @@ class UnamiDatabase
             $query = "SELECT *
                       FROM ETS
                       WHERE applicant_id = :applicant_id";
-        } else if ($application_type == PE) {
+        }else if($application_type == C) {
+            //define query
+            $query = "SELECT *
+                      FROM C 
+                      WHERE applicant_id = :applicant_id";
+        }else if($application_type == IOOV){
+            //define query
+            $query = "SELECT *
+                      FROM IOOV
+                      WHERE applicant_id = :applicant_id";
+        }
+        else if ($application_type == PE) {
             $query = "SELECT *
              FROM PE
              WHERE applicant_id = :applicant_id";
