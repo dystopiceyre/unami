@@ -368,15 +368,18 @@ $f3->route('GET|POST /confirmation', function($f3)
         case 'providerEducation':
             $db->insertPEAnswers($lastId, $_SESSION['LongAnswer']);
             break;
+
+        case 'familyToFamily':
+            $db->insertF2FAnswers($lastId, $_SESSION['LongAnswer']);
+            break;
+
         case 'inOurOwnVoice':
             $db->insertIOOVAnswers($lastId, $_SESSION['LongAnswer']);
             break;
         case 'connection':
             $db->insertCAnswers($lastId, $_SESSION['LongAnswer']);
             break;
-//        case 'providerEducation':
-//            $db->insertETSAnswers($lastId, $_SESSION['LongAnswer']);
-//            break;
+
 
     }
 

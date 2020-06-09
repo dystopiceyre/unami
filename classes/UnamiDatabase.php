@@ -371,14 +371,17 @@ class UnamiDatabase
     }
 
 
-
+    /**
+     * @param $applicantId
+     * @param $PEAnswers
+     */
     function insertPEAnswers($applicantId, $PEAnswers)
     {
         $this->updateAppType(6, $applicantId);
-        $sql = "INSERT INTO PE(applicant_id, conviction, availability, available_time, degree, volunteer_exp, 
+        $sql = "INSERT INTO PE (applicant_id, conviction, availability, degree, volunteer_exp, 
                 fluent_language, young_adult, describes, current_diagnosis, self_disclosure, positive_outlook, 
                 background_check, why_want, frontLine_experience, support_experience, recovery)
-                VALUES(:applicant_id, :conviction, :availability, :available_time, :degree, :volunteer_exp, 
+                VALUES(:applicant_id, :conviction, :availability, :degree, :volunteer_exp, 
                 :fluent_language, :young_adult, :describes, :current_diagnosis, :self_disclosure, :positive_outlook, 
                 :background_check, :why_want, :frontLine_experience, :support_experience, :recovery)";
         $statement = $this->_dbh->prepare($sql);
@@ -387,7 +390,6 @@ class UnamiDatabase
         $statement->bindParam(':applicant_id', $applicantId, PDO::PARAM_INT);
         $statement->bindParam(':conviction', $PEAnswers->getConvictText(), PDO::PARAM_STR);
         $statement->bindParam(':availability', $PEAnswers->getAvailability(), PDO::PARAM_STR);
-        $statement->bindParam(':available_time', $PEAnswers->getAvailableTime(), PDO::PARAM_STR);
         $statement->bindParam(':degree', $PEAnswers->getDegree(), PDO::PARAM_STR);
         $statement->bindParam(':volunteer_exp', $PEAnswers->getVolunteerExperience(), PDO::PARAM_STR);
         $statement->bindParam(':fluent_language', $PEAnswers->getFluentLanguage(), PDO::PARAM_STR);
@@ -406,7 +408,37 @@ class UnamiDatabase
         $statement->execute();
     }
 
+    /**
+     * @param $applicantId
+     * @param $F2FAnswers
+     */
+    function insertF2FAnswers($applicantId, $F2FAnswers)
+    {
+        $this->updateAppType(7, $applicantId);
 
+        //define query
+        $sql = "INSERT INTO F2F(applicant_id, conviction, first_degree_family, your_relative, diagnosis, taken_f2f, 
+                why_want, coteach_with, teach_where) VALUES(:applicant_id, :conviction, :first_degree_family, 
+                :your_relative, :diagnosis, :taken_f2f, :why_want, :coteach_with, :teach_where)";
+
+        //prepare statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //bind params
+        $statement->bindParam(':applicant_id', $applicantId, PDO::PARAM_INT);
+        $statement->bindParam(':conviction', $F2FAnswers->getConvictText(), PDO::PARAM_STR);
+        $statement->bindParam(':first_degree_family', $F2FAnswers->getFirstDegreeFamily(), PDO::PARAM_STR);
+        $statement->bindParam(':your_relative', $F2FAnswers->getRelative(), PDO::PARAM_STR);
+        $statement->bindParam(':diagnosis', $F2FAnswers->getDiagnosis(), PDO::PARAM_STR);
+        $statement->bindParam(':taken_f2f', $F2FAnswers->getTakenF2F(), PDO::PARAM_STR);
+        $statement->bindParam(':why_want', $F2FAnswers->getWhyF2FTeacher(), PDO::PARAM_STR);
+        $statement->bindParam(':coteach_with', $F2FAnswers->getCoTeachWith(), PDO::PARAM_STR);
+        $statement->bindParam(':teach_where', $F2FAnswers->getTeachWhere(), PDO::PARAM_STR);
+
+        //execute statement
+        $statement->execute();
+
+    }
 
     function insertHAnswers($applicantId, $HAnswers)
     {
@@ -1391,6 +1423,7 @@ class UnamiDatabase
         define('P2P', 2);
         define('ETS', 3);
         define('PE', 6);
+        define('F2F', 7);
         define('H', 8);
         define('B', 9);
 
@@ -1412,6 +1445,14 @@ class UnamiDatabase
             $query = "SELECT *
                       FROM ETS
                       WHERE applicant_id = :applicant_id";
+        } else if ($application_type == PE) {
+            $query = "SELECT *
+             FROM PE
+             WHERE applicant_id = :applicant_id";
+        } else if ($application_type == F2F) {
+            $query = "SELECT *
+             FROM F2F
+             WHERE applicant_id = :applicant_id";
         } else if ($application_type == B) {
             //define query
             $query = "SELECT *
@@ -1420,10 +1461,6 @@ class UnamiDatabase
         } else if ($application_type == H) {
             $query = "SELECT *
              FROM H
-             WHERE applicant_id = :applicant_id";
-        } else if ($application_type == PE) {
-            $query = "SELECT *
-             FROM PE
              WHERE applicant_id = :applicant_id";
         }
 

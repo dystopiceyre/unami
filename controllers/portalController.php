@@ -369,14 +369,6 @@ $f3->route('GET|POST /trainings', function ($f3) {
         $f3->reroute('/trainings');
     }
 
-    /*//update locations
-    if (isset($_POST['addNewLocation']) && isset($_POST['deleteLocation'])) {
-        $location = $_POST['addTrainingLocation'];
-        $location_id = $_POST['deleteLocationId'];
-        $db->updateLocation($location, $location_id);
-        $f3->reroute('/trainings');
-    }*/
-
     //add training
     if (isset($_POST['add'])) {
         //insert
@@ -403,8 +395,11 @@ $f3->route('GET|POST /trainings', function ($f3) {
     //add a location
     if (isset($_POST['addNewLocation'])) {
         $location = $_POST['addTrainingLocation'];
-        $db->addANewLocation($location);
-        $f3->reroute('/trainings');
+
+        if (validLocation($location)) {
+            $db->addANewLocation($location);
+            $f3->reroute('/trainings');
+        }
     }
 
     //edit training

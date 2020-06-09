@@ -376,7 +376,13 @@
                                         <label class="sr-only" for="addTrainingLocation">Add A New Training Location</label>
                                         <input type="text"
                                                class="form-control" id="addTrainingLocation" rows="1"
-                                               name="addTrainingLocation" >
+                                               name="addTrainingLocation" required value=" ">
+                                        <!--&lt;!&ndash; location error messages &ndash;&gt;
+                                        <div class="row justify-content-center text-danger">
+                                            <check if="{{ isset(@locationErrors['location']) }}">
+                                                <p>{{ @locationErrors['location'] }}</p>
+                                            </check>
+                                        </div>-->
                                     </div>
                                 </div>
                             </div>

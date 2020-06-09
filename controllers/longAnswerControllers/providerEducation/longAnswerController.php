@@ -7,7 +7,7 @@ if(!empty($_POST))
     $convict = $_POST['convict'];
     $convictText = $_POST['convictText'];
     $availability = $_POST['availability'];
-    $availableTime = $_POST['availableTime'];
+    //$availableTime = $_POST['availableTime'];
     $degree = $_POST['degree'];
     $volunteerExperience = $_POST['volunteerExperience'];
     $fluentLanguage = $_POST['fluentLanguage'];
@@ -27,9 +27,9 @@ if(!empty($_POST))
         $convictText = 'N/A';
     }
 
-    if (isset($_POST['availability']) && isset($_POST['availableTime']) ) {
+    if (isset($_POST['availability'])) {
         $availability = implode(", ", $_POST['availability']);
-        $availableTime = implode( ", ", $_POST['availableTime']);
+        /*$availableTime = implode( ", ", $_POST['availableTime']);*/
 
     }
 
@@ -41,7 +41,7 @@ if(!empty($_POST))
     $f3->set('convict', $convict);
     $f3->set('convictText', $convictText);
     $f3->set('availability', $availability);
-    $f3->set('availableTime', $availableTime);
+    //$f3->set('availableTime', $availableTime);
     $f3->set('degree', $degree);
     $f3->set('volunteerExperience', $volunteerExperience);
     $f3->set('fluentLanguage', $fluentLanguage);
@@ -56,7 +56,7 @@ if(!empty($_POST))
     $f3->set('supportiveExperienceText', $supportiveExperienceText);
     $f3->set('recoveryText', $recoveryText);
 
-    $_SESSION['LongAnswer'] =  new PELongAnswers($convict, $convictText, $availability, $availableTime, $degree, $volunteerExperience,
+    $_SESSION['LongAnswer'] =  new PELongAnswers($convict, $convictText, $availability, $degree, $volunteerExperience,
          $fluentLanguage, $youngAdult, $describes, $currentDiagnosis, $disclosure, $outlook, $background, $presenterText,
         $frontLineExperienceText, $supportiveExperienceText, $recoveryText);
 
@@ -73,7 +73,7 @@ if(!empty($_POST))
 
 if(!isset($_SESSION['LongAnswer']))
 {
-    $_SESSION['LongAnswer'] = new PELongAnswers( '', '', '', '', '', '',
+    $_SESSION['LongAnswer'] = new PELongAnswers( '', '', '', '', '',
     '', '', '', '', '', '', '', '',
     '', '', '');
 }

@@ -1,6 +1,5 @@
 <include href="views/forms/includes/header.html"/>
 
-
 <div class="container p-3">
     <h6 class="">
         <a href="/unami" class="text-decoration-none mt-0 pt-0 text-primary">
@@ -162,7 +161,7 @@
                             affiliate</strong> is required at the time of registration. If you need to cancel after
                             being accepted, notify Michelle Strait at the state office, 206-971-1598 or
                             <a href="mailto:mstrait@namiwa.org">mstrait@namiwa.org</a>, no later than
-                            March 27, 2020 so we can fill your spot, or your affiliate will lose its $50 registration
+                            {{ date('F j, Y', strtotime(@SESSION.training_info['deadline'])) }} so we can fill your spot, or your affiliate will lose its $50 registration
                             deposit. Since this is a team program, cancelled spots can be filled with another member
                             of the Affiliate who would fulfill the team spot.
                         </h5>
