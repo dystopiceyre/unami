@@ -369,7 +369,7 @@ $f3->route('GET|POST /confirmation', function($f3)
             $db->insertPEAnswers($lastId, $_SESSION['LongAnswer']);
             break;
 
-        case 'familyToFamily':
+        case 'family2family':
             $db->insertF2FAnswers($lastId, $_SESSION['LongAnswer']);
             break;
 

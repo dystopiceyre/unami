@@ -7,7 +7,6 @@ if(!empty($_POST))
     $convict = $_POST['convict'];
     $convictText = $_POST['convictText'];
     $availability = $_POST['availability'];
-    //$availableTime = $_POST['availableTime'];
     $degree = $_POST['degree'];
     $volunteerExperience = $_POST['volunteerExperience'];
     $fluentLanguage = $_POST['fluentLanguage'];
@@ -29,7 +28,6 @@ if(!empty($_POST))
 
     if (isset($_POST['availability'])) {
         $availability = implode(", ", $_POST['availability']);
-        /*$availableTime = implode( ", ", $_POST['availableTime']);*/
 
     }
 
@@ -41,7 +39,6 @@ if(!empty($_POST))
     $f3->set('convict', $convict);
     $f3->set('convictText', $convictText);
     $f3->set('availability', $availability);
-    //$f3->set('availableTime', $availableTime);
     $f3->set('degree', $degree);
     $f3->set('volunteerExperience', $volunteerExperience);
     $f3->set('fluentLanguage', $fluentLanguage);
