@@ -188,7 +188,7 @@ CREATE TABLE PE
     support_experience  MEDIUMTEXT,
     recovery            MEDIUMTEXT,
     FOREIGN KEY (applicant_id) references applicants (applicant_id)
-)
+);
 
 CREATE TABLE F2F
 (
@@ -351,19 +351,6 @@ CREATE TABLE app_type
 );
 
 -- active 1, inactive 0
--- CREATE TABLE app_type_info
--- (
---     info_id  INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
---     date     VARCHAR(200),
---     location VARCHAR(200),
---     deadline VARCHAR(200),
---     app_type INT,
---     date2    VARCHAR(200),
---     active   INT,
---     FOREIGN KEY (app_type) references app_type (app_id)
--- );
--- active 1, inactive 0
---new table with 3 dates
 CREATE TABLE app_type_info
 (
     info_id  INT AUTO_INCREMENT NOT NULL PRIMARY KEY,

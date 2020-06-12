@@ -311,6 +311,7 @@ class UnamiDatabase
         //execute SQL statement
         $statement->execute();
     }
+
     /**
      * Inserts the C long answer's into the DB
      * @param $applicantId int last applicant inserted
@@ -319,7 +320,7 @@ class UnamiDatabase
     function insertCAnswers($applicantId, $CAnswers)
     {
         $this->updateAppType(4, $applicantId);
-        $sql ="INSERT INTO C(applicant_id, why_facilitator, experience, description)
+        $sql = "INSERT INTO C(applicant_id, why_facilitator, experience, description)
             VALUES (:applicant_id, :why_facilitator, :experience, :description)";
 
         //save prepared statement
@@ -353,20 +354,20 @@ class UnamiDatabase
         //assign values: already in $IIOVAnswers
         //bind params
         $statement->bindParam(':applicant_id', $applicantId, PDO::PARAM_INT);
-        $statement->bindParam(':conviction',  $IOOVAnswers->getConvictText(), PDO::PARAM_STR);
+        $statement->bindParam(':conviction', $IOOVAnswers->getConvictText(), PDO::PARAM_STR);
         $statement->bindParam(':degree', $IOOVAnswers->getDegree(), PDO::PARAM_STR);
         $statement->bindParam(':volunteer_exp', $IOOVAnswers->getVolunteerExperience(), PDO::PARAM_STR);
         $statement->bindParam(':diagnose', $IOOVAnswers->getDiagnose(), PDO::PARAM_STR);
         $statement->bindParam(':diagnose_time', $IOOVAnswers->getDiagnoseTime(), PDO::PARAM_STR);
-        $statement->bindParam(':current_diagnosis',$IOOVAnswers->getCurrentDiagnosis(), PDO::PARAM_STR);
+        $statement->bindParam(':current_diagnosis', $IOOVAnswers->getCurrentDiagnosis(), PDO::PARAM_STR);
         $statement->bindParam(':hospitalized', $IOOVAnswers->getRecently(), PDO::PARAM_STR);
         $statement->bindParam(':speaking_exp', $IOOVAnswers->getSpeakingExperience(), PDO::PARAM_STR);
         $statement->bindParam(':comfortable', $IOOVAnswers->getComfortable(), PDO::PARAM_INT);
         $statement->bindParam(':transportation', $IOOVAnswers->getTransportation(), PDO::PARAM_STR);
         $statement->bindParam(':not_present', $IOOVAnswers->getNotWantPresent(), PDO::PARAM_STR);
-        $statement->bindParam(':why_presenter',$IOOVAnswers->getWhyPresenter(), PDO::PARAM_STR);
+        $statement->bindParam(':why_presenter', $IOOVAnswers->getWhyPresenter(), PDO::PARAM_STR);
         $statement->bindParam(':time_recovered', $IOOVAnswers->getStayedRecover(), PDO::PARAM_STR);
-        $statement->bindParam(':recovery',$IOOVAnswers->getRecovery(), PDO::PARAM_STR);
+        $statement->bindParam(':recovery', $IOOVAnswers->getRecovery(), PDO::PARAM_STR);
         $statement->execute();
     }
 
@@ -1354,8 +1355,9 @@ class UnamiDatabase
 
     function updateApprovalInfo($applicationId, $expiration, $leaderName, $leaderTitle, $type, $date, $check)
     {
-        $sql = "UPDATE applicants SET member_expiration = :member_expiration, approver_name = :approver_name,
-                      approver_title = :approver_title, affiliate_type = :type, approval_date = :approval_date 
+        $sql = "UPDATE applicants SET app_status = 2, member_expiration = :member_expiration, 
+                      approver_name = :approver_name, approver_title = :approver_title, affiliate_type = :type, 
+                      approval_date = :date, check_number = :check
                     WHERE applicant_id = :applicant_id";
         $statement = $this->_dbh->prepare($sql);
 
@@ -1363,9 +1365,9 @@ class UnamiDatabase
         $statement->bindParam(':approver_name', $leaderName, PDO::PARAM_STR);
         $statement->bindParam(':approver_title', $leaderTitle, PDO::PARAM_STR);
         $statement->bindParam(':type', $type, PDO::PARAM_STR);
-        $statement->bindParam(':approval_date', $date, PDO::PARAM_STR);
+        $statement->bindParam(':date', $date, PDO::PARAM_STR);
         $statement->bindParam(':applicant_id', $applicationId, PDO::PARAM_INT);
-        $statement->bindParam(':check_number', $check, PDO::PARAM_INT);
+        $statement->bindParam(':check', $check, PDO::PARAM_INT);
 
         $statement->execute();
     }
@@ -1422,8 +1424,8 @@ class UnamiDatabase
         define('FSG', 1);
         define('P2P', 2);
         define('ETS', 3);
-        define('C',4);
-        define('IOOV',5);
+        define('C', 4);
+        define('IOOV', 5);
         define('PE', 6);
         define('F2F', 7);
         define('H', 8);
@@ -1447,18 +1449,17 @@ class UnamiDatabase
             $query = "SELECT *
                       FROM ETS
                       WHERE applicant_id = :applicant_id";
-        }else if($application_type == C) {
+        } else if ($application_type == C) {
             //define query
             $query = "SELECT *
                       FROM C 
                       WHERE applicant_id = :applicant_id";
-        }else if($application_type == IOOV){
+        } else if ($application_type == IOOV) {
             //define query
             $query = "SELECT *
                       FROM IOOV
                       WHERE applicant_id = :applicant_id";
-        }
-        else if ($application_type == PE) {
+        } else if ($application_type == PE) {
             $query = "SELECT *
              FROM PE
              WHERE applicant_id = :applicant_id";
