@@ -86,7 +86,7 @@ function validPersonalInfoForm()
         $f3->set("errors['email']", "Please enter a valid email address");
     }
 
-    if ($f3->get('preference') != 'phone' && $f3->get('preference') != 'email') {
+    if ($f3->get('preference') != 'phone' && $f3->get('preference') != 'email' && $f3->get('preference') != 'both') {
         $isValid = false;
         $f3->set("errors['preference']", "Please choose a best way to contact you");
     }

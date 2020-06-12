@@ -111,8 +111,8 @@
 
                             <div class="mb-2">
                                 <h5 class="mb-0"><label>What is your current diagnosis?</label></h5>
-                                <textarea class="form-control" rows="4" cols="50" name="currentDiagnosis"> {{ $_SESSION['LongAnswer']->getCurrentDiagnosis() }}
-                                    </textarea>
+                                <textarea name="currentDiagnosis" class="form-control">
+                                    {{ $_SESSION['LongAnswer']->getCurrentDiagnosis() }}</textarea>
                             </div>
                         </div>
 

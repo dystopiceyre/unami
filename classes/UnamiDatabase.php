@@ -1457,8 +1457,7 @@ class UnamiDatabase
             $query = "SELECT *
                       FROM IOOV
                       WHERE applicant_id = :applicant_id";
-        }
-        else if ($application_type == PE) {
+        } else if ($application_type == PE) {
             $query = "SELECT *
              FROM PE
              WHERE applicant_id = :applicant_id";

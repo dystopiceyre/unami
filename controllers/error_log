@@ -6,3 +6,7 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home3/mkariuki/public_html/nami/unami/controllers/formsController.php on line 12
+[11-Jun-2020 19:45:19 UTC] PHP Fatal error:  Uncaught Error: Call to a member function route() on null in /home/imedinag/public_html/355/unami/controllers/portalController.php:12
+Stack trace:
+#0 {main}
+  thrown in /home/imedinag/public_html/355/unami/controllers/portalController.php on line 12

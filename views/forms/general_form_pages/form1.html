@@ -211,7 +211,9 @@
                             <label><input class="mt-1 ml-1" type="radio" name="preference" value="phone" required
                                 <check if="{{$_SESSION['PersonalInfo']->getPreference() === 'phone'}}">checked</check>> Phone</label>
                             <label><input class="ml-3" type="radio" name="preference" value="email" required
-                                <check if="{{$_SESSION['PersonalInfo']->getPreference() === 'email'}}">checked</check>> Email</label>
+                            <check if="{{$_SESSION['PersonalInfo']->getPreference() === 'email'}}">checked</check>> Email</label>
+                            <label><input class="ml-3" type="radio" name="preference" value="both" required
+                                <check if="{{$_SESSION['PersonalInfo']->getPreference() === 'both'}}">checked</check>> both</label>
                         </div>
                     </div>
                     <!-- best way to contact & email -->
