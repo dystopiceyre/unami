@@ -5,6 +5,93 @@
  */
 class F2FLongAnswers
 {
+    /**
+     * @return mixed
+     */
+    public function getConvict()
+    {
+        return $this->_convict;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getConvictText()
+    {
+        return $this->_convictText;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFirstDegreeFamily()
+    {
+        return $this->_firstDegreeFamily;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRelative()
+    {
+        return $this->_relative;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDiagnosis()
+    {
+        return $this->_diagnosis;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTakenF2F()
+    {
+        return $this->_takenF2F;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWhyF2FTeacher()
+    {
+        return $this->_whyF2FTeacher;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCoTeach()
+    {
+        return $this->_coTeach;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCoTeachWith()
+    {
+        return $this->_coTeachWith;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getKnowWhere()
+    {
+        return $this->_knowWhere;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTeachWhere()
+    {
+        return $this->_teachWhere;
+    }
 
     private $_convict;
     private $_convictText;
@@ -50,180 +137,5 @@ class F2FLongAnswers
         $this->_teachWhere = $_teachWhere;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getConvict()
-    {
-        return $this->_convict;
-    }
-
-    /**
-     * @param mixed $convict
-     */
-    public function setConvict($convict)
-    {
-        $this->_convict = $convict;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getConvictText()
-    {
-        return $this->_convictText;
-    }
-
-    /**
-     * @param mixed $convictText
-     */
-    public function setConvictText($convictText)
-    {
-        $this->_convictText = $convictText;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFirstDegreeFamily()
-    {
-        return $this->_firstDegreeFamily;
-    }
-
-    /**
-     * @param mixed $firstDegreeFamily
-     */
-    public function setFirstDegreeFamily($firstDegreeFamily)
-    {
-        $this->_firstDegreeFamily = $firstDegreeFamily;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getRelative()
-    {
-        return $this->_relative;
-    }
-
-    /**
-     * @param mixed $relative
-     */
-    public function setRelative($relative)
-    {
-        $this->_relative = $relative;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDiagnosis()
-    {
-        return $this->_diagnosis;
-    }
-
-    /**
-     * @param mixed $diagnosis
-     */
-    public function setDiagnosis($diagnosis)
-    {
-        $this->_diagnosis = $diagnosis;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTakenF2F()
-    {
-        return $this->_takenF2F;
-    }
-
-    /**
-     * @param mixed $takenF2F
-     */
-    public function setTakenF2F($takenF2F)
-    {
-        $this->_takenF2F = $takenF2F;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getWhyF2FTeacher()
-    {
-        return $this->_whyF2FTeacher;
-    }
-
-    /**
-     * @param mixed $whyF2FTeacher
-     */
-    public function setWhyF2FTeacher($whyF2FTeacher)
-    {
-        $this->_whyF2FTeacher = $whyF2FTeacher;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCoTeach()
-    {
-        return $this->_coTeach;
-    }
-
-    /**
-     * @param mixed $coTeach
-     */
-    public function setCoTeach($coTeach)
-    {
-        $this->_coTeach = $coTeach;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCoTeachWith()
-    {
-        return $this->_coTeachWith;
-    }
-
-    /**
-     * @param mixed $coTeachWith
-     */
-    public function setCoTeachWith($coTeachWith)
-    {
-        $this->_coTeachWith = $coTeachWith;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getKnowWhere()
-    {
-        return $this->_knowWhere;
-    }
-
-    /**
-     * @param mixed $knowWhere
-     */
-    public function setKnowWhere($knowWhere)
-    {
-        $this->_knowWhere = $knowWhere;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTeachWhere()
-    {
-        return $this->_teachWhere;
-    }
-
-    /**
-     * @param mixed $teachWhere
-     */
-    public function setTeachWhere($teachWhere)
-    {
-        $this->_teachWhere = $teachWhere;
-    }
 
 }
