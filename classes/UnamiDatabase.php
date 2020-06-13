@@ -1769,4 +1769,77 @@ class UnamiDatabase
         $statement->execute();
     }
 
+    //Questions
+    function getBQs()
+    {
+        $sql = "SELECT * FROM B_Qs";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    function getCQs()
+    {
+        $sql = "SELECT * FROM C_Qs";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    function getETSQs()
+    {
+        $sql = "SELECT * FROM ETS_Qs";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    function getF2FQs()
+    {
+        $sql = "SELECT * FROM F2F_Qs";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    function getFSGQs()
+    {
+        $sql = "SELECT * FROM FSG_Qs";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    function getHQs()
+    {
+        $sql = "SELECT * FROM H_Qs";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    function getIOOVQs()
+    {
+        $sql = "SELECT * FROM IOOV_Qs";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    function getP2PQs()
+    {
+        $sql = "SELECT * FROM P2P_Qs";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    function getPEQs()
+    {
+        $sql = "SELECT * FROM PE_Qs";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
 }
