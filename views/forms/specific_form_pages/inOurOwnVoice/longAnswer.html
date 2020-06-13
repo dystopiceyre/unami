@@ -71,8 +71,8 @@
 
                             <div class="form-row mt-3 ml-2 none" id="convictText">
                                 <label>If yes, explain the issue and the current status in detail
-                                    <textarea class="form-control" rows="4" cols="50" name="convictText">{{ $_SESSION['LongAnswer']->getConvictText() }}
-                                    </textarea>
+                                    <textarea class="form-control" rows="4" cols="50" name="convictText"
+                                    >{{ $_SESSION['LongAnswer']->getConvictText() }}</textarea>
                                 </label>
                             </div>
                         </div>
@@ -111,8 +111,7 @@
 
                             <div class="mb-2">
                                 <h5 class="mb-0"><label>What is your current diagnosis?</label></h5>
-                                <textarea name="currentDiagnosis" class="form-control">
-                                    {{ $_SESSION['LongAnswer']->getCurrentDiagnosis() }}</textarea>
+                                <textarea name="currentDiagnosis" class="form-control">{{ $_SESSION['LongAnswer']->getCurrentDiagnosis() }}</textarea>
                             </div>
                         </div>
 
@@ -225,7 +224,7 @@
                             <!--Question 11-->
                         <div class="form-group col-md-10 mb-2">
                             <h5>Please share your views about medicine and recovery.</h5>
-                            <textarea name="recovery" class="form-control" id="recovery" >{{ $_SESSION['LongAnswer']->getRecovery() }}</textarea>
+                            <textarea name="recovery" class="form-control" id="recovery">{{ $_SESSION['LongAnswer']->getRecovery() }}</textarea>
                         </div>
 
                         </div>
