@@ -270,8 +270,7 @@
                             <!--Question 5f-->
                             <div class="form-group col-md-10">
                                 <h5 class="mb-0"><label for="currentDiagnosis">What is your, or your family member’s, current diagnosis?</label></h5>
-                                <textarea name="currentDiagnosis" class="form-control" id="currentDiagnosis"
-                                          rows="4" cols="50">{{ $_SESSION['LongAnswer']->getCurrentDiagnosis() }}</textarea>
+                                <textarea name="currentDiagnosis" class="form-control" id="currentDiagnosis" rows="3" cols="40">{{ $_SESSION['LongAnswer']->getCurrentDiagnosis() }}</textarea>
                             </div>
 
                             <!--Question 5g-->
@@ -349,27 +348,22 @@
 
                         <!--Question 6a-->
                         <div class="form-group col-md-10">
-                            <h5><label for="presenter"> Why do you want to be a NAMI Provider Education Presenter?</label> </h5>
-                                <textarea name="presenterText" class="form-control" id="presenter" rows="4" cols="50" >
-                                    {{ $_SESSION['LongAnswer']->getPresenterText() }}
-                                </textarea>
-
-                            <h5><label for="frontLineExperience"> What has been your experience working with frontLine behavioral healthcare staff,
+                            <h5 class="mb-0"><label for="presenter">Why do you want to be a NAMI Provider Education Presenter?</label></h5>
+                                <textarea name="presenterText" class="form-control align-left" id="presenter" rows="3" cols="40">{{ $_SESSION['LongAnswer']->getPresenterText() }}</textarea>
+                        </div>
+                        <div class="form-group col-md-10">
+                            <h5 class="mb-0"><label for="frontLineExperience"> What has been your experience working with frontline behavioral healthcare staff,
                                 and how do you feel Provider Education can benefit them?</label></h5>
-                                <textarea name="frontLineExperienceText" class="form-control" id="frontLineExperience" rows="4" cols="50">
-                                    {{ $_SESSION['LongAnswer']->getFrontLineExperienceText() }}
-                                </textarea>
-
-                            <h5><label for="supportiveExperience"> What can you share about your experience that can help frontLine staff who come in
+                                <textarea name="frontLineExperienceText" class="form-control" id="frontLineExperience" rows="3" cols="40">{{ $_SESSION['LongAnswer']->getFrontLineExperienceText() }}</textarea>
+                        </div>
+                        <div class="form-group col-md-10">
+                            <h5 class="mb-0"><label for="supportiveExperience"> What can you share about your experience that can help frontLine staff who come in
                                 contact with people with behavioral health conditions create a more supportive environment? </label></h5>
-                                <textarea name="supportiveExperienceText" class="form-control" id="supportiveExperience" rows="4" cols="50">
-                                    {{ $_SESSION['LongAnswer']->getSupportiveExperienceText() }}
-                                </textarea>
-
-                            <h5><label for="recovery"> What does recovery in relation to mental illness mean to you? </label></h5>
-                                <textarea name="recoveryText" class="form-control" rows="4" cols="50" id="recovery">
-                                    {{ $_SESSION['LongAnswer']->getRecoveryText() }}
-                                </textarea>
+                                <textarea name="supportiveExperienceText" class="form-control align-text-top" id="supportiveExperience" rows="3" cols="40">{{ $_SESSION['LongAnswer']->getSupportiveExperienceText() }}</textarea>
+                        </div>
+                        <div class="form-group col-md-10">
+                            <h5 class="mb-0"><label for="recovery"> What does recovery in relation to mental illness mean to you? </label></h5>
+                                <textarea name="recoveryText" class="form-control" rows="3" cols="40" id="recovery">{{ $_SESSION['LongAnswer']->getRecoveryText() }}</textarea>
                         </div>
 
                     </div>
