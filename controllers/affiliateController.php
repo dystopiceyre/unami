@@ -2,7 +2,11 @@
 /**
  * Controller for affiliate routes
  *
- * @author Jason Engelbrecht, Max Lee, & Olivia Ringhiser
+ * @author Jason Engelbrecht
+ * @author Max Lee
+ * @author Olivia Ringhiser
+ * @author Imelda Medina
+ * @author Maureen Kariuki
  * Date: 11/18/2019
  */
 global $f3;

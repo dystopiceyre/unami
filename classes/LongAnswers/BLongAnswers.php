@@ -1,7 +1,8 @@
 <?php
 
 /**
- * Class BLongAnswers
+ * Class BLongAnswers Holds all the answers from the B long answers
+ * @author Olivia Ringhiser
  */
 class BLongAnswers
 {

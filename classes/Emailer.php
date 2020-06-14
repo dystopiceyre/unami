@@ -6,6 +6,10 @@ require "/home/$user/config_email.php";
 
 /**
  * Class Emailer Handles using SwiftMailer to email the applicant and affiliate
+ * @author Maxwell Lee
+ * @author Trang Luu
+ * @author Olivia Ringhiser
+ * Date: 6/14/2020
  */
 class Emailer
 {

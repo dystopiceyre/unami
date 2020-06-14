@@ -1,7 +1,8 @@
 <?php
 
 /**
- * Class HLongAnswers
+ * Class HLongAnswers Holds all the answers from the H long answers
+ * @author Olivia Ringhiser
  */
 class HLongAnswers
 {
