@@ -8,13 +8,14 @@
 
     <nav class="navbar navbar-expand-md">
         <ul class="navbar-nav col-md-6">
-            <a class="nav-link dropdown-toggle text-lg font-weight-bold text-primary" href="#" id="navbardrop" data-toggle="dropdown">
-                Trainings
+            <a class="nav-link dropdown-toggle text-lg font-weight-bold text-primary" href="#" id="navbardrop"
+               data-toggle="dropdown">
+                Jump to...
             </a>
             <li class="nav-item dropdown">
                 <div class="dropdown-menu font-weight-bold">
                     <repeat group="{{ @trainings }}" value="{{ @training }}">
-                        <a class="nav-link " href="{{ @training['ref_name'] }}">{{
+                        <a class="nav-link " href="#{{ @training['ref_name'] }}">{{
                             @training['app_type'] }}</a>
                     </repeat>
                 </div>
