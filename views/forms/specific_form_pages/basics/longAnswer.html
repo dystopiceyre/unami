@@ -73,8 +73,7 @@
 
                             <div class="form-row mt-3 ml-2 none" id="convictText">
                                 <label>If yes, explain the issue and the current status in detail
-                                    <textarea class="form-control" rows="4" cols="50" name="convictText"> {{ $_SESSION['LongAnswer']->getConvictText() }}
-                                    </textarea>
+                                    <textarea class="form-control" rows="4" cols="50" name="convictText">{{ $_SESSION['LongAnswer']->getConvictText() }}</textarea>
                                 </label>
                             </div>
                         </div>
@@ -104,9 +103,7 @@
 
                         <!--Question 4-->
                         <div class="form-group col-md-10">
-                            <h5>Have you completed the NAMI Family to Family Course? <br><i>(It is required that you
-                                have completed the NAMI Family-to-Family Course in order to be qualified to become a
-                                Family-to-Family teacher)</i></h5>
+                            <h5>Have you completed the NAMI Family to Family Course?</h5>
                             <div class="form-check form-check-inline ml-2">
                                 <label class="form-check-label"><input type="radio" name="takenF2F" value="yes"
                                                                        class="form-check-input"
@@ -179,7 +176,7 @@
                                     <input type="text" name="currentDiagnosis" class="form-control"
                                            placeholder="Generalized anxiety and depression"
                                            value="{{ $_SESSION['LongAnswer']->getCurrentDiagnosis() }}">
-                                    <p> How long has this person show symptoms of/been living with mental illness?</p>
+                                    <p> How long has this person shown symptoms of/been living with mental illness?</p>
                                     <input type="text" name="lengthOfIllness" class="form-control"
                                            placeholder="Since they were 13 years old, in the eighth grade"
                                            value="{{ $_SESSION['LongAnswer']->getLengthOfIllness() }}">

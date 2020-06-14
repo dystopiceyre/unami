@@ -104,3 +104,7 @@ body {
     background: #0c499c;
     cursor: pointer;
 }
+
+textarea {
+    text-align: left;
+}

@@ -73,8 +73,8 @@
 
                             <div class="form-row mt-3 ml-2 none" id="convictText">
                                 <label>If yes, explain the issue and the current status in detail
-                                    <textarea class="form-control" rows="4" cols="50" name="convictText"> {{ $_SESSION['LongAnswer']->getConvictText() }}
-                                    </textarea>
+                                    <textarea class="form-control" rows="4" cols="50" name="convictText"
+                                    >{{ $_SESSION['LongAnswer']->getConvictText() }}</textarea>
                                 </label>
                             </div>
                         </div>
@@ -149,7 +149,7 @@
                         <div class="form-group col-md-7">
                             <h5>Please briefly describe why you want to become a Homefront teacher; please include
                                 information about your lived experience with mental illness</h5>
-                            <textarea name="whyHomefrontTeacher" class="form-control"> {{ $_SESSION['LongAnswer']->getWhyHomefrontTeacher() }}</textarea>
+                            <textarea name="whyHomefrontTeacher" class="form-control">{{ $_SESSION['LongAnswer']->getWhyHomefrontTeacher() }}</textarea>
                         </div>
 
                         <!--Question 7-->

@@ -6,17 +6,18 @@
     <!-- Page Heading -->
     <h1 class="h2 mb-5 text-primary"><i class="far fa-calendar-alt"></i> Open Trainings</h1>
 
-    <!--    TODO: make functional-->
     <nav class="navbar navbar-expand">
-        <div class="col-md-6">
-            <select>
-                <option value="jump">Jump To...</option>
-                <repeat group="{{ @trainings }}"
-                        value="{{ @training }}">
-                    <option> {{ @training['app_type'] }}</option>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+                <repeat group="{{ @trainings }}" value="{{ @training }}">
+                    <li class="nav-item">
+                        <button class="btn"><a class="nav-link" href="#{{ @training['ref_name'] }}">{{
+                            @training['app_type'] }}</a></button>
+                    </li>
                 </repeat>
-            </select>
+            </ul>
         </div>
+
 
         <!-- edit training locations -->
         <div class="col-auto">
@@ -25,12 +26,12 @@
                 <i class="fas fa-map-marker fa-2x"></i> Edit Training Locations
             </a>
         </div>
-
     </nav>
+
 
     <div class="row">
         <repeat group="{{ @trainings }}" value="{{ @training }}">
-            <div class="col-lg-6 col-md-12 mb-4">
+            <div class="col-lg-6 col-md-12 mb-4" id="{{@training['ref_name']}}">
                 <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
@@ -163,7 +164,7 @@
                                                                                 </option>
 
                                                                                 <repeat group="{{ @locations }}"
-                                                                                        value="{{ @location }}" >
+                                                                                        value="{{ @location }}">
                                                                                     <option> {{ @location['location'] }}
                                                                                     </option>
                                                                                 </repeat>
@@ -373,16 +374,11 @@
                                 Add A New Training Location
                                 <div class="form-row mb-2">
                                     <div class="form-group col-md-6">
-                                        <label class="sr-only" for="addTrainingLocation">Add A New Training Location</label>
+                                        <label class="sr-only" for="addTrainingLocation">Add A New Training
+                                            Location</label>
                                         <input type="text"
                                                class="form-control" id="addTrainingLocation" rows="1"
                                                name="addTrainingLocation" required value=" ">
-                                        <!--&lt;!&ndash; location error messages &ndash;&gt;
-                                        <div class="row justify-content-center text-danger">
-                                            <check if="{{ isset(@locationErrors['location']) }}">
-                                                <p>{{ @locationErrors['location'] }}</p>
-                                            </check>
-                                        </div>-->
                                     </div>
                                 </div>
                             </div>
@@ -403,11 +399,12 @@
                                             <tbody>
                                             <repeat group="{{ @locations }}" value="{{ @location }}">
                                                 <tr>
-                                                    <td>{{ @location['location'] }} </td>
+                                                    <td>{{ @location['location'] }}</td>
 
                                                     <td class="text-center">
                                                         <a href="#" class="text-decoration-none text-primary"
-                                                           data-toggle="modal" data-target="#deleteLocationModal{{ @location['location_id'] }}">
+                                                           data-toggle="modal"
+                                                           data-target="#deleteLocationModal{{ @location['location_id'] }}">
                                                             <i class="fas fa-times-circle fa-lg text-danger"></i>
                                                         </a>
                                                     </td>
@@ -425,7 +422,8 @@
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                                     Close
                                 </button>
-                                <button type="submit" name="addNewLocation" class="btn btn-success">Save Changes</button>
+                                <button type="submit" name="addNewLocation" class="btn btn-success">Save Changes
+                                </button>
                             </div>
                         </form>
                     </div>
