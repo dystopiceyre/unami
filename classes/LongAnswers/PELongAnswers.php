@@ -1,6 +1,8 @@
 <?php
 /**
- * Class PELongAnswers
+ * Class for PELongAnswers training long answers
+ * @author Maureen Kariuki
+ * @version 06/14/2020
  */
 class PELongAnswers
 {

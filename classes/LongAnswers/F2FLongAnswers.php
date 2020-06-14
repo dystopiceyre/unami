@@ -1,7 +1,9 @@
 <?php
 
-/*
- * Placeholder for Family-To-Family training long answers
+/**
+ * Class for Family-To-Family training long answers
+ * @author Maureen Kariuki
+ * @version 06/14/2020
  */
 class F2FLongAnswers
 {

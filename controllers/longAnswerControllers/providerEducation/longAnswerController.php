@@ -27,12 +27,12 @@ if(!empty($_POST))
     }
 
     if (isset($_POST['availability'])) {
-        $availability = implode(", ", $_POST['availability']);
+        $availability = "<pre>" .implode(", \n", $_POST['availability'])."</pre>";
 
     }
 
     if (isset($_POST['describes'])) {
-        $describes = implode(", ", $_POST['describes']);
+        $describes = implode(PHP_EOL, $_POST['describes']);
     }
 
     //add data to hive

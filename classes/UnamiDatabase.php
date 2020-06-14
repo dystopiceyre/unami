@@ -382,7 +382,7 @@ class UnamiDatabase
         $sql = "INSERT INTO PE (applicant_id, conviction, availability, degree, volunteer_exp, 
                 fluent_language, young_adult, describes, current_diagnosis, self_disclosure, positive_outlook, 
                 background_check, why_want, frontLine_experience, support_experience, recovery)
-                VALUES(:applicant_id, :conviction, :availability, :degree, :volunteer_exp, 
+                VALUES (:applicant_id, :conviction, :availability, :degree, :volunteer_exp, 
                 :fluent_language, :young_adult, :describes, :current_diagnosis, :self_disclosure, :positive_outlook, 
                 :background_check, :why_want, :frontLine_experience, :support_experience, :recovery)";
         $statement = $this->_dbh->prepare($sql);
