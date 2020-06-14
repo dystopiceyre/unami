@@ -2,16 +2,17 @@
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
-    <!--TODO: ask about eventually add other forms (personal info, etc)-->
+    <!--TODO: ask about eventually adding other forms (personal info, etc)-->
     <h1>Editing Questions</h1>
-    <ul>
-        <repeat group="{{ @trainings }}" value="{{ @training }}">
-            <li>
-                <button class="btn"><a href="app_questions/{{@training['ref_name'] }}">{{
-                    @training['app_type'] }}</a></button>
-            </li>
-        </repeat>
-    </ul>
+    <h2>Coming soon!</h2>
+        <ul>
+            <repeat group="{{ @trainings }}" value="{{ @training }}">
+                <li>
+                    <button class="btn"><a href="app_questions/{{@training['ref_name'] }}">{{
+                        @training['app_type'] }}</a></button>
+                </li>
+            </repeat>
+        </ul>
 </div>
 <!-- /.container-fluid -->
 

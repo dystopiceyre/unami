@@ -5,8 +5,12 @@
  * Class Database
  * SQL setup statements in model
  *
- * @author Max Lee & Jason Engelbrecht
- * @version 11/2/2019
+ * @author Max Lee
+ * @author Jason Engelbrecht
+ * @author Olivia Ringhiser
+ * @author Imelda Medina
+ * @author Maureen Kariuki
+ * Date: 6/14/2020
  */
 class UnamiDatabase
 {
@@ -1788,7 +1792,7 @@ class UnamiDatabase
         $statement->execute();
     }
 
-    //Questions
+   /* //Questions
     function getBQs()
     {
         $sql = "SELECT * FROM B_Qs";
@@ -1831,7 +1835,7 @@ class UnamiDatabase
 
     function getHQs()
     {
-        $sql = "SELECT * FROM H_Qs";
+        $sql = "SELECT q1, q1a, q2, q2note, q2a, q2b, q3, q3note, q6, q7, q7a, q8, q8a FROM H_Qs";
         $statement = $this->_dbh->prepare($sql);
         $statement->execute();
         return $statement->fetch(PDO::FETCH_ASSOC);
@@ -1859,6 +1863,6 @@ class UnamiDatabase
         $statement = $this->_dbh->prepare($sql);
         $statement->execute();
         return $statement->fetch(PDO::FETCH_ASSOC);
-    }
+    }*/
 
 }

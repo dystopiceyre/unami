@@ -149,44 +149,44 @@ CREATE TABLE H
 
 CREATE TABLE IOOV
 (
-    IOOV_id             INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    applicant_id       INT                NOT NULL,
-    conviction         MEDIUMTEXT,
-    degree             VARCHAR(200),
-    volunteer_exp      VARCHAR(200),
-    diagnose           VARCHAR(200),
-    diagnose_time      VARCHAR(200),
-    current_diagnosis  MEDIUMTEXT,
-    hospitalized       VARCHAR(200),
-    speaking_exp       VARCHAR(200),
-    comfortable        INT,
-    transportation     CHAR(10),
-    not_present        MEDIUMTEXT,
-    why_presenter      MEDIUMTEXT,
-    time_recovered     MEDIUMTEXT,
-    recovery           MEDIUMTEXT,
+    IOOV_id           INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    applicant_id      INT                NOT NULL,
+    conviction        MEDIUMTEXT,
+    degree            VARCHAR(200),
+    volunteer_exp     VARCHAR(200),
+    diagnose          VARCHAR(200),
+    diagnose_time     VARCHAR(200),
+    current_diagnosis MEDIUMTEXT,
+    hospitalized      VARCHAR(200),
+    speaking_exp      VARCHAR(200),
+    comfortable       INT,
+    transportation    CHAR(10),
+    not_present       MEDIUMTEXT,
+    why_presenter     MEDIUMTEXT,
+    time_recovered    MEDIUMTEXT,
+    recovery          MEDIUMTEXT,
     FOREIGN KEY (applicant_id) references applicants (applicant_id)
 );
 
 CREATE TABLE PE
 (
-    PE_id              INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    applicant_id        INT                NOT NULL,
-    conviction          MEDIUMTEXT,
-    availability        VARCHAR(200),
-    degree              VARCHAR(200),
-    volunteer_exp       VARCHAR(200),
-    fluent_language     VARCHAR (200),
-    describes           VARCHAR(200),
-    young_adult         VARCHAR(100),
-    current_diagnosis   VARCHAR(200),
-    self_disclosure     CHAR(10),
-    positive_outlook    CHAR(10),
-    background_check    CHAR(10),
-    why_want            MEDIUMTEXT,
-    frontLine_experience   MEDIUMTEXT,
-    support_experience  MEDIUMTEXT,
-    recovery            MEDIUMTEXT,
+    PE_id                INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    applicant_id         INT                NOT NULL,
+    conviction           MEDIUMTEXT,
+    availability         VARCHAR(200),
+    degree               VARCHAR(200),
+    volunteer_exp        VARCHAR(200),
+    fluent_language      VARCHAR(200),
+    describes            VARCHAR(200),
+    young_adult          VARCHAR(100),
+    current_diagnosis    VARCHAR(200),
+    self_disclosure      CHAR(10),
+    positive_outlook     CHAR(10),
+    background_check     CHAR(10),
+    why_want             MEDIUMTEXT,
+    frontLine_experience MEDIUMTEXT,
+    support_experience   MEDIUMTEXT,
+    recovery             MEDIUMTEXT,
     FOREIGN KEY (applicant_id) references applicants (applicant_id)
 );
 
@@ -196,8 +196,8 @@ CREATE TABLE F2F
     applicant_id        INT                NOT NULL,
     conviction          MEDIUMTEXT,
     first_degree_family CHAR(10),
-    relative            VARCHAR (200),
-    diagnosis           VARCHAR (200),
+    relative            VARCHAR(200),
+    diagnosis           VARCHAR(200),
     taken_f2f           VARCHAR(20),
     why_want            MEDIUMTEXT,
     coteach_with        VARCHAR(200),
@@ -219,8 +219,9 @@ CREATE TABLE C
 
 /*training questions tables*/
 
-CREATE TABLE B_Qs
+/*CREATE TABLE B_Qs
 (
+    id  INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     q2  MEDIUMTEXT,
     q3  MEDIUMTEXT,
     q4  MEDIUMTEXT,
@@ -235,6 +236,7 @@ CREATE TABLE B_Qs
 
 CREATE TABLE C_Qs
 (
+    id  INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     q1  MEDIUMTEXT,
     q2  MEDIUMTEXT,
     q3  MEDIUMTEXT,
@@ -249,6 +251,7 @@ CREATE TABLE C_Qs
 
 CREATE TABLE ETS_Qs
 (
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     q3 MEDIUMTEXT,
     q4 MEDIUMTEXT,
     q5 MEDIUMTEXT,
@@ -260,20 +263,22 @@ CREATE TABLE ETS_Qs
 
 CREATE TABLE F2F_Qs
 (
-    q1 MEDIUMTEXT,
-    q2 MEDIUMTEXT,
-    q3 MEDIUMTEXT,
-    q4 MEDIUMTEXT,
-    q5 MEDIUMTEXT,
-    q6 MEDIUMTEXT,
-    q7 MEDIUMTEXT,
-    q8 MEDIUMTEXT,
-    q9 MEDIUMTEXT,
+    id  INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    q1  MEDIUMTEXT,
+    q2  MEDIUMTEXT,
+    q3  MEDIUMTEXT,
+    q4  MEDIUMTEXT,
+    q5  MEDIUMTEXT,
+    q6  MEDIUMTEXT,
+    q7  MEDIUMTEXT,
+    q8  MEDIUMTEXT,
+    q9  MEDIUMTEXT,
     q10 MEDIUMTEXT
 );
 
 CREATE TABLE FSG_Qs
 (
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     q1 MEDIUMTEXT,
     q2 MEDIUMTEXT,
     q3 MEDIUMTEXT,
@@ -285,29 +290,40 @@ CREATE TABLE FSG_Qs
 
 CREATE TABLE H_Qs
 (
-    q2 MEDIUMTEXT,
-    q3 MEDIUMTEXT,
-    q6 MEDIUMTEXT,
-    q7 MEDIUMTEXT,
-    q8 MEDIUMTEXT
+    id     INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    q1     MEDIUMTEXT,
+    q1a    MEDIUMTEXT,
+    q2     MEDIUMTEXT,
+    q2note MEDIUMTEXT,
+    q2a    MEDIUMTEXT,
+    q2b    MEDIUMTEXT,
+    q3     MEDIUMTEXT,
+    q3note MEDIUMTEXT,
+    q6     MEDIUMTEXT,
+    q7     MEDIUMTEXT,
+    q7a    MEDIUMTEXT,
+    q8     MEDIUMTEXT,
+    q8a    MEDIUMTEXT
 );
 
 CREATE TABLE IOOV_Qs
 (
-    q1 MEDIUMTEXT,
-    q2 MEDIUMTEXT,
-    q3 MEDIUMTEXT,
-    q4 MEDIUMTEXT,
-    q5 MEDIUMTEXT,
-    q6 MEDIUMTEXT,
-    q7 MEDIUMTEXT,
-    q8 MEDIUMTEXT,
-    q9 MEDIUMTEXT,
+    id  INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    q1  MEDIUMTEXT,
+    q2  MEDIUMTEXT,
+    q3  MEDIUMTEXT,
+    q4  MEDIUMTEXT,
+    q5  MEDIUMTEXT,
+    q6  MEDIUMTEXT,
+    q7  MEDIUMTEXT,
+    q8  MEDIUMTEXT,
+    q9  MEDIUMTEXT,
     q10 MEDIUMTEXT
 );
 
 CREATE TABLE P2P_Qs
 (
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     q1 MEDIUMTEXT,
     q4 MEDIUMTEXT,
     q5 MEDIUMTEXT,
@@ -316,31 +332,33 @@ CREATE TABLE P2P_Qs
 
 CREATE TABLE PE_Qs
 (
-    q1 MEDIUMTEXT,
-    q2 MEDIUMTEXT,
-    q3 MEDIUMTEXT,
-    q4 MEDIUMTEXT,
-    q5 MEDIUMTEXT,
-    q6 MEDIUMTEXT,
-    q7 MEDIUMTEXT,
-    q8 MEDIUMTEXT,
-    q9 MEDIUMTEXT,
+    id  INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    q1  MEDIUMTEXT,
+    q2  MEDIUMTEXT,
+    q3  MEDIUMTEXT,
+    q4  MEDIUMTEXT,
+    q5  MEDIUMTEXT,
+    q6  MEDIUMTEXT,
+    q7  MEDIUMTEXT,
+    q8  MEDIUMTEXT,
+    q9  MEDIUMTEXT,
     q10 MEDIUMTEXT
 );
 
 CREATE TABLE S_Qs
 (
-    q1 MEDIUMTEXT,
-    q2 MEDIUMTEXT,
-    q3 MEDIUMTEXT,
-    q4 MEDIUMTEXT,
-    q5 MEDIUMTEXT,
-    q6 MEDIUMTEXT,
-    q7 MEDIUMTEXT,
-    q8 MEDIUMTEXT,
-    q9 MEDIUMTEXT,
+    id  INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    q1  MEDIUMTEXT,
+    q2  MEDIUMTEXT,
+    q3  MEDIUMTEXT,
+    q4  MEDIUMTEXT,
+    q5  MEDIUMTEXT,
+    q6  MEDIUMTEXT,
+    q7  MEDIUMTEXT,
+    q8  MEDIUMTEXT,
+    q9  MEDIUMTEXT,
     q10 MEDIUMTEXT
-);
+);*/
 
 /* application/training type tables */
 CREATE TABLE app_type
@@ -375,8 +393,8 @@ CREATE TABLE affiliates
 /* locations table*/
 CREATE TABLE locations
 (
-    location_id INT AUTO_INCREMENT  NOT NULL PRIMARY KEY,
-    location    VARCHAR(200)        NOT NULL
+    location_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    location    VARCHAR(200)       NOT NULL
 
 );
 
