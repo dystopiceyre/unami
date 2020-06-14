@@ -36,7 +36,7 @@ class Emailer
                 ->setTo([$toEmail => $toEmailAlias]);
 
 
-            $cid = $message->embed(Swift_Image::fromPath('http://mlee.greenriverdev.com/unami/images/namiLogo.png',
+            $cid = $message->embed(Swift_Image::fromPath('http://apply.namiwa.org/apply/images/namiLogo.png',
                 'image.png', 'image/png'));
 
             $body = <<<EOD
@@ -48,7 +48,7 @@ class Emailer
                 
                 <div>
                     <p>Please review $applicantName's application: 
-                    <a href="http://mlee.greenriverdev.com/unami/affiliate_review/$applicantId/$linkHashedId">Here</a></p>
+                    <a href="http://apply.namiwa.org/apply/affiliate_review/$applicantId/$linkHashedId">Here</a></p>
                     <p>Please make sure to review this application with the applicant and get their NAMI membership 
                     expiration. You can input that information, as well as see the other tasks you must complete in this
                      here: <a href="http://apply.namiwa.org/apply/affiliates/affiliate_to_dos/$applicantId">To do list</a>.
@@ -60,8 +60,8 @@ class Emailer
 EOD;
 
             $message->setBody($body, 'text/html');
-            $message->addPart('Please review '.$applicantName."'s application: 
-            http://mlee.greenriverdev.com/unami/affiliate_review/".$applicantId.'/'.$linkHashedId, 'text/plain');
+            $message->addPart('Please review ' . $applicantName . "'s application: 
+            http://apply.namiwa.org/apply/" . $applicantId . '/' . $linkHashedId, 'text/plain');
 
             $transport = (new Swift_SmtpTransport(EMAIL_SERVER, 465, 'ssl'))
                 ->setUsername(EMAIL_USERNAME)
@@ -91,7 +91,7 @@ EOD;
             $message = (new Swift_Message('UNAMI application'))
                 ->setFrom([EMAIL_USERNAME => 'UNAMI: DO-NOT-REPLY'])
                 ->setTo([$toEmail => $toEmailName]);
-            $cid = $message->embed(Swift_Image::fromPath('http://mlee.greenriverdev.com/unami/images/namiLogo.png',
+            $cid = $message->embed(Swift_Image::fromPath('http://apply.namiwa.org/apply/images/namiLogo.png',
                 'image.png', 'image/png'));
 
             if ($member == "yes") {
@@ -160,7 +160,7 @@ EOD;
                 ->setTo([$toEmail => $toEmailAlias]);
 
 
-            $cid = $message->embed(Swift_Image::fromPath('http://mlee.greenriverdev.com/unami/images/namiLogo.png',
+            $cid = $message->embed(Swift_Image::fromPath('http://apply.namiwa.org/apply/images/namiLogo.png',
                 'image.png', 'image/png'));
 
             $body = <<<EOD
@@ -172,15 +172,15 @@ EOD;
                 
                 <div>
                     <p>Reset your password by following this link: 
-                    <a href="http://mlee.greenriverdev.com/unami/reset-password/$adminID/$linkHashedId">Here</a></p>
+                    <a href="http://apply.namiwa.org/apply/reset-password/$adminID/$linkHashedId">Here</a></p>
                 </div>
             </body>
         </html>
 EOD;
 
             $message->setBody($body, 'text/html');
-            $message->addPart('Reset Password: '.$applicantName.": 
-            http://mlee.greenriverdev.com/unami/reset-password/".$adminID.'/'.$linkHashedId, 'text/plain');
+            $message->addPart('Reset Password: ' . $applicantName . ": 
+             http://apply.namiwa.org/apply/reset-password/" . $adminID . '/' . $linkHashedId, 'text/plain');
 
             $transport = (new Swift_SmtpTransport(EMAIL_SERVER, 465, 'ssl'))
                 ->setUsername(EMAIL_USERNAME)
