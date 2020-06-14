@@ -5,8 +5,12 @@
  * Class Database
  * SQL setup statements in model
  *
- * @author Max Lee & Jason Engelbrecht
- * @version 11/2/2019
+ * @author Max Lee
+ * @author Jason Engelbrecht
+ * @author Olivia Ringhiser
+ * @author Imelda Medina
+ * @author Maureen Kariuki
+ * Date: 6/14/2020
  */
 class UnamiDatabase
 {
@@ -1787,5 +1791,78 @@ class UnamiDatabase
 
         $statement->execute();
     }
+
+   /* //Questions
+    function getBQs()
+    {
+        $sql = "SELECT * FROM B_Qs";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    function getCQs()
+    {
+        $sql = "SELECT * FROM C_Qs";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    function getETSQs()
+    {
+        $sql = "SELECT * FROM ETS_Qs";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    function getF2FQs()
+    {
+        $sql = "SELECT * FROM F2F_Qs";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    function getFSGQs()
+    {
+        $sql = "SELECT * FROM FSG_Qs";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    function getHQs()
+    {
+        $sql = "SELECT q1, q1a, q2, q2note, q2a, q2b, q3, q3note, q6, q7, q7a, q8, q8a FROM H_Qs";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    function getIOOVQs()
+    {
+        $sql = "SELECT * FROM IOOV_Qs";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    function getP2PQs()
+    {
+        $sql = "SELECT * FROM P2P_Qs";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    function getPEQs()
+    {
+        $sql = "SELECT * FROM PE_Qs";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }*/
 
 }
