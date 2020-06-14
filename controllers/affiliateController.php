@@ -2,8 +2,8 @@
 /**
  * Controller for affiliate routes
  *
- * @author Jason Engelbrecht, Max Lee, & Olivia Ringhiser
- * Date: 11/18/2019
+ * @author Jason Engelbrecht, Max Lee,Imelda Medina, & Olivia Ringhiser
+ * Date: 06/14/2020
  */
 global $f3;
 global $db;
