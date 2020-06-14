@@ -1,7 +1,9 @@
 <?php
 
 /**
- * Class BLongAnswers
+ * Class BLongAnswers Holds all the answers from the B long answers
+ * @author Olivia Ringhiser
+ * Date: 5/10/2020
  */
 class BLongAnswers
 {

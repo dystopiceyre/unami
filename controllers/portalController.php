@@ -3,7 +3,11 @@
  * Controller for portal routes
  *
  * @author Jason Engelbrecht
- * Date: 11/18/2019
+ * @author Olivia Ringhiser
+ * @author Imelda Medina
+ * @author Maureen Kariuki
+ *
+ * Date: 6/14/2020
  */
 global $f3;
 global $db;
@@ -483,4 +487,103 @@ $f3->route('GET /@applicant', function ($f3, $params) {
 
     $view = new Template();
     echo $view->render('views/portal/applications/applicant.html');
+});
+
+//edit application questions
+$f3->route('GET /app_questions', function ($f3) {
+    $f3->set('page_title', 'Edit Question Navigation');
+    global $db;
+    $f3->set('trainings', $db->getAppTypes());
+    $view = new Template();
+    echo $view->render('views/portal/other/editQuestionsNav.html');
+});
+
+//TODO: simplify routing with variables and if/switch statements
+$f3->route('GET /app_questions/basics', function ($f3) {
+    $f3->set('page_title', 'Edit Basics Questions');
+//    global $db;
+//    $questions = $db->getBQs();
+//    $f3->set('bQuestions', $questions);
+    $view = new Template();
+    echo $view->render('views/portal/other/edit_questions/basics/editAppQuestions.html');
+});
+
+$f3->route('GET /app_questions/connection', function ($f3) {
+    $f3->set('page_title', 'Edit Connection Questions');
+//    global $db;
+//    $questions = $db->getCQs();
+//    $f3->set('cQuestions', $questions);
+    $view = new Template();
+    echo $view->render('views/portal/other/edit_questions/connection/editAppQuestions.html');
+});
+
+$f3->route('GET /app_questions/endingTheSilence', function ($f3) {
+    $f3->set('page_title', 'Edit Ending The Silence Questions');
+//    global $db;
+//    $questions = $db->getETSQs();
+//    $f3->set('etsQuestions', $questions);
+    $view = new Template();
+    echo $view->render('views/portal/other/edit_questions/endingTheSilence/editAppQuestions.html');
+});
+
+$f3->route('GET /app_questions/family2family', function ($f3) {
+    $f3->set('page_title', 'Edit Family-to-Family Questions');
+//    global $db;
+//    $questions = $db->getF2FQs();
+//    $f3->set('f2fQuestions', $questions);
+    $view = new Template();
+    echo $view->render('views/portal/other/edit_questions/family2family/editAppQuestions.html');
+});
+
+$f3->route('GET /app_questions/familySupportGroup', function ($f3) {
+    $f3->set('page_title', 'Edit Family Support Group Questions');
+//    global $db;
+//    $questions = $db->getFSGQs();
+//    $f3->set('fsgQuestions', $questions);
+    $view = new Template();
+    echo $view->render('views/portal/other/edit_questions/familySupportGroup/editAppQuestions.html');
+});
+
+$f3->route('GET /app_questions/inOurOwnVoice', function ($f3) {
+    $f3->set('page_title', 'Edit In Our Own Voice Questions');
+//    global $db;
+//    $questions = $db->getIOOVQs();
+//    $f3->set('ioovQuestions', $questions);
+    $view = new Template();
+    echo $view->render('views/portal/other/edit_questions/inOurOwnVoice/editAppQuestions.html');
+});
+
+$f3->route('GET /app_questions/homefront', function ($f3) {
+    $f3->set('page_title', 'Edit Homefront Questions');
+//    global $db;
+//    $questions = $db->getHQs();
+//    $keys = array_keys($questions);
+//    $f3->set('hQuestions', $questions);
+//    $f3->Set('hKeys', $keys);
+    $view = new Template();
+    echo $view->render('views/portal/other/edit_questions/homefront/editAppQuestions.html');
+});
+
+$f3->route('GET /app_questions/peer2peer', function ($f3) {
+    $f3->set('page_title', 'Edit Peer-to-Peer Questions');
+//    global $db;
+//    $questions = $db->getP2PQs();
+//    $f3->set('p2pQuestions', $questions);
+    $view = new Template();
+    echo $view->render('views/portal/other/edit_questions/peer2peer/editAppQuestions.html');
+});
+
+$f3->route('GET /app_questions/providerEducation', function ($f3) {
+    $f3->set('page_title', 'Edit Provider Education Questions');
+//    global $db;
+//    $questions = $db->getPEQs();
+//    $f3->set('peQuestions', $questions);
+    $view = new Template();
+    echo $view->render('views/portal/other/edit_questions/providerEducation/editAppQuestions.html');
+});
+
+$f3->route('GET /app_questions/smarts', function ($f3) {
+    $f3->set('page_title', 'Edit Smarts Questions');
+    $view = new Template();
+    echo $view->render('views/portal/other/edit_questions/smarts/editAppQuestions.html');
 });

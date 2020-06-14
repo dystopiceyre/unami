@@ -1,7 +1,8 @@
 <?php
 
 /**
- * Class ETSLongAnswers
+ * Class ETSLongAnswers Holds all the answers from the ETS long answers
+ * @author Maxwell Lee
  */
 class ETSLongAnswers
 {

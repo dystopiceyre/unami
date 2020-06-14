@@ -6,6 +6,10 @@ require "/home/$user/config_email.php";
 
 /**
  * Class Emailer Handles using SwiftMailer to email the applicant and affiliate
+ * @author Maxwell Lee
+ * @author Trang Luu
+ * @author Olivia Ringhiser
+ * Date: 6/14/2020
  */
 class Emailer
 {
@@ -21,14 +25,13 @@ class Emailer
     {
         $hashedId = password_hash($applicantId, PASSWORD_BCRYPT);
         $linkHashedId = str_replace('/', '-', $hashedId);
-        $applicantName = $fname .' '.$lname;
+        $applicantName = $fname . ' ' . $lname;
 
         $toEmail = $db->getAffiliateEmail($affiliate);
         $toEmailAlias = $db->getAffiliateName($affiliate);
 
-        try
-        {
-            $message = (new Swift_Message('Review Application: '.$applicantName))
+        try {
+            $message = (new Swift_Message('Review Application: ' . $applicantName))
                 ->setFrom([EMAIL_USERNAME => 'UNAMI: DO-NOT-REPLY'])
                 ->setTo([$toEmail => $toEmailAlias]);
 
@@ -47,7 +50,10 @@ class Emailer
                     <p>Please review $applicantName's application: 
                     <a href="http://mlee.greenriverdev.com/unami/affiliate_review/$applicantId/$linkHashedId">Here</a></p>
                     <p>Please make sure to review this application with the applicant and get their NAMI membership 
-                    expiration. Thanks!</p>
+                    expiration. You can input that information, as well as see the other tasks you must complete in this
+                     here: <a href="http://apply.namiwa.org/apply/affiliates/affiliate_to_dos/$applicantId">To do list</a>.
+                    <br>
+                    Thanks!</p>
                 </div>
             </body>
         </html>
@@ -65,10 +71,7 @@ EOD;
 
             //sends the email
             $mailer->send($message);
-        }
-
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             echo $e->getMessage();
         }
     }
@@ -81,10 +84,9 @@ EOD;
     {
         $toEmail = $personalInfo->getEmail();
         $member = $personalInfo->getMember();
-        $toEmailName = $personalInfo->getFname() .' '.$personalInfo->getLname();
+        $toEmailName = $personalInfo->getFname() . ' ' . $personalInfo->getLname();
 
-        try
-        {
+        try {
 
             $message = (new Swift_Message('UNAMI application'))
                 ->setFrom([EMAIL_USERNAME => 'UNAMI: DO-NOT-REPLY'])
@@ -135,10 +137,7 @@ EOD;
             $mailer = new Swift_Mailer($transport);
 
             $mailer->send($message);
-        }
-
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             echo $e->getMessage();
         }
 
@@ -150,14 +149,13 @@ EOD;
         $adminID = $adminInfo['admin_id'];
         $hashedId = password_hash($adminID, PASSWORD_BCRYPT);
         $linkHashedId = str_replace('/', '-', $hashedId);
-        $applicantName = $adminInfo['fname'] .' '. $adminInfo['lname'];
+        $applicantName = $adminInfo['fname'] . ' ' . $adminInfo['lname'];
 
         $toEmail = $email;
         $toEmailAlias = $applicantName;
 
-        try
-        {
-            $message = (new Swift_Message('Reset Password: '.$applicantName))
+        try {
+            $message = (new Swift_Message('Reset Password: ' . $applicantName))
                 ->setFrom([EMAIL_USERNAME => 'UNAMI: DO-NOT-REPLY'])
                 ->setTo([$toEmail => $toEmailAlias]);
 
@@ -192,10 +190,7 @@ EOD;
 
             //sends the email
             $mailer->send($message);
-        }
-
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             echo $e->getMessage();
         }
     }
