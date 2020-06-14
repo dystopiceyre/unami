@@ -6,21 +6,23 @@
     <!-- Page Heading -->
     <h1 class="h2 mb-5 text-primary"><i class="far fa-calendar-alt"></i> Open Trainings</h1>
 
-    <nav class="navbar navbar-expand">
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav">
-                <repeat group="{{ @trainings }}" value="{{ @training }}">
-                    <li class="nav-item">
-                        <button class="btn"><a class="nav-link" href="#{{ @training['ref_name'] }}">{{
-                            @training['app_type'] }}</a></button>
-                    </li>
-                </repeat>
-            </ul>
-        </div>
-
+    <nav class="navbar navbar-expand-md">
+        <ul class="navbar-nav col-md-6">
+            <a class="nav-link dropdown-toggle text-lg font-weight-bold text-primary" href="#" id="navbardrop" data-toggle="dropdown">
+                Trainings
+            </a>
+            <li class="nav-item dropdown">
+                <div class="dropdown-menu font-weight-bold">
+                    <repeat group="{{ @trainings }}" value="{{ @training }}">
+                        <a class="nav-link " href="{{ @training['ref_name'] }}">{{
+                            @training['app_type'] }}</a>
+                    </repeat>
+                </div>
+            </li>
+        </ul>
 
         <!-- edit training locations -->
-        <div class="col-auto">
+        <div class="col-md-6">
             <a href="#" class="text-decoration-none text-success"
                data-toggle="modal" data-target="#editLocationModal{{ @training['app_id'] }}">
                 <i class="fas fa-map-marker fa-2x"></i> Edit Training Locations
