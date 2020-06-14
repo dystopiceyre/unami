@@ -744,6 +744,10 @@ class UnamiDatabase
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * @param $infoId represents the info id
+     * @return mixed
+     */
     function getAppTypeInfo($infoId)
     {
 
@@ -1353,6 +1357,15 @@ class UnamiDatabase
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * @param $applicationId
+     * @param $expiration
+     * @param $leaderName
+     * @param $leaderTitle
+     * @param $type
+     * @param $date
+     * @param $check
+     */
     function updateApprovalInfo($applicationId, $expiration, $leaderName, $leaderTitle, $type, $date, $check)
     {
         $sql = "UPDATE applicants SET app_status = 2, member_expiration = :member_expiration, 
@@ -1418,6 +1431,11 @@ class UnamiDatabase
         return $result;
     }
 
+    /**
+     * @param $applicant_id
+     * @param $application_type
+     * @return mixed
+     */
     function getLongAnswer($applicant_id, $application_type)
     {
         //tables
@@ -1514,6 +1532,7 @@ class UnamiDatabase
     ////////////the first///////////
 
     //name//
+
     function getTheFirstSlacker()
     {
         //define query
