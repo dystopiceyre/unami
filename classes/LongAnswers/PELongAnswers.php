@@ -51,7 +51,6 @@ class PELongAnswers
         $this->_convict = $_convict;
         $this->_convictText = $_convictText;
         $this->_availability = $_availability;
-        //$this->_availableTime = $_availableTime;
         $this->_degree = $_degree;
         $this->_volunteerExperience = $_volunteerExperience;
         $this->_fluentLanguage = $_fluentLanguage;
@@ -114,22 +113,6 @@ class PELongAnswers
     {
         $this->_availability = $availability;
     }
-
-    /**
-     * @return mixed
-     */
-    /*public function getAvailableTime()
-    {
-        return $this->_availableTime;
-    }*/
-
-    /**
-     * @param mixed $availableTime
-     */
-    /*public function setAvailableTime($availableTime)
-    {
-        $this->_availableTime = $availableTime;
-    }*/
 
     /**
      * @return mixed
