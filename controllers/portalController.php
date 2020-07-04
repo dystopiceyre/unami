@@ -511,6 +511,7 @@ $f3->route('GET|POST /app_questions/basics', function ($f3) {
         $question = $_POST['questionId'];
         $newText = $_POST['newText'];
         $db->updateBQs($question, $newText);
+        echo "<meta http-equiv='refresh' content='0'>";
     }
     $view = new Template();
     echo $view->render('views/portal/other/edit_questions/basics/editAppQuestions.html');
@@ -528,6 +529,7 @@ $f3->route('GET|POST /app_questions/connection', function ($f3) {
         $question = $_POST['questionId'];
         $newText = $_POST['newText'];
         $db->updateCQs($question, $newText);
+        echo "<meta http-equiv='refresh' content='0'>";
     }
     $view = new Template();
     echo $view->render('views/portal/other/edit_questions/connection/editAppQuestions.html');
@@ -545,6 +547,7 @@ $f3->route('GET|POST /app_questions/endingTheSilence', function ($f3) {
         $question = $_POST['questionId'];
         $newText = $_POST['newText'];
         $db->updateETSQs($question, $newText);
+        echo "<meta http-equiv='refresh' content='0'>";
     }
     $f3->set('etsQuestions', $questions);
     $view = new Template();
@@ -563,6 +566,7 @@ $f3->route('GET|POST /app_questions/family2family', function ($f3) {
         $question = $_POST['questionId'];
         $newText = $_POST['newText'];
         $db->updateF2FQs($question, $newText);
+        echo "<meta http-equiv='refresh' content='0'>";
     }
     $view = new Template();
     echo $view->render('views/portal/other/edit_questions/family2family/editAppQuestions.html');
@@ -580,6 +584,7 @@ $f3->route('GET|POST /app_questions/familySupportGroup', function ($f3) {
         $question = $_POST['questionId'];
         $newText = $_POST['newText'];
         $db->updateFSGQs($question, $newText);
+        echo "<meta http-equiv='refresh' content='0'>";
     }
     $view = new Template();
     echo $view->render('views/portal/other/edit_questions/familySupportGroup/editAppQuestions.html');
@@ -597,6 +602,7 @@ $f3->route('GET|POST /app_questions/inOurOwnVoice', function ($f3) {
         $question = $_POST['questionId'];
         $newText = $_POST['newText'];
         $db->updateIOOVQs($question, $newText);
+        echo "<meta http-equiv='refresh' content='0'>";
     }
     $view = new Template();
     echo $view->render('views/portal/other/edit_questions/inOurOwnVoice/editAppQuestions.html');
@@ -614,6 +620,7 @@ $f3->route('GET|POST /app_questions/homefront', function ($f3) {
         $question = $_POST['questionId'];
         $newText = $_POST['newText'];
         $db->updateHQs($question, $newText);
+        echo "<meta http-equiv='refresh' content='0'>";
     }
 
     $view = new Template();
@@ -632,6 +639,7 @@ $f3->route('GET|POST /app_questions/peer2peer', function ($f3) {
         $question = $_POST['questionId'];
         $newText = $_POST['newText'];
         $db->updateP2PQs($question, $newText);
+        echo "<meta http-equiv='refresh' content='0'>";
     }
     $view = new Template();
     echo $view->render('views/portal/other/edit_questions/peer2peer/editAppQuestions.html');
@@ -649,6 +657,7 @@ $f3->route('GET|POST /app_questions/providerEducation', function ($f3) {
         $question = $_POST['questionId'];
         $newText = $_POST['newText'];
         $db->updatePEQs($question, $newText);
+        echo "<meta http-equiv='refresh' content='0'>";
     }
     $view = new Template();
     echo $view->render('views/portal/other/edit_questions/providerEducation/editAppQuestions.html');
