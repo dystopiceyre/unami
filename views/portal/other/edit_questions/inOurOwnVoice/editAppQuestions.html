@@ -5,13 +5,13 @@
     <h1>Edit In Our Own Voice Questions</h1>
     <repeat group="{{ @ioovQuestions }}" value="{{ @question }}" counter="{{ @ctr}}">
         <form method="post" action="#">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-10">
+
                 <label>{{ substr_replace(@ioovKeys[@ctr - 1], 'Question ', 0, 1) }}:
-                    <textarea class="form-control d-inline-block" rows="2" cols="65"
-                              name="newText">{{@question}}</textarea>
+                    <textarea class="form-control" rows="2" cols="65" name="newText">{{@question}}</textarea>
+                    <button class="btn btn-success btn-lg float-right" type="submit" name="editQs">Edit</button>
                 </label>
                 <input type="hidden" name="questionId" value="{{@ioovKeys[@ctr - 1]}}">
-                <input type="submit" class="btn btn-success float-right" name="editQs" value="Edit">
             </div>
         </form>
     </repeat>

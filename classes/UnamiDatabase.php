@@ -1869,8 +1869,9 @@ class UnamiDatabase
     }
 
     //Update questions
+    //TODO: test to see if can make this into one function
 
-    function updateB_Qs($question, $newText)
+    function updateBQs($question, $newText)
     {
         $sql = "UPDATE B_Qs
         SET " . $question . " = :newText
