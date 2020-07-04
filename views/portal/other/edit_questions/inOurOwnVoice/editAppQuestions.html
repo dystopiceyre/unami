@@ -3,8 +3,19 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <h1>Edit In Our Own Voice Questions</h1>
-    <h2>Coming Soon!</h2>
+    <repeat group="{{ @ioovQuestions }}" value="{{ @question }}" counter="{{ @ctr}}">
+        <form method="post" action="#">
+            <div class="form-group col-md-6">
+                <label>{{ substr_replace(@ioovKeys[@ctr - 1], 'Question ', 0, 1) }}:
+                    <textarea class="form-control d-inline-block" rows="2" cols="65"
+                              name="newText">{{@question}}</textarea>
+                </label>
+                <input type="hidden" name="questionId" value="{{@ioovKeys[@ctr - 1]}}">
+                <input type="submit" class="btn btn-success float-right" name="editQs" value="Edit">
+            </div>
+        </form>
+    </repeat>
 </div>
-<!-- End of Main Content -->
+<!--End of Main Content-->
 
 <include href="views/portal/includes/footer.html"/>
