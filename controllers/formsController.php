@@ -216,7 +216,7 @@ $f3->route('GET|POST /long_answer', function ($f3) {
     $f3->set('page_title', 'Long Answer');
     $trainingRoute = $_SESSION['trainingRoute'];
 
-/*    global $db;
+    global $db;
 
     switch ($trainingRoute) {
         case
@@ -256,7 +256,7 @@ $f3->route('GET|POST /long_answer', function ($f3) {
             $questions = $db->getCQs();
             $f3->set('cLongAnswers', $questions);
             break;
-    }*/
+    }
 
     if ($_SESSION['applicationStarted'] != 1) {
         $f3->reroute('/');

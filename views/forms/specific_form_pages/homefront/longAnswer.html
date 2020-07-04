@@ -48,8 +48,7 @@
                     <div class="form-row">
                         <!--Question 1-->
                         <div class="form-group col-md-10">
-                            <h5>Have you ever been convicted of a crime against another person including but not limited
-                                to: assault of any kind, harassment of any kind, or stalking?</h5>
+                            <h5>{{@hLongAnswers['q1']}}</h5>
                             <div class="form-check form-check-inline ml-2">
                                 <input name="convict" class="form-check-input" type="radio" id="yesConvict" value="yes"
                                        required
@@ -72,7 +71,7 @@
 
                             <div class="form-row mt-3 ml-2 none" id="convictText">
                                 <!--Question 1a-->
-                                <label>If yes, explain the issue and the current status in detail
+                                <label>{{@hLongAnswers['q1a']}}
                                     <textarea class="form-control" rows="4" cols="50" name="convictText"
                                     >{{ $_SESSION['LongAnswer']->getConvictText() }}</textarea>
                                 </label>
@@ -81,11 +80,9 @@
 
                         <!--Question 2-->
                         <div class="form-group col-md-10">
-                            <h5>Are you a family member of a service member/veteran living with mental illness?</h5>
+                            <h5>{{@hLongAnswers['q2']}}</h5>
                             <!--Question 2 note-->
-                            <h6><i>(Note: You must be a first-degree relative to be a Homefront teacher, or have lived
-                                in a household with a service member/veteran relative with mental illness for a
-                                significant period of time)</i></h6>
+                            <h6><i>{{@hLongAnswers['q2note']}}</i></h6>
                             <div class="form-check form-check-inline ml-2">
                                 <label class="form-check-label"><input type="radio" name="familyMember" value="yes"
                                                                        id="yesFamily" class="form-check-input"
@@ -106,7 +103,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <!--Question 2a-->
-                                        <label>Your ill relative is your:
+                                        <label>{{@hLongAnswers['q2a']}}
                                             <input type="text" name="relationship"
                                                    class="form-control form-control-inline"
                                                    placeholder="Spouse, sister, etc."
@@ -114,7 +111,7 @@
                                     </div>
                                     <div class="col">
                                         <!--Question 2b-->
-                                        <label>Your relative’s diagnosis is:
+                                        <label>{{@hLongAnswers['q2b']}}
                                             <input type="text" name="diagnosis" class="form-control"
                                                    placeholder="Traumatic Brain Injury"
                                                    value="{{ $_SESSION['LongAnswer']->getDiagnosis() }}"></label>
@@ -125,10 +122,9 @@
 
                         <!--Question 3-->
                         <div class="form-group col-md-7">
-                            <h5>Have you completed the NAMI Family to Family Course?</h5>
+                            <h5>{{@hLongAnswers['q3']}}</h5>
                             <!--Question 3 note-->
-                            <h6><i>(It is not required that you have completed the NAMI Family-to-Family Course in order
-                                to be qualified to become a Homefront teacher, but it is preferred)</i></h6>
+                            <h6><i>{{@hLongAnswers['q3note']}}</i></h6>
                             <div class="form-check form-check-inline ml-2">
                                 <label class="form-check-label"><input type="radio" name="takenF2F" value="yes"
                                                                        class="form-check-input"
@@ -151,14 +147,13 @@
 
                         <!--Question 6-->
                         <div class="form-group col-md-7">
-                            <h5>Please briefly describe why you want to become a Homefront teacher; please include
-                                information about your lived experience with mental illness</h5>
+                            <h5>{{@hLongAnswers['q6']}}</h5>
                             <textarea name="whyHomefrontTeacher" class="form-control">{{ $_SESSION['LongAnswer']->getWhyHomefrontTeacher() }}</textarea>
                         </div>
 
                         <!--Question 7-->
                         <div class="form-group col-md-6">
-                            <h5>Do you know with whom you want to co-teach?</h5>
+                            <h5>{{@hLongAnswers['q7']}}</h5>
                             <div class="form-check form-check-inline ml-2">
                                 <label class="form-check-label"><input type="radio" name="coteach" value="yes"
                                                                        id="yesCoteach" class="form-check-input"
@@ -179,7 +174,7 @@
                             </div>
                             <div class="none form-check-inline col-md-6" id="coteach">
                                 <!--Question 7a-->
-                                <p>If yes, who?</p>
+                                <p>{{@hLongAnswers['q7a']}}</p>
                                 <input type="text" name="coteachWith" class="form-control"
                                        placeholder="My friend, Carol"
                                        value="{{ $_SESSION['LongAnswer']->getCoteachWith() }}">
@@ -188,7 +183,7 @@
 
                         <!--Question 8-->
                         <div class="form-group col-md-6">
-                            <h5>Do you know where you want to teach?</h5>
+                            <h5>{{@hLongAnswers['q8']}}</h5>
                             <div class="form-check form-check-inline ml-2">
                                 <label class="form-check-label"><input type="radio" name="knowWhere" value="yes"
                                                                        id="yesWhere" class="form-check-input"
@@ -209,7 +204,7 @@
                             </div>
                             <div class="none form-check-inline col-md-6" id="where">
                                 <!--Question 8a-->
-                                <p>If yes, where?</p>
+                                <p>{{@hLongAnswers['q8a']}}</p>
                                 <input type="text" name="teachWhere" class="form-control"
                                        placeholder="My local community center"
                                        value="{{ $_SESSION['LongAnswer']->getTeachWhere() }}">

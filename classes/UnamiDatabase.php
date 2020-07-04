@@ -1792,46 +1792,47 @@ class UnamiDatabase
         $statement->execute();
     }
 
-   /* //Questions
-    function getBQs()
-    {
-        $sql = "SELECT * FROM B_Qs";
-        $statement = $this->_dbh->prepare($sql);
-        $statement->execute();
-        return $statement->fetch(PDO::FETCH_ASSOC);
-    }
+    /* //Get Edit Questions
+     function getBQs()
+     {
+         $sql = "SELECT * FROM B_Qs";
+         $statement = $this->_dbh->prepare($sql);
+         $statement->execute();
+         return $statement->fetch(PDO::FETCH_ASSOC);
+     }
 
-    function getCQs()
-    {
-        $sql = "SELECT * FROM C_Qs";
-        $statement = $this->_dbh->prepare($sql);
-        $statement->execute();
-        return $statement->fetch(PDO::FETCH_ASSOC);
-    }
+     function getCQs()
+     {
+         $sql = "SELECT * FROM C_Qs";
+         $statement = $this->_dbh->prepare($sql);
+         $statement->execute();
+         return $statement->fetch(PDO::FETCH_ASSOC);
+     }
 
-    function getETSQs()
-    {
-        $sql = "SELECT * FROM ETS_Qs";
-        $statement = $this->_dbh->prepare($sql);
-        $statement->execute();
-        return $statement->fetch(PDO::FETCH_ASSOC);
-    }
+     function getETSQs()
+     {
+         $sql = "SELECT * FROM ETS_Qs";
+         $statement = $this->_dbh->prepare($sql);
+         $statement->execute();
+         return $statement->fetch(PDO::FETCH_ASSOC);
+     }
 
-    function getF2FQs()
-    {
-        $sql = "SELECT * FROM F2F_Qs";
-        $statement = $this->_dbh->prepare($sql);
-        $statement->execute();
-        return $statement->fetch(PDO::FETCH_ASSOC);
-    }
+     function getF2FQs()
+     {
+         $sql = "SELECT * FROM F2F_Qs";
+         $statement = $this->_dbh->prepare($sql);
+         $statement->execute();
+         return $statement->fetch(PDO::FETCH_ASSOC);
+     }
 
-    function getFSGQs()
-    {
-        $sql = "SELECT * FROM FSG_Qs";
-        $statement = $this->_dbh->prepare($sql);
-        $statement->execute();
-        return $statement->fetch(PDO::FETCH_ASSOC);
-    }
+     function getFSGQs()
+     {
+         $sql = "SELECT * FROM FSG_Qs";
+         $statement = $this->_dbh->prepare($sql);
+         $statement->execute();
+         return $statement->fetch(PDO::FETCH_ASSOC);
+     }
+ */
 
     function getHQs()
     {
@@ -1841,6 +1842,7 @@ class UnamiDatabase
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
+    /*
     function getIOOVQs()
     {
         $sql = "SELECT * FROM IOOV_Qs";
@@ -1865,4 +1867,16 @@ class UnamiDatabase
         return $statement->fetch(PDO::FETCH_ASSOC);
     }*/
 
+    //Update questions
+    function updateHQs($question, $newText)
+    {
+        $sql = "UPDATE H_Qs
+        SET " . $question ." = :newText
+        WHERE id = 1";
+
+        $statement = $this->_dbh->prepare($sql);
+        $statement->bindParam(':newText', $newText, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
 }

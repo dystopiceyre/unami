@@ -553,13 +553,20 @@ $f3->route('GET /app_questions/inOurOwnVoice', function ($f3) {
     echo $view->render('views/portal/other/edit_questions/inOurOwnVoice/editAppQuestions.html');
 });
 
-$f3->route('GET /app_questions/homefront', function ($f3) {
+$f3->route('GET|POST /app_questions/homefront', function ($f3) {
     $f3->set('page_title', 'Edit Homefront Questions');
-//    global $db;
-//    $questions = $db->getHQs();
-//    $keys = array_keys($questions);
-//    $f3->set('hQuestions', $questions);
-//    $f3->Set('hKeys', $keys);
+    global $db;
+    $questions = $db->getHQs();
+    $keys = array_keys($questions);
+    $f3->set('hQuestions', $questions);
+    $f3->Set('hKeys', $keys);
+
+    if (isset($_POST['editQs'])) {
+        $question = $_POST['questionId'];
+        $newText = $_POST['newText'];
+        $db->updateHQs($question, $newText);
+    }
+
     $view = new Template();
     echo $view->render('views/portal/other/edit_questions/homefront/editAppQuestions.html');
 });

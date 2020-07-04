@@ -5,14 +5,14 @@
     <!--TODO: ask about eventually adding other forms (personal info, etc)-->
     <h1>Editing Questions</h1>
     <h2>Coming soon!</h2>
-        <ul>
-            <repeat group="{{ @trainings }}" value="{{ @training }}">
-                <li>
-                    <button class="btn"><a href="app_questions/{{@training['ref_name'] }}">{{
-                        @training['app_type'] }}</a></button>
-                </li>
-            </repeat>
-        </ul>
+    <ul>
+        <repeat group="{{ @trainings }}" value="{{ @training }}">
+            <li>
+                <button class="btn"><a href="app_questions/{{@training['ref_name'] }}">{{
+                    @training['app_type'] }}</a></button>
+            </li>
+        </repeat>
+    </ul>
 </div>
 <!-- /.container-fluid -->
 
