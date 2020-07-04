@@ -1792,47 +1792,47 @@ class UnamiDatabase
         $statement->execute();
     }
 
-    /* //Get Edit Questions
-     function getBQs()
-     {
-         $sql = "SELECT * FROM B_Qs";
-         $statement = $this->_dbh->prepare($sql);
-         $statement->execute();
-         return $statement->fetch(PDO::FETCH_ASSOC);
-     }
+    //Get Edit Questions
+    function getBQs()
+    {
+        $sql = "SELECT q2, q2a, q3, q4, q7, q7a, q7b, q7c, q7c, q7d, 
+       q8, q8a, q9, q9a, q10, q11, q12, q12a, q13, q13a FROM B_Qs";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
 
-     function getCQs()
-     {
-         $sql = "SELECT * FROM C_Qs";
-         $statement = $this->_dbh->prepare($sql);
-         $statement->execute();
-         return $statement->fetch(PDO::FETCH_ASSOC);
-     }
+    function getCQs()
+    {
+        $sql = "SELECT q2, q3, q3note, q6 FROM C_Qs";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
 
-     function getETSQs()
-     {
-         $sql = "SELECT * FROM ETS_Qs";
-         $statement = $this->_dbh->prepare($sql);
-         $statement->execute();
-         return $statement->fetch(PDO::FETCH_ASSOC);
-     }
+    function getETSQs()
+    {
+        $sql = "SELECT q2, q2a, q3, q4, q4a, q4b, q4c, q4d, q5, q6, q7, q8, q9, q10, q11, q12, q13 FROM ETS_Qs";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
 
-     function getF2FQs()
-     {
-         $sql = "SELECT * FROM F2F_Qs";
-         $statement = $this->_dbh->prepare($sql);
-         $statement->execute();
-         return $statement->fetch(PDO::FETCH_ASSOC);
-     }
+    function getF2FQs()
+    {
+        $sql = "SELECT q2, q2a, q3, q3note, q3a, q3b, q4, q4note, q7, q8, q8a, q9, q9a FROM F2F_Qs";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
 
-     function getFSGQs()
-     {
-         $sql = "SELECT * FROM FSG_Qs";
-         $statement = $this->_dbh->prepare($sql);
-         $statement->execute();
-         return $statement->fetch(PDO::FETCH_ASSOC);
-     }
- */
+    function getFSGQs()
+    {
+        $sql = "SELECT q1, q1a, q3, q3a, q5, q8, q8a, q9, q9a FROM FSG_Qs";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
 
     function getHQs()
     {
@@ -1842,10 +1842,11 @@ class UnamiDatabase
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
-    /*
+
     function getIOOVQs()
     {
-        $sql = "SELECT * FROM IOOV_Qs";
+        $sql = "SELECT q2, q2a, q5, q5a, q5b, q5c, q5d, q5e, 
+       q5f, q5g, q6, q7, q8, q9, q10, q11 FROM IOOV_Qs";
         $statement = $this->_dbh->prepare($sql);
         $statement->execute();
         return $statement->fetch(PDO::FETCH_ASSOC);
@@ -1853,7 +1854,7 @@ class UnamiDatabase
 
     function getP2PQs()
     {
-        $sql = "SELECT * FROM P2P_Qs";
+        $sql = "SELECT q2, q2a, q4, q5, q6  FROM P2P_Qs";
         $statement = $this->_dbh->prepare($sql);
         $statement->execute();
         return $statement->fetch(PDO::FETCH_ASSOC);
@@ -1861,17 +1862,114 @@ class UnamiDatabase
 
     function getPEQs()
     {
-        $sql = "SELECT * FROM PE_Qs";
+        $sql = "SELECT q2, q2a, q5, q6, q6a, q6b, q6c, q6d, q6e, q6f, q6g, q6h, q6i, q7, q8, q9, q10 FROM PE_Qs";
         $statement = $this->_dbh->prepare($sql);
         $statement->execute();
         return $statement->fetch(PDO::FETCH_ASSOC);
-    }*/
+    }
 
     //Update questions
+
+    function updateB_Qs($question, $newText)
+    {
+        $sql = "UPDATE B_Qs
+        SET " . $question . " = :newText
+        WHERE id = 1";
+
+        $statement = $this->_dbh->prepare($sql);
+        $statement->bindParam(':newText', $newText, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
+
+    function updateCQs($question, $newText)
+    {
+        $sql = "UPDATE C_Qs
+        SET " . $question . " = :newText
+        WHERE id = 1";
+
+        $statement = $this->_dbh->prepare($sql);
+        $statement->bindParam(':newText', $newText, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
+
+    function updateETSQs($question, $newText)
+    {
+        $sql = "UPDATE ETS_Qs
+        SET " . $question . " = :newText
+        WHERE id = 1";
+
+        $statement = $this->_dbh->prepare($sql);
+        $statement->bindParam(':newText', $newText, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
+
+    function updateF2FQs($question, $newText)
+    {
+        $sql = "UPDATE F2F_Qs
+        SET " . $question . " = :newText
+        WHERE id = 1";
+
+        $statement = $this->_dbh->prepare($sql);
+        $statement->bindParam(':newText', $newText, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
+
+    function updateFSGQs($question, $newText)
+    {
+        $sql = "UPDATE FSG_Qs
+        SET " . $question . " = :newText
+        WHERE id = 1";
+
+        $statement = $this->_dbh->prepare($sql);
+        $statement->bindParam(':newText', $newText, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
+
     function updateHQs($question, $newText)
     {
         $sql = "UPDATE H_Qs
-        SET " . $question ." = :newText
+        SET " . $question . " = :newText
+        WHERE id = 1";
+
+        $statement = $this->_dbh->prepare($sql);
+        $statement->bindParam(':newText', $newText, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
+
+    function updateIOOVQs($question, $newText)
+    {
+        $sql = "UPDATE IOOV_Qs
+        SET " . $question . " = :newText
+        WHERE id = 1";
+
+        $statement = $this->_dbh->prepare($sql);
+        $statement->bindParam(':newText', $newText, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
+
+    function updateP2PQs($question, $newText)
+    {
+        $sql = "UPDATE P2P_Qs
+        SET " . $question . " = :newText
+        WHERE id = 1";
+
+        $statement = $this->_dbh->prepare($sql);
+        $statement->bindParam(':newText', $newText, PDO::PARAM_INT);
+
+        $statement->execute();
+    }
+
+    function updatePEQs($question, $newText)
+    {
+        $sql = "UPDATE PE_Qs
+        SET " . $question . " = :newText
         WHERE id = 1";
 
         $statement = $this->_dbh->prepare($sql);

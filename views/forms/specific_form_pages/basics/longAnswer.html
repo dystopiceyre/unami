@@ -71,6 +71,7 @@
                                 <label class="form-check-label" for="noConvict">No</label>
                             </div>
 
+                            <!--Question 2a-->
                             <div class="form-row mt-3 ml-2 none" id="convictText">
                                 <label>If yes, explain the issue and the current status in detail
                                     <textarea class="form-control" rows="4" cols="50" name="convictText">{{ $_SESSION['LongAnswer']->getConvictText() }}</textarea>
@@ -148,9 +149,11 @@
                                 </label>
                             </div>
                             <div class="none col-md-6 form-group" id="childInfo">
+                                <!--Question 7a-->
                                 <p>What is the current age of this individual?</p>
                                 <input type="number" class="form-control-sm" name="childAge" min="0" max="100" step="1"
                                        value="{{ $_SESSION['LongAnswer']->getChildAge() }}">
+                                <!--Question 7b-->
                                 <p>Have they been given a diagnosis?</p>
                                 <div class="form-check form-check-inline ml-2">
                                     <label class="form-check-label"><input type="radio" name="givenDiagnosis"
@@ -172,10 +175,12 @@
                                     </label>
                                 </div>
                                 <div class="none" id="diagnosisInfo">
+                                    <!--Question 7c-->
                                     <p>If yes, what is the most current diagnosis?</p>
                                     <input type="text" name="currentDiagnosis" class="form-control"
                                            placeholder="Generalized anxiety and depression"
                                            value="{{ $_SESSION['LongAnswer']->getCurrentDiagnosis() }}">
+                                    <!--Question 7d-->
                                     <p> How long has this person shown symptoms of/been living with mental illness?</p>
                                     <input type="text" name="lengthOfIllness" class="form-control"
                                            placeholder="Since they were 13 years old, in the eighth grade"
@@ -210,6 +215,7 @@
                                         </label>
                                     </div>
                                     <div class="none col-md-8" id="edProgram">
+                                        <!--Question 8a-->
                                         <p>What type of educational program is/was your child involved in?</p>
                                         <input type="text" name="educationalProgram" class="form-control"
                                                placeholder="A private Catholic school"
@@ -241,6 +247,7 @@
                                         </label>
                                     </div>
                                     <div class="none col-md-6" id="grad">
+                                        <!--Question 9a-->
                                         <p>If yes, date of graduation?</p>
                                         <input type="text" name="gradDate" class="form-control" placeholder="June 2016"
                                                value="{{ $_SESSION['LongAnswer']->getGradDate() }}">
@@ -284,6 +291,7 @@
                                 </label>
                             </div>
                             <div class="none form-check-inline col-md-6" id="coteach">
+                                <!--Question 12a-->
                                 <p>If yes, who?</p>
                                 <input type="text" name="coteachWith" class="form-control"
                                        placeholder="My friend, Carol"
@@ -313,6 +321,7 @@
                                 </label>
                             </div>
                             <div class="none form-check-inline col-md-6" id="where">
+                                <!--Question 13a-->
                                 <p>If yes, where?</p>
                                 <input type="text" name="teachWhere" class="form-control"
                                        placeholder="My local community center"

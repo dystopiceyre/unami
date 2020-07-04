@@ -3,9 +3,11 @@
 
 <div class="container p-3">
     <h5>Progress</h5>
-    <div class="progress border"  style="height: 20px">
-        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 40%"
-             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">40%</div>
+    <div class="progress border" style="height: 20px">
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"
+             style="width: 40%"
+             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">40%
+        </div>
     </div>
 </div>
 
@@ -26,7 +28,8 @@
     <div class="card shadow-sm bg-white rounded">
 
         <div class="card-header">
-            <h4 class="float-left"><i class="fas fa-question-circle text-primary mr-1"></i>Family-To-Family Questions</h4>
+            <h4 class="float-left"><i class="fas fa-question-circle text-primary mr-1"></i>Family-To-Family Questions
+            </h4>
             <check if="{{ $_GET['fromReview'] == true }}">
                 <form method="get" action="review">
                     <button type="submit" class="btn btn-primary float-right"><i class="fas fa-redo-alt"></i> Back to
@@ -47,9 +50,8 @@
                     <div class="form-row">
                         <!--Question 2-->
                         <div class="form-group col-md-10">
-                            <h5>Have you ever been convicted of a crime against another person
-                                including but not limited to: assault of any kind, harassment of any kind, or
-                                stalking?</h5>
+                            <h5>Have you ever been convicted of a crime against another person including but not limited
+                                to: assault of any kind, harassment of any kind, or stalking?</h5>
                             <div class="form-check form-check-inline ml-2">
                                 <input name="convict" class="form-check-input" type="radio" id="yesConvict" value="yes"
                                        required
@@ -70,6 +72,7 @@
                                 <label class="form-check-label" for="noConvict">No</label>
                             </div>
 
+                            <!--Question 2a-->
                             <div class="form-row mt-3 ml-2 none" id="convictText">
                                 <label>If yes, explain the issue and the current status in detail
                                     <textarea class="form-control" rows="4" cols="50" name="convictText"
@@ -80,17 +83,19 @@
 
                         <!--Question 3-->
                         <div class="form-group col-md-10">
-                            <h5>Do you have a relative living with mental illness? <br><i>(Note:  You must be a first-degree
-                                relative to be a Family-to-Family teacher, or have lived in a household with a relative
-                                with mental illness for a significant period of time)</i></h5>
+                            <h5>Do you have a relative living with mental illness? <br>
+                                <!--Question 3note-->
+                                <i>(Note: You must be a first-degree relative to be a Family-to-Family teacher, or have
+                                    lived in a household with a relative with mental illness for a significant period of
+                                    time)</i></h5>
                             <div class="form-check form-check-inline ml-2">
                                 <input name="firstDegreeFamily" class="form-check-input" type="radio"
                                        id="yesFirstDegreeFamily" value="yes"
                                        required
-                                    <check if="{{ $_SESSION['LongAnswer']->getFirstDegreeFamily() == 'yes' }}">
-                                        checked
-                                    </check>
-                                    >
+                                <check if="{{ $_SESSION['LongAnswer']->getFirstDegreeFamily() == 'yes' }}">
+                                    checked
+                                </check>
+                                >
                                 <label class="form-check-label" for="yesFirstDegreeFamily">Yes</label>
                             </div>
 
@@ -98,10 +103,10 @@
                                 <input name="firstDegreeFamily" class="form-check-input" type="radio"
                                        id="noFirstDegreeFamily" value="no"
                                        required
-                                    <check if="{{ $_SESSION['LongAnswer']->getFirstDegreeFamily() == 'no' }}">
-                                        checked
-                                    </check>
-                                    >
+                                <check if="{{ $_SESSION['LongAnswer']->getFirstDegreeFamily() == 'no' }}">
+                                    checked
+                                </check>
+                                >
                                 <label class="form-check-label" for="noFirstDegreeFamily">No</label>
                             </div>
                         </div>
@@ -109,14 +114,18 @@
                         <div class="form-row ml-4">
                             <ul class="ml-lg-2">
                                 <div class="form-group col-auto">
-                                    <label><li>	Your relative is your (spouse, sister, etc.):</li>
+                                    <!--Question 3a-->
+                                    <label>
+                                        <li> Your relative is your (spouse, sister, etc.):</li>
                                         <input type="text" name="relative" class="form-control" id="relative"
-                                                  value="{{ $_SESSION['LongAnswer']->getRelative() }}"></label>
+                                               value="{{ $_SESSION['LongAnswer']->getRelative() }}"></label>
                                 </div>
 
 
                                 <div class="form-group col-md-auto">
-                                    <label><li>Your relative’s diagnosis is:</li>
+                                    <!--Question 3b-->
+                                    <label>
+                                        <li>Your relative’s diagnosis is:</li>
                                         <input name="diagnosis" class="form-control" id="diagnosis"
                                                value="{{$_SESSION['LongAnswer']->getDiagnosis()}}"></label>
                                 </div>
@@ -125,25 +134,27 @@
 
                         <!--Question 4-->
                         <div class="form-group col-md-10">
-                            <h5>Have you completed the NAMI Family to Family Course? <br><i>(It is required that you
-                                have completed the NAMI Family-to-Family Course in order to be qualified to become a
-                                Family-to-Family teacher)</i></h5>
+                            <h5>Have you completed the NAMI Family to Family Course?</h5> <br>
+                            <!--Question 4note-->
+                            <h6><i>(It is required that you have completed the NAMI Family-to-Family Course in
+                            order to be qualified to become a Family-to-Family teacher)</i></h6>
                             <div class="form-check form-check-inline ml-2">
-                                <input type="radio" name="takenF2F" class="form-check-input" id="yesTakenF2F" value="yes"
-                                         required
-                                    <check if="{{ $_SESSION['LongAnswer']->getTakenF2F() == 'yes' }}">
-                                        checked
-                                    </check>
-                                    >
+                                <input type="radio" name="takenF2F" class="form-check-input" id="yesTakenF2F"
+                                       value="yes"
+                                       required
+                                <check if="{{ $_SESSION['LongAnswer']->getTakenF2F() == 'yes' }}">
+                                    checked
+                                </check>
+                                >
                                 <label class="form-check-label" for="yesTakenF2F">Yes </label>
                             </div>
                             <div class="form-check form-check-inline ml-2">
                                 <input type="radio" name="takenF2F" class="form-check-input" id="noTakenF2F" value="no"
                                        required
-                                    <check if="{{ $_SESSION['LongAnswer']->getTakenF2F() == 'no' }}">
-                                        checked
-                                    </check>
-                                    >
+                                <check if="{{ $_SESSION['LongAnswer']->getTakenF2F() == 'no' }}">
+                                    checked
+                                </check>
+                                >
                                 <label class="form-check-label" for="noTakenF2F">No </label>
                             </div>
                         </div>
@@ -161,22 +172,23 @@
                             <div class="form-check form-check-inline ml-2">
                                 <input type="radio" name="coTeach" value="yes" id="yesCoTeach" class="form-check-input"
                                        required
-                                    <check if="{{ $_SESSION['LongAnswer']->getCoTeach() == 'yes' }}">
-                                        checked
-                                    </check>
-                                    >
+                                <check if="{{ $_SESSION['LongAnswer']->getCoTeach() == 'yes' }}">
+                                    checked
+                                </check>
+                                >
                                 <label class="form-check-label" for="yesCoTeach">Yes</label>
                             </div>
                             <div class="form-check form-check-inline ml-2">
                                 <input type="radio" name="coTeach" value="no" id="noCoTeach" class="form-check-input"
                                        required
-                                    <check if="{{ $_SESSION['LongAnswer']->getCoTeach() == 'no' }}">
-                                        checked
-                                    </check>
-                                    >
+                                <check if="{{ $_SESSION['LongAnswer']->getCoTeach() == 'no' }}">
+                                    checked
+                                </check>
+                                >
                                 <label class="form-check-label" for="noCoTeach">No</label>
                             </div>
                             <div class="none form-check-inline col-md-6" id="coTeachWith">
+                                <!--Question 8a-->
                                 <p>If yes, who?</p>
                                 <input type="text" name="coTeachWith" class="form-control"
                                        placeholder="My friend, Carol"
@@ -190,22 +202,23 @@
                             <div class="form-check form-check-inline ml-2">
                                 <input type="radio" name="knowWhere" value="yes" id="yesWhere" class="form-check-input"
                                        required
-                                    <check if="{{ $_SESSION['LongAnswer']->getKnowWhere() == 'yes' }}">
-                                        checked
-                                    </check>
-                                    >
+                                <check if="{{ $_SESSION['LongAnswer']->getKnowWhere() == 'yes' }}">
+                                    checked
+                                </check>
+                                >
                                 <label class="form-check-label" for="yesWhere">Yes</label>
                             </div>
                             <div class="form-check form-check-inline ml-2">
                                 <input type="radio" name="knowWhere" value="no" id="noWhere" class="form-check-input"
                                        required
-                                    <check if="{{ $_SESSION['LongAnswer']->getKnowWhere() == 'no' }}">
-                                        checked
-                                    </check>
-                                    >
+                                <check if="{{ $_SESSION['LongAnswer']->getKnowWhere() == 'no' }}">
+                                    checked
+                                </check>
+                                >
                                 <label class="form-check-label" for="noWhere">No</label>
                             </div>
                             <div class="none form-check-inline col-md-6" id="teachWhere">
+                                <!--Question 9a-->
                                 <p>If yes, where?</p>
                                 <input type="text" name="teachWhere" class="form-control"
                                        placeholder="My local community center"

@@ -3,9 +3,11 @@
 
 <div class="container p-3">
     <h5>Progress</h5>
-    <div class="progress border"  style="height: 20px">
-        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 40%"
-             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">40%</div>
+    <div class="progress border" style="height: 20px">
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"
+             style="width: 40%"
+             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">40%
+        </div>
     </div>
 </div>
 
@@ -26,10 +28,13 @@
     <div class="card shadow-sm bg-white rounded">
 
         <div class="card-header">
-            <h4 class="float-left pt-2"><i class="fas fa-question-circle text-primary mr-1"></i> Connection Questions</h4>
+            <h4 class="float-left pt-2"><i class="fas fa-question-circle text-primary mr-1"></i> Connection Questions
+            </h4>
             <check if="{{ $_GET['fromReview'] == true }}">
                 <form method="get" action="review">
-                    <button type="submit" class="btn btn-primary float-right"><i class="fas fa-redo-alt"></i> Back to Review</button>
+                    <button type="submit" class="btn btn-primary float-right"><i class="fas fa-redo-alt"></i> Back to
+                        Review
+                    </button>
                 </form>
             </check>
         </div>
@@ -51,9 +56,12 @@
 
                         <!--Question 3-->
                         <div class="form-group col-md-10 mb2">
-                            <h5>What experience do you have in participating in a support group? Have you attended a NAMI Connection
-                                Recovery Support Group? (Preference is given to individuals who attend an existing Connection group, or
-                                who show an exceptional interest in starting a new Connection group in their area.)</h5>
+                            <h5>What experience do you have in participating in a support group? Have you attended a
+                                NAMI Connection
+                                Recovery Support Group?</h5>
+                            <!--Question 3note-->
+                            <h6>(Preference is given to individuals who attend an existing Connection group, or
+                                who show an exceptional interest in starting a new Connection group in their area.)</h6>
                             <textarea name="experience" class="form-control">{{ $_SESSION['LongAnswer']->getExperience() }}</textarea>
                         </div>
 
@@ -63,13 +71,15 @@
                             <textarea name="description" class="form-control">{{ $_SESSION['LongAnswer']->getDescription() }}</textarea>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary float-right">Next <i class="fas fa-arrow-right"></i></button>
+                    <button type="submit" class="btn btn-primary float-right">Next <i class="fas fa-arrow-right"></i>
+                    </button>
                 </form>
 
 
                 <form action="additional_information" method="get">
                     <button type="submit" name="goBack" value="goBack" class="btn btn-primary float-left">
-                        <i class="fas fa-arrow-left"></i> Back</button>
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
                 </form>
             </div>
         </div>
@@ -77,9 +87,7 @@
 </div>
 
 
-
-
-                        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
 <script type="text/javascript" src="views/forms/js/long_answer_scripts/CLongAnswersScript.js"></script>
