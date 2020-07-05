@@ -50,8 +50,7 @@
                     <div class="form-row">
                         <!--Question 2-->
                         <div class="form-group col-md-10">
-                            <h5>Have you ever been convicted of a crime against another person including but not limited
-                                to: assault of any kind, harassment of any kind, or stalking?</h5>
+                            <h5>{{@f2fLongAnswers['q2']}}</h5>
                             <div class="form-check form-check-inline ml-2">
                                 <input name="convict" class="form-check-input" type="radio" id="yesConvict" value="yes"
                                        required
@@ -74,20 +73,17 @@
 
                             <!--Question 2a-->
                             <div class="form-row mt-3 ml-2 none" id="convictText">
-                                <label>If yes, explain the issue and the current status in detail
-                                    <textarea class="form-control" rows="4" cols="50" name="convictText"
-                                    >{{ $_SESSION['LongAnswer']->getConvictText() }}</textarea>
+                                <label>{{@f2fLongAnswers['q2a']}}<textarea class="form-control" rows="4" cols="50"
+                                                                           name="convictText">{{ $_SESSION['LongAnswer']->getConvictText() }}</textarea>
                                 </label>
                             </div>
                         </div>
 
                         <!--Question 3-->
                         <div class="form-group col-md-10">
-                            <h5>Do you have a relative living with mental illness? <br>
+                            <h5>{{@f2fLongAnswers['q3']}}<br>
                                 <!--Question 3note-->
-                                <i>(Note: You must be a first-degree relative to be a Family-to-Family teacher, or have
-                                    lived in a household with a relative with mental illness for a significant period of
-                                    time)</i></h5>
+                                <i>{{@f2fLongAnswers['q3note']}}</i></h5>
                             <div class="form-check form-check-inline ml-2">
                                 <input name="firstDegreeFamily" class="form-check-input" type="radio"
                                        id="yesFirstDegreeFamily" value="yes"
@@ -116,7 +112,7 @@
                                 <div class="form-group col-auto">
                                     <!--Question 3a-->
                                     <label>
-                                        <li> Your relative is your (spouse, sister, etc.):</li>
+                                        <li>Your relative is your (spouse, sister, etc.):</li>
                                         <input type="text" name="relative" class="form-control" id="relative"
                                                value="{{ $_SESSION['LongAnswer']->getRelative() }}"></label>
                                 </div>
@@ -125,7 +121,7 @@
                                 <div class="form-group col-md-auto">
                                     <!--Question 3b-->
                                     <label>
-                                        <li>Your relative’s diagnosis is:</li>
+                                        <li>{{@f2fLongAnswers['q3b']}}</li>
                                         <input name="diagnosis" class="form-control" id="diagnosis"
                                                value="{{$_SESSION['LongAnswer']->getDiagnosis()}}"></label>
                                 </div>
@@ -134,10 +130,9 @@
 
                         <!--Question 4-->
                         <div class="form-group col-md-10">
-                            <h5>Have you completed the NAMI Family to Family Course?</h5> <br>
+                            <h5>{{@f2fLongAnswers['q4']}}</h5> <br>
                             <!--Question 4note-->
-                            <h6><i>(It is required that you have completed the NAMI Family-to-Family Course in
-                            order to be qualified to become a Family-to-Family teacher)</i></h6>
+                            <h6><i>{{@f2fLongAnswers['q4note']}}</i></h6>
                             <div class="form-check form-check-inline ml-2">
                                 <input type="radio" name="takenF2F" class="form-check-input" id="yesTakenF2F"
                                        value="yes"
@@ -161,14 +156,13 @@
 
                         <!--Question 7-->
                         <div class="form-group">
-                            <h5>Please briefly describe why you want to become a Family-to-Family teacher; please
-                                include information about your lived experience with mental illness: </h5>
+                            <h5>{{@f2fLongAnswers['q7']}}</h5>
                             <textarea name="whyF2FTeacher" class="form-control">{{ $_SESSION['LongAnswer']->getWhyF2FTeacher() }}</textarea>
                         </div>
 
                         <!--Question 8-->
                         <div class="form-group col-md-10">
-                            <h5>Do you know with whom you want to co-teach?</h5>
+                            <h5>{{@f2fLongAnswers['q8']}}</h5>
                             <div class="form-check form-check-inline ml-2">
                                 <input type="radio" name="coTeach" value="yes" id="yesCoTeach" class="form-check-input"
                                        required
@@ -189,7 +183,7 @@
                             </div>
                             <div class="none form-check-inline col-md-6" id="coTeachWith">
                                 <!--Question 8a-->
-                                <p>If yes, who?</p>
+                                <p>{{@f2fLongAnswers['q8a']}}</p>
                                 <input type="text" name="coTeachWith" class="form-control"
                                        placeholder="My friend, Carol"
                                        value="{{ $_SESSION['LongAnswer']->getCoTeachWith() }}">
@@ -198,7 +192,7 @@
 
                         <!--Question 9-->
                         <div class="form-group col-md-10">
-                            <h5>Do you know where you want to teach?</h5>
+                            <h5>{{@f2fLongAnswers['q9']}}</h5>
                             <div class="form-check form-check-inline ml-2">
                                 <input type="radio" name="knowWhere" value="yes" id="yesWhere" class="form-check-input"
                                        required
@@ -219,7 +213,7 @@
                             </div>
                             <div class="none form-check-inline col-md-6" id="teachWhere">
                                 <!--Question 9a-->
-                                <p>If yes, where?</p>
+                                <p>{{@f2fLongAnswers['q9a']}}</p>
                                 <input type="text" name="teachWhere" class="form-control"
                                        placeholder="My local community center"
                                        value="{{ $_SESSION['LongAnswer']->getTeachWhere() }}">

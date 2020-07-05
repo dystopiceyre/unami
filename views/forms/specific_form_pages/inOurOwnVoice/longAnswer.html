@@ -51,9 +51,7 @@
 
                         <!--Question 2-->
                         <div class="form-group col-md-10">
-                            <h5>Have you ever been convicted of a crime against another person
-                                including but not limited to: assault of any kind, harassment of any kind, or
-                                stalking?</h5>
+                            <h5>{{@ioovLongAnswers['q2']}}</h5>
                             <div class="form-check form-check-inline ml-2">
                                 <input name="convict" class="form-check-input" type="radio" id="yesConvict" value="yes"
                                        required
@@ -75,8 +73,7 @@
                             </div>
                             <!--Question 2a-->
                             <div class="form-row mt-3 ml-2 none" id="convictText">
-
-                                <label>If yes, explain the issue and the current status in detail
+                                <label>{{@ioovLongAnswers['q2a']}}
                                     <textarea class="form-control" rows="4" cols="50" name="convictText"
                                     >{{ $_SESSION['LongAnswer']->getConvictText() }}</textarea>
                                 </label>
@@ -85,12 +82,11 @@
 
                         <!--Question 5-->
                         <div class="form-group col-md-10">
-                            <h5 class="mb-3"><strong>Because different audiences require different presenters,
-                                we ask that you complete the following:</strong></h5>
+                            <h5 class="mb-3"><strong>{{@ioovLongAnswers['q5']}}</strong></h5>
 
                             <!--Question 5a-->
                             <div class="mb-2">
-                                <h5 class="mb-0"><label>Education – last degree completed:</label></h5>
+                                <h5 class="mb-0"><label>{{@ioovLongAnswers['q5a']}}</label></h5>
                                 <input class="form-control" type="text" name="degree" id="degree" required
                                        value="{{ $_SESSION['LongAnswer']->getDegree() }}"
                                        placeholder="Last degree completed">
@@ -98,7 +94,7 @@
 
                             <!--Question 5b-->
                             <div class="mb-2">
-                                <h5 class="mb-0"><label>Work/volunteer experience:</label></h5>
+                                <h5 class="mb-0"><label>{{@ioovLongAnswers['q5b']}}</label></h5>
                                 <input name="volunteerExperience" type="text" class="form-control"
                                        id="volunteerExperience"
                                        required value="{{ $_SESSION['LongAnswer']->getVolunteerExperience() }}"
@@ -107,7 +103,7 @@
 
                             <!--Question 5c-->
                             <div class="mb-2">
-                                <h5 class="mb-0"><label>When were you first diagnosed?</label></h5>
+                                <h5 class="mb-0"><label>{{@ioovLongAnswers['q5c']}}</label></h5>
                                 <input name="diagnose" type="text" class="form-control" id="diagnose"
                                        required value="{{ $_SESSION['LongAnswer']->getDiagnose() }}"
                                        placeholder="One year ago, one month ago, etc...">
@@ -115,21 +111,21 @@
 
                             <!--Question 5d-->
                             <div class="mb-2">
-                                <h5 class="mb-0"><label>How old were you at that time?</label></h5>
+                                <h5 class="mb-0"><label>{{@ioovLongAnswers['q5d']}}</label></h5>
                                 <input name="diagnoseTime" type="text" class="form-control" id="diagnoseTime"
                                        required value="{{ $_SESSION['LongAnswer']->getDiagnoseTime() }}">
                             </div>
 
                             <!--Question 5e-->
                             <div class="mb-2">
-                                <h5 class="mb-0"><label>What is your current diagnosis?</label></h5>
+                                <h5 class="mb-0"><label>{{@ioovLongAnswers['q5e']}}</label></h5>
                                 <textarea name="currentDiagnosis" class="form-control">{{ $_SESSION['LongAnswer']->getCurrentDiagnosis() }}</textarea>
                             </div>
                         </div>
 
                         <div class="form-group col-md-10 mb-3">
                             <!--Question 5f-->
-                            <h5>Have you been hospitalized?</h5>
+                            <h5>{{@ioovLongAnswers['q5f']}}</h5>
                             <div class="form-check form-check-inline ml-2">
                                 <input name="hospitalized" class="form-check-input" type="radio" id="yesHospitalized"
                                        value="yes"
@@ -154,7 +150,7 @@
 
                             <!--Question 5g-->
                             <div class="form-row mt-3 ml-2 none" id="recentlyText">
-                                <label for="recently">If so, how recently?</label>
+                                <label for="recently">{{@ioovLongAnswers['q5g']}}</label>
                                 <input class="form-control" name="recently"
                                        value="{{ $_SESSION['LongAnswer']->getRecently() }}" id="recently">
                             </div>
@@ -162,7 +158,7 @@
 
                         <!--Question 6-->
                         <div class="col-md-10 mb-3">
-                            <h5>Do you have public speaking experience?</h5>
+                            <h5>{{@ioovLongAnswers['q6']}}</h5>
                             <div class="form-check form-check-inline ml-2">
                                 <label class="form-check-label"><input type="radio" name="speaking" value="yes"
                                                                        class="form-check-input"
@@ -184,8 +180,7 @@
                         </div>
                         <!--Question 6a-->
                         <div class="slidecontainer">
-                            <h5><label>On a scale of 1-10, with 1 being NOT AT ALL and 10 being VERY: How comfortable
-                                are you speaking in front of groups</label></h5>
+                            <h5><label>{{@ioovLongAnswers['q6a']}}</label></h5>
                             <label for="comfortable" class="pull-left">1 (NOT AT ALL)</label>
                             <label for="comfortable" class="fa-pull-right">10 (VERY)</label>
                             <input type="range" min="1" max="10"
@@ -198,7 +193,7 @@
 
                         <!--Question 7-->
                         <div class="col-md-10 mb-3">
-                            <h5>Do you have your own transportation?</h5>
+                            <h5>{{@ioovLongAnswers['q7']}}</h5>
                             <div class="form-check form-check-inline ml-2">
                                 <label class="form-check-label"><input type="radio" name="transportation" value="yes"
                                                                        class="form-check-input"
@@ -221,31 +216,27 @@
 
                         <!--Question 8-->
                         <div class="form-group col-md-10 mb2">
-                            <h5>We present to audiences of consumers, employee in-service trainings, family members,
-                                professionals, students, police, church groups, business groups, etc.<br> Are there any
-                                groups to which you <b>do not want</b> to present?</h5>
+                            <h5>{{@ioovLongAnswers['q8']}}</h5>
                             <textarea name="notWantPresent" class="form-control">{{ $_SESSION['LongAnswer']->getNotWantPresent() }}</textarea>
                         </div>
 
                         <!--Question 9-->
                         <div class="form-group col-md-10 mb2">
-                            <h5>Why do you want to be a NAMI IOOV Presenter?</h5>
+                            <h5>{{@ioovLongAnswers['q9']}}</h5>
                             <textarea name="whyPresenter" class="form-control">{{ $_SESSION['LongAnswer']->getWhyPresenter() }}</textarea>
                         </div>
 
                         <!--Question 10-->
                         <div class="form-group col-md-10 mb2">
-                            <h5>Please share a personal statement about how you have stayed in and maintained your
-                                recovery.</h5>
+                            <h5>{{@ioovLongAnswers['q10']}}</h5>
                             <textarea name="stayedRecover" class="form-control">{{ $_SESSION['LongAnswer']->getStayedRecover() }}</textarea>
                         </div>
 
                         <!--Question 11-->
                         <div class="form-group col-md-10 mb-2">
-                            <h5>Please share your views about medicine and recovery.</h5>
+                            <h5>{{@ioovLongAnswers['q11']}}</h5>
                             <textarea name="recovery" class="form-control" id="recovery">{{ $_SESSION['LongAnswer']->getRecovery() }}</textarea>
                         </div>
-
                     </div>
 
                     <button type="submit" class="btn btn-primary float-right">Next <i class="fas fa-arrow-right"></i>

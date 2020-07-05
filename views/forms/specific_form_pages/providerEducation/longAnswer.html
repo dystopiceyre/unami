@@ -51,9 +51,7 @@
 
                         <!--Question 2-->
                         <div class="form-group col-md-10">
-                            <h5>Have you ever been convicted of a crime against another person
-                                including but not limited to: assault of any kind, harassment of any kind, or
-                                stalking?</h5>
+                            <h5>{{@peLongAnswers['q2']}}</h5>
                             <div class="form-check form-check-inline ml-2">
                                 <input name="convict" class="form-check-input" type="radio" id="yesConvict" value="yes"
                                        required
@@ -77,7 +75,7 @@
 
                             <div class="form-row mt-3 ml-2" id="convictText" style="display: none">
                                 <!--Question 2a-->
-                                <label>If yes, please explain why
+                                <label>{{@peLongAnswers['q2a']}}
                                     <br><textarea class="form-control" rows="4" cols="50" name="convictText"
                                     >{{ $_SESSION['LongAnswer']->getConvictText() }}</textarea>
                                 </label>
@@ -86,8 +84,7 @@
 
                         <!-- Question 5-->
                         <div class="form-group col-md-10">
-                            <h5>Availability to Present (please check all that apply): </h5>
-
+                            <h5>{{@peLongAnswers['q5']}}</h5>
                             <div class="form-check">
                                 <ul>
                                     <li>
@@ -158,11 +155,10 @@
 
                         <!--Question 6-->
                         <div class="form-group col-md-10">
-                            <h5>Because different audiences require different presenters, we ask that you complete the
-                                following: </h5>
+                            <h5>{{@peLongAnswers['q6']}}</h5>
                             <div class="form-group col-md-6 pt-3">
                                 <!--Question 6a-->
-                                <h5 class="mb-0"><label for="degree">Education - last degree completed: </label></h5>
+                                <h5 class="mb-0"><label for="degree">{{@peLongAnswers['q6a']}}</label></h5>
                                 <input name="degree" type="text" class="form-control" id="degree"
                                        required value="{{ $_SESSION['LongAnswer']->getDegree() }}"
                                        placeholder="Last degree completed">
@@ -170,7 +166,7 @@
 
                             <!--Question 6b-->
                             <div class="form-group col-md-10">
-                                <h5 class="mb-0"><label for="volunteerExperience">Work/Volunteer Experience</label></h5>
+                                <h5 class="mb-0"><label for="volunteerExperience">{{@peLongAnswers['q6b']}}</label></h5>
                                 <input name="volunteerExperience" type="text" class="form-control"
                                        id="volunteerExperience"
                                        required value="{{ $_SESSION['LongAnswer']->getVolunteerExperience() }}"
@@ -179,8 +175,7 @@
 
                             <!--Question 6c-->
                             <div class="form-group col-md-10">
-                                <h5 class="mb-0"><label for="fluentLanguage">What language(s) do you speak
-                                    fluently?</label></h5>
+                                <h5 class="mb-0"><label for="fluentLanguage">{{@peLongAnswers['q6c']}}</label></h5>
                                 <input name="fluentLanguage" type="text" class="form-control" id="fluentLanguage"
                                        required value="{{ $_SESSION['LongAnswer']->getFluentLanguage() }}"
                                        placeholder="English, Spanish, etc...">
@@ -188,7 +183,7 @@
 
                             <!--Question 6d-->
                             <div class="form-group col-md-10">
-                                <p class="lead mb-2">Are you a young adult?</p>
+                                <p class="lead mb-2">{{@peLongAnswers['q6d']}}</p>
                                 <label>
                                     <input class="mt-1 ml-1" type="radio" name="youngAdult" value="Age 18-30"
                                            required
@@ -217,7 +212,7 @@
 
                             <!--Question 6e-->
                             <div class="form-group col-md-10">
-                                <p class="lead mb-2">Which describes you (select all that apply)? </p>
+                                <p class="lead mb-2">{{@peLongAnswers['q6e']}}</p>
                                 <div class="form-check">
                                     <input name="describes[]" class="form-check-input" type="checkbox"
                                            value="Individual Living with Mental Illness"
@@ -265,8 +260,7 @@
 
                             <!--Question 6f-->
                             <div class="form-group col-md-10">
-                                <h5 class="mb-0"><label for="currentDiagnosis">What is your, or your family member’s,
-                                    current diagnosis?</label></h5>
+                                <h5 class="mb-0"><label for="currentDiagnosis">{{@peLongAnswers['q6f']}}</label></h5>
                                 <textarea name="currentDiagnosis" class="form-control" id="currentDiagnosis" rows="3"
                                           cols="40"
                                 >{{ $_SESSION['LongAnswer']->getCurrentDiagnosis() }}</textarea>
@@ -274,7 +268,7 @@
 
                             <!--Question 6g-->
                             <div class="form-group col-md-10">
-                                <h5 class="lead mb-2">Are you comfortable with self-disclosure? </h5>
+                                <h5 class="lead mb-2">{{@peLongAnswers['q6g']}}</h5>
                                 <div class="form-check form-check-inline ml-2">
                                     <input name="disclosure" class="form-check-input" type="radio" id="yesDisclosure"
                                            value="yes"
@@ -300,8 +294,7 @@
 
                             <!--Question 6h-->
                             <div class="form-group col-md-10">
-                                <p class="lead mb-2">Are you able to maintain a positive outlook and talk about your
-                                    experience without "going negative"? </p>
+                                <p class="lead mb-2">{{@peLongAnswers['q6h']}}</p>
                                 <div class="form-check form-check-inline ml-2">
                                     <input name="outlook" class="form-check-input" type="radio" id="yesOutlook"
                                            value="yes"
@@ -327,8 +320,7 @@
 
                             <!--Question 6i-->
                             <div class="form-group col-md-10">
-                                <p class="lead mb-2">Are you willing to undergo a background check if required by your
-                                    NAMI Affiliate? </p>
+                                <p class="lead mb-2">{{@peLongAnswers['q6i']}}</p>
                                 <div class="form-check form-check-inline ml-2">
                                     <input name="background" class="form-check-input" type="radio" id="yesBackground"
                                            value="yes"
@@ -355,35 +347,28 @@
 
                         <!--Question 7-->
                         <div class="form-group col-md-10">
-                            <h5 class="mb-0"><label for="presenter">Why do you want to be a NAMI Provider Education
-                                Presenter?</label></h5>
+                            <h5 class="mb-0"><label for="presenter">{{@peLongAnswers['q7']}}</label></h5>
                             <textarea name="presenterText" class="form-control align-left" id="presenter" rows="3"
                                       cols="40"
                             >{{ $_SESSION['LongAnswer']->getPresenterText() }}</textarea>
                         </div>
                         <!--Question 8-->
                         <div class="form-group col-md-10">
-                            <h5 class="mb-0"><label for="frontLineExperience"> What has been your experience working
-                                with frontline behavioral healthcare staff,
-                                and how do you feel Provider Education can benefit them?</label></h5>
+                            <h5 class="mb-0"><label for="frontLineExperience">{{@peLongAnswers['q8']}}</label></h5>
                             <textarea name="frontLineExperienceText" class="form-control" id="frontLineExperience"
                                       rows="3" cols="40"
                             >{{ $_SESSION['LongAnswer']->getFrontLineExperienceText() }}</textarea>
                         </div>
                         <!--Question 9-->
                         <div class="form-group col-md-10">
-                            <h5 class="mb-0"><label for="supportiveExperience"> What can you share about your experience
-                                that can help frontLine staff who come in
-                                contact with people with behavioral health conditions create a more supportive
-                                environment? </label></h5>
+                            <h5 class="mb-0"><label for="supportiveExperience">{{@peLongAnswers['q9']}}</label></h5>
                             <textarea name="supportiveExperienceText" class="form-control align-text-top"
                                       id="supportiveExperience" rows="3" cols="40"
                             >{{ $_SESSION['LongAnswer']->getSupportiveExperienceText() }}</textarea>
                         </div>
                         <!--Question 10-->
                         <div class="form-group col-md-10">
-                            <h5 class="mb-0"><label for="recovery"> What does recovery in relation to mental illness
-                                mean to you? </label></h5>
+                            <h5 class="mb-0"><label for="recovery">{{@peLongAnswers['q10']}}</label></h5>
                             <textarea name="recoveryText" class="form-control" rows="3" cols="40" id="recovery"
                             >{{ $_SESSION['LongAnswer']->getRecoveryText() }}</textarea>
                         </div>
@@ -400,7 +385,6 @@
                         <i class="fas fa-arrow-left"></i> Back
                     </button>
                 </form>
-
             </div>
         </div>
     </div>

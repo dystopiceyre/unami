@@ -52,9 +52,7 @@
                         <div class="form-group">
 
                             <div class="form-group pt-3">
-                                <h5 class="mb-3">Have you ever been convicted of a crime against another person
-                                    including but not limited to: assault of any
-                                    kind, harassment of any kind, or stalking?</h5>
+                                <h5 class="mb-3">{{@p2pLongAnswers['q2']}}</h5>
 
                                 <div class="form-check form-check-inline ml-2">
                                     <input name="convict" class="form-check-input" type="radio" id="show2" value="yes"
@@ -81,7 +79,7 @@
 
                                 <div class="form-row mt-3 ml-2" id="textbox2" style="display: none">
                                     <!--Question 2a-->
-                                    <label>Please explain why you selected "Yes"
+                                    <label>{{@p2pLongAnswers['q2a']}}
                                         <br><textarea class="form-control" rows="4" cols="50" name="convictText"
                                         >{{ $_SESSION['LongAnswer']->getConvictText() }}</textarea>
                                     </label>
@@ -91,25 +89,22 @@
 
                         <!--Question 4-->
                         <div class="form-group pt-3">
-                            <h5><label for="exampleFormControlTextarea2">Why do you want to be a Peer-to-Peer
-                                leader?</label></h5>
+                            <h5><label for="exampleFormControlTextarea2">{{@p2pLongAnswers['q4']}}</label></h5>
                             <textarea name="whyLeader" class="form-control" id="exampleFormControlTextarea2" rows="4"
                             >{{ $_SESSION['LongAnswer']->getWhyLeader() }}</textarea>
 
                             <!--Question 5-->
-                            <h5><label for="exampleFormControlTextarea3" class="pt-5 mt-3">How do you define or describe
-                                mental health recovery?</label></h5>
+                            <h5><label for="exampleFormControlTextarea3"
+                                       class="pt-5 mt-3">{{@p2pLongAnswers['q5']}}</label></h5>
                             <textarea name="mentalHealth" class="form-control" id="exampleFormControlTextarea3" rows="4"
                             >{{ $_SESSION['LongAnswer']->getMentalHealth() }}</textarea>
 
                             <!--Question 6-->
-                            <h5><label for="exampleFormControlTextarea4" class="pt-5 mt-3">Why do you feel you are
-                                ready to “give back” to others through Peer-to-Peer? </label></h5>
+                            <h5><label for="exampleFormControlTextarea4"
+                                       class="pt-5 mt-3">{{@p2pLongAnswers['q6']}}</label></h5>
                             <textarea name="giveBack" class="form-control" id="exampleFormControlTextarea4" rows="4"
                             >{{ $_SESSION['LongAnswer']->getGiveBack() }}</textarea>
-
                         </div>
-
                     </div>
 
                     <button type="submit" class="btn btn-primary float-right">Next <i class="fas fa-arrow-right"></i>

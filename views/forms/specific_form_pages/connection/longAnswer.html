@@ -50,24 +50,21 @@
                     <div class="form-row">
                         <!--Question 2-->
                         <div class="form-group col-md-10 mb2">
-                            <h5>Why do you want to be a NAMI Connection Recovery Support Group Facilitator?</h5>
+                            <h5>{{@cLongAnswers['q2']}}</h5>
                             <textarea name="whyFacilitator" class="form-control">{{ $_SESSION['LongAnswer']->getWhyFacilitator() }}</textarea>
                         </div>
 
                         <!--Question 3-->
                         <div class="form-group col-md-10 mb2">
-                            <h5>What experience do you have in participating in a support group? Have you attended a
-                                NAMI Connection
-                                Recovery Support Group?</h5>
+                            <h5>{{@cLongAnswers['q3']}}</h5>
                             <!--Question 3note-->
-                            <h6>(Preference is given to individuals who attend an existing Connection group, or
-                                who show an exceptional interest in starting a new Connection group in their area.)</h6>
+                            <h6>{{@cLongAnswers['q3note']}}</h6>
                             <textarea name="experience" class="form-control">{{ $_SESSION['LongAnswer']->getExperience() }}</textarea>
                         </div>
 
                         <!--Question 6-->
                         <div class="form-group col-md-10 mb-2">
-                            <h5>How do you define or describe mental health recovery?</h5>
+                            <h5>{{@cLongAnswers['q6']}}</h5>
                             <textarea name="description" class="form-control">{{ $_SESSION['LongAnswer']->getDescription() }}</textarea>
                         </div>
                     </div>
