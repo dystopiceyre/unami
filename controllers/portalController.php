@@ -494,19 +494,78 @@ $f3->route('GET /app_questions', function ($f3) {
     $f3->set('page_title', 'Edit Question Navigation');
     global $db;
     $f3->set('trainings', $db->getAppTypes());
+    $app = $_GET['trainingType'];
+
+    if (isset($_POST[$app])) {
+        $f3->reroute("/question_edit?type=$app");
+    }
+
     $view = new Template();
     echo $view->render('views/portal/other/editQuestionsNav.html');
 });
 
-//TODO: simplify routing with variables and if/switch statements
-$f3->route('GET|POST /app_questions/basics', function ($f3) {
-    $f3->set('page_title', 'Edit Basics Questions');
-    global $db;
-    $questions = $db->getBQs();
-    $keys = array_keys($questions);
-    $f3->set('bQuestions', $questions);
-    $f3->set('bKeys', $keys);
 
+$f3->route("GET|POST /question_edit", function ($f3) {
+    $app = $_GET['type'];
+    $f3->set('page_title', 'Edit Questions');
+    global $db;
+    switch ($app) {
+        case
+        'basics':
+            $questions = $db->getBQs();
+            $keys = array_keys($questions);
+            $f3->set('bQuestions', $questions);
+            $f3->set('bKeys', $keys);
+            break;
+        case 'homefront':
+            $questions = $db->getHQs();
+            $keys = array_keys($questions);
+            $f3->set('hQuestions', $questions);
+            $f3->set('hKeys', $keys);
+            break;
+        case 'familySupportGroup':
+            $questions = $db->getFSGQs();
+            $keys = array_keys($questions);
+            $f3->set('fsgQuestions', $questions);
+            $f3->set('fsgKeys', $keys);
+            break;
+        case 'peer2peer':
+            $questions = $db->getP2PQs();
+            $keys = array_keys($questions);
+            $f3->set('p2pQuestions', $questions);
+            $f3->set('p2pKeys', $keys);
+            break;
+        case 'endingTheSilence':
+            $questions = $db->getETSQs();
+            $keys = array_keys($questions);
+            $f3->set('etsQuestions', $questions);
+            $f3->set('etsKeys', $keys);
+            break;
+        case 'providerEducation':
+            $questions = $db->getPEQs();
+            $keys = array_keys($questions);
+            $f3->set('peQuestions', $questions);
+            $f3->set('peKeys', $keys);
+            break;
+        case 'family2family':
+            $questions = $db->getF2FQs();
+            $keys = array_keys($questions);
+            $f3->set('f2fQuestions', $questions);
+            $f3->set('f2fKeys', $keys);
+            break;
+        case 'inOurOwnVoice':
+            $questions = $db->getIOOVQs();
+            $keys = array_keys($questions);
+            $f3->set('ioovQuestions', $questions);
+            $f3->set('ioovKeys', $keys);
+            break;
+        case 'connection':
+            $questions = $db->getCQs();
+            $keys = array_keys($questions);
+            $f3->set('cQuestions', $questions);
+            $f3->set('cKeys', $keys);
+            break;
+    }
     if (isset($_POST['editQs'])) {
         $question = $_POST['questionId'];
         $newText = $_POST['newText'];
@@ -514,157 +573,5 @@ $f3->route('GET|POST /app_questions/basics', function ($f3) {
         echo "<meta http-equiv='refresh' content='0'>";
     }
     $view = new Template();
-    echo $view->render('views/portal/other/edit_questions/basics/editAppQuestions.html');
-});
-
-$f3->route('GET|POST /app_questions/connection', function ($f3) {
-    $f3->set('page_title', 'Edit Connection Questions');
-    global $db;
-    $questions = $db->getCQs();
-    $keys = array_keys($questions);
-    $f3->set('cQuestions', $questions);
-    $f3->set('cKeys', $keys);
-
-    if (isset($_POST['editQs'])) {
-        $question = $_POST['questionId'];
-        $newText = $_POST['newText'];
-        $db->updateCQs($question, $newText);
-        echo "<meta http-equiv='refresh' content='0'>";
-    }
-    $view = new Template();
-    echo $view->render('views/portal/other/edit_questions/connection/editAppQuestions.html');
-});
-
-$f3->route('GET|POST /app_questions/endingTheSilence', function ($f3) {
-    $f3->set('page_title', 'Edit Ending The Silence Questions');
-    global $db;
-    $questions = $db->getETSQs();
-    $keys = array_keys($questions);
-    $f3->set('etsQuestions', $questions);
-    $f3->set('etsKeys', $keys);
-
-    if (isset($_POST['editQs'])) {
-        $question = $_POST['questionId'];
-        $newText = $_POST['newText'];
-        $db->updateETSQs($question, $newText);
-        echo "<meta http-equiv='refresh' content='0'>";
-    }
-    $f3->set('etsQuestions', $questions);
-    $view = new Template();
-    echo $view->render('views/portal/other/edit_questions/endingTheSilence/editAppQuestions.html');
-});
-
-$f3->route('GET|POST /app_questions/family2family', function ($f3) {
-    $f3->set('page_title', 'Edit Family-to-Family Questions');
-    global $db;
-    $questions = $db->getF2FQs();
-    $keys = array_keys($questions);
-    $f3->set('f2fQuestions', $questions);
-    $f3->set('f2fKeys', $keys);
-
-    if (isset($_POST['editQs'])) {
-        $question = $_POST['questionId'];
-        $newText = $_POST['newText'];
-        $db->updateF2FQs($question, $newText);
-        echo "<meta http-equiv='refresh' content='0'>";
-    }
-    $view = new Template();
-    echo $view->render('views/portal/other/edit_questions/family2family/editAppQuestions.html');
-});
-
-$f3->route('GET|POST /app_questions/familySupportGroup', function ($f3) {
-    $f3->set('page_title', 'Edit Family Support Group Questions');
-    global $db;
-    $questions = $db->getFSGQs();
-    $keys = array_keys($questions);
-    $f3->set('fsgQuestions', $questions);
-    $f3->set('fsgKeys', $keys);
-
-    if (isset($_POST['editQs'])) {
-        $question = $_POST['questionId'];
-        $newText = $_POST['newText'];
-        $db->updateFSGQs($question, $newText);
-        echo "<meta http-equiv='refresh' content='0'>";
-    }
-    $view = new Template();
-    echo $view->render('views/portal/other/edit_questions/familySupportGroup/editAppQuestions.html');
-});
-
-$f3->route('GET|POST /app_questions/inOurOwnVoice', function ($f3) {
-    $f3->set('page_title', 'Edit In Our Own Voice Questions');
-    global $db;
-    $questions = $db->getIOOVQs();
-    $keys = array_keys($questions);
-    $f3->set('ioovQuestions', $questions);
-    $f3->set('ioovKeys', $keys);
-
-    if (isset($_POST['editQs'])) {
-        $question = $_POST['questionId'];
-        $newText = $_POST['newText'];
-        $db->updateIOOVQs($question, $newText);
-        echo "<meta http-equiv='refresh' content='0'>";
-    }
-    $view = new Template();
-    echo $view->render('views/portal/other/edit_questions/inOurOwnVoice/editAppQuestions.html');
-});
-
-$f3->route('GET|POST /app_questions/homefront', function ($f3) {
-    $f3->set('page_title', 'Edit Homefront Questions');
-    global $db;
-    $questions = $db->getHQs();
-    $keys = array_keys($questions);
-    $f3->set('hQuestions', $questions);
-    $f3->set('hKeys', $keys);
-
-    if (isset($_POST['editQs'])) {
-        $question = $_POST['questionId'];
-        $newText = $_POST['newText'];
-        $db->updateHQs($question, $newText);
-        echo "<meta http-equiv='refresh' content='0'>";
-    }
-
-    $view = new Template();
-    echo $view->render('views/portal/other/edit_questions/homefront/editAppQuestions.html');
-});
-
-$f3->route('GET|POST /app_questions/peer2peer', function ($f3) {
-    $f3->set('page_title', 'Edit Peer-to-Peer Questions');
-    global $db;
-    $questions = $db->getP2PQs();
-    $keys = array_keys($questions);
-    $f3->set('p2pQuestions', $questions);
-    $f3->set('p2pKeys', $keys);
-
-    if (isset($_POST['editQs'])) {
-        $question = $_POST['questionId'];
-        $newText = $_POST['newText'];
-        $db->updateP2PQs($question, $newText);
-        echo "<meta http-equiv='refresh' content='0'>";
-    }
-    $view = new Template();
-    echo $view->render('views/portal/other/edit_questions/peer2peer/editAppQuestions.html');
-});
-
-$f3->route('GET|POST /app_questions/providerEducation', function ($f3) {
-    $f3->set('page_title', 'Edit Provider Education Questions');
-    global $db;
-    $questions = $db->getPEQs();
-    $keys = array_keys($questions);
-    $f3->set('peQuestions', $questions);
-    $f3->set('peKeys', $keys);
-
-    if (isset($_POST['editQs'])) {
-        $question = $_POST['questionId'];
-        $newText = $_POST['newText'];
-        $db->updatePEQs($question, $newText);
-        echo "<meta http-equiv='refresh' content='0'>";
-    }
-    $view = new Template();
-    echo $view->render('views/portal/other/edit_questions/providerEducation/editAppQuestions.html');
-});
-
-$f3->route('GET /app_questions/smarts', function ($f3) {
-    $f3->set('page_title', 'Edit Smarts Questions');
-    $view = new Template();
-    echo $view->render('views/portal/other/edit_questions/smarts/editAppQuestions.html');
+    echo $view->render("views/portal/other/edit_questions/$app/editAppQuestions.html");
 });

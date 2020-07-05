@@ -2,14 +2,15 @@
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
-    <!--TODO: ask about eventually adding other forms (personal info, etc)-->
     <h1>Editing Questions</h1>
     <ul>
         <repeat group="{{ @trainings }}" value="{{ @training }}">
-            <li>
-                <button class="btn"><a href="app_questions/{{@training['ref_name'] }}">{{
-                    @training['app_type'] }}</a></button>
-            </li>
+            <form method="post">
+                <li>
+                    <h3><a href="question_edit?type={{@training['ref_name'] }}">{{ @training['app_type'] }}</a></h3>
+                </li>
+                <input type="hidden" name="trainingType" value="{{ @training['ref_name'] }}">
+            </form>
         </repeat>
     </ul>
 </div>
