@@ -1828,7 +1828,7 @@ class UnamiDatabase
 
     function getFSGQs()
     {
-        $sql = "SELECT q1, q1a, q3, q3a, q5, q8, q8a, q9, q9a FROM FSG_Qs";
+        $sql = "SELECT q1, q1a, q3, q3a, q4, q5, q8, q8a, q9, q9a FROM FSG_Qs";
         $statement = $this->_dbh->prepare($sql);
         $statement->execute();
         return $statement->fetch(PDO::FETCH_ASSOC);
