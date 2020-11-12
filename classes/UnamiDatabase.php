@@ -1876,7 +1876,7 @@ class UnamiDatabase
         WHERE id = 1";
 
         $statement = $this->_dbh->prepare($sql);
-        $statement->bindParam(':newText', $newText, PDO::PARAM_INT);
+        $statement->bindParam(':newText', $newText, PDO::PARAM_STR);
 
         $statement->execute();
     }
