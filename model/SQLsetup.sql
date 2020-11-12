@@ -22,6 +22,7 @@ CREATE TABLE applicants
     category             INT                NOT NULL,
     app_type             INT                NOT NULL,
     fname                VARCHAR(60)        NOT NULL,
+    pname                VARCHAR(60)                  DEFAULT 'N/A',
     lname                VARCHAR(70)        NOT NULL,
     pronouns             VARCHAR(50)        NOT NULL,
     birthdate            VARCHAR(10)        NOT NULL,

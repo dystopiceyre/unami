@@ -53,7 +53,7 @@ class UnamiDatabase
     function addApplicant($personalInfo, $accommodations, $notRequired, $info_id)
     {
         //prepare SQL statement
-        $sql = "INSERT INTO applicants(date_submitted, app_status, category, app_type, fname, lname, pronouns, birthdate, NAMI_member, 
+        $sql = "INSERT INTO applicants(date_submitted, app_status, category, app_type, fname, pname, lname, pronouns, birthdate, NAMI_member, 
                 affiliate, address, city, address2, state, zip, primary_phone, primary_time, alternate_phone, 
                 alternate_time, email, preference, emergency_name, emergency_phone, special_needs, service_animal, 
                 mobility_need, need_rooming, single_room, days_rooming, gender, roommate_gender, cpap_user, 
@@ -75,6 +75,7 @@ class UnamiDatabase
 
         //personal info
         $fname = $personalInfo->getFname();
+        $pname = $personalInfo->getPname();
         $lname = $personalInfo->getLname();
         $pronouns = $personalInfo->getPronouns();
         $birthdate = $personalInfo->getDobMonth() . '/' . $personalInfo->getDobDay() . '/' . $personalInfo->getDobYear();
@@ -141,6 +142,7 @@ class UnamiDatabase
 
         //personal info
         $statement->bindParam(':fname', $fname, PDO::PARAM_STR);
+        $statement->bindParam(':pname', $pname, PDO::PARAM_STR);
         $statement->bindParam(':lname', $lname, PDO::PARAM_STR);
         $statement->bindParam(':pronouns', $pronouns, PDO::PARAM_STR);
         $statement->bindParam(':birthdate', $birthdate, PDO::PARAM_STR);
@@ -1397,7 +1399,7 @@ class UnamiDatabase
     {
         //name, phone, email, special needs, and all rooming info
         //define query
-        $query = "SELECT date_submitted, app_status, fname, lname, primary_phone, email, 
+        $query = "SELECT date_submitted, app_status, fname, pname, lname, primary_phone, email, 
                 special_needs, service_animal, mobility_need, need_rooming,
                 single_room, days_rooming, gender, roommate_gender, 
                 cpap_user, roommate_cpap
