@@ -28,6 +28,10 @@ $f3->route('GET|POST /personal_information', function ($f3) {
 
         // get data from form
         $first = $_POST['first'];
+        $preferred = $_POST['preferred'];
+        if (!isset($preferred)) {
+            $preferred = 'N/A';
+        }
         $last = $_POST['last'];
         $pronouns = $_POST['pronouns'];
         $dateOfBirth = $_POST['month'] . "/" . $_POST['day'] . "/" . $_POST['year'];
@@ -57,6 +61,7 @@ $f3->route('GET|POST /personal_information', function ($f3) {
 
         // add data to hive
         $f3->set('fname', $first);
+        $f3->set('pname', $preferred);
         $f3->set('lname', $last);
         $f3->set('pronouns', $pronouns);
         $f3->set('dateOfBirth', $dateOfBirth);
@@ -76,7 +81,7 @@ $f3->route('GET|POST /personal_information', function ($f3) {
         $f3->set('emergency_name', $emergency_name);
         $f3->set('emergency_phone', $emergency_phone);
 
-        $_SESSION['PersonalInfo'] = new PersonalInfo($first, $last, $pronouns, $address, $address2, $city, $state, $zip,
+        $_SESSION['PersonalInfo'] = new PersonalInfo($first, $preferred, $last, $pronouns, $address, $address2, $city, $state, $zip,
             $primaryPhone, $primaryTime, $alternatePhone, $alternateTime, $email, $preference, $affiliate, $member,
             $emergency_name, $emergency_phone, $_POST['day'], $_POST['month'], $_POST['year']);
 
@@ -98,7 +103,7 @@ $f3->route('GET|POST /personal_information', function ($f3) {
     if (!isset($_SESSION['PersonalInfo'])) {
         $_SESSION['PersonalInfo'] = new PersonalInfo('', '', '', '', '', '',
             '', '', '', '', '', '', '', '',
-            '', '', '', '', '', '', '');
+            '', '', '', '', '', '', '', '');
     }
 
     $view = new Template();

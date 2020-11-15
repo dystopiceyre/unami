@@ -7,6 +7,7 @@
 class PersonalInfo
 {
     private $_fname;
+    private $_pname;
     private $_lname;
     private $_pronouns;
     private $_address;
@@ -30,6 +31,7 @@ class PersonalInfo
     /**
      * PersonalInfo constructor.
      * @param $_fname String first name of applicant
+     * @param $_pname String preferred name of applicant
      * @param $_lname String last name of applicant
      * @param $_pronouns String the pronouns the applicant uses
      * @param $_address String the address of the applicant
@@ -51,11 +53,12 @@ class PersonalInfo
      * @param $_dobMonth String the month of the user's dob
      * @param $_dobYear String the year of the user's dob
      */
-    public function __construct($_fname, $_lname, $_pronouns, $_address, $_address2, $_city, $_state, $_zip,
+    public function __construct($_fname, $_pname, $_lname, $_pronouns, $_address, $_address2, $_city, $_state, $_zip,
                                 $_primaryPhone, $_primaryTime, $_alternatePhone, $_alternateTime, $_email, $_preference,
                                 $_affiliate, $_member, $_emergency_name, $_emergency_phone, $_dobDay, $_dobMonth, $_dobYear)
     {
         $this->_fname = $_fname;
+        $this->_pname = $_pname;
         $this->_lname = $_lname;
         $this->_pronouns = $_pronouns;
         $this->_address = $_address;
@@ -83,6 +86,13 @@ class PersonalInfo
     public function getFname()
     {
         return $this->_fname;
+    }
+    /** Getter for the preferred name
+     * @return mixed preferred name
+     */
+    public function getPname()
+    {
+        return $this->_pname;
     }
     /** Getter for last name
      * @return mixed last name
