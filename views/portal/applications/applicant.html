@@ -66,7 +66,7 @@
                     <!-- dob -->
                     <div class="row m-1 mb-2">
                         <h6 class="pl-2"><span class="font-weight-bold">Date of Birth:</span>
-                            {{ @applicant['birthdate'] }}
+                            {{ date('F j, Y', strtotime(@applicant['birthdate'])) }}
                         </h6>
                     </div>
 
@@ -80,7 +80,8 @@
 
                     <!-- nami stuff -->
                     <div class="row m-1 mb-2">
-                        <h6 class="pl-2"><span class="font-weight-bold">Affiliate:</span> {{ @applicant['Affiliate'] }}</h6>
+                        <h6 class="pl-2"><span class="font-weight-bold">Affiliate:</span> {{ @applicant['Affiliate'] }}
+                        </h6>
                     </div>
                     <div class="row m-1 mb-2">
                         <h6 class="pl-2"><span class="font-weight-bold">NAMI Member:</span>
@@ -98,17 +99,18 @@
                     </div>
 
                     <!-- alternate phone -->
-                    <div class="row m-1 mb-2">
-                        <h6 class="pl-2"><span class="font-weight-bold">Alternate Phone:</span>
-                            {{ @applicant['alternate_phone'] }}, {{ @applicant['alternate_time'] }}
-                        </h6>
-                    </div>
-
+                    <check if="{{ empty(@applicant['alternate_phone'])}}">
+                        <div class="row m-1 mb-2">
+                            <h6 class="pl-2"><span class="font-weight-bold">Alternate Phone:</span>
+                                {{ @applicant['alternate_phone'] }}, {{ @applicant['alternate_time'] }}
+                            </h6>
+                        </div>
+                    </check>
                     <!-- email and best way to contact -->
                     <div class="row m-1 mb-2">
                         <h6 class="pl-2"><span class="font-weight-bold">Email:</span>
-                            <a  class="text-decoration-none text-body"
-                                href="mailto: {{ @applicant['Email'] }}">
+                            <a class="text-decoration-none text-body"
+                               href="mailto: {{ @applicant['Email'] }}">
                                 {{ @applicant['Email'] }}
                             </a>
                         </h6>
@@ -162,7 +164,8 @@
                             </h6>
 
                             <check if="{{ @applicant['need_rooming'] == 'Yes' }}">
-                                <h6 class="pl-2 pb-2"><span class="font-weight-bold">They want to pay for a Single room: </span>
+                                <h6 class="pl-2 pb-2"><span
+                                        class="font-weight-bold">They want to pay for a Single room: </span>
                                     <check if="{{ @applicant['single_room'] == 'Yes' }}">
                                         <true>Single room wanted</true>
                                         <false>Single room not wanted</false>
@@ -186,7 +189,8 @@
                             <div class="col-md-10 pl-0">
                                 <h6 class="pl-2">
                                     <span class="font-weight-bold">Gender: </span> {{ @applicant['gender'] }}
-                                    <span class="font-weight-bold ml-3">Want to Room With: </span> {{ @applicant['roommate_gender'] }}
+                                    <span class="font-weight-bold ml-3">Want to Room With: </span> {{
+                                    @applicant['roommate_gender'] }}
                                 </h6>
                             </div>
                         </div>
@@ -234,15 +238,24 @@
                 <div class="card-body">
                     <div class="row m-1 mb-2">
                         <h6 class="pl-2"><span class="font-weight-bold">Day 1: </span>
-                            {{ @applicant['Day1'] }}
+                            {{ date('F j, Y', strtotime(@applicant['Day1'])) }}
                         </h6>
                     </div>
 
-                    <div class="row m-1 mb-2">
-                        <h6 class="pl-2"><span class="font-weight-bold">Day 2: </span>
-                            {{ @applicant['Day2'] }}
-                        </h6>
-                    </div>
+                    <check if="{{ (@applicant['Day2'])}}">
+                        <div class="row m-1 mb-2">
+                            <h6 class="pl-2"><span class="font-weight-bold">Day 2: </span>
+                                {{ date('F j, Y', strtotime(@applicant['Day2'])) }}
+                            </h6>
+                        </div>
+                    </check>
+                    <check if="{{ (@applicant['Day3'])}}">
+                        <div class="row m-1 mb-2">
+                            <h6 class="pl-2"><span class="font-weight-bold">Day 3: </span>
+                                {{ date('F j, Y', strtotime(@applicant['Day3'])) }}
+                            </h6>
+                        </div>
+                    </check>
 
                     <div class="row m-1 mb-2">
                         <h6 class="pl-2"><span class="font-weight-bold">Location: </span>
@@ -252,7 +265,7 @@
 
                     <div class="row m-1 mb-2">
                         <h6 class="pl-2"><span class="font-weight-bold">Date Submitted: </span>
-                            {{ date('m/d/Y', strtotime(@applicant['date_submitted'])) }}
+                            {{ date('F j, Y', strtotime(@applicant['date_submitted'])) }}
                         </h6>
                     </div>
 
@@ -270,7 +283,8 @@
                 <div class="card-body">
 
                     <div class="row m-1 mb-2">
-                        <h6 class="pl-2"><span class="font-weight-bold">How they heard about this Training Class: </span>
+                        <h6 class="pl-2"><span
+                                class="font-weight-bold">How they heard about this Training Class: </span>
                             <br>{{ @applicant['heard_about_training'] }}
                         </h6>
                     </div>
@@ -306,7 +320,8 @@
         <div class="col-lg-12 d-flex">
             <div class="card shadow mb-4 flex-fill">
                 <div class="card-header py-3 bg-primary">
-                    <h5 class="m-0 text-white"><i class="fas fa-question-circle"></i> {{ @applicant['Training'] }} Questions</h5>
+                    <h5 class="m-0 text-white"><i class="fas fa-question-circle"></i> {{ @applicant['Training'] }}
+                        Questions</h5>
                 </div>
                 <div class="card-body">
                     <include href="{{ @reviewIncludes }}"/>
