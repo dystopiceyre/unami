@@ -58,7 +58,7 @@ class UnamiDatabase
                 alternate_time, email, preference, emergency_name, emergency_phone, special_needs, service_animal, 
                 mobility_need, need_rooming, single_room, days_rooming, gender, roommate_gender, cpap_user, 
                 roommate_cpap, heard_about_training, other_classes, certified, info_id) 
-                VALUES (NOW(), :app_status, :category, :app_type, :fname, :lname, :pronouns, :birthdate, :NAMI_member, 
+                VALUES (NOW(), :app_status, :category, :app_type, :fname, :pname, :lname, :pronouns, :birthdate, :NAMI_member, 
                 :affiliate, :address, :city, :address2, :state, :zip, :primary_phone, :primary_time, 
                 :alternate_phone, :alternate_time, :email, :preference, :emergency_name, :emergency_phone, 
                 :special_needs, :service_animal, :mobility_need, :need_rooming, :single_room, :days_rooming, 
