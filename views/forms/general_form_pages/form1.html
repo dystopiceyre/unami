@@ -41,17 +41,17 @@
 
                     <!-- name & pronouns -->
                     <div class="form-row">
-                        <div class="form-group col-md-5">
+                        <div class="form-group col-md-3">
                             <h5 class="mb-0"><label for="first">First name</label></h5>
                             <input name="first" type="text" class="form-control" id="first" required
                                    value="{{ $_SESSION['PersonalInfo']->getFname() }}">
                         </div>
-                        <div class="form-group col-md-5">
+                        <div class="form-group col-md-3">
                             <h5 class="mb-0"><label for="preferred">Preferred name <i class="far fa-check-circle fa-xs text-primary"></i></label></h5>
                             <input name="preferred" type="text" class="form-control" id="preferred"
                                    value="{{ $_SESSION['PersonalInfo']->getPname() }}">
                         </div>
-                        <div class="form-group col-md-5">
+                        <div class="form-group col-md-4">
                             <h5 class="mb-0"><label for="last">Last name</label></h5>
                             <input name="last" type="text" class="form-control" id="last" required
                                    value="{{ $_SESSION['PersonalInfo']->getLname() }}">
