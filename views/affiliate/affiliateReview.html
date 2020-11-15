@@ -62,7 +62,7 @@
                     <div class="row m-1 mb-2">
                         <div class="col-md-6 pl-0">
                             <h6 class="pl-2"><span class="font-weight-bold">Date of Birth:</span>
-                                {{ @applicant['birthdate'] }}
+                                {{ date('F j, Y', strtotime(@applicant['birthdate'])) }}
                             </h6>
                         </div>
                     </div>
@@ -105,7 +105,7 @@
                     </div>
 
                     <!-- alternate phone -->
-                    <check if="{{ @SESSION.alternatePhone == 1 }}">
+                    <check if="{{ @applicant['alternatePhone'] }}">
                         <div class="row m-1 mb-2">
                             <div class="col-md-4 pl-0">
                                 <h6 class="pl-2"><span class="font-weight-bold">Alternate Phone:</span>
