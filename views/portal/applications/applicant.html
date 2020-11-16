@@ -38,7 +38,9 @@
             </false>
         </check>
 
-        {{ @applicant['fname'] }} {{ @applicant['lname'] }}'s Application
+        {{ @applicant['fname'] }}
+        <check if="{{ @applicant['pname'] }}"> "{{ @applicant['pname'] }}"</check>
+        {{ @applicant['lname'] }}'s Application
     </h1>
 
     <h6 class="mb-4 mt-3">
@@ -59,7 +61,9 @@
                     <!-- name, pronouns -->
                     <div class="row m-1 mb-2">
                         <h6 class="pl-2"><span class="font-weight-bold">Name:</span>
-                            {{ @applicant['fname'] }} {{ @applicant['lname'] }}, {{ @applicant['pronouns'] }}
+                            {{ @applicant['fname'] }}
+                            <check if="{{ @applicant['pname'] }}"> "{{ @applicant['pname'] }}"</check>
+                            {{ @applicant['lname'] }}, {{ @applicant['pronouns'] }}
                         </h6>
                     </div>
 

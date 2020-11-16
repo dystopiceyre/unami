@@ -36,8 +36,12 @@
         <div class="card mb-3 shadow-sm bg-white rounded">
             <div class="card-header">
                 <h4 class="pt-2"><i class="fas fa-globe-americas mr-1 text-primary"></i>
-                    Application for: {{ @applicant['fname'].' '.@applicant['lname'] }}</h4>
+                    Application for: {{ @applicant['fname'] }}
+                    <check if="{{ @applicant['pname'] }}"> "{{ @applicant['pname'] }}"</check>
+                    {{ @applicant['lname'] }}
+                </h4>
             </div>
+
             <div class="card-body m-3">
 
                 <!-- personal information -->
@@ -53,8 +57,11 @@
                     <div class="row m-1 mb-2">
                         <div class="col-md-6 pl-0">
                             <h6 class="pl-2"><span class="font-weight-bold">Name:</span>
-                                {{ @applicant['fname'] }} {{ @applicant['lname'] }}
-                                <span class="font-weight-bold ml-5">Pronouns:</span> {{ @applicant['pronouns'] }}</h6>
+                                {{ @applicant['fname'] }}
+                                <check if="{{ @applicant['pname'] }}"> "{{ @applicant['pname'] }}"</check>
+                                {{ @applicant['lname'] }}
+                                <span class="font-weight-bold ml-5">Pronouns:</span> {{ @applicant['pronouns'] }}
+                            </h6>
                         </div>
                     </div>
 
@@ -183,7 +190,8 @@
                             </h6>
 
                             <check if="{{ @applicant['need_rooming'] == 'Yes' }}">
-                                <h6 class="pl-2 pb-2"><span class="font-weight-bold">They want to pay for a Single room: </span>
+                                <h6 class="pl-2 pb-2"><span
+                                        class="font-weight-bold">They want to pay for a Single room: </span>
                                     <check if="{{ @applicant['single_room'] == 'Yes' }}">
                                         <true>Single room wanted</true>
                                         <false>Single room not wanted</false>
@@ -208,7 +216,8 @@
                             <div class="col-md-10 pl-0">
                                 <h6 class="pl-2">
                                     <span class="font-weight-bold">Your Gender: </span> {{ @applicant['gender'] }}
-                                    <span class="font-weight-bold ml-3">Want to Room With: </span> {{ @applicant['roommate_gender'] }}
+                                    <span class="font-weight-bold ml-3">Want to Room With: </span> {{
+                                    @applicant['roommate_gender'] }}
                                 </h6>
                             </div>
                         </div>
@@ -245,7 +254,8 @@
 
                     <div class="row m-1 mb-2">
                         <div class="col-md-10 pl-0">
-                            <h6 class="pl-2"><span class="font-weight-bold">How they heard about this Training Class: </span>
+                            <h6 class="pl-2"><span
+                                    class="font-weight-bold">How they heard about this Training Class: </span>
                                 {{ @applicant['heard_about_training'] }}
                             </h6>
                         </div>
@@ -310,7 +320,8 @@
                         </div>
                         <br>
                         <button type="submit" name="saveNotes" value="save" class="btn btn-primary float-center">
-                            Save</button>
+                            Save
+                        </button>
                     </div>
                 </div>
             </div>
