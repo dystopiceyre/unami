@@ -28,7 +28,6 @@ CREATE TABLE applicants
     birthdate            VARCHAR(10)        NOT NULL,
     NAMI_member          boolean            NOT NULL,
     affiliate            INT                NOT NULL,
-    affiliate_other      VARCHAR(100)                DEFAULT 'N/A',
     address              VARCHAR(70)        NOT NULL,
     city                 VARCHAR(70)        NOT NULL,
     address2             VARCHAR(70),
@@ -63,10 +62,22 @@ CREATE TABLE applicants
     approval_date        VARCHAR(50),
     check_number         VARCHAR(50),
     info_id              INT                NOT NULL,
+    other_affiliate_id   INT,
     FOREIGN KEY (app_type) references app_type (app_id),
     FOREIGN KEY (affiliate) references affiliates (affiliate_id),
-    FOREIGN KEY (info_id) references app_type_info (info_id)
+    FOREIGN KEY (info_id) references app_type_info (info_id),
+    FOREIGN KEY (other_affiliate_id) references other_affiliate (id)
 );
+
+CREATE TABLE other_affiliate
+(
+    affiliate_id   INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    affiliate_name varchar(100)       NOT NULL,
+    leader_name	   varchar(100)       NOT NULL,
+    leader_email   varchar(100)       NOT NULL,
+    leader_phone   varchar(100)       NOT NULL
+);
+
 
 /* specific application tables */
 CREATE TABLE FSG

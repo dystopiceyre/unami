@@ -29,7 +29,6 @@ class PersonalInfo
     private $_dobDay;
     private $_dobMonth;
     private $_dobYear;
-    private $_affiliateOther;
 
     /**
      * PersonalInfo constructor.
@@ -49,7 +48,6 @@ class PersonalInfo
      * @param $_email String the email they gave
      * @param $_preference String whether they prefer contact with email or phone
      * @param $_affiliate String the local affiliate they are applying to
-     * @param $_affiliateOther String info on where applicant lives if not in the domain of a NAMI WA affiliate
      * @param $_member String if they are a member or nor
      * @param $_emergency_name String the name of their emergency contact
      * @param $_emergency_phone String the phone of their emergency contact
@@ -59,7 +57,7 @@ class PersonalInfo
      */
     public function __construct($_fname, $_pname, $_lname, $_pronouns, $_address, $_address2, $_city, $_state, $_zip,
                                 $_primaryPhone, $_primaryTime, $_alternatePhone, $_alternateTime, $_email, $_preference,
-                                $_affiliate, $_affiliateOther, $_member, $_emergency_name, $_emergency_phone, $_dobDay, $_dobMonth, $_dobYear)
+                                $_affiliate, $_member, $_emergency_name, $_emergency_phone, $_dobDay, $_dobMonth, $_dobYear)
     {
         $this->_fname = $_fname;
         $this->_pname = $_pname;
@@ -77,7 +75,6 @@ class PersonalInfo
         $this->_email = $_email;
         $this->_preference = $_preference;
         $this->_affiliate = $_affiliate;
-        $this->_affiliateOther = $_affiliateOther;
         $this->_member = $_member;
         $this->_emergency_name = $_emergency_name;
         $this->_emergency_phone = $_emergency_phone;
@@ -212,15 +209,6 @@ class PersonalInfo
     public function getAffiliate()
     {
         return $this->_affiliate;
-    }
-
-    /**
-     *  Getter for other affiliate info
-     * @return mixed alternate affiliate info
-     */
-    public function getAffiliateOther()
-    {
-        return $this->_affiliateOther;
     }
 
     /** Getter for if they are a NAMI member or not
