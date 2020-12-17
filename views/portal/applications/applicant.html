@@ -86,6 +86,11 @@
                     <div class="row m-1 mb-2">
                         <h6 class="pl-2"><span class="font-weight-bold">Affiliate:</span> {{ @applicant['Affiliate'] }}
                         </h6>
+                        <check if="@applicant['Other'] != 'N/A'">
+                            <h6 class="pl-2"><span class="font-weight-bold">Other Affiliate Info:</span> {{
+                                @applicant['Other'] }}
+                            </h6>
+                        </check>
                     </div>
                     <div class="row m-1 mb-2">
                         <h6 class="pl-2"><span class="font-weight-bold">NAMI Member:</span>
