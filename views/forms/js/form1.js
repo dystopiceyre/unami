@@ -2,7 +2,7 @@ var aff = document.getElementById("affiliateName");
 
 function showfield(name)
 {
-    if(name=='Other')
+    if(name=='20')
     {
         document.getElementById('div1').innerHTML=
             '                    <div class="form-row justify-content-end">\n' +
