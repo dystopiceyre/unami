@@ -57,13 +57,14 @@ class UnamiDatabase
                 affiliate, address, city, address2, state, zip, primary_phone, primary_time, alternate_phone, 
                 alternate_time, email, preference, emergency_name, emergency_phone, special_needs, service_animal, 
                 mobility_need, need_rooming, single_room, days_rooming, gender, roommate_gender, cpap_user, 
-                roommate_cpap, heard_about_training, other_classes, certified, info_id) 
+                roommate_cpap, heard_about_training, other_classes, certified, info_id, affiliate_type, approver_name,
+                approver_title, approval_date, check_number) 
                 VALUES (NOW(), :app_status, :category, :app_type, :fname, :pname, :lname, :pronouns, :birthdate, :NAMI_member, 
                 :affiliate, :address, :city, :address2, :state, :zip, :primary_phone, :primary_time, 
                 :alternate_phone, :alternate_time, :email, :preference, :emergency_name, :emergency_phone, 
                 :special_needs, :service_animal, :mobility_need, :need_rooming, :single_room, :days_rooming, 
                 :gender, :roommate_gender, :cpap_user, :roommate_cpap, :heard_about_training, :other_classes, 
-                :certified, :info_id)";
+                :certified, :info_id, :affiliate_type, :approver_name, :approver_title, :approval_date, :check_number)";
 
         // save prepared statement
         $statement = $this->_dbh->prepare($sql);
@@ -87,6 +88,7 @@ class UnamiDatabase
 
         //Have to change to use foreign key: it does
         $NAMI_affiliate = $personalInfo->getAffiliate();
+        $otherAffiliate = $personalInfo->getAffiliateOther();
         $address = $personalInfo->getAddress();
         $city = $personalInfo->getCity();
         $address2 = $personalInfo->getAddress2();
@@ -148,6 +150,7 @@ class UnamiDatabase
         $statement->bindParam(':birthdate', $birthdate, PDO::PARAM_STR);
         $statement->bindParam(':NAMI_member', $NAMI_member, PDO::PARAM_BOOL);
         $statement->bindParam(':affiliate', $NAMI_affiliate, PDO::PARAM_STR);
+        $statement->bindParam(':affiliate_other', $otherAffiliate, PDO::PARAM_STR);
         $statement->bindParam(':address', $address, PDO::PARAM_STR);
         $statement->bindParam(':city', $city, PDO::PARAM_STR);
         $statement->bindParam(':address2', $address2, PDO::PARAM_STR);
@@ -181,6 +184,15 @@ class UnamiDatabase
 
         //training info id
         $statement->bindParam(':info_id', $info_id, PDO::PARAM_STR);
+
+
+        //awaiting approval
+        $wait = 'awaiting approval';
+        $statement->bindParam(':affiliate_type', $wait, PDO::PARAM_STR);
+        $statement->bindParam(':approver_name', $wait, PDO::PARAM_STR);
+        $statement->bindParam(':approver_title', $wait, PDO::PARAM_STR);
+        $statement->bindParam(':approval_date', $wait, PDO::PARAM_STR);
+        $statement->bindParam(':check_number', $wait, PDO::PARAM_STR);
 
         // execute insert into users
         $statement->execute();
@@ -1383,7 +1395,7 @@ class UnamiDatabase
         $statement->bindParam(':member_expiration', $expiration, PDO::PARAM_STR);
         $statement->bindParam(':approver_name', $leaderName, PDO::PARAM_STR);
         $statement->bindParam(':approver_title', $leaderTitle, PDO::PARAM_STR);
-        $statement->bindParam(':type', $type, PDO::PARAM_STR);
+        $statement->bindParam(':affiliate_type', $type, PDO::PARAM_STR);
         $statement->bindParam(':date', $date, PDO::PARAM_STR);
         $statement->bindParam(':applicant_id', $applicationId, PDO::PARAM_INT);
         $statement->bindParam(':check', $check, PDO::PARAM_INT);

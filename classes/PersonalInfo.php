@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class PersonalInfo stores all personal information for applicant
  * @author Max Lee
@@ -28,6 +29,8 @@ class PersonalInfo
     private $_dobDay;
     private $_dobMonth;
     private $_dobYear;
+    private $_affiliateOther;
+
     /**
      * PersonalInfo constructor.
      * @param $_fname String first name of applicant
@@ -46,6 +49,7 @@ class PersonalInfo
      * @param $_email String the email they gave
      * @param $_preference String whether they prefer contact with email or phone
      * @param $_affiliate String the local affiliate they are applying to
+     * @param $_affiliateOther String info on where applicant lives if not in the domain of a NAMI WA affiliate
      * @param $_member String if they are a member or nor
      * @param $_emergency_name String the name of their emergency contact
      * @param $_emergency_phone String the phone of their emergency contact
@@ -55,7 +59,7 @@ class PersonalInfo
      */
     public function __construct($_fname, $_pname, $_lname, $_pronouns, $_address, $_address2, $_city, $_state, $_zip,
                                 $_primaryPhone, $_primaryTime, $_alternatePhone, $_alternateTime, $_email, $_preference,
-                                $_affiliate, $_member, $_emergency_name, $_emergency_phone, $_dobDay, $_dobMonth, $_dobYear)
+                                $_affiliate, $_affiliateOther, $_member, $_emergency_name, $_emergency_phone, $_dobDay, $_dobMonth, $_dobYear)
     {
         $this->_fname = $_fname;
         $this->_pname = $_pname;
@@ -73,6 +77,7 @@ class PersonalInfo
         $this->_email = $_email;
         $this->_preference = $_preference;
         $this->_affiliate = $_affiliate;
+        $this->_affiliateOther = $_affiliateOther;
         $this->_member = $_member;
         $this->_emergency_name = $_emergency_name;
         $this->_emergency_phone = $_emergency_phone;
@@ -80,6 +85,7 @@ class PersonalInfo
         $this->_dobMonth = $_dobMonth;
         $this->_dobYear = $_dobYear;
     }
+
     /** Getter for the first name
      * @return mixed first name
      */
@@ -87,6 +93,7 @@ class PersonalInfo
     {
         return $this->_fname;
     }
+
     /** Getter for the preferred name
      * @return mixed preferred name
      */
@@ -94,6 +101,7 @@ class PersonalInfo
     {
         return $this->_pname;
     }
+
     /** Getter for last name
      * @return mixed last name
      */
@@ -101,6 +109,7 @@ class PersonalInfo
     {
         return $this->_lname;
     }
+
     /** Getter for pronouns
      * @return mixed pronouns used
      */
@@ -108,6 +117,7 @@ class PersonalInfo
     {
         return $this->_pronouns;
     }
+
     /** Getter for the address
      * @return mixed address
      */
@@ -115,6 +125,7 @@ class PersonalInfo
     {
         return $this->_address;
     }
+
     /** Getter for second line of address
      * @return mixed second line for address
      */
@@ -122,6 +133,7 @@ class PersonalInfo
     {
         return $this->_address2;
     }
+
     /** Getter for the city
      * @return mixed city
      */
@@ -129,6 +141,7 @@ class PersonalInfo
     {
         return $this->_city;
     }
+
     /** Getter for the state
      * @return mixed state they live in
      */
@@ -136,6 +149,7 @@ class PersonalInfo
     {
         return $this->_state;
     }
+
     /** Getter for zip code
      * @return mixed zip code
      */
@@ -143,6 +157,7 @@ class PersonalInfo
     {
         return $this->_zip;
     }
+
     /** Getter for the primary phone number
      * @return mixed primary phone
      */
@@ -150,6 +165,7 @@ class PersonalInfo
     {
         return $this->_primaryPhone;
     }
+
     /** Getter for the time range for calling
      * @return mixed when to call
      */
@@ -157,6 +173,7 @@ class PersonalInfo
     {
         return $this->_primaryTime;
     }
+
     /** Getter for the alt phone number
      * @return mixed alt phone number
      */
@@ -164,6 +181,7 @@ class PersonalInfo
     {
         return $this->_alternatePhone;
     }
+
     /** Getter for the alternate time to call
      * @return mixed when to call alt phone
      */
@@ -171,6 +189,7 @@ class PersonalInfo
     {
         return $this->_alternateTime;
     }
+
     /** Getter for the email
      * @return mixed email
      */
@@ -178,6 +197,7 @@ class PersonalInfo
     {
         return $this->_email;
     }
+
     /** Getter for whether they want to called or emailed
      * @return mixed phone or email
      */
@@ -185,6 +205,7 @@ class PersonalInfo
     {
         return $this->_preference;
     }
+
     /** Getter for their affiliate
      * @return mixed affiliate's name
      */
@@ -192,6 +213,16 @@ class PersonalInfo
     {
         return $this->_affiliate;
     }
+
+    /**
+     *  Getter for other affiliate info
+     * @return mixed alternate affiliate info
+     */
+    public function getAffiliateOther()
+    {
+        return $this->_affiliateOther;
+    }
+
     /** Getter for if they are a NAMI member or not
      * @return mixed yes or no
      */
@@ -199,6 +230,7 @@ class PersonalInfo
     {
         return $this->_member;
     }
+
     /** Getter for emergency contact's name
      * @return mixed name
      */
@@ -206,6 +238,7 @@ class PersonalInfo
     {
         return $this->_emergency_name;
     }
+
     /** Getter for emergency contact's email
      * @return mixed email
      */
