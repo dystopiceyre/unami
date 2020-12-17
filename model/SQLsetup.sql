@@ -28,6 +28,7 @@ CREATE TABLE applicants
     birthdate            VARCHAR(10)        NOT NULL,
     NAMI_member          boolean            NOT NULL,
     affiliate            INT                NOT NULL,
+    affiliate_other      VARCHAR(100)                DEFAULT 'N/A',
     address              VARCHAR(70)        NOT NULL,
     city                 VARCHAR(70)        NOT NULL,
     address2             VARCHAR(70),
@@ -448,7 +449,8 @@ VALUES ('NAMI Chelan-Douglas', 'chelandouglasnami@gmail.com'),
        ('NAMI Walla Walla', 'namiwallaalla@gmail.com'),
        ('NAMI Washington Coast', 'president@nami-wacoast.org'),
        ('NAMI Whatcom', 'namiadmin@namiwhatcom.org'),
-       ('NAMI Yakima', 'info@namiyakima.org');
+       ('NAMI Yakima', 'info@namiyakima.org'),
+       ('Other', 'na@na.com');
 
 INSERT INTO app_type(app_type, ref_name)
 VALUES ('Family Support Group', 'familySupportGroup'),
