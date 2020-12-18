@@ -54,13 +54,13 @@ class UnamiDatabase
     {
         //prepare SQL statement
         $sql = "INSERT INTO applicants(date_submitted, app_status, category, app_type, fname, pname, lname, pronouns, birthdate, NAMI_member, 
-                affiliate, affiliate_other, address, city, address2, state, zip, primary_phone, primary_time, alternate_phone, 
+                affiliate, address, city, address2, state, zip, primary_phone, primary_time, alternate_phone, 
                 alternate_time, email, preference, emergency_name, emergency_phone, special_needs, service_animal, 
                 mobility_need, need_rooming, single_room, days_rooming, gender, roommate_gender, cpap_user, 
                 roommate_cpap, heard_about_training, other_classes, certified, info_id, affiliate_type, approver_name,
                 approver_title, approval_date, check_number) 
                 VALUES (NOW(), :app_status, :category, :app_type, :fname, :pname, :lname, :pronouns, :birthdate, :NAMI_member, 
-                :affiliate, :affiliate_other, :address, :city, :address2, :state, :zip, :primary_phone, :primary_time, 
+                :affiliate, :address, :city, :address2, :state, :zip, :primary_phone, :primary_time, 
                 :alternate_phone, :alternate_time, :email, :preference, :emergency_name, :emergency_phone, 
                 :special_needs, :service_animal, :mobility_need, :need_rooming, :single_room, :days_rooming, 
                 :gender, :roommate_gender, :cpap_user, :roommate_cpap, :heard_about_training, :other_classes, 
@@ -88,7 +88,6 @@ class UnamiDatabase
 
         //Have to change to use foreign key: it does
         $NAMI_affiliate = $personalInfo->getAffiliate();
-        $otherAffiliate = $personalInfo->getAffiliateOther();
         $address = $personalInfo->getAddress();
         $city = $personalInfo->getCity();
         $address2 = $personalInfo->getAddress2();
@@ -150,7 +149,6 @@ class UnamiDatabase
         $statement->bindParam(':birthdate', $birthdate, PDO::PARAM_STR);
         $statement->bindParam(':NAMI_member', $NAMI_member, PDO::PARAM_BOOL);
         $statement->bindParam(':affiliate', $NAMI_affiliate, PDO::PARAM_STR);
-        $statement->bindParam(':affiliate_other', $otherAffiliate, PDO::PARAM_STR);
         $statement->bindParam(':address', $address, PDO::PARAM_STR);
         $statement->bindParam(':city', $city, PDO::PARAM_STR);
         $statement->bindParam(':address2', $address2, PDO::PARAM_STR);
@@ -198,6 +196,38 @@ class UnamiDatabase
         $statement->execute();
 
         return $this->_dbh->lastInsertId();
+    }
+
+    function otherAffiliateInfo($otherAffiliate)
+    {
+        $sql = "INSERT INTO other_affiliate(affiliate_name, leader_name, leader_email, leader_phone)
+        VALUES (:affiliate_name, :leader, :email, :phone)";
+
+        $statement = $this->_dbh->prepare($sql);
+
+        $name = $otherAffiliate->getAffiliateName();
+        $leader = $otherAffiliate->getLeaderName();
+        $email = $otherAffiliate->getLeaderEmail();
+        $phone = $otherAffiliate->getLeaderPhone();
+
+        $statement->bindParam(':affiliate_name', $name, PDO::PARAM_STR);
+        $statement->bindParam(':leader', $leader, PDO::PARAM_STR);
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
+        $statement->bindParam(':phone', $phone, PDO::PARAM_STR);
+
+        $statement->execute();
+        return $this->_dbh->lastInsertId();
+    }
+
+    function insertOtherAffiliate($otherID, $applicantID)
+    {
+        $sql = "UPDATE applicants SET other_affiliate_id = :other_id WHERE applicant_id = :applicant_id";
+
+        $statement = $this->_dbh->prepare($sql);
+        $statement->bindParam(':other_id', $otherID, PDO::PARAM_INT);
+        $statement->bindParam(':applicant_id', $applicantID, PDO::PARAM_INT);
+
+        $statement->execute();
     }
 
     /**
