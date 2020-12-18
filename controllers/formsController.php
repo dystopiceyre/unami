@@ -55,7 +55,15 @@ $f3->route('GET|POST /personal_information', function ($f3) {
         $email = $_POST['email'];
         $preference = $_POST['preference'];
         $affiliate = $_POST['affiliate'];
-        $affiliateOther = $_POST['other'];
+
+        //if not Washington State affiliate
+        if ($affiliate == 20) {
+            $affiliateName = $_POST['otherName'];
+            $leaderName = $_POST['otherLeader'];
+            $leaderEmail = $_POST['otherEmail'];
+            $leaderPhone = $_POST['otherPhone'];
+        }
+
         $member = $_POST['member'];
         $emergency_name = $_POST['emergency_name'];
         $emergency_phone = $_POST['emergency_phone'];
@@ -68,7 +76,6 @@ $f3->route('GET|POST /personal_information', function ($f3) {
         $f3->set('dateOfBirth', $dateOfBirth);
         $f3->set('member', $member);
         $f3->set('affiliate', $affiliate);
-        $f3->set('affiliate_other', $affiliateOther);
         $f3->set('address', $address);
         $f3->set('address2', $address2);
         $f3->set('city', $city);
@@ -84,8 +91,13 @@ $f3->route('GET|POST /personal_information', function ($f3) {
         $f3->set('emergency_phone', $emergency_phone);
 
         $_SESSION['PersonalInfo'] = new PersonalInfo($first, $preferred, $last, $pronouns, $address, $address2, $city, $state, $zip,
-            $primaryPhone, $primaryTime, $alternatePhone, $alternateTime, $email, $preference, $affiliate, $affiliateOther, $member,
+            $primaryPhone, $primaryTime, $alternatePhone, $alternateTime, $email, $preference, $affiliate, $member,
             $emergency_name, $emergency_phone, $_POST['day'], $_POST['month'], $_POST['year']);
+
+        //if not Washington State affiliate
+        if ($affiliate == 20) {
+            $_SESSION['OtherAffiliate'] = new OtherAffiliate($affiliateName, $leaderName, $leaderEmail, $leaderPhone);
+        }
 
         $_SESSION['state'] = $_POST['inputState'];
         $_SESSION['affiliate'] = $_POST['affiliate'];
@@ -105,7 +117,7 @@ $f3->route('GET|POST /personal_information', function ($f3) {
     if (!isset($_SESSION['PersonalInfo'])) {
         $_SESSION['PersonalInfo'] = new PersonalInfo('', '', '', '', '', '',
             '', '', '', '', '', '', '', '',
-            '', '', '', '', '', '', '', '', '');
+            '', '', '', '', '', '', '', '');
     }
 
     $view = new Template();
@@ -373,6 +385,12 @@ $f3->route('GET|POST /confirmation', function ($f3) {
     global $db;
     $lastId = $db->addApplicant($_SESSION['PersonalInfo'], $_SESSION['AdditionalInfo'],
         $_SESSION['NotRequired'], $_SESSION['info_id']);
+
+    //if non-WA affiliate, link personal info to "other" info table
+    if ($_SESSION['affiliate'] == '20') {
+        $id = $db->otherAffiliateInfo($_SESSION['OtherAffiliate']);
+        $db->insertOtherAffiliate($id, $lastId);
+    }
 
     switch ($_SESSION['trainingRoute']) {
         case 'basics':

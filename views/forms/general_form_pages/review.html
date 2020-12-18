@@ -69,11 +69,17 @@
 
                 <!-- nami stuff -->
                 <div class="row m-1 mb-2">
-                    <div class="col-md-4 pl-0">
+                    <div class="col-md-6 pl-0">
                         <h6 class="pl-2"><span class="font-weight-bold">Affiliate:</span> {{ @affiliateName }}</h6>
                         <check if="{{ @affiliateName }} == 'Other'">
-                            <h6 class="pl-2"><span class="font-weight-bold">Other Affiliate Information:</span> {{
-                                $_SESSION['PersonalInfo']->getAffiliateOther() }}</h6>
+                            <h6 class="pl-2"><span class="font-weight-bold">Other Affiliate Name:</span> {{
+                                $_SESSION['OtherAffiliate']->getAffiliateName() }}</h6>
+                            <h6 class="pl-2"><span class="font-weight-bold">Affiliate Leader Name:</span> {{
+                                $_SESSION['OtherAffiliate']->getLeaderName() }}</h6>
+                            <h6 class="pl-2"><span class="font-weight-bold">Affiliate Leader Email:</span> {{
+                                $_SESSION['OtherAffiliate']->getLeaderEmail() }}</h6>
+                            <h6 class="pl-2"><span class="font-weight-bold">Affiliate Leader Phone:</span> {{
+                                $_SESSION['OtherAffiliate']->getLeaderPhone() }}</h6>
                         </check>
                     </div>
                     <div class="col-md-6 pl-0">
