@@ -453,6 +453,7 @@ $f3->route('GET /oldTrainings', function ($f3) {
 
 //full application
 $f3->route('GET /@applicant', function ($f3, $params) {
+
     if ($_SESSION['loggedIn'] !== 1) {
         $f3->reroute('/login');
     }
@@ -463,6 +464,14 @@ $f3->route('GET /@applicant', function ($f3, $params) {
 
     $applicant_id = $params['applicant']; //must match^
     $applicant = $db->getApplicant($applicant_id);
+
+    $otherArr = $db->getOtherID($applicant_id);
+    $otherID = $otherArr['other_affiliate_id'];
+
+    if ($otherID != null) {
+        $other = $db->getOtherAffiliate($otherID);
+        $f3->set('other', $other);
+    }
 
     //get app type
     $app_type = $applicant['app_type'];
@@ -507,7 +516,7 @@ $f3->route('GET /app_questions', function ($f3) {
 
 $f3->route("GET|POST /question_edit", function ($f3) {
     $app = $_GET['type'];
-    $type='';
+    $type = '';
     $f3->set('page_title', 'Edit Questions');
     global $db;
     switch ($app) {

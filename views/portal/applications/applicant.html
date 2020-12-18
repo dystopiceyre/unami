@@ -86,9 +86,18 @@
                     <div class="row m-1 mb-2">
                         <h6 class="pl-2"><span class="font-weight-bold">Affiliate:</span> {{ @applicant['Affiliate'] }}
                         </h6>
-                        <check if="@applicant['Other'] != 'N/A'">
-                            <h6 class="pl-2"><span class="font-weight-bold">Other Affiliate Info:</span> {{
-                                @applicant['Other'] }}
+                        <check if="@other != null">
+                            <h6 class="pl-2"><span class="font-weight-bold">Other Affiliate:</span> {{
+                                @other['affiliate_name'] }}
+                            </h6>
+                            <h6 class="pl-2"><span class="font-weight-bold">Affiliate Leader:</span> {{ @other['leader_name']
+                                }}
+                            </h6>
+                            <h6 class="pl-2"><span class="font-weight-bold">Affiliate Email:</span> {{ @other['leader_email']
+                                }}
+                            </h6>
+                            <h6 class="pl-2"><span class="font-weight-bold">Affiliate Phone:</span> {{ @other['leader_phone']
+                                }}
                             </h6>
                         </check>
                     </div>

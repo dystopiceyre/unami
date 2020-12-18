@@ -219,6 +219,11 @@ class UnamiDatabase
         return $this->_dbh->lastInsertId();
     }
 
+    /**
+     * Links "other" affiliate information to a specified applicant
+     * @param $otherID non-WA affiliate id
+     * @param $applicantID applicant id
+     */
     function insertOtherAffiliate($otherID, $applicantID)
     {
         $sql = "UPDATE applicants SET other_affiliate_id = :other_id WHERE applicant_id = :applicant_id";
@@ -228,6 +233,32 @@ class UnamiDatabase
         $statement->bindParam(':applicant_id', $applicantID, PDO::PARAM_INT);
 
         $statement->execute();
+    }
+
+    function getOtherId($applicantID)
+    {
+        $sql = "SELECT other_affiliate_id from applicants WHERE applicant_id = :applicant_id";
+        $statement = $this->_dbh->prepare($sql);
+        $statement->bindParam(':applicant_id', $applicantID, PDO::PARAM_INT);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Get information of non-Washington State affiliate
+     * @param $otherID id of the other affiliate
+     * @return mixed affiliate info
+     */
+    function getOtherAffiliate($otherID)
+    {
+        $sql = "SELECT affiliate_name, leader_name, leader_email, leader_phone FROM other_affiliate
+        WHERE affiliate_id = :other_id";
+
+        $statement = $this->_dbh->prepare($sql);
+        $statement->bindParam(':other_id', $otherID, PDO::PARAM_INT);
+
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -1376,7 +1407,6 @@ class UnamiDatabase
         //define query
         $query = "SELECT *,
                   affiliates.name AS Affiliate,
-                  applicants.affiliate_other AS Other,
                   app_type.app_type AS Training,
                   app_type.ref_name AS Reference,
                   applicants.email AS Email,

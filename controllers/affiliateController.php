@@ -39,6 +39,16 @@ $f3->route('GET|POST /affiliate_review/@applicantId/@hashcode', function ($f3, $
     //get app id
     $app_id = $params['applicantId'];
 
+
+    //"other" affiliate info
+    $otherArr = $db->getOtherID($app_id);
+    $otherID = $otherArr['other_affiliate_id'];
+
+    if ($otherID != null) {
+        $other = $db->getOtherAffiliate($otherID);
+        $f3->set('other', $other);
+    }
+
     //get app type
     $app_type = $applicant['app_type'];
 
