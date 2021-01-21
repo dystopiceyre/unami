@@ -16,7 +16,11 @@ $f3->set('states', array('Alabama','Alaska','Arizona','Arkansas','California',
     'Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York',
     'North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island',
     'South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington',
-    'West Virginia','Wisconsin','Wyoming'));
+    'West Virginia','Wisconsin','Wyoming', 'American Samoa', 'Guam','Northern Mariana Islands',
+    'Puerto Rico', 'United States Minor Outlying Islands', 'Virgin Islands', 'Alberta', 'British Columbia',
+    'Manitoba', 'New Brunswick', 'Newfoundland and Labrador', 'Nova Scotia', 'Ontario', 'Prince Edward Island',
+    'Quebec', 'Saskatchewan', 'Northwest Territories', 'Nunavut','Yukon'
+    ));
 
 //affiliates
 $f3->set('affiliates', $db->getAffiliates());
