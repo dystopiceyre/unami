@@ -61,7 +61,7 @@ function validPersonalInfoForm()
         $f3->set("errors['state']", "Please enter a valid state");
     }
 
-    if (!numeric($f3->get('zip'))) {
+    if (!validZip($f3->get('zip'), $f3->get('state'))) {
         $isValid = false;
         $f3->set("errors['zip']", "Please enter a valid zip");
     }
@@ -288,9 +288,9 @@ function validETSLongAnswersForm()
 }
 
 /**
-* Checks if F2F long answers are valid
-* @return bool whether or not the F2F long answers form is valid
-*/
+ * Checks if F2F long answers are valid
+ * @return bool whether or not the F2F long answers form is valid
+ */
 function validF2FLongAnswersForm()
 {
     global $f3;
@@ -397,6 +397,7 @@ function validBLongAnswersForm()
     }
     return $isValid;
 }
+
 /**
  * Checks if IOOV long answers are valid
  * @return bool whether or not the IOOV long answers form is valid
@@ -411,23 +412,23 @@ function validIOOVLongAnswersForm()
             $f3->set("errors['convict']", "Please type something about your conviction");
         }
     }
-    if(!validRequiredTextarea($f3->get('degree'))) {
+    if (!validRequiredTextarea($f3->get('degree'))) {
         $isValid = false;
         $f3->set("errors['degree']", "Please type your last degree");
     }
-    if(!validRequiredTextarea($f3->get('volunteerExperience'))) {
+    if (!validRequiredTextarea($f3->get('volunteerExperience'))) {
         $isValid = false;
         $f3->set("errors['volunteerExperience']", "Please type your volunteer experience");
     }
-    if(!validRequiredTextarea($f3->get('diagnose'))) {
+    if (!validRequiredTextarea($f3->get('diagnose'))) {
         $isValid = false;
         $f3->set("errors['diagnose']", "Please type were you first diagnosed");
     }
-    if(!validRequiredTextarea($f3->get('diagnoseTime'))) {
+    if (!validRequiredTextarea($f3->get('diagnoseTime'))) {
         $isValid = false;
         $f3->set("errors['diagnoseTime']", "Please type how old were you when diagnosed");
     }
-    if(!validRequiredTextarea($f3->get('currentDiagnosis'))) {
+    if (!validRequiredTextarea($f3->get('currentDiagnosis'))) {
         $isValid = false;
         $f3->set("errors['currentDiagnosis']", "Please type your current diagnosis");
     }
@@ -438,19 +439,19 @@ function validIOOVLongAnswersForm()
         }
     }
 
-    if(!validRequiredTextarea($f3->get('notWantPresent'))) {
+    if (!validRequiredTextarea($f3->get('notWantPresent'))) {
         $isValid = false;
         $f3->set("errors['notWantPresent']", "Please type which groups you do not want to present");
     }
-    if(!validRequiredTextarea($f3->get('whyPresenter'))) {
+    if (!validRequiredTextarea($f3->get('whyPresenter'))) {
         $isValid = false;
         $f3->set("errors['whyPresenter']", "Please type why do you want to be a Presenter");
     }
-    if(!validRequiredTextarea($f3->get('stayedRecover'))) {
+    if (!validRequiredTextarea($f3->get('stayedRecover'))) {
         $isValid = false;
         $f3->set("errors['stayedRecover']", "Please share a personal statement");
     }
-    if(!validRequiredTextarea($f3->get('recovery'))) {
+    if (!validRequiredTextarea($f3->get('recovery'))) {
         $isValid = false;
         $f3->set("errors['recovery']", "Please share your views about medicine");
     }
@@ -466,15 +467,15 @@ function validCLongAnswersForm()
 {
     global $f3;
     $isValid = true;
-    if(!validRequiredTextarea($f3->get('whyFacilitator'))) {
+    if (!validRequiredTextarea($f3->get('whyFacilitator'))) {
         $isValid = false;
         $f3->set("errors['whyFacilitator']", "Please type why do you want to be a facilitator");
     }
-    if(!validRequiredTextarea($f3->get('experience'))) {
+    if (!validRequiredTextarea($f3->get('experience'))) {
         $isValid = false;
         $f3->set("errors['experience']", "Please type your experience");
     }
-    if(!validRequiredTextarea($f3->get('description'))) {
+    if (!validRequiredTextarea($f3->get('description'))) {
         $isValid = false;
         $f3->set("errors['description']", "Please type your definition");
     }
@@ -524,7 +525,6 @@ function validHLongAnswersForm()
     }
     return $isValid;
 }
-
 
 
 /**
@@ -718,6 +718,26 @@ function validEmail($email)
      * */
 
     return !empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL);
+}
+
+/**
+ * Checks if zip code is in valid US zip or Canadian postal code format
+ * @param String $zip the provided zip code
+ * @return bool if the zip is valid or not
+ */
+function validZip($zip, $state)
+{
+    $canada = array('Alberta', 'British Columbia', 'Manitoba', 'New Brunswick',
+        'Newfoundland and Labrador', 'Nova Scotia', 'Ontario',
+        'Prince Edward Island', 'Quebec', 'Saskatchewan', 'Northwest Territories',
+        'Nunavut', 'Yukon');
+    //Matches Canadian postal pattern with or without space
+    //taken from https://regexlib.com/REDetails.aspx?regexp_id=1293, added @ anchor tags
+    if (in_array($state, $canada)) {
+        return preg_match('@([ABCEGHJKLMNPRSTVXY][0-9][ABCEGHJKLMNPRSTVWXYZ])\ ?([0-9][ABCEGHJKLMNPRSTVWXYZ][0-9])@', $zip);
+    }
+    //Matches US 5 digit and 5 + 4 digit zip codes
+    return preg_match('@^\d{5}(-\d{4})?$@', $zip);
 }
 
 //////////////////admin portal validation////////////////////////////
