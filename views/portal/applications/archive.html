@@ -43,7 +43,7 @@
                                 <!-- name, affiliate, training -->
                                 <td>{{ @ArchivedApplicant['Name'] }}</td>
                                 <td>{{ @ArchivedApplicant['Affiliate'] }}</td>
-                                <td>{{ @ArchivedApplicant['Training'] }}</td>
+                                <td>{{ @ArchivedApplicant['Training'] }} {{date('F Y', strtotime(@ArchivedApplicant['Date']))}}</td>
 
                                 <!-- mailto applicant email -->
                                 <td>

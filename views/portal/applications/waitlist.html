@@ -37,13 +37,13 @@
                     </tr>
                     </tfoot>
                     <tbody>
-                        <!-- all waitlisteed applicants -->
+                        <!-- all waitlisted applicants -->
                         <repeat group="{{ @WaitlistedApplicants }}" value="{{ @WaitlistedApplicant }}">
                             <tr>
                                 <!-- name, affiliate, training -->
                                 <td>{{ @WaitlistedApplicant['Name'] }}</td>
                                 <td>{{ @WaitlistedApplicant['Affiliate'] }}</td>
-                                <td>{{ @WaitlistedApplicant['Training'] }}</td>
+                                <td>{{ @WaitlistedApplicant['Training'] }} {{date('F Y', strtotime(@WaitlistedApplicant['Date']))}}</td>
 
                                 <!-- mailto applicant email -->
                                 <td>

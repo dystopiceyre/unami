@@ -168,7 +168,7 @@
                                 <!-- name, affiliate, training -->
                                 <td>{{ @ActiveApplicant['Name'] }}</td>
                                 <td>{{ @ActiveApplicant['Affiliate'] }}</td>
-                                <td>{{ @ActiveApplicant['Training'] }}</td>
+                                <td>{{ @ActiveApplicant['Training'] }} {{ date('F Y', strtotime(@ActiveApplicant['Date']))}}</td>
 
                                 <!-- mailto applicant email -->
                                 <td>

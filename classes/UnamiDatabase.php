@@ -1189,14 +1189,17 @@ class UnamiDatabase
                   app_type.app_type AS Training, 
                   applicants.email AS Email, 
                   date_submitted AS DateSubmitted,
+                  app_type_info.date AS Date,
                   category AS Category,
                   notes AS Notes
                   FROM applicants 
                   INNER JOIN affiliates ON applicants.affiliate = affiliates.affiliate_id
                   INNER JOIN app_type ON applicants.app_type = app_type.app_id
+                  INNER JOIN app_type_info ON applicants.info_id = app_type_info.info_id
                   WHERE category = :category
                   AND applicants.affiliate = affiliates.affiliate_id
-                  AND applicants.app_type = app_type.app_id";
+                  AND applicants.app_type = app_type.app_id
+                  AND applicants.info_id = app_type_info.info_id";
 
         //prepare statement
         $statement = $this->_dbh->prepare($query);
