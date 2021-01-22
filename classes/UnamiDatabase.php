@@ -1450,19 +1450,20 @@ class UnamiDatabase
      */
     function updateApprovalInfo($applicationId, $expiration, $leaderName, $leaderTitle, $type, $date, $check)
     {
-        $sql = "UPDATE applicants SET app_status = 2, member_expiration = :member_expiration, 
-                      approver_name = :approver_name, approver_title = :approver_title, affiliate_type = :type, 
-                      approval_date = :date, check_number = :check
+        $sql = "UPDATE applicants SET app_status = :status, member_expiration = :member_expiration, 
+                      approver_name = :approver_name, approver_title = :approver_title, 
+                      affiliate_type = :affiliate_type, approval_date = :approval_date, check_number = :check_number
                     WHERE applicant_id = :applicant_id";
         $statement = $this->_dbh->prepare($sql);
 
+        $statement->bindParam(':status', 2, PDO::PARAM_INT);
         $statement->bindParam(':member_expiration', $expiration, PDO::PARAM_STR);
         $statement->bindParam(':approver_name', $leaderName, PDO::PARAM_STR);
         $statement->bindParam(':approver_title', $leaderTitle, PDO::PARAM_STR);
         $statement->bindParam(':affiliate_type', $type, PDO::PARAM_STR);
-        $statement->bindParam(':date', $date, PDO::PARAM_STR);
+        $statement->bindParam(':approval_date', $date, PDO::PARAM_STR);
+        $statement->bindParam(':check_number', $check, PDO::PARAM_INT);
         $statement->bindParam(':applicant_id', $applicationId, PDO::PARAM_INT);
-        $statement->bindParam(':check', $check, PDO::PARAM_INT);
 
         $statement->execute();
     }
