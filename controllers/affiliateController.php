@@ -69,12 +69,11 @@ $f3->route('GET|POST /affiliate_review/@applicantId/@hashcode', function ($f3, $
 });
 
 $f3->route('GET|POST /affiliates/affiliate_to_dos/@applicantId', function ($f3, $params) {
-    //TODO: see if need to store info that is currently unused
     global $db;
     $f3->set('page_title', 'Affiliate To Dos');
     if (!empty($_POST)) {
         $db->updateApprovalInfo($params['applicantId'], $_POST['membershipExpiration'], $_POST['leaderName'],
-            $_POST['leaderTitle'], $_POST['affiliateType'], $_POST['date'], $_POST['checkNumber']);
+            $_POST['leaderTitle'], $_POST['affiliateType'], date("m/d/Y"), $_POST['checkNumber']);
 
         //re-route to confirmation page
         $f3->reroute('/to_do_confirmation');
